@@ -49,6 +49,7 @@ android {
         exclude 'META-INF/INDEX.LIST'
         exclude 'META-INF/io.netty.versions.properties'
     }
+    namespace 'com.amity.socialcloud.uikit.sample'
     configurations.configureEach {
         resolutionStrategy {
             force("androidx.core:core-ktx:1.9.0")
