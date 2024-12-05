@@ -23,8 +23,8 @@ open class AmityStyle {
         resources = context.resources
     }
 
-    protected fun getSystemAccentColor(): Int {
-        return getSystemColor(R.attr.colorAccent)
+   /* protected fun getSystemAccentColor(): Int {
+        return getSystemColor(R.attr.amityBackgroundColor)
     }
 
     protected fun getSystemPrimaryColor(): Int {
@@ -33,7 +33,7 @@ open class AmityStyle {
 
     protected fun getSystemPrimaryDarkColor(): Int {
         return getSystemColor(R.attr.colorPrimaryDark)
-    }
+    }*/
 
     protected fun getSystemPrimaryTextColor(): Int {
         return getSystemColor(android.R.attr.textColorPrimary)
