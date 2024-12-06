@@ -19,7 +19,6 @@ android {
 }
 
 dependencies {
-    api project(path: ':social')
     api project(path: ':chat')
 
     api "$amitySDKDependency:amity-sdk:$amityMessagingSdkVersion"
