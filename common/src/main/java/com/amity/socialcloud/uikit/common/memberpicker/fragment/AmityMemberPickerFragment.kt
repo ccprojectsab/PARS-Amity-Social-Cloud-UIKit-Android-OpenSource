@@ -4,9 +4,11 @@ package com.amity.socialcloud.uikit.common.memberpicker.fragment
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.paging.LoadState
@@ -38,7 +40,7 @@ private const val ARG_MEMBERS_LIST = "ARG_MEMBERS_LIST"
 
 class AmityMemberPickerFragment : RxFragment(), AmitySelectMemberListener,
     AmitySelectedMemberListener {
-
+    private var signle_choice = false
     private val mViewModel: AmityMemberPickerViewModel by activityViewModels()
     private lateinit var mSelectedMembersAdapter: AmitySelectedMemberAdapter
     private lateinit var mMemberListAdapter: AmityMembersListAdapter
@@ -54,7 +56,9 @@ class AmityMemberPickerFragment : RxFragment(), AmitySelectMemberListener,
     private lateinit var binding: AmityFragmentSelectMembersListBinding
 
     companion object {
-        fun newInstance(): Builder {
+        private var maxSelection: Int = Int.MAX_VALUE
+        fun newInstance(maxCount: Int = Int.MAX_VALUE): Builder {
+            maxSelection = maxCount
             return Builder()
         }
     }
@@ -196,16 +200,27 @@ class AmityMemberPickerFragment : RxFragment(), AmitySelectMemberListener,
             member.getDisplayName()
                 ?: getString(R.string.amity_anonymous), member.getDescription(), false
         )
+
+        Log.d("MyTag", "onMemberClicked: $maxSelection")
         if (mViewModel.selectedMemberSet.contains(member.getUserId())) {
             mViewModel.prepareSelectedMembersList(selectMemberItem, false)
             mViewModel.selectedMemberSet.remove(member.getUserId())
             updateListOnSelection(member.getUserId())
         } else {
-            mViewModel.selectedMemberSet.add(member.getUserId())
-            mViewModel.prepareSelectedMembersList(selectMemberItem, true)
-            updateListOnSelection(member.getUserId())
-            binding.rvSelectedMembers.scrollToPosition(mViewModel.selectedMembersList.size - 1)
+            if (mViewModel.selectedMemberSet.size < maxSelection) {
+               mViewModel.selectedMemberSet.add(member.getUserId())
+                mViewModel.prepareSelectedMembersList(selectMemberItem, true)
+                updateListOnSelection(member.getUserId())
+                binding.rvSelectedMembers.scrollToPosition(mViewModel.selectedMembersList.size - 1)
+            }
+            else {
+                mViewModel.prepareSelectedMembersList(selectMemberItem, false)
+                mViewModel.selectedMemberSet.remove(member.getUserId())
+                updateListOnSelection(member.getUserId())
+                Toast.makeText(context, "Maximum selection count reached", Toast.LENGTH_SHORT).show()
+            }
         }
+
     }
 
     override fun onMemberRemoved(memberAmity: AmitySelectMemberItem) {

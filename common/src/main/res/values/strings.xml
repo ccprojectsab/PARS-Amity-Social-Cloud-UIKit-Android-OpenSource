@@ -6,25 +6,25 @@
     <string name="amity_gallery">Gallery</string>
     <string name="amity_follow">Follow</string>
     <string name="amity_followers">Followers</string>
-    <string name="amity_search">Search</string>
+    <string name="amity_search">sök</string>
     <string name="amity_search_results">Search results</string>
     <string name="amity_left_icon">left icon</string>
     <string name="amity_center_icon">center icon</string>
     <string name="amity_right_icon">right icon</string>
     <string name="amity_choose_image">Choose Image</string>
-    <string name="amity_edit_post">Edit Post</string>
-    <string name="amity_delete_post">Delete Post</string>
+    <string name="amity_edit_post">Radera ändringar</string>
+    <string name="amity_delete_post">Radera inlägg</string>
     <string name="amity_save">Save</string>
     <string name="amity_saved">Saved.</string>
     <string name="amity_delete_msg">Delete this message?</string>
     <string name="amity_dlt_dlg_body">Message will also be permanently removed from your friend\'s devices.</string>
     <string name="amity_failed_dlg_body">Your message was not sent</string>
-    <string name="amity_cancel">Cancel</string>
+    <string name="amity_cancel">Behåll</string>
     <string name="amity_day">day</string>
     <string name="amity_hour">hour</string>
     <string name="amity_min">min</string>
     <string name="amity_just_now">just now</string>
-    <string name="amity_save_caps">SAVE</string>
+    <string name="amity_save_caps">Spara</string>
     <string name="amity_anonymous">Anonymous</string>
     <string name="amity_edit_profile">Edit Profile</string>
     <string name="amity_message">Message</string>
@@ -35,6 +35,18 @@
     <string name="amity_try_again">Please try again</string>
     <string name="amity_image_preview_title">%1$d/%2$d</string>
     <string name="amity_release_to_send">Release to send</string>
+    <plurals name="amity_number_of_years">
+        <item quantity="one">%d år sedan</item>
+        <item quantity="other">%d år sedan</item>
+    </plurals>
+    <plurals name="amity_number_of_months">
+        <item quantity="one">%d månad sedan</item>
+        <item quantity="other">%d månader sedan</item>
+    </plurals>
+    <plurals name="amity_number_of_weeks">
+        <item quantity="one">%d vecka sedan</item>
+        <item quantity="other">%d veckor sedan</item>
+    </plurals>
     <plurals name="amity_number_of_days">
         <item quantity="one">%d day</item>
         <item quantity="other">%d days</item>
@@ -49,7 +61,7 @@
     </plurals>
     <string name="amity_time">0:%1s</string>
     <string name="amity_ok">OK</string>
-    <string name="amity_remove_from_community">Remove from community</string>
+    <string name="amity_remove_from_community">Ta bort från gruppen</string>
     <string name="amity_no_permission_title">Unable to perform this action</string>
     <string name="amity_no_permission_message">You no longer have permission to make any changes in this community</string>
     <string name="amity_downloading_file">Downloading file</string>
@@ -62,6 +74,5 @@
     <string name="amity_add">Add</string>
     <string name="amity_selected">Selected</string>
     <string name="amity_no_user_found">No user found</string>
-    <string name="amity_preview_not_available_title">Preview not available</string>
-    <string name="amity_preview_not_available_message">Please make sure the URL is correct and try again.</string>
+    <string name="amity_yesterday">I går</string>
 </resources>

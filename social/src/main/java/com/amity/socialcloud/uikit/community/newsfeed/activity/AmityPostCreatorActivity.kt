@@ -24,7 +24,7 @@ class AmityPostCreatorActivity : AmityBaseToolbarFragmentContainerActivity() {
 
     override fun initToolbar() {
         val communityId = intent?.getStringExtra(EXTRA_PARAM_COMMUNITY)
-        getToolBar()?.setLeftDrawable(ContextCompat.getDrawable(this, R.drawable.amity_ic_cross))
+        getToolBar()?.setLeftDrawable(ContextCompat.getDrawable(this, com.amity.socialcloud.uikit.common.R.drawable.amity_ic_cross))
         if (communityId != null) {
             getCommunity(communityRepository,communityId)
         } else {

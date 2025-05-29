@@ -48,6 +48,23 @@
         tools:text="LIVE  00:00"
         tools:visibility="visible" />
 
+    <com.google.android.material.imageview.ShapeableImageView
+        android:visibility="gone"
+        android:id="@+id/ic_cross"
+        android:layout_width="@dimen/amity_thirty_six"
+        android:layout_height="@dimen/amity_thirty_six"
+        android:background="@color/amityTranslucentBackground"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="10dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/amity_ic_close"
+        app:shapeAppearanceOverlay="@style/AmityCircleImage"
+        amityBackgroundColorAlpha="@{@integer/alpha_fifty}"
+        android:layout_centerInParent="true" />
+
     <RelativeLayout
         android:id="@+id/creation_container"
         android:layout_width="match_parent"

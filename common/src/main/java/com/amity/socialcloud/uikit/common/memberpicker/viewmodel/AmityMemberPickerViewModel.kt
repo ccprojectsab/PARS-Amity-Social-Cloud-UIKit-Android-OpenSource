@@ -3,8 +3,8 @@ package com.amity.socialcloud.uikit.common.memberpicker.viewmodel
 import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
-import androidx.paging.ExperimentalPagingApi
 import androidx.paging.PagingData
+import androidx.paging.filter
 import com.amity.socialcloud.sdk.api.core.AmityCoreClient
 import com.amity.socialcloud.sdk.api.core.user.search.AmityUserSortOption
 import com.amity.socialcloud.sdk.model.core.user.AmityUser
@@ -15,6 +15,8 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.schedulers.Schedulers
+import java.text.Collator
+import java.util.Locale
 import java.util.concurrent.TimeUnit
 
 class AmityMemberPickerViewModel : AmityBaseViewModel() {
@@ -28,15 +30,31 @@ class AmityMemberPickerViewModel : AmityBaseViewModel() {
     val leftString = MutableLiveData<String>("")
     val rightStringActive = MutableLiveData<Boolean>(false)
 
-    @OptIn(ExperimentalPagingApi::class)
-    fun getAllUsers(): Flowable<PagingData<AmityUser>> {
-        val userRepo = AmityCoreClient.newUserRepository()
-        return userRepo.searchUserByDisplayName("")
-            .build()
-            .query()
+    private val collator = Collator.getInstance(Locale("sv", "SE"))
+    private val customComparator = Comparator<AmityUser> { user1, user2 ->
+        val modifiedStr1 = user1.getDisplayName()?.let { modifyForCustomSort(it) }
+        val modifiedStr2 = user2.getDisplayName()?.let { modifyForCustomSort(it) }
+        collator.compare(modifiedStr1, modifiedStr2)
     }
 
-    @OptIn(ExperimentalPagingApi::class)
+    fun getAllUsers(): Flowable<PagingData<AmityUser>> {
+        val userRepo = AmityCoreClient.newUserRepository()
+        return userRepo.getUsers()
+            .build()
+            .query()
+            .map { it.filter { user -> !(user.isDeleted()) } }
+    }
+
+
+    fun modifyForCustomSort(str: String): String {
+        // Replace Swedish characters with characters that come before 'A'
+        return str.replace('å', '0')
+            .replace('ä', '1')
+            .replace('ö', '2')
+    }
+
+
+
     fun searchUser(onResult: (list: PagingData<AmityUser>) -> Unit): Completable {
         val userRepo = AmityCoreClient.newUserRepository()
         return userRepo.searchUserByDisplayName(searchString.get() ?: "")

@@ -39,4 +39,12 @@ class AmityMemberListHeaderViewHolder(
             }
         }
     }
+
+
+    fun modifyForCustomSort(str: String): String {
+        // Replace Swedish characters with special characters to place them before 'A'
+        return str.replace('å', '0')
+            .replace('ä', '1')
+            .replace('ö', '2')
+    }
 }

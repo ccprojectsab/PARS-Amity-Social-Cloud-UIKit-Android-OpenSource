@@ -244,7 +244,7 @@ class AmityCommunitySettingsFragment : RxFragment() {
         AmityAlertDialogUtil.showDialog(requireContext(),
             getString(title),
             getString(description),
-            getString(R.string.amity_ok),
+            getString(com.amity.socialcloud.uikit.common.R.string.amity_ok),
             null,
             DialogInterface.OnClickListener { dialog, which ->
                 checkConfirmDialog(isPositive = which, confirmed = dialog::cancel)

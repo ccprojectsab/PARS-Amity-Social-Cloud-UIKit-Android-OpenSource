@@ -51,20 +51,20 @@ class AmityPushNotificationSettingsViewModel(private val savedState: SavedStateH
             val allNotifications =
                 menuCreator.createAllNotificationsMenu(communityId, Flowable.just(permission))
             settingsItems.add(allNotifications)
-            val paddingM1 = AmitySettingsItem.Margin(R.dimen.amity_padding_m1)
+            val paddingM1 = AmitySettingsItem.Margin(com.amity.socialcloud.uikit.common.R.dimen.amity_padding_m1)
             settingsItems.add(paddingM1)
             settingsItems.add(separator)
 
             if (permission) {
                 if (isPostEnabled) {
-                    val paddingXS = AmitySettingsItem.Margin(R.dimen.amity_padding_xs)
+                    val paddingXS = AmitySettingsItem.Margin(com.amity.socialcloud.uikit.common.R.dimen.amity_padding_xs)
                     settingsItems.add(paddingXS)
                     val posts = menuCreator.createPostMenu(communityId)
                     settingsItems.add(posts)
                 }
 
                 if (isCommentEnabled) {
-                    val paddingXXS = AmitySettingsItem.Margin(R.dimen.amity_padding_xxs)
+                    val paddingXXS = AmitySettingsItem.Margin(com.amity.socialcloud.uikit.common.R.dimen.amity_padding_xxs)
                     settingsItems.add(paddingXXS)
                     val comments = menuCreator.createCommentMenu(communityId)
                     settingsItems.add(comments)

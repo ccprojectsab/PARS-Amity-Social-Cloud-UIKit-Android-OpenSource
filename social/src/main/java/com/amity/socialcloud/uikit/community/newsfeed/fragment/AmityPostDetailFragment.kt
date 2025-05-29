@@ -112,10 +112,10 @@ class AmityPostDetailFragment : AmityBaseFragment(),
         viewModel.post?.let {
             if (viewModel.shouldShowPostOptions(it)) {
                 val drawable =
-                    ContextCompat.getDrawable(requireContext(), R.drawable.amity_ic_more_horiz)
+                    ContextCompat.getDrawable(requireContext(), com.amity.socialcloud.uikit.common.R.drawable.amity_ic_more_horiz)
                 drawable?.mutate()
                 drawable?.colorFilter = BlendModeColorFilterCompat.createBlendModeColorFilterCompat(
-                    R.color.amityColorBlack,
+                    com.amity.socialcloud.uikit.common.R.color.amityColorBlack,
                     BlendModeCompat.SRC_ATOP
                 )
                 menuItem = menu.add(

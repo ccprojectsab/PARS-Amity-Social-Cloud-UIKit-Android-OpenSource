@@ -60,10 +60,10 @@ class AmityRecommendedCommunityFragment : AmityBaseFragment(),
         binding.rvRecommCommunity.adapter = adapter
         binding.rvRecommCommunity.addItemDecoration(
             AmityCommunityItemDecoration(
-                requireContext().resources.getDimensionPixelSize(R.dimen.amity_ten),
-                requireContext().resources.getDimensionPixelSize(R.dimen.amity_padding_xs),
-                requireContext().resources.getDimensionPixelSize(R.dimen.amity_eighteen),
-                requireContext().resources.getDimensionPixelSize(R.dimen.amity_padding_xs)
+                requireContext().resources.getDimensionPixelSize(com.amity.socialcloud.uikit.common.R.dimen.amity_ten),
+                requireContext().resources.getDimensionPixelSize(com.amity.socialcloud.uikit.common.R.dimen.amity_padding_xs),
+                requireContext().resources.getDimensionPixelSize(com.amity.socialcloud.uikit.common.R.dimen.amity_eighteen),
+                requireContext().resources.getDimensionPixelSize(com.amity.socialcloud.uikit.common.R.dimen.amity_padding_xs)
             )
         )
         getRecommendedCommunity()

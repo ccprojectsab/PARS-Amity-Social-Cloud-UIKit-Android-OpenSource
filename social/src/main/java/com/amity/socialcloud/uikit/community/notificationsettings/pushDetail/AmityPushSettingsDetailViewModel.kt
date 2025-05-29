@@ -89,7 +89,7 @@ class AmityPushSettingsDetailViewModel : AmityPushNotificationBaseViewModel() {
         val settingsItems = mutableListOf<AmitySettingsItem>()
         val separator = AmitySettingsItem.Separator
         val postReactedEvent = map[AmityCommunityNotificationEvent.POST_REACTED.toString()]
-        val paddingXS = AmitySettingsItem.Margin(R.dimen.amity_padding_xs)
+        val paddingXS = AmitySettingsItem.Margin(com.amity.socialcloud.uikit.common.R.dimen.amity_padding_xs)
         if (postReactedEvent != null && postReactedEvent.isNetworkEnabled()) {
             val postReacted = menuCreator.createReactPostMenu(communityId)
             settingsItems.add(postReacted)
@@ -106,7 +106,7 @@ class AmityPushSettingsDetailViewModel : AmityPushNotificationBaseViewModel() {
             if (initialReactPost != -1) {
                 settingsItems.add(separator)
             }
-            settingsItems.add(AmitySettingsItem.Margin(R.dimen.amity_padding_s))
+            settingsItems.add(AmitySettingsItem.Margin(com.amity.socialcloud.uikit.common.R.dimen.amity_padding_s))
             val newPost = menuCreator.createNewPostMenu(communityId)
             settingsItems.add(newPost)
             settingsItems.add(paddingXS)
@@ -144,7 +144,9 @@ class AmityPushSettingsDetailViewModel : AmityPushNotificationBaseViewModel() {
                 reactComment = initialReactComment
             }
 
-            else -> {}
+            is AmityCommunityNotificationEvent.STORY_COMMENT_CREATED,
+            is AmityCommunityNotificationEvent.STORY_CREATED,
+            is AmityCommunityNotificationEvent.STORY_REACTED -> {}
         }
         if (!isGlobalModerator) {
             choices.add(Pair(R.string.amity_everyone, !isModerator))
@@ -218,8 +220,8 @@ class AmityPushSettingsDetailViewModel : AmityPushNotificationBaseViewModel() {
     fun createCommentSettingsItem(menuCreator: AmityCommentMenuCreator): List<AmitySettingsItem> {
         val settingsItems = mutableListOf<AmitySettingsItem>()
         val separator = AmitySettingsItem.Separator
-        val paddingXS = AmitySettingsItem.Margin(R.dimen.amity_padding_xs)
-        val paddingS = AmitySettingsItem.Margin(R.dimen.amity_padding_s)
+        val paddingXS = AmitySettingsItem.Margin(com.amity.socialcloud.uikit.common.R.dimen.amity_padding_xs)
+        val paddingS = AmitySettingsItem.Margin(com.amity.socialcloud.uikit.common.R.dimen.amity_padding_s)
         val reactCommentEvent = map[AmityCommunityNotificationEvent.COMMENT_REACTED.toString()]
         if (reactCommentEvent != null && reactCommentEvent.isNetworkEnabled()) {
             val commentReacted = menuCreator.createReactCommentsMenu(communityId)

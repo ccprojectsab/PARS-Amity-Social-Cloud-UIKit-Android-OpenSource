@@ -117,7 +117,7 @@ class AmityCommunityNotificationSettingsFragment : RxFragment() {
             requireContext(),
             getString(title),
             getString(description),
-            getString(R.string.amity_ok),
+            getString(com.amity.socialcloud.uikit.common.R.string.amity_ok),
             null
         ) { dialog, which ->
             AmityAlertDialogUtil.checkConfirmDialog(isPositive = which, confirmed = {

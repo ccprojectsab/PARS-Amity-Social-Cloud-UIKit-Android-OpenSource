@@ -1,7 +1,33 @@
 apply from: "../buildsystem/activity.gradle"
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+android {
+    namespace 'com.amity.socialcloud.uikit.chat'
+    buildFeatures {
+        dataBinding = true
+        viewBinding = true
+        buildConfig = true
+    }
+    flavorDimensions "environment"
+    productFlavors {
+
+        register("staging") {
+            buildConfigField("String", "BASE_URL", BASE_URL_STAGING)
+        }
+        register("production") {
+
+            buildConfigField("String", "BASE_URL", BASE_URL_LIVE)
+        }
+    }
+}
 
 dependencies {
     implementation project(path: ':common')
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.11.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation "com.facebook.shimmer:shimmer:0.5.0"
+
 }

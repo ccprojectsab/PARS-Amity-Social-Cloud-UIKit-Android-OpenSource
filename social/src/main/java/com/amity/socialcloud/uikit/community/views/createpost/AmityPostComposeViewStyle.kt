@@ -14,7 +14,7 @@ class AmityPostComposeViewStyle : AmityStyle {
 
     init {
         backgroundColor = getColor(android.R.color.transparent)
-        padding = getDimensionPixelSize(R.dimen.amity_padding_xs)
+        padding = getDimensionPixelSize(com.amity.socialcloud.uikit.common.R.dimen.amity_padding_xs)
         hint = R.string.amity_post_compose_hint
         mentionColor =  android.R.color.black
     }

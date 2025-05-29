@@ -32,15 +32,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+
         <TextView
             android:id="@+id/tvName"
             style="@style/AmityTextStyleCaption"
-            android:layout_width="0dp"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/amity_padding_xxs"
             android:ellipsize="end"
             android:gravity="center"
             android:maxLines="1"
+            android:drawableStart="@{ekoCommunity.public ? null : @drawable/amity_ic_lock2}"
+            android:fontFamily="@font/inter_regular"
             android:text="@{ekoCommunity.displayName}"
             app:layout_constraintEnd_toStartOf="@id/ivOfficial"
             app:layout_constraintStart_toStartOf="@id/ivAvatar"

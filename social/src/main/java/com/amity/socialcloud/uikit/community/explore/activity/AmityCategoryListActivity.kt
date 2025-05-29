@@ -16,9 +16,9 @@ class AmityCategoryListActivity :
     override fun initToolbar() {
         showToolbarDivider()
         getToolBar()?.setLeftDrawable(
-            ContextCompat.getDrawable(this, R.drawable.amity_ic_arrow_back)
+            ContextCompat.getDrawable(this, com.amity.socialcloud.uikit.common.R.drawable.amity_ic_arrow_back)
         )
-        getToolBar()?.setLeftString(getString(R.string.amity_category))
+        getToolBar()?.setCenterString(getString(R.string.amity_category))
     }
 
     override fun getContentFragment(): Fragment {

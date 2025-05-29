@@ -9,7 +9,7 @@ import com.amity.socialcloud.uikit.community.newsfeed.fragment.AmityCustomPostRa
 class AmityCustomPostRankingFeedActivity : AmityBaseToolbarFragmentContainerActivity() {
 
     override fun initToolbar() {
-        getToolBar()?.setLeftDrawable(ContextCompat.getDrawable(this, R.drawable.amity_ic_arrow_back))
+        getToolBar()?.setLeftDrawable(ContextCompat.getDrawable(this, com.amity.socialcloud.uikit.common.R.drawable.amity_ic_arrow_back))
     }
 
     override fun getContentFragment(): Fragment {

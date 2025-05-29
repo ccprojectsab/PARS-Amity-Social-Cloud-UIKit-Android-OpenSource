@@ -48,7 +48,7 @@ class AmityModeratorsFragment : AmityBaseFragment(), AmityMemberClickListener {
         initRecyclerView()
         binding.etSearch.setShape(
             null, null, null, null,
-            R.color.amityColorBase, null, AmityColorShade.SHADE4
+            com.amity.socialcloud.uikit.common.R.color.amityColorBase, null, AmityColorShade.SHADE4
         )
     }
 
@@ -58,7 +58,7 @@ class AmityModeratorsFragment : AmityBaseFragment(), AmityMemberClickListener {
         binding.rvCommunityModerators.adapter = moderatorAdapter
         binding.rvCommunityModerators.addItemDecoration(
             AmityRecyclerViewItemDecoration(
-                requireContext().resources.getDimensionPixelSize(R.dimen.amity_padding_m1)
+                requireContext().resources.getDimensionPixelSize(com.amity.socialcloud.uikit.common.R.dimen.amity_padding_m1)
             )
         )
 
@@ -83,7 +83,7 @@ class AmityModeratorsFragment : AmityBaseFragment(), AmityMemberClickListener {
                 val selectMemberItem = AmitySelectMemberItem(
                     ekoUser.getUserId(),
                     ekoUser.getAvatar()?.getUrl(AmityImage.Size.MEDIUM) ?: "",
-                    ekoUser.getDisplayName() ?: getString(R.string.amity_anonymous),
+                    ekoUser.getDisplayName() ?: getString(com.amity.socialcloud.uikit.common.R.string.amity_anonymous),
                     ekoUser.getDescription(),
                     false
                 )

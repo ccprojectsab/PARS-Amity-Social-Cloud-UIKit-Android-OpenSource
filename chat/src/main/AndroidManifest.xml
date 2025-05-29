@@ -6,6 +6,10 @@
 
     <application>
         <activity
+            android:name=".settings.AmityChatSettingsActivity"
+            android:exported="false"
+            android:theme="@style/Amity.Base.Theme.AmityApp" />
+        <activity
             android:name=".editMessage.AmityEditMessageActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Amity.Base.Theme.AmityApp" />
@@ -18,6 +22,7 @@
             android:name=".home.AmityChatHomePageActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Amity.Base.Theme.AmityApp" />
+
     </application>
 
 </manifest>

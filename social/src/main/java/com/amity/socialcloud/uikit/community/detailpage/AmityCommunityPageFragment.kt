@@ -1,5 +1,6 @@
 package com.amity.socialcloud.uikit.community.detailpage
 
+import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -160,7 +161,7 @@ class AmityCommunityPageFragment : RxFragment(),
     }
 
     private fun setUpViewListeners() {
-        binding.refreshLayout.setColorSchemeResources(R.color.amityColorPrimary)
+        binding.refreshLayout.setColorSchemeResources(com.amity.socialcloud.uikit.common.R.color.amityColorPrimary)
         binding.refreshLayout.setOnRefreshListener {
             refreshCommunity()
         }
@@ -194,34 +195,47 @@ class AmityCommunityPageFragment : RxFragment(),
     }
 
     private fun navigateToCreatePost() {
+        val sharedPref = context?.getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
+        val isLiveStreamPermitted =
+            sharedPref?.getBoolean("PREF_USER_CAN_LIVESTREAM", false) ?: false
+
         val bottomSheet = AmityBottomSheetDialog(requireContext())
         val postCreationOptions =
             arrayListOf(
                 BottomSheetMenuItem(
-                    iconResId = R.drawable.ic_amity_ic_post_create,
+                    iconResId = com.amity.socialcloud.uikit.common.R.drawable.ic_amity_ic_post_create,
                     titleResId = R.string.amity_post,
+                    colorResId = com.amity.socialcloud.uikit.common.R.color.amityColorBase,
                     action = {
                         createGenericPost.launch(viewModel.communityId)
                         bottomSheet.dismiss()
                     }
                 ),
+            )
+
+        if (isLiveStreamPermitted) {
+            postCreationOptions.add(
                 BottomSheetMenuItem(
-                    iconResId = R.drawable.ic_amity_ic_live_stream_create,
+                    iconResId = com.amity.socialcloud.uikit.common.R.drawable.ic_amity_ic_live_stream_create,
                     titleResId = R.string.amity_video_stream_title,
+                    colorResId = com.amity.socialcloud.uikit.common.R.color.amityColorBase,
                     action = {
                         createLiveStreamPost.launch(viewModel.communityId)
                         bottomSheet.dismiss()
                     }
                 ),
-                BottomSheetMenuItem(
-                    iconResId = R.drawable.ic_amity_ic_poll_create,
-                    titleResId = R.string.amity_general_poll,
-                    action = {
-                        createPollPost.launch(viewModel.communityId)
-                        bottomSheet.dismiss()
-                    }
-                )
             )
+        }
+/*
+        postCreationOptions.add(BottomSheetMenuItem(
+            iconResId = com.amity.socialcloud.uikit.common.R.drawable.ic_amity_ic_poll_create,
+            titleResId = R.string.amity_general_poll,
+            action = {
+                createPollPost.launch(viewModel.communityId)
+                bottomSheet.dismiss()
+            }
+        )
+        )*/
 
         bottomSheet.show(postCreationOptions)
     }

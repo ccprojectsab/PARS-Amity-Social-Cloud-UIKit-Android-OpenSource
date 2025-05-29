@@ -3,6 +3,8 @@ package com.amity.socialcloud.uikit.chat.messages.fragment
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.ActivityManager
+import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
@@ -11,6 +13,7 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.*
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
@@ -20,11 +23,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.ColorUtils
+import androidx.core.net.toFile
+import androidx.core.net.toUri
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
-import androidx.paging.filter
-import androidx.paging.map
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.amity.socialcloud.sdk.api.core.AmityCoreClient
@@ -35,6 +39,7 @@ import com.amity.socialcloud.uikit.chat.databinding.AmityFragmentChatWithDefault
 import com.amity.socialcloud.uikit.chat.messages.adapter.AmityMessagePagingAdapter
 import com.amity.socialcloud.uikit.chat.messages.viewModel.AmityChatRoomEssentialViewModel
 import com.amity.socialcloud.uikit.chat.messages.viewModel.AmityMessageListViewModel
+import com.amity.socialcloud.uikit.chat.settings.AmityChatSettingsActivity
 import com.amity.socialcloud.uikit.chat.util.MessageType
 import com.amity.socialcloud.uikit.common.base.AmityPickerFragment
 import com.amity.socialcloud.uikit.common.common.setShape
@@ -45,9 +50,11 @@ import com.amity.socialcloud.uikit.common.components.AmityAudioRecorderListener
 import com.amity.socialcloud.uikit.common.components.AmityMessageListListener
 import com.amity.socialcloud.uikit.common.model.AmityEventIdentifier
 import com.amity.socialcloud.uikit.common.utils.AmityAndroidUtil
+import com.amity.socialcloud.uikit.common.utils.AmityBackPressUtil
 import com.amity.socialcloud.uikit.common.utils.AmityConstants
 import com.amity.socialcloud.uikit.common.utils.AmityRecyclerViewItemDecoration
 import com.google.android.material.snackbar.Snackbar
+import com.google.gson.JsonObject
 import com.zhihu.matisse.Matisse
 import com.zhihu.matisse.MimeType
 import com.zhihu.matisse.engine.impl.GlideEngine
@@ -57,8 +64,10 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import timber.log.Timber
 import java.io.File
+import java.io.FileOutputStream
 
 class AmityChatRoomWithDefaultComposeBarFragment : AmityPickerFragment(),
     AmityAudioRecorderListener, AmityMessageListListener {
@@ -75,23 +84,17 @@ class AmityChatRoomWithDefaultComposeBarFragment : AmityPickerFragment(),
     private var currentCount = 0
     private var isImagePermissionGranted = false
     private var isReachBottom = true
-
+    var ROUTE_NAME = "ROUTE_NAME"
 
     private val requiredPermissions = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
         arrayOf(
             Manifest.permission.RECORD_AUDIO,
             Manifest.permission.WRITE_EXTERNAL_STORAGE
         )
-    } else if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
-        arrayOf(
-            Manifest.permission.RECORD_AUDIO,
-            Manifest.permission.READ_MEDIA_AUDIO
-        )
-    } else {
+    } else
         arrayOf(
             Manifest.permission.RECORD_AUDIO
         )
-    }
 
     private val recordPermission =
         registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
@@ -153,12 +156,22 @@ class AmityChatRoomWithDefaultComposeBarFragment : AmityPickerFragment(),
     private fun setupComposebar() {
         binding.apply {
             etMessage.setShape(
-                null, null, null, null,
-                R.color.amityColorBase, R.color.amityColorBase, AmityColorShade.SHADE4
+                50f,
+                50f,
+                50f,
+                50f,
+                com.amity.socialcloud.uikit.common.R.color.amityColorWhite,
+                com.amity.socialcloud.uikit.common.R.color.amityColorGrey,
+                AmityColorShade.DEFAULT
             )
             recordBackground.setShape(
-                null, null, null, null,
-                R.color.amityColorBase, R.color.amityColorBase, AmityColorShade.SHADE4
+                50f,
+                50f,
+                50f,
+                50f,
+                com.amity.socialcloud.uikit.common.R.color.amityColorWhite,
+                com.amity.socialcloud.uikit.common.R.color.amityColorGrey,
+                AmityColorShade.DEFAULT
             )
             etMessage.setOnClickListener {
                 messageListViewModel.showComposeBar.set(false)
@@ -204,7 +217,7 @@ class AmityChatRoomWithDefaultComposeBarFragment : AmityPickerFragment(),
             binding.connectionTexview.setBackgroundColor(
                 ContextCompat.getColor(
                     requireContext(),
-                    R.color.amityColorGrey
+                    com.amity.socialcloud.uikit.common.R.color.amityColorGrey
                 )
             )
         }
@@ -220,7 +233,7 @@ class AmityChatRoomWithDefaultComposeBarFragment : AmityPickerFragment(),
         binding.loadingView.setBackgroundColor(
             ContextCompat.getColor(
                 requireContext(),
-                R.color.amityTranslucentBackground
+                com.amity.socialcloud.uikit.common.R.color.amityTranslucentBackground
             )
         )
         binding.loadingView.visibility = View.VISIBLE
@@ -268,8 +281,31 @@ class AmityChatRoomWithDefaultComposeBarFragment : AmityPickerFragment(),
         setUpBackPress()
     }
 
-    private fun setUpBackPress() {
 
+    private fun setUpBackPress() {
+        activity?.onBackPressedDispatcher?.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (messageListViewModel.showComposeBar.get()) {
+                    messageListViewModel.showComposeBar.set(false)
+                } else if (AmityBackPressUtil.isLastActivityAndBackStackEmpty(
+                        context!!,
+                        parentFragmentManager
+                    )
+                ) {
+                    val intent = Intent("com.medcura.ACTION_OPEN_CUSTOM_HOME").apply {
+                        putExtra("ROUTE_NAME", "Chat")
+                    }
+                    essentialViewModel.messageMarkAsRead(essentialViewModel.channelId)
+                    startActivity(intent)
+                    activity?.finish()
+                } else {
+                    requireActivity().finish()
+                }
+            }
+
+        })
+    }
+    /*private fun setUpBackPress() {
         activity?.onBackPressedDispatcher?.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 if (messageListViewModel.showComposeBar.get()) {
@@ -279,7 +315,7 @@ class AmityChatRoomWithDefaultComposeBarFragment : AmityPickerFragment(),
                 }
             }
         })
-    }
+    }*/
 
     private fun getChannelType() {
         disposable.add(messageListViewModel.getChannelType().take(1).subscribe { ekoChannel ->
@@ -287,41 +323,67 @@ class AmityChatRoomWithDefaultComposeBarFragment : AmityPickerFragment(),
                 binding.chatToolBar.ivAvatar.setImageDrawable(
                     ContextCompat.getDrawable(
                         requireContext(),
-                        R.drawable.amity_ic_group
+                        com.amity.socialcloud.uikit.common.R.drawable.amity_ic_group
                     )
                 )
             } else {
                 binding.chatToolBar.ivAvatar.setImageDrawable(
                     ContextCompat.getDrawable(
                         requireContext(),
-                        R.drawable.amity_ic_user
+                        com.amity.socialcloud.uikit.common.R.drawable.amity_ic_user
                     )
                 )
             }
 
             if (ekoChannel.getChannelType() == AmityChannel.Type.CONVERSATION) {
-                disposable.add(
-                    messageListViewModel.getDisplayName()
-                        .doOnNext { channelMembers ->
-                            channelMembers.filter {
-                                it.getUserId() != AmityCoreClient.getUserId()
-                            }.map { channelMember ->
-                                CoroutineScope(Dispatchers.Main).launch {
-                                    val title = channelMember.getUser()?.getDisplayName()
-                                    val avatarUrl = channelMember.getUser()?.getAvatar()
-                                        ?.getUrl(AmityImage.Size.SMALL)
+                val metadata: JsonObject? = ekoChannel.getMetadata()
+                Log.d("Mytag", "getChannelType:${ekoChannel.getMetadata()} ")
+                val otherUserId = metadata?.get(AmityConstants.CHAT_METADATA_USER_IDS)
+                    ?.asJsonArray
+                    ?.find { it.asString != AmityCoreClient.getUserId() }
+                    ?.asString
 
-                                    messageListViewModel.title.set(title)
-                                    messageListViewModel.avatarUrl.set(avatarUrl)
+                if (otherUserId != null) {
+                    essentialViewModel.otherUserId = otherUserId
+                }
+                lifecycleScope.launch {
+                    withContext(Dispatchers.IO) {
+                        try {
+                            val userDetails =
+                                messageListViewModel.getDisplayNameUser(otherUserId.toString())
+                                    .blockingFirst()
+                            withContext(Dispatchers.Main) {
+                                userDetails.getDisplayName()?.let { userName ->
+                                    messageListViewModel.title.set(userName)
+                                }
+
+                                messageListViewModel.title.set(ekoChannel.getDisplayName())
+                                userDetails.getAvatar()?.let { image ->
+                                    messageListViewModel.avatarUrl.set(image.getUrl())
                                 }
                             }
-                        }.subscribe()
-                )
-            } else {
-                messageListViewModel.title.set(ekoChannel.getDisplayName())
-                messageListViewModel.avatarUrl
-                    .set(ekoChannel.getAvatar()?.getUrl(AmityImage.Size.SMALL))
+                        } catch (e: Exception) {
+                            // Handle the exception here
+                            e.printStackTrace() // You can log the exception or perform other error-handling tasks
+                        }
+                    }
+                }
             }
+            //           } else {
+
+            val metadata: JsonObject? = ekoChannel.getMetadata()
+            Log.d("Mytag", "getChannelType:${ekoChannel.getMetadata()} ")
+            val otherUserId = metadata?.get(AmityConstants.CHAT_METADATA_USER_IDS)
+                ?.asJsonArray
+                ?.find { it.asString != AmityCoreClient.getUserId() }
+                ?.asString
+            if (otherUserId != null) {
+                essentialViewModel.otherUserId = otherUserId
+            }
+            messageListViewModel.title.set(ekoChannel.getDisplayName())
+            messageListViewModel.avatarUrl
+                .set(ekoChannel.getAvatar()?.getUrl(AmityImage.Size.SMALL))
+            //          }
         })
     }
 
@@ -333,7 +395,37 @@ class AmityChatRoomWithDefaultComposeBarFragment : AmityPickerFragment(),
                 (activity as AppCompatActivity).setSupportActionBar(root as Toolbar)
 
                 ivBack.setOnClickListener {
-                    activity?.finish()
+                    if (AmityBackPressUtil.isLastActivityAndBackStackEmpty(
+                            requireContext(),
+                            parentFragmentManager
+                        )
+                    ) {
+                        val intent = Intent("com.medcura.ACTION_OPEN_CUSTOM_HOME").apply {
+                            putExtra("ROUTE_NAME", "Chat")
+                        }
+                        startActivity(intent)
+                        activity?.finish()
+                    } else {
+                        activity?.finish()
+                    }
+
+                }
+                val sharedPref = context?.getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
+                val isLiveStreamPermitted =
+                    sharedPref?.getBoolean("PREF_USER_CAN_LIVESTREAM", false) ?: false
+                if (isLiveStreamPermitted) {
+                    ivsetting.visibility = View.VISIBLE
+                    ivsetting.setOnClickListener {
+                        Log.d("MYtag", "initToolBar: pressed")
+
+                        val chatListIntent =
+                            AmityChatSettingsActivity.newIntent(
+                                requireContext(),
+                                essentialViewModel.channelId,
+                                essentialViewModel.otherUserId
+                            )
+                        chatSettingsLauncher.launch(chatListIntent)
+                    }
                 }
                 root.visibility = View.VISIBLE
             } else {
@@ -341,6 +433,13 @@ class AmityChatRoomWithDefaultComposeBarFragment : AmityPickerFragment(),
             }
         }
     }
+
+    private val chatSettingsLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            if (it.resultCode == Activity.RESULT_OK) {
+                activity?.finish()
+            }
+        }
 
     private fun initRecyclerView() {
         mAdapter =
@@ -360,7 +459,7 @@ class AmityChatRoomWithDefaultComposeBarFragment : AmityPickerFragment(),
                 AmityRecyclerViewItemDecoration(
                     0,
                     0,
-                    resources.getDimensionPixelSize(R.dimen.amity_padding_xs)
+                    resources.getDimensionPixelSize(com.amity.socialcloud.uikit.common.R.dimen.amity_padding_xs)
                 )
             )
             itemAnimator = null
@@ -369,7 +468,7 @@ class AmityChatRoomWithDefaultComposeBarFragment : AmityPickerFragment(),
                 AmityColorPaletteUtil.getColor(
                     ContextCompat.getColor(
                         requireContext(),
-                        R.color.amityColorBase
+                        com.amity.socialcloud.uikit.common.R.color.amityColorBase
                     ), AmityColorShade.SHADE4
                 ), (percentage * 255).toInt()
             )
@@ -410,6 +509,7 @@ class AmityChatRoomWithDefaultComposeBarFragment : AmityPickerFragment(),
                         binding.recorderView.circularReveal()
 
                     }
+
                     MotionEvent.ACTION_UP -> messageListViewModel.isRecording.set(false)
                 }
             } else {
@@ -462,6 +562,7 @@ class AmityChatRoomWithDefaultComposeBarFragment : AmityPickerFragment(),
                         snackBar.show()
                     }
                 }
+
                 AmityEventIdentifier.MSG_SEND_SUCCESS -> scrollToLastPosition()
                 AmityEventIdentifier.TOGGLE_CHAT_COMPOSE_BAR -> toggleSoftKeyboard()
                 AmityEventIdentifier.SHOW_AUDIO_RECORD_UI -> showAudioRecordUi()
@@ -471,6 +572,7 @@ class AmityChatRoomWithDefaultComposeBarFragment : AmityPickerFragment(),
             }
         }
     }
+
 
     private fun showAudioRecordUi() {
         AmityAndroidUtil.hideKeyboard(binding.layoutParent)
@@ -528,6 +630,46 @@ class AmityChatRoomWithDefaultComposeBarFragment : AmityPickerFragment(),
 
     override fun onFilePicked(data: Uri?) {
         view?.showSnackBar("$data", Snackbar.LENGTH_SHORT)
+        if (data != null) {
+            // val file = Uri.fromFile(data)
+            val file = getFileFromUri(data)
+            if (file != null) {
+                disposable.add(
+                    messageListViewModel.sendFileMessage(file.toUri()).subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread()).doOnComplete {
+                            msgSent = true
+                        }.doOnError { msgSent = false }.subscribe()
+                )
+            }
+        }
+    }
+
+    fun getFileFromUri(uri: Uri): File? {
+        val contentResolver = requireContext().contentResolver
+        val inputStream = contentResolver.openInputStream(uri) ?: return null
+        val fileName = getFileName(uri)
+        val file = File(requireContext().cacheDir, fileName)
+
+        FileOutputStream(file).use { outputStream ->
+            inputStream.copyTo(outputStream)
+        }
+
+        return file
+    }
+
+    // Extracts filename from URI
+    private fun getFileName(uri: Uri): String {
+        var name = "temp_file"
+        val cursor = requireContext().contentResolver.query(uri, null, null, null, null)
+        cursor?.use {
+            if (it.moveToFirst()) {
+                val nameIndex = it.getColumnIndex("_display_name")
+                if (nameIndex != -1) {
+                    name = it.getString(nameIndex)
+                }
+            }
+        }
+        return name
     }
 
     override fun onImagePicked(data: Uri?) {
@@ -552,11 +694,11 @@ class AmityChatRoomWithDefaultComposeBarFragment : AmityPickerFragment(),
         }
     }
 
-    override fun onFileRecorded(audioFile: File?) {
+    override fun onFileRecorded(audioFile: File?, time: Long) {
         messageListViewModel.isRecording.set(false)
         if (audioFile != null) {
             val audioFileUri = Uri.fromFile(audioFile)
-            disposable.add(messageListViewModel.sendAudioMessage(audioFileUri)
+            disposable.add(messageListViewModel.sendAudioMessage(audioFileUri, time)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnComplete {
@@ -568,13 +710,22 @@ class AmityChatRoomWithDefaultComposeBarFragment : AmityPickerFragment(),
         }
     }
 
+
     override fun showMessage() {
         val layout: View = layoutInflater.inflate(
             R.layout.amity_view_audio_msg_error,
             activity?.findViewById(R.id.errorMessageContainer)
         )
         val textView = layout.findViewById<TextView>(R.id.tvMessage)
-        textView.setShape(null, null, null, null, R.color.amityColorBase, null, null)
+        textView.setShape(
+            null,
+            null,
+            null,
+            null,
+            com.amity.socialcloud.uikit.common.R.color.amityColorBase,
+            null,
+            null
+        )
         layout.showSnackBar("", Snackbar.LENGTH_SHORT)
     }
 

@@ -17,8 +17,8 @@ abstract class AmityChatMessageBaseViewHolder(
 
     fun setItem(item: AmityMessage?) {
         itemBaseViewModel.amityMessage = item
-        itemBaseViewModel.msgTime.set(item?.getCreatedAt()?.toString("hh:mm a"))
-        itemBaseViewModel.editedAt.set(item?.getEditedAt()?.toString("hh:mm a"))
+        itemBaseViewModel.msgTime.set(item?.getCreatedAt()?.toString("HH:mm"))
+        itemBaseViewModel.editedAt.set(item?.getEditedAt()?.toString("HH:mm"))
         itemBaseViewModel.msgDate.set(
             AmityDateUtils.getRelativeDate(
                 item?.getCreatedAt()?.millis ?: 0
@@ -40,7 +40,7 @@ abstract class AmityChatMessageBaseViewHolder(
         return if (item.getCreatorId() == AmityCoreClient.getUserId()) {
             "ME"
         } else {
-            item.getCreator()?.getDisplayName() ?: itemView.context.getString(R.string.amity_anonymous)
+            item.getCreator()?.getDisplayName() ?: itemView.context.getString(com.amity.socialcloud.uikit.common.R.string.amity_anonymous)
         }
     }
 }

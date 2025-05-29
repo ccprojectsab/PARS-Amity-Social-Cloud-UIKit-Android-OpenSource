@@ -1,5 +1,6 @@
 package com.amity.socialcloud.uikit.community.newsfeed.fragment
 
+import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
@@ -21,12 +22,14 @@ import com.amity.socialcloud.uikit.feed.settings.AmityPostShareClickListener
 import com.amity.socialcloud.uikit.social.AmitySocialUISettings
 import io.reactivex.rxjava3.core.Flowable
 
-class AmityGlobalFeedFragment : AmityFeedFragment() {
+open class AmityGlobalFeedFragment : AmityFeedFragment() {
 
-    private val communityHomeViewModel: AmityCommunityHomeViewModel by activityViewModels()
+    val communityHomeViewModel: AmityCommunityHomeViewModel by activityViewModels()
+    val sharedPref by lazy { context?.getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE) }
+    val isLiveStreamPermitted by lazy { sharedPref?.getBoolean("PREF_USER_CAN_LIVESTREAM", false) ?: false }
 
     override fun getViewModel(): AmityGlobalFeedViewModel {
-        return ViewModelProvider(requireActivity()).get(AmityGlobalFeedViewModel::class.java)
+        return ViewModelProvider(requireActivity())[AmityGlobalFeedViewModel::class.java]
     }
 
     override fun getEmptyView(inflater: LayoutInflater): View {
@@ -38,9 +41,14 @@ class AmityGlobalFeedFragment : AmityFeedFragment() {
         binding.btnExplore.setOnClickListener {
             communityHomeViewModel.triggerEvent(AmityEventIdentifier.EXPLORE_COMMUNITY)
         }
-        binding.tvCreateCommunity.setOnClickListener {
-            val intent = Intent(requireContext(), AmityCommunityCreatorActivity::class.java)
-            startActivity(intent)
+        if (isLiveStreamPermitted) {
+            binding.tvCreateCommunity.visibility = View.VISIBLE
+            binding.tvCreateCommunity.setOnClickListener {
+                val intent = Intent(requireContext(), AmityCommunityCreatorActivity::class.java)
+                startActivity(intent)
+            }
+        } else {
+            binding.tvCreateCommunity.visibility = View.GONE
         }
         return binding.root
     }

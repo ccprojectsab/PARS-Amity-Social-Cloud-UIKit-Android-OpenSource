@@ -44,13 +44,13 @@ class AmityCommunitySettingsMenuCreatorImpl(private val fragment: AmityCommunity
         return if (hasDeletePermission) {
             AmitySettingsItem.TextContent(
                 title = R.string.amity_leave_community,
-                titleTextColor = R.color.amityColorAlert,
+                titleTextColor = com.amity.socialcloud.uikit.common.R.color.amityColorAlert,
                 callback = { fragment.confirmModeratorLeaveCommunity() }
             )
         } else {
             AmitySettingsItem.TextContent(
                 title = R.string.amity_leave_community,
-                titleTextColor = R.color.amityColorAlert,
+                titleTextColor = com.amity.socialcloud.uikit.common.R.color.amityColorAlert,
                 callback = { fragment.confirmLeaveCommunity() }
             )
         }
@@ -59,7 +59,7 @@ class AmityCommunitySettingsMenuCreatorImpl(private val fragment: AmityCommunity
     override fun createCloseCommunityMenu(communityId: String): AmitySettingsItem.TextContent {
         return AmitySettingsItem.TextContent(
                 title = R.string.amity_close_community,
-                titleTextColor = R.color.amityColorAlert,
+                titleTextColor = com.amity.socialcloud.uikit.common.R.color.amityColorAlert,
                 description = R.string.amity_close_community_description,
                 callback = { fragment.confirmCloseCommunity() }
         )

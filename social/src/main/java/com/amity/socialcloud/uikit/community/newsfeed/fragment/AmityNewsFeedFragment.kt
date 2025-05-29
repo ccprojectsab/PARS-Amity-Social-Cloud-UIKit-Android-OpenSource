@@ -1,5 +1,7 @@
 package com.amity.socialcloud.uikit.community.newsfeed.fragment
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -27,7 +29,6 @@ class AmityNewsFeedFragment : AmityBaseFragment(),
 
     private lateinit var binding: AmityFragmentNewsFeedBinding
     private var refreshEventPublisher = BehaviorSubject.create<AmityFeedRefreshEvent>()
-
     private val createPost =
         registerForActivityResult<AmityPostTargetPickerActivity.CreationType, String>(
             AmityPostTargetPickerActivity.AmityPostTargetPickerActivityContract()
@@ -61,7 +62,7 @@ class AmityNewsFeedFragment : AmityBaseFragment(),
             activity?.let { navigateToCreatePost() }
         }
 
-        binding.refreshLayout.setColorSchemeResources(R.color.amityColorPrimary)
+        binding.refreshLayout.setColorSchemeResources(com.amity.socialcloud.uikit.common.R.color.amityColorPrimary)
         binding.refreshLayout.setOnRefreshListener {
             refreshFeed()
             Handler(Looper.getMainLooper()).postDelayed({
@@ -95,34 +96,44 @@ class AmityNewsFeedFragment : AmityBaseFragment(),
     }
 
     private fun navigateToCreatePost() {
+
+
+        val sharedPref = context?.getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
+        val isLiveStreamPermitted =
+            sharedPref?.getBoolean("PREF_USER_CAN_LIVESTREAM", false) ?: false
         val bottomSheet = AmityBottomSheetDialog(requireContext())
         val postCreationOptions =
             arrayListOf(
                 BottomSheetMenuItem(
-                    iconResId = R.drawable.ic_amity_ic_post_create,
+                    iconResId = com.amity.socialcloud.uikit.common.R.drawable.ic_amity_ic_post_create,
                     titleResId = R.string.amity_post,
                     action = {
                         createPost.launch(AmityPostTargetPickerActivity.CreationType.GENERIC)
                         bottomSheet.dismiss()
-                    }
-                ),
-                BottomSheetMenuItem(
-                    iconResId = R.drawable.ic_amity_ic_live_stream_create,
-                    titleResId = R.string.amity_video_stream_title,
-                    action = {
-                        createPost.launch(AmityPostTargetPickerActivity.CreationType.LIVE_STREAM)
-                        bottomSheet.dismiss()
-                    }
-                ),
-                BottomSheetMenuItem(
-                    iconResId = R.drawable.ic_amity_ic_poll_create,
-                    titleResId = R.string.amity_general_poll,
-                    action = {
-                        createPost.launch(AmityPostTargetPickerActivity.CreationType.POLL)
-                        bottomSheet.dismiss()
-                    }
-                )
-            )
+                    },
+                    colorResId = com.amity.socialcloud.uikit.common.R.color.amityColorBase
+                ))
+        if (isLiveStreamPermitted) {
+            postCreationOptions.add(BottomSheetMenuItem(
+                iconResId = com.amity.socialcloud.uikit.common.R.drawable.ic_amity_ic_live_stream_create,
+                titleResId = R.string.amity_video_stream_title,
+                action = {
+                    createPost.launch(AmityPostTargetPickerActivity.CreationType.LIVE_STREAM)
+                    bottomSheet.dismiss()
+                },
+                colorResId = com.amity.socialcloud.uikit.common.R.color.amityColorBase
+            ))
+        }
+
+    /*    postCreationOptions.add(BottomSheetMenuItem(
+            iconResId = com.amity.socialcloud.uikit.common.R.drawable.ic_amity_ic_poll_create,
+            titleResId = R.string.amity_general_poll,
+            action = {
+                createPost.launch(AmityPostTargetPickerActivity.CreationType.POLL)
+                bottomSheet.dismiss()
+            }
+        ))*/
+
         bottomSheet.show(postCreationOptions)
     }
 

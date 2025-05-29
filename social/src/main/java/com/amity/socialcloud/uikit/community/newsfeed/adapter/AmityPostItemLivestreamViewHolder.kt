@@ -75,10 +75,10 @@ class AmityPostItemLivestreamViewHolder(itemView: View) : AmityPostContentViewHo
                 .load(imageUrl)
                 .centerCrop()
                 .dontAnimate()
-                .placeholder(R.drawable.amity_default_stream_thumbnail)
+                .placeholder(R.drawable.livestream_placeholder)
                 .into(binding.thumbnailImageview)
         } else {
-            binding.thumbnailImageview.setImageResource(R.drawable.amity_default_stream_thumbnail)
+            binding.thumbnailImageview.setImageResource(R.drawable.livestream_placeholder)
         }
         binding.liveVideoContainer.setOnClickListener {
             liveStreamClickListener.onClickLivestreamVideo(stream)
@@ -93,6 +93,9 @@ class AmityPostItemLivestreamViewHolder(itemView: View) : AmityPostContentViewHo
         binding.unavailableVideoContainer.visibility = View.GONE
         binding.endedVideoContainer.visibility = View.GONE
         binding.liveVideoContainer.visibility = View.VISIBLE
+
+
+
         binding.liveTextview.visibility = View.GONE
         binding.recordedTextview.visibility = View.VISIBLE
         binding.playIcon.visibility = View.VISIBLE
@@ -102,10 +105,10 @@ class AmityPostItemLivestreamViewHolder(itemView: View) : AmityPostContentViewHo
                 .load(imageUrl)
                 .centerCrop()
                 .dontAnimate()
-                .placeholder(R.drawable.amity_default_stream_thumbnail)
+                .placeholder(R.drawable.recorded_live_streaming)
                 .into(binding.thumbnailImageview)
         } else {
-            binding.thumbnailImageview.setImageResource(R.drawable.amity_default_stream_thumbnail)
+            binding.thumbnailImageview.setImageResource(R.drawable.recorded_live_streaming)
         }
         binding.liveVideoContainer.setOnClickListener {
             liveStreamClickListener.onClickLivestreamVideo(stream)

@@ -32,7 +32,7 @@ class AmityPostFooterPostEngagementViewHolder(
         )
         setNumberOfComments(postEngagementData.post.getCommentCount())
         setReadOnlyMode(postEngagementData.isReadOnly)
-        setShareOption(postEngagementData.post)
+     //   setShareOption(postEngagementData.post)
         setCommentListener(postEngagementData.post)
         setReactionCountListener(postEngagementData.post)
     }

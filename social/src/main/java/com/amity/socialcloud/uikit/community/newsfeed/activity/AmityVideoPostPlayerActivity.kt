@@ -40,10 +40,10 @@ class AmityVideoPostPlayerActivity : RxAppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(AmityVideoPostPlayerViewModel::class.java)
+        viewModel = ViewModelProvider(this)[AmityVideoPostPlayerViewModel::class.java]
         intent.getStringExtra(EXTRA_PARENT_POST_ID)?.let { viewModel.postId = it }
         viewModel.videoPos = intent.getIntExtra(EXTRA_VIDEO_POSITION, 0)
-        window.statusBarColor = ContextCompat.getColor(this, R.color.amityColorSecondary)
+        window.statusBarColor = ContextCompat.getColor(this, com.amity.socialcloud.uikit.common.R.color.amityColorSecondary)
         setContentView(binding.root)
         initToolbar()
         initViewPager()
@@ -93,7 +93,7 @@ class AmityVideoPostPlayerActivity : RxAppCompatActivity() {
 
     private fun initToolbar() {
         setSupportActionBar(binding.toolbar)
-        supportActionBar?.setHomeAsUpIndicator(R.drawable.amity_ic_close)
+        supportActionBar?.setHomeAsUpIndicator(com.amity.socialcloud.uikit.common.R.drawable.amity_ic_close)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
@@ -104,7 +104,7 @@ class AmityVideoPostPlayerActivity : RxAppCompatActivity() {
         supportActionBar?.title =
             String.format(
                 getString(
-                    R.string.amity_image_preview_title,
+                    com.amity.socialcloud.uikit.common.R.string.amity_image_preview_title,
                     position + 1,
                     viewModel.videoDataList.size
                 )

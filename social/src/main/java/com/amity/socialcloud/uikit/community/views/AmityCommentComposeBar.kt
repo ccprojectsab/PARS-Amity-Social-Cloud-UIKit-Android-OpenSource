@@ -63,7 +63,7 @@ class AmityCommentComposeBar : ConstraintLayout {
         binding.apply {
             avProfile.setBackgroundColor(
                     AmityColorPaletteUtil.getColor(
-                            ContextCompat.getColor(context, R.color.amityColorPrimary), AmityColorShade.SHADE3
+                            ContextCompat.getColor(context, com.amity.socialcloud.uikit.common.R.color.amityColorPrimary), AmityColorShade.SHADE3
                     )
             )
             btnPost.isEnabled = false

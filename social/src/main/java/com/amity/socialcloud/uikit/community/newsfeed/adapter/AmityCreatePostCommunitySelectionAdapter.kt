@@ -74,11 +74,11 @@ class AmityCreatePostCommunitySelectionAdapter(private val listener: AmityCreate
             var rightDrawable: Drawable? = null
             if (!data.isPublic()) {
                 leftDrawable =
-                    ContextCompat.getDrawable(itemView.context, R.drawable.amity_ic_lock2)
+                    ContextCompat.getDrawable(itemView.context, com.amity.socialcloud.uikit.common.R.drawable.amity_ic_lock2)
             }
             if (data.isOfficial()) {
                 rightDrawable =
-                    ContextCompat.getDrawable(itemView.context, R.drawable.amity_ic_verified)
+                    ContextCompat.getDrawable(itemView.context, com.amity.socialcloud.uikit.common.R.drawable.amity_ic_verified)
             }
             binding?.tvCommunityName?.setCompoundDrawablesWithIntrinsicBounds(
                 leftDrawable,

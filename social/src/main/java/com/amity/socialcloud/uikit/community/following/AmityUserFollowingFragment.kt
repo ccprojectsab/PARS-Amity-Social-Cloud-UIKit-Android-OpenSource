@@ -46,7 +46,7 @@ class AmityUserFollowingFragment : RxFragment() {
             ViewModelProvider(requireActivity()).get(AmityUserFollowingViewModel::class.java)
         setUpRecyclerView()
         subscribeSearchStringChange()
-        binding.refreshLayout.setColorSchemeResources(R.color.amityColorPrimary)
+        binding.refreshLayout.setColorSchemeResources(com.amity.socialcloud.uikit.common.R.color.amityColorPrimary)
         binding.refreshLayout.setOnRefreshListener {
             refresh()
         }

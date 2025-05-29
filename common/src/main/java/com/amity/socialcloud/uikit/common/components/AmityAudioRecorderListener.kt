@@ -4,7 +4,7 @@ import java.io.File
 
 interface AmityAudioRecorderListener {
 
-    fun onFileRecorded(audioFile: File?)
+    fun onFileRecorded(audioFile: File?, time: Long)
 
     fun showMessage()
 }

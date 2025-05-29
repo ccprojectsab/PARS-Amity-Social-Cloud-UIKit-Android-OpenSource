@@ -27,7 +27,7 @@ class AmitySettingsRadioContentViewHolder(val context: Context, itemView: View) 
                         val item = data.choices[i]
                         val radioButton: RadioButton = LayoutInflater.from(context)
                             .inflate(
-                                R.layout.amity_view_radio_button,
+                                com.amity.socialcloud.uikit.common.R.layout.amity_view_radio_button,
                                 radioGroup,
                                 false
                             ) as RadioButton

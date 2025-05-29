@@ -131,7 +131,7 @@ class AmityPostItemPollViewHolder(itemView: View) : AmityPostContentViewHolder(i
 
                             binding.submitTextView.setTextColor(
                                 when (isVotable) {
-                                    true -> ContextCompat.getColor(context, R.color.amityColorPrimary)
+                                    true -> ContextCompat.getColor(context, com.amity.socialcloud.uikit.common.R.color.amityColorPrimary)
                                     false -> ContextCompat.getColor(context, R.color.amityColorShuttleGray)
                                 }
                             )

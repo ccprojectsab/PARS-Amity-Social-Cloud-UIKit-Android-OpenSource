@@ -53,7 +53,7 @@ class AmityRecommendedCommunitiesAdapter(private val listener: AmityMyCommunityI
                 textviewCommunityName.setCompoundDrawablesWithIntrinsicBounds(
                     0,
                     0,
-                    R.drawable.amity_ic_verified,
+                    com.amity.socialcloud.uikit.common.R.drawable.amity_ic_verified,
                     0
                 )
             } else {

@@ -8,8 +8,10 @@ import androidx.databinding.ObservableInt
 import com.amity.socialcloud.sdk.api.core.AmityCoreClient
 import com.amity.socialcloud.sdk.api.core.file.AmityFileRepository
 import com.amity.socialcloud.sdk.model.chat.message.AmityMessage
-import com.amity.socialcloud.uikit.chat.R
 import com.amity.socialcloud.uikit.common.model.AmityEventIdentifier
+import com.amity.socialcloud.uikit.common.utils.AmityConstants
+import com.amity.socialcloud.uikit.common.utils.AmityDateUtils.getFormattedTimeForChat
+import com.google.gson.JsonObject
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 
@@ -20,8 +22,10 @@ class AmityAudioMsgViewModel : AmitySelectableMessageViewModel() {
     val isPlaying = ObservableBoolean(false)
     val duration = ObservableField("0:00")
     val progressMax = ObservableInt(0)
-    val senderFillColor = ObservableField(R.color.amityMessageBubble)
-    val receiverFillColor = ObservableField(R.color.amityMessageBubbleInverse)
+    val senderFillColor =
+        ObservableField(com.amity.socialcloud.uikit.common.R.color.amityMessageBubble)
+    val receiverFillColor =
+        ObservableField(com.amity.socialcloud.uikit.common.R.color.amityMessageBubbleInverse)
     val uploading = ObservableBoolean(false)
     val uploadProgress = ObservableField(0)
     val buffering = ObservableBoolean(false)
@@ -56,12 +60,36 @@ class AmityAudioMsgViewModel : AmitySelectableMessageViewModel() {
     fun getUploadProgress(ekoMessage: AmityMessage) {
         if (!ekoMessage.isDeleted()) {
             when (ekoMessage.getState()) {
+
                 AmityMessage.State.SYNCED, AmityMessage.State.SYNCING -> {
+                    val metadata: JsonObject? = ekoMessage.getMetadata()
+                    if (metadata != null && !metadata.isJsonNull && metadata.has(AmityConstants.AUDIO_FILE_DURATION)) {
+                        val timeElement = metadata.get(AmityConstants.AUDIO_FILE_DURATION)
+
+
+                        val time: Long? = if (timeElement != null && timeElement.isJsonPrimitive && timeElement.asJsonPrimitive.isNumber) {
+                            timeElement.asLong
+                        } else {
+                            null
+                        }
+
+                        if (time != null) {
+                            val convertedName = getFormattedTimeForChat(time.toInt())
+                            duration.set(convertedName)
+                        } else {
+                            duration.set("0:00")
+                        }
+                    } else {
+                        duration.set("0:00")
+                    }
                     uploading.set(false)
-                    duration.set("0:00")
+
+                    Log.d("Mytag", "getUploadProgress: ${ekoMessage.getData()} ")
                     val audioMsg = ekoMessage.getData() as AmityMessage.Data.AUDIO
+                    Log.d("MyTag", "getUploadProgress:$metadata ")
                     audioUrl.set(audioMsg.getAudio()?.getUrl())
                 }
+
                 AmityMessage.State.UPLOADING, AmityMessage.State.FAILED -> {
                     uploading.set(ekoMessage.getState() == AmityMessage.State.UPLOADING)
                     val fileRepository: AmityFileRepository = AmityCoreClient.newFileRepository()
@@ -78,6 +106,7 @@ class AmityAudioMsgViewModel : AmitySelectableMessageViewModel() {
                         }.subscribe()
                     )
                 }
+
                 else -> {
                 }
 

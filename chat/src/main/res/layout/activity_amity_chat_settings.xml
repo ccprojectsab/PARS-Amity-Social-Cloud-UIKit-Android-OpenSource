@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".settings.AmityChatSettingsActivity">
+
+    <!-- <com.google.android.material.appbar.MaterialToolbar
+         android:id="@+id/chatToolBar"
+         android:layout_width="match_parent"
+         android:layout_height="?attr/actionBarSize"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toTopOf="parent"
+         app:contentInsetStart="0dp">
+
+         <androidx.constraintlayout.widget.ConstraintLayout
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
+
+             <ImageView
+                 android:id="@+id/ivBack"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginStart="@dimen/amity_padding_m2"
+                 android:src="@drawable/amity_ic_arrow_back"
+                 app:layout_constraintBottom_toBottomOf="parent"
+                 app:layout_constraintStart_toStartOf="parent"
+                 app:layout_constraintTop_toTopOf="parent"
+                 android:contentDescription="@string/album_name_all" />
+
+             <TextView
+                 android:id="@+id/tvName1"
+                 style="@style/AmityTextStyleTitleBold"
+                 android:text="@string/amity_chat"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginStart="@dimen/amity_padding_xs"
+                 android:textColor="@color/amityColorBase"
+                 app:layout_constraintBottom_toBottomOf="@id/ivBack"
+                 app:layout_constraintStart_toEndOf="@id/ivBack"
+                 app:layout_constraintTop_toTopOf="@id/ivBack" />
+
+         </androidx.constraintlayout.widget.ConstraintLayout>
+
+     </com.google.android.material.appbar.MaterialToolbar>-->
+
+    <include
+        android:id="@+id/chatToolBar"
+        layout="@layout/amity_chat_setting_bar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:title="@string/amity_chat" />
+
+    <TextView
+        android:id="@+id/tvReport"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="14dp"
+        android:layout_marginTop="18dp"
+        android:fontFamily="@font/recoleta_regular"
+        android:padding="12dp"
+        android:visibility="gone"
+        android:textColor="@color/amityColorBlack"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chatToolBar" />
+
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/tvDivider1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginHorizontal="21dp"
+        android:backgroundTint="@color/grey"
+        app:layout_constraintTop_toBottomOf="@+id/tvReport"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <TextView
+        android:id="@+id/tvLeave"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="14dp"
+        android:fontFamily="@font/recoleta_regular"
+        android:padding="12dp"
+        android:text="@string/amity_settings_chat_title"
+        android:textColor="@color/amityColorAlert"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvDivider1" />
+
+    <com.google.android.material.divider.MaterialDivider
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginHorizontal="21dp"
+        android:backgroundTint="@color/grey"
+        app:layout_constraintTop_toBottomOf="@+id/tvLeave"
+        tools:layout_editor_absoluteX="0dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

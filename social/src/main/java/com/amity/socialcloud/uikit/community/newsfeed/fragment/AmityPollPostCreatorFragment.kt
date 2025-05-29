@@ -91,7 +91,7 @@ class AmityPollPostCreatorFragment : AmityBaseFragment(), SuggestionsVisibilityM
     private fun highlightLastChar(textView: TextView) {
         val spannableString = SpannableString(textView.text)
         spannableString.setSpan(
-            ForegroundColorSpan(ContextCompat.getColor(requireContext(), R.color.amityColorAlert)),
+            ForegroundColorSpan(ContextCompat.getColor(requireContext(), com.amity.socialcloud.uikit.common.R.color.amityColorAlert)),
             textView.length() - 1,
             textView.length(),
             Spannable.SPAN_INCLUSIVE_EXCLUSIVE
@@ -120,7 +120,7 @@ class AmityPollPostCreatorFragment : AmityBaseFragment(), SuggestionsVisibilityM
             ContextCompat.getColor(
                 requireContext(),
                 when (isExceeded) {
-                    true -> R.color.amityColorAlert
+                    true -> com.amity.socialcloud.uikit.common.R.color.amityColorAlert
                     false -> R.color.amityColorShuttleGray
                 }
             )
@@ -131,7 +131,7 @@ class AmityPollPostCreatorFragment : AmityBaseFragment(), SuggestionsVisibilityM
             ContextCompat.getColor(
                 requireContext(),
                 when (isExceeded) {
-                    true -> R.color.amityColorAlert
+                    true -> com.amity.socialcloud.uikit.common.R.color.amityColorAlert
                     false -> R.color.amityColorAthensGray
                 }
             )
@@ -185,7 +185,7 @@ class AmityPollPostCreatorFragment : AmityBaseFragment(), SuggestionsVisibilityM
             ContextCompat.getColor(
                 requireContext(),
                 when (isExceeded) {
-                    true -> R.color.amityColorAlert
+                    true -> com.amity.socialcloud.uikit.common.R.color.amityColorAlert
                     false -> R.color.amityColorAthensGray
                 }
             )
@@ -204,7 +204,7 @@ class AmityPollPostCreatorFragment : AmityBaseFragment(), SuggestionsVisibilityM
             ?.toIntOrNull() ?: 0 <= DEFAULT_TIME_FRAME_DAYS
 
         val color = when (isEnabled) {
-            true -> ContextCompat.getColor(requireContext(), R.color.amityColorPrimary)
+            true -> ContextCompat.getColor(requireContext(), com.amity.socialcloud.uikit.common.R.color.amityColorPrimary)
             false -> ContextCompat.getColor(requireContext(), R.color.amityColorShuttleGray)
         }
 

@@ -61,6 +61,7 @@
             android:layout_marginHorizontal="@dimen/amity_padding_xs"
             android:ellipsize="end"
             android:gravity="center_vertical"
+            android:fontFamily="@font/inter_regular"
             android:maxLines="1"
             android:onClick="@{() -> listener.onCommunityMembershipSelected(communityMemberShip)}"
             android:textColor="@color/amityColorBase"

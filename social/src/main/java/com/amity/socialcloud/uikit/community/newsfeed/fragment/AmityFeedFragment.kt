@@ -18,7 +18,6 @@ import com.amity.socialcloud.sdk.model.core.file.AmityFile
 import com.amity.socialcloud.sdk.model.core.file.AmityImage
 import com.amity.socialcloud.sdk.model.social.comment.AmityComment
 import com.amity.socialcloud.sdk.model.social.post.AmityPost
-import com.amity.socialcloud.sdk.model.video.stream.AmityRecordingData
 import com.amity.socialcloud.sdk.model.video.stream.AmityStream
 import com.amity.socialcloud.uikit.common.base.AmityBaseFragment
 import com.amity.socialcloud.uikit.common.common.AmityFileManager
@@ -79,7 +78,10 @@ abstract class AmityFeedFragment : AmityBaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if (showProgressBarOnLaunched) {
-            binding.progressBar.visibility = View.VISIBLE
+            binding.shimmerCommunity.rootShimmer.visibility = View.VISIBLE
+            binding.shimmerCommunity.rootShimmer.startShimmer()
+            binding.shimmerPosts.rootShimmer.visibility = View.VISIBLE
+            binding.shimmerPosts.rootShimmer.startShimmer()
         }
         setupFeed()
     }
@@ -107,7 +109,10 @@ abstract class AmityFeedFragment : AmityBaseFragment() {
                 }
                 is LoadState.Error -> {
                     isFirstLoad = false
-                    binding.progressBar.visibility = View.GONE
+                    binding.shimmerCommunity.rootShimmer.stopShimmer()
+                    binding.shimmerPosts.rootShimmer.stopShimmer()
+                    binding.shimmerCommunity.rootShimmer.visibility = View.GONE
+                    binding.shimmerPosts.rootShimmer.visibility = View.GONE
                     handleErrorState(AmityError.from(refreshState.error))
                 }
                 is LoadState.Loading -> {
@@ -214,6 +219,10 @@ abstract class AmityFeedFragment : AmityBaseFragment() {
 
     internal fun handleEmptyState(emptyView: View) {
         if (isFirstLoad) {
+            binding.shimmerCommunity.rootShimmer.visibility = View.GONE
+            binding.shimmerCommunity.rootShimmer.stopShimmer()
+            binding.shimmerPosts.rootShimmer.visibility = View.GONE
+            binding.shimmerPosts.rootShimmer.stopShimmer()
             return
         }
         if (binding.emptyViewContainer.childCount == 0) {
@@ -222,7 +231,11 @@ abstract class AmityFeedFragment : AmityBaseFragment() {
         }
         binding.emptyViewContainer.visibility = View.VISIBLE
         binding.recyclerViewFeed.visibility = View.GONE
-        binding.progressBar.visibility = View.GONE
+        binding.shimmerCommunity.rootShimmer.visibility = View.GONE
+        binding.shimmerCommunity.rootShimmer.stopShimmer()
+        binding.shimmerPosts.rootShimmer.visibility = View.GONE
+        binding.shimmerPosts.rootShimmer.stopShimmer()
+        //binding.progressBar.visibility = View.GONE
     }
 
     abstract fun getEmptyView(inflater: LayoutInflater): View
@@ -308,6 +321,20 @@ abstract class AmityFeedFragment : AmityBaseFragment() {
 
     internal open fun observeReactionCountClickEvents() {
         //  do nothing on feed screen
+        getViewModel().getReactionCountClickEvents(
+            onReceivedEvent = { event ->
+                getViewModel().sendPendingReactions()
+
+                val reactionIntent = AmityReactionListActivity.newIntent(
+                    context = requireContext(),
+                    referenceType = event.referenceType,
+                    referenceId = event.referenceId
+                )
+                requireContext().startActivity(reactionIntent)
+            }
+        )
+            .untilLifecycleEnd(this)
+            .subscribe()
     }
 
     private fun observePostContentClickEvents() {

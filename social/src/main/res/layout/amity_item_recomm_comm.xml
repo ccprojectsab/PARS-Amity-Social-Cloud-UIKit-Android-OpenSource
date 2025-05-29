@@ -17,8 +17,9 @@
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="156dp"
-        android:layout_height="194dp"
-        android:background="@color/amityColorWhite"
+        android:layout_height="204dp"
+        android:layout_marginEnd="5dp"
+        android:background="#F6F4EE"
         android:onClick="@{() -> listener.onCommunitySelected(ekoCommunity)}"
         app:cardCornerRadius="@dimen/amity_four"
         app:rippleColor="@android:color/transparent">
@@ -30,10 +31,9 @@
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/ivAvatar"
                 style="@style/AmityCircularAvatarStyle"
-                backgroundColorShade="@{AmityColorShade.SHADE3}"
-                amityBackgroundColor="@{@color/amityColorPrimary}"
+                android:background="#A5B0E3"
                 imageUrl="@{ekoCommunity.avatar.url}"
-                placeHolder="@{@drawable/amity_ic_default_community_avatar_circular}"
+                placeHolder="@{@drawable/newplaceholder_img}"
                 android:layout_width="@dimen/amity_forty"
                 android:layout_height="@dimen/amity_forty"
                 android:layout_marginStart="@dimen/amity_padding_s"
@@ -64,8 +64,11 @@
                 style="@style/AmityTextStyleCaption"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:ellipsize="end"
+                textColorShade="@{AmityColorShade.SHADE1}"
                 android:maxLines="1"
+                android:text='@{ekoCommunity.categories.size() > 0 ? ekoCommunity.categories[0].name : ""}'
                 android:textColor="@color/amityColorBase"
                 app:layout_constraintEnd_toEndOf="@id/tvCommName"
                 app:layout_constraintStart_toStartOf="@id/tvCommName"

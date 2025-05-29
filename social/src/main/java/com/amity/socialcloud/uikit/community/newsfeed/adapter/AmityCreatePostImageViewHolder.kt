@@ -33,7 +33,7 @@ class AmityCreatePostImageViewHolder(
     var errorPhoto: ShapeableImageView = itemView.findViewById(R.id.ivError)
     private val progrssBar: ProgressBar = itemView.findViewById(R.id.pbImageUpload)
     private val playIcon: ShapeableImageView = itemView.findViewById(R.id.ivPlay)
-    private val radius: Float = itemView.context.resources.getDimension(R.dimen.amity_four)
+    private val radius: Float = itemView.context.resources.getDimension(com.amity.socialcloud.uikit.common.R.dimen.amity_four)
 
     override fun bind(data: PostMedia?, position: Int) {
         setupShape()
@@ -115,17 +115,17 @@ class AmityCreatePostImageViewHolder(
     private fun getHeight(itemCount: Int): Int {
         var dimenRes: Int = -1
         dimenRes = when (itemCount) {
-            1, 2 -> R.dimen.amity_three_hundred_twenty_eight
+            1, 2 -> com.amity.socialcloud.uikit.common.R.dimen.amity_three_hundred_twenty_eight
             else -> {
-                R.dimen.amity_one_hundred_twenty
+                com.amity.socialcloud.uikit.common.R.dimen.amity_one_hundred_twenty
             }
         }
         return itemView.context.resources.getDimensionPixelSize(dimenRes)
     }
 
     private fun getWidth(itemCount: Int): Int {
-        val margin: Int = itemView.context.resources.getDimensionPixelSize(R.dimen.amity_sixteen)
-        var dimenRes: Int = itemView.context.resources.getDimensionPixelSize(R.dimen.amity_eight)
+        val margin: Int = itemView.context.resources.getDimensionPixelSize(com.amity.socialcloud.uikit.common.R.dimen.amity_sixteen)
+        var dimenRes: Int = itemView.context.resources.getDimensionPixelSize(com.amity.socialcloud.uikit.common.R.dimen.amity_eight)
         dimenRes = when (itemCount) {
             1 -> return AmityScreenUtils.getScreenWidth(itemView.context) - margin * 2
             2 -> {

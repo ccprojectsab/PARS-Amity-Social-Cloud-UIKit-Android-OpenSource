@@ -45,7 +45,7 @@ abstract class AmityBasePostImageChildrenViewHolder(
         val backgroundColor = AmityColorPaletteUtil.getColor(
             ContextCompat.getColor(
                 itemView.context,
-                R.color.amityColorBase
+                com.amity.socialcloud.uikit.common.R.color.amityColorBase
             ), AmityColorShade.SHADE4
         )
         imageView.setBackgroundColor(backgroundColor)

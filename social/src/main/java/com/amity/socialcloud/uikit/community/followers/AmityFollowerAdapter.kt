@@ -141,11 +141,11 @@ class AmityFollowerAdapter(
             AmityAlertDialogUtil.showDialog(
                 context,
                 String.format(
-                    context.getString(R.string.amity_remove_follower),
+                    context.getString(com.amity.socialcloud.uikit.common.R.string.amity_remove_follower),
                     user.getDisplayName()
                 ),
                 String.format(
-                    context.getString(R.string.amity_remove_follower_msg),
+                    context.getString(com.amity.socialcloud.uikit.common.R.string.amity_remove_follower_msg),
                     user.getDisplayName()
                 ),
                 context.getString(R.string.amity_remove),

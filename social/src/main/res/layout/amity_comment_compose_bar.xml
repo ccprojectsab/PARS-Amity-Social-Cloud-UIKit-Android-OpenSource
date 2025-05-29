@@ -56,7 +56,7 @@
                 android:paddingEnd="@dimen/amity_padding_l"
                 app:colorShade="@{AmityColorShade.SHADE4}"
                 app:cornerRadius="@{R.dimen.amity_twenty}"
-                app:fillColor="@{R.color.amityColorBase}"
+                app:fillColor="@{R.color.amityPlaceHolderColor}"
                 app:roundedCorner="@{true}"
                 app:textColorHintShade="@{AmityColorShade.SHADE2}" />
 
@@ -67,7 +67,7 @@
                 android:layout_alignEnd="@+id/etPostComment"
                 android:layout_alignBottom="@+id/etPostComment"
                 android:layout_centerVertical="true"
-                android:layout_marginEnd="@dimen/amity_padding_s"
+                android:layout_marginEnd="@dimen/amity_padding_xs"
                 android:layout_marginBottom="@dimen/amity_padding_xxs"
                 android:padding="@dimen/amity_padding_xxs"
                 android:src="@drawable/amity_ic_expand_comment_box" />

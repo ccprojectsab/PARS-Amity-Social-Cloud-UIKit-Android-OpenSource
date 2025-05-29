@@ -38,7 +38,6 @@
                 android:drawablePadding="@dimen/amity_padding_xs"
                 android:gravity="center_vertical"
                 android:textColor="@{@color/amityColorBase}"
-                app:drawableStartCompat="@drawable/amity_ic_reaction_count"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -90,6 +89,7 @@
                 android:button="@drawable/amity_ic_like_selector"
                 android:paddingHorizontal="@dimen/amity_padding_xs"
                 android:text="@string/amity_like"
+                android:fontFamily="@font/inter_regular"
                 app:checkBoxCheckedColor="@{@color/amityColorPrimary}"
                 app:checkBoxDefaultColor="@{@color/amityColorBase}"
                 app:checkBoxDefaultShade="@{AmityColorShade.SHADE2}" />
@@ -103,8 +103,11 @@
                 android:drawablePadding="@dimen/amity_padding_xs"
                 android:gravity="center_vertical"
                 android:text="@string/amity_comment"
+                android:fontFamily="@font/inter_regular"
                 android:textColor="@{@color/amityColorBase}"
                 app:drawableStartCompat="@drawable/amity_ic_comment"
+                app:drawableTintColor="@{@color/amityColorBase}"
+                app:drawableTintShade="@{AmityColorShade.SHADE2}"
                 app:textColorShade="@{AmityColorShade.SHADE2}" />
 
             <TextView

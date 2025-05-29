@@ -1,5 +1,7 @@
 package com.amity.socialcloud.uikit.common.base
 
+import android.os.Parcelable
+import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
@@ -12,7 +14,10 @@ class AmityFragmentStateAdapter(fm: FragmentManager, lifeCycle: Lifecycle) :
 
     override fun getItemCount(): Int = fragmentList.size
 
-    override fun createFragment(position: Int): Fragment = fragmentList[position].fragment
+    override fun createFragment(position: Int): Fragment {
+        Log.d("PAGE_CHANGED", "Page 2 changed -- $position")
+        return fragmentList[position].fragment
+    }
 
     fun setFragmentList(list: List<AmityPagerModel>) {
         fragmentList.clear()

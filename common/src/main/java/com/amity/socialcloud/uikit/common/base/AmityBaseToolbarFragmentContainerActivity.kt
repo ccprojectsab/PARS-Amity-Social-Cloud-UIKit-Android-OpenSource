@@ -1,5 +1,6 @@
 package com.amity.socialcloud.uikit.common.base
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.ActionBar
@@ -12,7 +13,7 @@ import com.amity.socialcloud.uikit.common.databinding.AmityActivityBaseToolbarFr
 import com.trello.rxlifecycle4.components.support.RxAppCompatActivity
 
 abstract class AmityBaseToolbarFragmentContainerActivity : RxAppCompatActivity(),
-        AmityToolBarClickListener {
+    AmityToolBarClickListener {
     lateinit var binding: AmityActivityBaseToolbarFragmentContainerBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

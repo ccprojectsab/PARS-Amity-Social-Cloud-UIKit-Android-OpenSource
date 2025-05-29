@@ -15,7 +15,7 @@
 
 
     <style name="Amity.Base.Theme.AmityApp" parent="Amity.Base.Theme.MaterialThemeBuilder">
-        <item name="colorPrimary">@color/amityColorPrimary</item>
+        <item name="colorPrimary">@color/amityColorBase</item>
         <item name="colorSecondary">@color/amityColorSecondary</item>
         <item name="android:colorBackground">@color/amityColorWhite</item>
         <item name="colorSurface">@color/amityColorWhite</item>
@@ -24,7 +24,7 @@
          <item name="colorOnBackground">@color/colorPrimary</item>-->
         <item name="colorError">@color/amityColorAlert</item>
         <item name="colorOnError">@color/amityColorWhite</item>
-        <item name="android:actionMenuTextColor">@color/amityColorHighlight</item>
+        <item name="android:actionMenuTextColor">@color/amityColorBase</item>
 
         <item name="materialAlertDialogTheme">@style/AmityAlertDialogTheme</item>
         <item name="snackbarStyle">@style/AmitySnackBarStyle</item>
@@ -72,7 +72,6 @@
     <style name="AmityOutlinedButtonStyle" parent="Widget.MaterialComponents.Button.OutlinedButton.Icon">
         <item name="iconGravity">textStart</item>
         <item name="textAllCaps">false</item>
-        <item name="strokeColor">@color/amityColorSecondary</item>
         <item name="android:textColor">@color/amityColorSecondary</item>
     </style>
 
@@ -83,6 +82,7 @@
 
     <style name="AmityRadioButtonSelectorStyle" parent="Widget.MaterialComponents.CompoundButton.RadioButton">
         <item name="buttonTint">@color/radio_btn_bg_selector</item>
+        <item name="android:fontFamily">@font/recoleta_regular</item>
     </style>
 
     <style name="AmityCheckBoxStyle" parent="Widget.MaterialComponents.CompoundButton.CheckBox">
@@ -113,7 +113,7 @@
     </style>
 
     <style name="AmityBarTheme" parent="Amity.Base.Theme.AmityApp">
-        <item name="colorPrimary">#fff</item>
+        <item name="colorPrimary">#F6F4EE</item>
     </style>
 
     <style name="AmityMaterialTextButtonStyle" parent="Widget.MaterialComponents.Button.TextButton">

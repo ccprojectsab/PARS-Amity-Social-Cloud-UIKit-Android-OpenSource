@@ -13,10 +13,10 @@ class AmityUserFollowersActivity : AmityBaseToolbarFragmentContainerActivity() {
 
     override fun initToolbar() {
         getToolBar()?.setLeftDrawable(
-            ContextCompat.getDrawable(this, R.drawable.amity_ic_arrow_back)
+            ContextCompat.getDrawable(this, com.amity.socialcloud.uikit.common.R.drawable.amity_ic_arrow_back)
         )
         getToolBar()?.setLeftString(
-            intent.extras?.getString(DISPLAY_NAME) ?: getString(R.string.amity_anonymous)
+            intent.extras?.getString(DISPLAY_NAME) ?: getString(com.amity.socialcloud.uikit.common.R.string.amity_anonymous)
         )
     }
 

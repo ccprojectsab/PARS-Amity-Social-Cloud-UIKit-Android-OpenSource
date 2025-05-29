@@ -1,24 +1,16 @@
 apply from: "../buildsystem/activity.gradle"
 apply plugin: 'com.android.library'
-
+apply plugin: 'kotlin-kapt'
 
 android {
+    namespace 'com.amity.socialcloud.uikit.common'
     buildFeatures {
         dataBinding = true
         viewBinding = true
-    }
-
-    packagingOptions {
-        pickFirst("META-INF/*.kotlin_module")
-        exclude 'META-INF/INDEX.LIST'
-        exclude 'META-INF/io.netty.versions.properties'
     }
 }
 
 dependencies {
     implementation 'commons-io:commons-io:2.6'
     api 'com.jakewharton.timber:timber:4.7.1'
-
-    implementation 'org.jsoup:jsoup:1.16.1'
-    implementation 'com.squareup.okhttp3:okhttp:4.11.0'
 }

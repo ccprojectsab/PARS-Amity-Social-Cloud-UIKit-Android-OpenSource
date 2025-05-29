@@ -28,7 +28,7 @@ class AmityCommentEditorFragment :
     }
 
     override fun getCommentMenuText(): String {
-        return getString(R.string.amity_save_caps)
+        return getString(com.amity.socialcloud.uikit.common.R.string.amity_save_caps)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

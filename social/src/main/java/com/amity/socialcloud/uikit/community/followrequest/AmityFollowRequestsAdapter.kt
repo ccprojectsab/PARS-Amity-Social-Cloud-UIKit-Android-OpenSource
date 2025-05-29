@@ -67,7 +67,7 @@ class AmityFollowRequestsAdapter(private val context: Context) :
                 context = context,
                 title = context.getString(R.string.amity_request_error),
                 msg = context.getString(R.string.amity_request_withdrawn),
-                positiveButton = context.getString(R.string.amity_ok),
+                positiveButton = context.getString(com.amity.socialcloud.uikit.common.R.string.amity_ok),
                 negativeButton = null
             ) { dialog, which ->
                 if (which == DialogInterface.BUTTON_POSITIVE) {

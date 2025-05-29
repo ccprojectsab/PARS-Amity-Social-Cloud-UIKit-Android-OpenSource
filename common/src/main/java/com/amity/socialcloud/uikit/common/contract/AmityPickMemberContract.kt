@@ -3,16 +3,19 @@ package com.amity.socialcloud.uikit.common.contract
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import androidx.activity.result.contract.ActivityResultContract
 import com.amity.socialcloud.uikit.common.memberpicker.AmityMemberPickerActivity
 import com.amity.socialcloud.uikit.common.model.AmitySelectMemberItem
 import com.amity.socialcloud.uikit.common.utils.AmityConstants
 
-class AmityPickMemberContract :
+class AmityPickMemberContract(private val maxSelection: Int = Int.MAX_VALUE) :
     ActivityResultContract<ArrayList<AmitySelectMemberItem>, ArrayList<AmitySelectMemberItem>>() {
     override fun createIntent(context: Context, input: ArrayList<AmitySelectMemberItem>): Intent {
         return Intent(context, AmityMemberPickerActivity::class.java).apply {
             putParcelableArrayListExtra(AmityConstants.MEMBERS_LIST, input)
+            putExtra("maxSelection", maxSelection )
+            Log.d("MyTag", "createIntent: $maxSelection")
         }
     }
 

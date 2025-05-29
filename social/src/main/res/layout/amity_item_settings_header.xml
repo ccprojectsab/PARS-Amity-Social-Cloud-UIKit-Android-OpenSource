@@ -8,6 +8,7 @@
         android:ellipsize="end"
         android:maxLines="1"
         android:textColor="@color/amityColorBase"
+        android:fontFamily="@font/recoleta_regular"
         android:textSize="@dimen/amity_text_size_title"
         android:textStyle="bold"
         tools:text="Header">

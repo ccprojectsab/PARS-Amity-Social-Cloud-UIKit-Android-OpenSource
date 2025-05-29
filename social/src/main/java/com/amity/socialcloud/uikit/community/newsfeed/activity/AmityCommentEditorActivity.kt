@@ -19,7 +19,7 @@ class AmityEditCommentActivity : AmityBaseToolbarFragmentContainerActivity() {
     private val TAG = AmityEditCommentActivity::class.java.canonicalName
 
     override fun initToolbar() {
-        getToolBar()?.setLeftDrawable(ContextCompat.getDrawable(this, R.drawable.amity_ic_cross))
+        getToolBar()?.setLeftDrawable(ContextCompat.getDrawable(this, com.amity.socialcloud.uikit.common.R.drawable.amity_ic_cross))
         val comment: AmityComment? = intent.getParcelableExtra(EXTRA_PARAM_COMMENT)
         val isReply = comment?.getParentId()?.isNotEmpty() == true
 

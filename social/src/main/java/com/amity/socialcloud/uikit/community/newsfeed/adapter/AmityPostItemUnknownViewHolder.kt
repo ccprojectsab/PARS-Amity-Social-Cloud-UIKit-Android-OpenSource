@@ -17,7 +17,7 @@ class AmityPostItemUnknownViewHolder(itemView: View) : AmityPostContentViewHolde
         tvSomethingWentWrong.setTextColor(
             AmityColorPaletteUtil.getColor(
                 ContextCompat.getColor(
-                    tvSomethingWentWrong.context, R.color.upstraColorBase
+                    tvSomethingWentWrong.context, com.amity.socialcloud.uikit.common.R.color.upstraColorBase
                 ), AmityColorShade.SHADE3
             )
         )
@@ -25,7 +25,7 @@ class AmityPostItemUnknownViewHolder(itemView: View) : AmityPostContentViewHolde
         tvUnRecognizedPost.setTextColor(
             AmityColorPaletteUtil.getColor(
                 ContextCompat.getColor(
-                    tvUnRecognizedPost.context, R.color.upstraColorBase
+                    tvUnRecognizedPost.context, com.amity.socialcloud.uikit.common.R.color.upstraColorBase
                 ), AmityColorShade.SHADE3
             )
         )

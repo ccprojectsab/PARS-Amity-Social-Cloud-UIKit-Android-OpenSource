@@ -58,7 +58,7 @@ abstract class AmityCommunityMembersBaseViewHolder(
 
     fun showRemoveUserDialog(ekoUser: AmityUser) {
         AmityAlertDialogUtil.showDialog(context,
-            context.getString(R.string.amity_remove_from_community),
+            context.getString(com.amity.socialcloud.uikit.common.R.string.amity_remove_from_community),
             context.getString(R.string.amity_remove_user_msg),
             context.getString(R.string.amity_remove),
             context.getString(R.string.amity_cancel),
@@ -82,7 +82,7 @@ abstract class AmityCommunityMembersBaseViewHolder(
                         ekoUser.getUserId(),
                         ekoUser.getAvatar()?.getUrl(AmityImage.Size.MEDIUM) ?: "",
                         ekoUser.getDisplayName()
-                            ?: context.getString(R.string.amity_anonymous),
+                            ?: context.getString(com.amity.socialcloud.uikit.common.R.string.amity_anonymous),
                         ekoUser.getDescription(),
                         false
                     )

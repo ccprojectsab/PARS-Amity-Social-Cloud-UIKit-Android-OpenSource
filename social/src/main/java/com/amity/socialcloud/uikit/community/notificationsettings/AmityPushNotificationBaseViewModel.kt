@@ -1,5 +1,6 @@
 package com.amity.socialcloud.uikit.community.notificationsettings
 
+import android.util.Log
 import com.amity.socialcloud.sdk.api.core.AmityCoreClient
 import com.amity.socialcloud.sdk.api.social.AmitySocialClient
 import com.amity.socialcloud.sdk.model.core.notification.AmityRolesFilter
@@ -34,6 +35,7 @@ open class AmityPushNotificationBaseViewModel : AmityBaseViewModel() {
                 checkPushSettings(settings)
                 onDataLoaded(settings.isEnabled())
             }.doOnError {
+                Log.e("Settings Menu","$it")
                 onDataError.invoke()
             }.ignoreElement()
     }
@@ -56,7 +58,9 @@ open class AmityPushNotificationBaseViewModel : AmityBaseViewModel() {
                     }
                 }
 
-                else -> {}
+                is AmityCommunityNotificationEvent.STORY_COMMENT_CREATED,
+                is AmityCommunityNotificationEvent.STORY_CREATED ,
+                is AmityCommunityNotificationEvent.STORY_REACTED -> { }
             }
         }
     }
@@ -70,6 +74,7 @@ open class AmityPushNotificationBaseViewModel : AmityBaseViewModel() {
                 checkGlobalPushRole(it)
                 onSuccess.invoke()
             }.doOnError {
+                Log.e("Settings Menu","$it")
                 onError.invoke()
             }.ignoreElement()
     }

@@ -171,13 +171,13 @@ abstract class AmityCommentBaseFragment: AmityBaseFragment(),
             AmityAlertDialogFragment
                 .newInstance(
                     R.string.amity_discard_reply_title, R.string.amity_discard_reply_message,
-                    R.string.amity_discard, R.string.amity_cancel
+                    R.string.amity_delete, R.string.amity_cancel
                 )
         } else {
             AmityAlertDialogFragment
                 .newInstance(
                     R.string.amity_discard_comment_title, R.string.amity_discard_comment_message,
-                    R.string.amity_discard, R.string.amity_cancel
+                    R.string.amity_delete, R.string.amity_cancel
                 )
         }
         exitConfirmationDialogFragment.show(childFragmentManager, AmityAlertDialogFragment.TAG);

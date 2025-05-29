@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvCommunitySearch"
         android:layout_marginHorizontal="@dimen/amity_padding_m1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+
+    <com.amity.socialcloud.uikit.common.components.AmityToolBar
+        android:id="@+id/communityHomeToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AmityCommunityHomeToolBarStyle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvNoResults"

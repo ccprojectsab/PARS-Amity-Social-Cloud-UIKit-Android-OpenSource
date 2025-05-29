@@ -21,27 +21,27 @@ class AmityPollSingleAnswerViewHolder(
         binding.voteRadioButton.text = data.data
         binding.voteRadioButton.setTextColor(
             when (isEnabled) {
-                true -> ContextCompat.getColor(context, R.color.amityColorBlack)
-                false -> ContextCompat.getColor(context, R.color.amityPlaceHolderDarkColor)
+                true -> ContextCompat.getColor(context, com.amity.socialcloud.uikit.common.R.color.amityColorBlack)
+                false -> ContextCompat.getColor(context, com.amity.socialcloud.uikit.common.R.color.amityPlaceHolderDarkColor)
             }
         )
 
         binding.voteRadioButton.buttonTintList = ColorStateList.valueOf(
             ContextCompat.getColor(
                 context, when (isEnabled) {
-                    true -> R.color.amityColorPrimary
-                    false -> R.color.amityPlaceHolderDarkColor
+                    true -> com.amity.socialcloud.uikit.common.R.color.amityColorPrimary
+                    false -> com.amity.socialcloud.uikit.common.R.color.amityPlaceHolderDarkColor
                 }
             )
         )
 
         binding.voteCardView.isEnabled = isEnabled
-        binding.voteCardView.strokeColor = ContextCompat.getColor(context, R.color.upstraMessageBubbleInverse)
+        binding.voteCardView.strokeColor = ContextCompat.getColor(context, com.amity.socialcloud.uikit.common.R.color.upstraMessageBubbleInverse)
         binding.voteCardView.setOnClickListener {
             binding.voteRadioButton.isChecked = !binding.voteRadioButton.isChecked
             binding.voteCardView.strokeColor = when (binding.voteRadioButton.isChecked) {
-                true -> ContextCompat.getColor(context, R.color.amityColorPrimary)
-                false -> ContextCompat.getColor(context, R.color.upstraMessageBubbleInverse)
+                true -> ContextCompat.getColor(context, com.amity.socialcloud.uikit.common.R.color.amityColorPrimary)
+                false -> ContextCompat.getColor(context, com.amity.socialcloud.uikit.common.R.color.upstraMessageBubbleInverse)
             }
             voteCallback.invoke(data.id, binding.voteRadioButton.isChecked, binding.voteCardView)
         }

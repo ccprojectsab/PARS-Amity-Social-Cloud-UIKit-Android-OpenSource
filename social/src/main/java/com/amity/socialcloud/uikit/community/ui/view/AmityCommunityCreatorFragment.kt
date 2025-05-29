@@ -8,6 +8,7 @@ import com.amity.socialcloud.uikit.common.memberpicker.adapter.AmityAddedMembers
 import com.amity.socialcloud.uikit.common.memberpicker.listener.AmityAddedMemberClickListener
 import com.amity.socialcloud.uikit.common.model.AmitySelectMemberItem
 import com.amity.socialcloud.uikit.community.R
+
 import com.amity.socialcloud.uikit.community.utils.AmityAddedMemberItemDecoration
 
 
@@ -42,8 +43,8 @@ class AmityCommunityCreatorFragment : AmityCommunityCreateBaseFragment(),
         getBindingVariable().rvAddedMembers.adapter = addedMembersAdapter
         getBindingVariable().rvAddedMembers.addItemDecoration(
             AmityAddedMemberItemDecoration(
-                resources.getDimensionPixelSize(R.dimen.amity_padding_xs),
-                resources.getDimensionPixelSize(R.dimen.amity_padding_s)
+                resources.getDimensionPixelSize(com.amity.socialcloud.uikit.common.R.dimen.amity_padding_xs),
+                resources.getDimensionPixelSize(com.amity.socialcloud.uikit.common.R.dimen.amity_padding_s)
             )
         )
         addedMembersAdapter.submitList(viewModel.selectedMembersList)

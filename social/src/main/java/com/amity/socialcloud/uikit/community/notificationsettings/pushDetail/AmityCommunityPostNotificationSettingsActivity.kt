@@ -49,7 +49,7 @@ class AmityCommunityPostNotificationSettingsActivity : AppCompatActivity(),
         binding.pushDetailToolBar.setLeftDrawable(
             ContextCompat.getDrawable(
                 this,
-                R.drawable.amity_ic_arrow_back
+                com.amity.socialcloud.uikit.common.R.drawable.amity_ic_arrow_back
             )
         )
         binding.pushDetailToolBar.setClickListener(this)
@@ -59,7 +59,7 @@ class AmityCommunityPostNotificationSettingsActivity : AppCompatActivity(),
         } else {
             binding.pushDetailToolBar.setLeftString(getString(R.string.amity_comments))
         }
-        binding.pushDetailToolBar.setRightString(getString(R.string.amity_save))
+        binding.pushDetailToolBar.setRightString(getString(com.amity.socialcloud.uikit.common.R.string.amity_save))
         supportActionBar?.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM
         setSupportActionBar(binding.pushDetailToolBar)
     }

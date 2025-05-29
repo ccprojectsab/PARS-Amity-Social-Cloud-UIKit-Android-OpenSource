@@ -23,9 +23,9 @@ class AmityCategoryCommunityListActivity : AmityBaseToolbarFragmentContainerActi
     override fun initToolbar() {
         val category: AmityCommunityCategory? = intent.getParcelableExtra(INTENT_CATEGORY)
         getToolBar()?.setLeftDrawable(
-            ContextCompat.getDrawable(this, R.drawable.amity_ic_arrow_back)
+            ContextCompat.getDrawable(this, com.amity.socialcloud.uikit.common.R.drawable.amity_ic_arrow_back)
         )
-        getToolBar()?.setLeftString(category?.getName() ?: "")
+        getToolBar()?.setCenterString(category?.getName() ?: "")
         showToolbarDivider()
     }
 

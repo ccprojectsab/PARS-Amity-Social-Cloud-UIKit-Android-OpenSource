@@ -22,6 +22,11 @@
             name="rightString"
             type="String" />
 
+
+        <variable
+            name="centerString"
+            type="String" />
+
         <variable
             name="rightStringActive"
             type="Boolean" />
@@ -55,6 +60,16 @@
                 style="?attr/amityLeftTextViewStyle"
                 android:gravity="center_vertical"
                 android:text="@{leftString}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/tv_right"
+                app:layout_constraintStart_toEndOf="@id/ivLeft"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_center"
+                style="?attr/amityLeftTextViewStyle"
+                android:gravity="center"
+                android:text="@{centerString}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/tv_right"
                 app:layout_constraintStart_toEndOf="@id/ivLeft"

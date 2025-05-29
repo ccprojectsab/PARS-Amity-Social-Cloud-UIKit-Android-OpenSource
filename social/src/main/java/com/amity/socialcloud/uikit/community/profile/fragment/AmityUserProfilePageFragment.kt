@@ -1,5 +1,6 @@
 package com.amity.socialcloud.uikit.community.profile.fragment
 
+import android.content.Context
 import android.content.DialogInterface
 import android.os.Bundle
 import android.os.Handler
@@ -22,6 +23,7 @@ import com.amity.socialcloud.uikit.common.common.views.dialog.bottomsheet.Bottom
 import com.amity.socialcloud.uikit.common.utils.AmityAlertDialogUtil
 import com.amity.socialcloud.uikit.community.R
 import com.amity.socialcloud.uikit.community.databinding.AmityFragmentUserProfilePageBinding
+import com.amity.socialcloud.uikit.community.databinding.AmityViewUserProfileHeaderBinding
 import com.amity.socialcloud.uikit.community.followers.AmityUserFollowersActivity
 import com.amity.socialcloud.uikit.community.followrequest.AmityFollowRequestsActivity
 import com.amity.socialcloud.uikit.community.newsfeed.activity.*
@@ -58,21 +60,18 @@ class AmityUserProfilePageFragment : AmityBaseFragment(),
     private lateinit var currentUser: AmityUser
     private var refreshEventPublisher = PublishSubject.create<AmityFeedRefreshEvent>()
 
-    private val createGenericPost =
-        registerForActivityResult(AmityPostCreatorActivity.AmityCreateCommunityPostActivityContract()) {
-        }
+    private val createGenericPost = registerForActivityResult(AmityPostCreatorActivity.AmityCreateCommunityPostActivityContract()) {
+    }
 
-    private val createLiveStreamPost =
-        registerForActivityResult(AmityLiveStreamPostCreatorActivity.AmityCreateLiveStreamPostActivityContract()) {
-            it?.let {
-                val intent = AmityPostDetailsActivity.newIntent(requireContext(), it, null, null)
-                startActivity(intent)
-            }
+    private val createLiveStreamPost = registerForActivityResult(AmityLiveStreamPostCreatorActivity.AmityCreateLiveStreamPostActivityContract()) {
+        it?.let {
+            val intent = AmityPostDetailsActivity.newIntent(requireContext(), it, null, null)
+            startActivity(intent)
         }
+    }
 
-    private val createPollPost =
-        registerForActivityResult(AmityPollPostCreatorActivity.AmityPollCreatorActivityContract()) {
-        }
+    private val createPollPost = registerForActivityResult(AmityPollPostCreatorActivity.AmityPollCreatorActivityContract()) {
+    }
 
     companion object {
         fun newInstance(userId: String): Builder {
@@ -86,7 +85,6 @@ class AmityUserProfilePageFragment : AmityBaseFragment(),
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setHasOptionsMenu(true)
         fragmentStateAdapter = AmityFragmentStateAdapter(
             childFragmentManager,
             requireActivity().lifecycle
@@ -110,6 +108,7 @@ class AmityUserProfilePageFragment : AmityBaseFragment(),
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setHasOptionsMenu(!(viewModel.isSelfUser()))
         initTabLayout()
         binding.appBar.setExpanded(true)
         getUserDetails()
@@ -118,7 +117,7 @@ class AmityUserProfilePageFragment : AmityBaseFragment(),
         }
         setHeaderViewClickListeners()
 
-        binding.refreshLayout.setColorSchemeResources(R.color.amityColorPrimary)
+        binding.refreshLayout.setColorSchemeResources(com.amity.socialcloud.uikit.common.R.color.amityColorPrimary)
         binding.refreshLayout.setOnRefreshListener {
             refreshFeed()
         }
@@ -148,34 +147,34 @@ class AmityUserProfilePageFragment : AmityBaseFragment(),
     }
 
     private fun navigateToCreatePost() {
+        val sharedPref = context?.getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
+        val isLiveStreamPermitted =
+            sharedPref?.getBoolean("PREF_USER_CAN_LIVESTREAM", false) ?: false
         val bottomSheet = AmityBottomSheetDialog(requireContext())
         val postCreationOptions =
             arrayListOf(
                 BottomSheetMenuItem(
-                    iconResId = R.drawable.ic_amity_ic_post_create,
+                    iconResId = com.amity.socialcloud.uikit.common.R.drawable.ic_amity_ic_post_create,
                     titleResId = R.string.amity_post,
+                    colorResId = com.amity.socialcloud.uikit.common.R.color.amityColorBase,
                     action = {
                         createGenericPost.launch(null)
                         bottomSheet.dismiss()
                     }
-                ),
+                ))
+        if (isLiveStreamPermitted) {
+            postCreationOptions.add(
                 BottomSheetMenuItem(
-                    iconResId = R.drawable.ic_amity_ic_live_stream_create,
+                    iconResId = com.amity.socialcloud.uikit.common.R.drawable.ic_amity_ic_live_stream_create,
                     titleResId = R.string.amity_video_stream_title,
+                    colorResId = com.amity.socialcloud.uikit.common.R.color.amityColorBase,
                     action = {
                         createLiveStreamPost.launch(null)
                         bottomSheet.dismiss()
                     }
                 ),
-                BottomSheetMenuItem(
-                    iconResId = R.drawable.ic_amity_ic_poll_create,
-                    titleResId = R.string.amity_general_poll,
-                    action = {
-                        createPollPost.launch(null)
-                        bottomSheet.dismiss()
-                    }
-                )
             )
+        }
 
         bottomSheet.show(postCreationOptions)
     }
@@ -186,7 +185,6 @@ class AmityUserProfilePageFragment : AmityBaseFragment(),
                 is AmityMyFeedFragment -> {
                     refreshEventPublisher.onNext(AmityFeedRefreshEvent())
                 }
-
                 is AmityUserFeedFragment -> {
                     refreshEventPublisher.onNext(AmityFeedRefreshEvent())
                 }
@@ -212,7 +210,6 @@ class AmityUserProfilePageFragment : AmityBaseFragment(),
                     }
                 }
             }
-
             btnFollow.setOnClickListener {
                 binding.userProfileHeader.updateState(AmityFollowStatus.PENDING)
                 viewModel.sendFollowRequest(onSuccess = {
@@ -239,18 +236,6 @@ class AmityUserProfilePageFragment : AmityBaseFragment(),
                     .subscribe()
             }
 
-            btnUnblockRequest.setOnClickListener {
-                binding.userProfileHeader.updateState(AmityFollowStatus.NONE)
-                viewModel.unblock().doOnError {
-                    showErrorDialog(
-                        getString(R.string.amity_unblock_error, currentUser.getDisplayName()),
-                        getString(R.string.amity_something_went_wrong_pls_try),
-                        AmityFollowStatus.BLOCKED
-                    )
-                }.untilLifecycleEnd(this@AmityUserProfilePageFragment)
-                    .subscribe()
-            }
-
             layoutPendingRequests.setOnClickListener {
                 val intent =
                     AmityFollowRequestsActivity.newIntent(requireContext(), viewModel.userId)
@@ -258,7 +243,7 @@ class AmityUserProfilePageFragment : AmityBaseFragment(),
             }
 
             tvFollowersCount.setOnClickListener {
-                if (followStatus == AmityFollowStatus.ACCEPTED) {
+                if (connectionState == AmityFollowStatus.ACCEPTED) {
                     val intent = AmityUserFollowersActivity.newIntent(
                         requireContext(),
                         currentUser.getDisplayName(),
@@ -269,7 +254,7 @@ class AmityUserProfilePageFragment : AmityBaseFragment(),
             }
 
             tvFollowingCount.setOnClickListener {
-                if (followStatus == AmityFollowStatus.ACCEPTED) {
+                if (connectionState == AmityFollowStatus.ACCEPTED) {
                     val intent = AmityUserFollowersActivity.newIntent(
                         requireContext(),
                         currentUser.getDisplayName(),
@@ -361,7 +346,7 @@ class AmityUserProfilePageFragment : AmityBaseFragment(),
 
     private fun showErrorDialog(title: String, description: String, prevState: AmityFollowStatus) {
         AmityAlertDialogUtil.showDialog(requireContext(), title, description,
-            getString(R.string.amity_ok), null,
+            getString(com.amity.socialcloud.uikit.common.R.string.amity_ok), null,
             DialogInterface.OnClickListener { dialog, which ->
                 if (which == DialogInterface.BUTTON_POSITIVE) {
                     dialog.cancel()
@@ -372,10 +357,10 @@ class AmityUserProfilePageFragment : AmityBaseFragment(),
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         val drawable =
-            ContextCompat.getDrawable(requireContext(), R.drawable.amity_ic_more_horiz)
+            ContextCompat.getDrawable(requireContext(), com.amity.socialcloud.uikit.common.R.drawable.amity_ic_more_horiz)
         drawable?.mutate()
         drawable?.colorFilter = BlendModeColorFilterCompat.createBlendModeColorFilterCompat(
-            R.color.amityColorBlack, BlendModeCompat.SRC_ATOP
+            com.amity.socialcloud.uikit.common.R.color.amityColorBlack, BlendModeCompat.SRC_ATOP
         )
         menu.add(Menu.NONE, 1, Menu.NONE, getString(R.string.amity_more_options))
             ?.setIcon(drawable)

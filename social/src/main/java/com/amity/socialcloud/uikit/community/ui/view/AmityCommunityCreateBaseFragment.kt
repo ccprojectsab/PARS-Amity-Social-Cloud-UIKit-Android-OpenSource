@@ -36,7 +36,8 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import timber.log.Timber
 
-abstract class AmityCommunityCreateBaseFragment : RxFragment() {
+abstract class
+AmityCommunityCreateBaseFragment : RxFragment() {
 
     private val TAG = AmityCommunityCreateBaseFragment::class.java.canonicalName
     var disposable = CompositeDisposable()
@@ -51,7 +52,7 @@ abstract class AmityCommunityCreateBaseFragment : RxFragment() {
             Glide.with(this)
                 .load(data)
                 .centerCrop()
-                .placeholder(R.drawable.amity_ic_default_community_avatar)
+                .placeholder(R.drawable.newplaceholder_img)
                 .into(binding.ccAvatar)
         }
     }

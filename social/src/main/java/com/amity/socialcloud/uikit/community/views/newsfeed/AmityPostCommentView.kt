@@ -64,7 +64,7 @@ class AmityPostCommentView : ConstraintLayout {
     fun setComment(comment: AmityComment, post: AmityPost? = null, isReadOnly: Boolean? = false) {
         binding.avatarUrl = comment.getCreator()?.getAvatar()?.getUrl(AmityImage.Size.SMALL)
         binding.tvUserName.text =
-            comment.getCreator()?.getDisplayName() ?: context.getString(R.string.amity_anonymous)
+            comment.getCreator()?.getDisplayName() ?: context.getString(com.amity.socialcloud.uikit.common.R.string.amity_anonymous)
         binding.tvCommentTime.text = comment.getCreatedAt().millis.readableFeedPostTime(context)
         binding.edited = comment.isEdited()
         binding.isReplyComment = !comment.getParentId().isNullOrEmpty()

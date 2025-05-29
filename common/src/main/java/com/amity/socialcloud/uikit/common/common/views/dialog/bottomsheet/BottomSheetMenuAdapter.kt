@@ -33,7 +33,7 @@ class BottomSheetMenuAdapter(private var items: List<BottomSheetMenuItem>) : Rec
                 if (item.colorResId != null) {
                     bottomMenuTitle.setTextColor(itemView.resources.getColor(item.colorResId))
                 } else {
-                    bottomMenuTitle.setTextColor(itemView.resources.getColor(R.color.amityColorBlack))
+                    bottomMenuTitle.setTextColor(itemView.resources.getColor(R.color.amityColorBase))
                 }
                 root.setOnClickListener { item.action() }
             }

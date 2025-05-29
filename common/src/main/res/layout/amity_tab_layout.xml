@@ -8,6 +8,8 @@
         android:id="@+id/divider"
         android:layout_width="0dp"
         android:layout_height="1dp"
+        android:backgroundTint="#978C87"
+        android:background="#978C87"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tab_header" />
@@ -20,6 +22,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:tabIndicatorColor="@color/amityColorPrimary"
+        app:tabTextAppearance="@style/AmityTabStyle"
         app:tabIndicatorFullWidth="false"
         app:tabMode="auto" />
 

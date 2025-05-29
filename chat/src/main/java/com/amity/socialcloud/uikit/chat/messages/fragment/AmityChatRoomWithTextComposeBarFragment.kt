@@ -2,12 +2,14 @@ package com.amity.socialcloud.uikit.chat.messages.fragment
 
 import android.Manifest
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,11 +21,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.ColorUtils
+import androidx.core.net.toUri
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.paging.filter
-import androidx.paging.map
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.amity.socialcloud.sdk.api.core.AmityCoreClient
@@ -34,6 +37,7 @@ import com.amity.socialcloud.uikit.chat.databinding.AmityFragmentChatWithTextCom
 import com.amity.socialcloud.uikit.chat.messages.adapter.AmityMessagePagingAdapter
 import com.amity.socialcloud.uikit.chat.messages.viewModel.AmityChatRoomEssentialViewModel
 import com.amity.socialcloud.uikit.chat.messages.viewModel.AmityMessageListViewModel
+import com.amity.socialcloud.uikit.chat.settings.AmityChatSettingsActivity
 import com.amity.socialcloud.uikit.common.base.AmityPickerFragment
 import com.amity.socialcloud.uikit.common.common.setShape
 import com.amity.socialcloud.uikit.common.common.showSnackBar
@@ -43,9 +47,11 @@ import com.amity.socialcloud.uikit.common.components.AmityAudioRecorderListener
 import com.amity.socialcloud.uikit.common.components.AmityMessageListListener
 import com.amity.socialcloud.uikit.common.model.AmityEventIdentifier
 import com.amity.socialcloud.uikit.common.utils.AmityAndroidUtil
+import com.amity.socialcloud.uikit.common.utils.AmityBackPressUtil
 import com.amity.socialcloud.uikit.common.utils.AmityConstants
 import com.amity.socialcloud.uikit.common.utils.AmityRecyclerViewItemDecoration
 import com.google.android.material.snackbar.Snackbar
+import com.google.gson.JsonObject
 import com.zhihu.matisse.Matisse
 import com.zhihu.matisse.MimeType
 import com.zhihu.matisse.engine.impl.GlideEngine
@@ -55,8 +61,10 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import timber.log.Timber
 import java.io.File
+import java.io.FileOutputStream
 
 
 class AmityChatRoomWithTextComposeBarFragment() : AmityPickerFragment(),
@@ -73,6 +81,7 @@ class AmityChatRoomWithTextComposeBarFragment() : AmityPickerFragment(),
     private var currentCount = 0
     private var isImagePermissionGranted = false
     private var isReachBottom = true
+    var ROUTE_NAME = "ROUTE_NAME"
 
     private val pickMultipleImagesPermission =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) {
@@ -122,12 +131,22 @@ class AmityChatRoomWithTextComposeBarFragment() : AmityPickerFragment(),
     private fun setupComposebar() {
         binding.apply {
             etMessage.setShape(
-                null, null, null, null,
-                R.color.amityColorBase, R.color.amityColorBase, AmityColorShade.SHADE4
+                null,
+                null,
+                null,
+                null,
+                com.amity.socialcloud.uikit.common.R.color.amityColorBase,
+                com.amity.socialcloud.uikit.common.R.color.amityColorBase,
+                AmityColorShade.SHADE4
             )
             recordBackground.setShape(
-                null, null, null, null,
-                R.color.amityColorBase, R.color.amityColorBase, AmityColorShade.SHADE4
+                null,
+                null,
+                null,
+                null,
+                com.amity.socialcloud.uikit.common.R.color.amityColorBase,
+                com.amity.socialcloud.uikit.common.R.color.amityColorBase,
+                AmityColorShade.SHADE4
             )
             etMessage.setOnClickListener {
                 messageListViewModel.showComposeBar.set(false)
@@ -169,7 +188,7 @@ class AmityChatRoomWithTextComposeBarFragment() : AmityPickerFragment(),
         if (essentialViewModel.enableConnectionBar) {
             binding.connectionView.visibility = View.VISIBLE
             binding.connectionTexview.setText(R.string.amity_no_internet)
-            binding.connectionTexview.setBackgroundColor(resources.getColor(R.color.amityColorGrey))
+            binding.connectionTexview.setBackgroundColor(resources.getColor(com.amity.socialcloud.uikit.common.R.color.amityColorGrey))
         }
     }
 
@@ -180,7 +199,7 @@ class AmityChatRoomWithTextComposeBarFragment() : AmityPickerFragment(),
     }
 
     private fun presentChatRefreshLoadingView() {
-        binding.loadingView.setBackgroundColor(resources.getColor(R.color.amityTranslucentBackground))
+        binding.loadingView.setBackgroundColor(resources.getColor(com.amity.socialcloud.uikit.common.R.color.amityTranslucentBackground))
         binding.loadingView.visibility = View.VISIBLE
     }
 
@@ -243,12 +262,42 @@ class AmityChatRoomWithTextComposeBarFragment() : AmityPickerFragment(),
             override fun handleOnBackPressed() {
                 if (messageListViewModel.showComposeBar.get()) {
                     messageListViewModel.showComposeBar.set(false)
+                } else if (AmityBackPressUtil.isLastActivityAndBackStackEmpty(
+                        context!!,
+                        parentFragmentManager
+                    )
+                ) {
+                    val intent = Intent("com.medcura.ACTION_OPEN_CUSTOM_HOME").apply {
+                        putExtra("ROUTE_NAME", "Chat")
+                    }
+                    startActivity(intent)
                 } else {
                     requireActivity().finish()
                 }
             }
         })
     }
+    /*
+        private fun isLastActivity(): Boolean {
+            val activityManager = requireContext().getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+            val tasks = activityManager.appTasks
+            if (tasks.isNotEmpty()) {
+                val taskInfo = tasks[0].taskInfo
+                if (taskInfo.numActivities == 1) {
+                    return true
+                }
+            }
+            return false
+        }
+        private fun isBackStackEmpty(): Boolean {
+            val fragmentManager = parentFragmentManager
+            return fragmentManager.backStackEntryCount == 0
+        }
+        private fun isLastActivityAndBackStackEmpty(): Boolean {
+            return isLastActivity() && isBackStackEmpty()
+        }
+    */
+
 
     private fun getChannelType() {
         disposable.add(messageListViewModel.getChannelType().take(1).subscribe { ekoChannel ->
@@ -256,41 +305,77 @@ class AmityChatRoomWithTextComposeBarFragment() : AmityPickerFragment(),
                 binding.chatToolBar.ivAvatar.setImageDrawable(
                     ContextCompat.getDrawable(
                         requireContext(),
-                        R.drawable.amity_ic_group
+                        com.amity.socialcloud.uikit.common.R.drawable.amity_ic_group
                     )
                 )
             } else {
                 binding.chatToolBar.ivAvatar.setImageDrawable(
                     ContextCompat.getDrawable(
                         requireContext(),
-                        R.drawable.amity_ic_user
+                        com.amity.socialcloud.uikit.common.R.drawable.amity_ic_user
                     )
                 )
             }
 
             if (ekoChannel.getChannelType() == AmityChannel.Type.CONVERSATION) {
-                disposable.add(
-                    messageListViewModel.getDisplayName()
-                        .doOnNext { channelMembers ->
-                            channelMembers.filter {
-                                it.getUserId() != AmityCoreClient.getUserId()
-                            }.map { channelMember ->
-                                val title = channelMember.getUser()?.getDisplayName()
-                                val avatarUrl = channelMember.getUser()?.getAvatar()
-                                    ?.getUrl(AmityImage.Size.SMALL)
-
-                                messageListViewModel.title.set(title)
-                                messageListViewModel.avatarUrl.set(avatarUrl)
+                val metadata: JsonObject? = ekoChannel.getMetadata()
+                val userId = AmityCoreClient.getUserId()
+                Log.d("Mytag", "getChannelType:${ekoChannel.getMetadata()} ")
+                val otherUserId = metadata?.get(AmityConstants.CHAT_METADATA_USER_IDS)
+                    ?.asJsonArray
+                    ?.find { it.asString != userId }
+                    ?.asString
+                essentialViewModel.otherUserId = otherUserId ?: ""
+                Log.d("Mytag", "getChannelType: other user id - $otherUserId ")
+                lifecycleScope.launch {
+                    withContext(Dispatchers.IO) {
+                        try {
+                            val userDetails =
+                                messageListViewModel.getDisplayNameUser(otherUserId.toString())
+                                    .blockingFirst()
+                            withContext(Dispatchers.Main) {
+                                userDetails.getDisplayName()?.let { userName ->
+                                    messageListViewModel.title.set(userName)
+                                }
+                                userDetails.getAvatar()?.let { image ->
+                                    messageListViewModel.avatarUrl.set(image.getUrl())
+                                }
                             }
-                        }.subscribe()
-                )
+                        } catch (e: Exception) {
+                            // Handle the exception here
+                            e.printStackTrace() // You can log the exception or perform other error-handling tasks
+                        }
+                    }
+                }
+
             } else {
+                ekoChannel.membership().getMembers().build().query().doOnNext { pagingMember ->
+                    pagingMember.filter { it.getUserId() != AmityCoreClient.getUserId() }
+                }.subscribe()
+                val metadata: JsonObject? = ekoChannel.getMetadata()
+                Log.d("Mytag", "getChannelType:${ekoChannel.getMetadata()} ")
+                val userId = AmityCoreClient.getUserId()
+                val otherUserId = metadata?.get(AmityConstants.CHAT_METADATA_USER_IDS)
+                    ?.asJsonArray
+                    ?.find { it.asString != userId }
+                    ?.asString
+                if (otherUserId != null) {
+                    essentialViewModel.otherUserId = otherUserId
+                }
+                Log.d("Mytag", "getChannelType: other user id - $otherUserId ")
                 messageListViewModel.title.set(ekoChannel.getDisplayName())
                 messageListViewModel.avatarUrl
                     .set(ekoChannel.getAvatar()?.getUrl(AmityImage.Size.SMALL))
             }
         })
     }
+
+    private val chatSettingsLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            if (it.resultCode == Activity.RESULT_OK) {
+                activity?.finish()
+            }
+        }
 
     private fun initToolBar() {
         binding.chatToolBar.apply {
@@ -300,11 +385,40 @@ class AmityChatRoomWithTextComposeBarFragment() : AmityPickerFragment(),
                 (activity as AppCompatActivity).setSupportActionBar(root as Toolbar)
 
                 ivBack.setOnClickListener {
-                    activity?.finish()
+                    if (AmityBackPressUtil.isLastActivityAndBackStackEmpty(
+                            requireContext(),
+                            parentFragmentManager
+                        )
+                    ) {
+                        val intent = Intent("com.medcura.ACTION_OPEN_CUSTOM_HOME").apply {
+                            putExtra("ROUTE_NAME", "Chat")
+                        }
+                        startActivity(intent)
+                        activity?.finish()
+                    } else {
+                        activity?.finish()
+                    }
                 }
-                root.visibility = View.VISIBLE
-            } else {
-                root.visibility = View.GONE
+                val sharedPref = context?.getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
+                val isLiveStreamPermitted =
+                    sharedPref?.getBoolean("PREF_USER_CAN_LIVESTREAM", false) ?: false
+                if (isLiveStreamPermitted) {
+                    ivsetting.visibility = View.VISIBLE
+                    ivsetting.setOnClickListener {
+                        Log.d("MYtag", "initToolBar: pressed")
+
+                        val chatListIntent =
+                            AmityChatSettingsActivity.newIntent(
+                                requireContext(),
+                                essentialViewModel.channelId,
+                                essentialViewModel.otherUserId
+                            )
+                        chatSettingsLauncher.launch(chatListIntent)
+                    }
+                    root.visibility = View.VISIBLE
+                } else {
+                    root.visibility = View.GONE
+                }
             }
         }
     }
@@ -327,7 +441,7 @@ class AmityChatRoomWithTextComposeBarFragment() : AmityPickerFragment(),
                 AmityRecyclerViewItemDecoration(
                     0,
                     0,
-                    resources.getDimensionPixelSize(R.dimen.amity_padding_xs)
+                    resources.getDimensionPixelSize(com.amity.socialcloud.uikit.common.R.dimen.amity_padding_xs)
                 )
             )
             this.itemAnimator = null
@@ -336,7 +450,7 @@ class AmityChatRoomWithTextComposeBarFragment() : AmityPickerFragment(),
                 AmityColorPaletteUtil.getColor(
                     ContextCompat.getColor(
                         requireContext(),
-                        R.color.amityColorBase
+                        com.amity.socialcloud.uikit.common.R.color.amityColorBase
                     ), AmityColorShade.SHADE4
                 ), (percentage * 255).toInt()
             )
@@ -390,6 +504,7 @@ class AmityChatRoomWithTextComposeBarFragment() : AmityPickerFragment(),
                         snackBar.show()
                     }
                 }
+
                 AmityEventIdentifier.MSG_SEND_SUCCESS -> scrollToLastPosition()
                 AmityEventIdentifier.TOGGLE_CHAT_COMPOSE_BAR -> toggleSoftKeyboard()
                 AmityEventIdentifier.SHOW_AUDIO_RECORD_UI -> showAudioRecordUi()
@@ -452,7 +567,49 @@ class AmityChatRoomWithTextComposeBarFragment() : AmityPickerFragment(),
 
     override fun onFilePicked(data: Uri?) {
         view?.showSnackBar("$data", Snackbar.LENGTH_SHORT)
+        if (data != null) {
+            //  val file = Uri.fromFile(data.toFile())
+            val file = getFileFromUri(data)
+            if (file != null) {
+                disposable.add(
+                    messageListViewModel.sendFileMessage(file.toUri()).subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread()).doOnComplete {
+                            msgSent = true
+                        }.doOnError { msgSent = false }.subscribe()
+                )
+            }
+        }
+
     }
+
+     fun getFileFromUri(uri: Uri): File? {
+        val contentResolver = requireContext().contentResolver
+        val inputStream = contentResolver.openInputStream(uri) ?: return null
+        val fileName = getFileName(uri)
+        val file = File(requireContext().cacheDir, fileName)
+
+        FileOutputStream(file).use { outputStream ->
+            inputStream.copyTo(outputStream)
+        }
+
+        return file
+    }
+
+    // Extracts filename from URI
+    private fun getFileName(uri: Uri): String {
+        var name = "temp_file"
+        val cursor = requireContext().contentResolver.query(uri, null, null, null, null)
+        cursor?.use {
+            if (it.moveToFirst()) {
+                val nameIndex = it.getColumnIndex("_display_name")
+                if (nameIndex != -1) {
+                    name = it.getString(nameIndex)
+                }
+            }
+        }
+        return name
+    }
+
 
     override fun onImagePicked(data: Uri?) {
 
@@ -476,11 +633,11 @@ class AmityChatRoomWithTextComposeBarFragment() : AmityPickerFragment(),
         }
     }
 
-    override fun onFileRecorded(audioFile: File?) {
+    override fun onFileRecorded(audioFile: File?, time: Long) {
         messageListViewModel.isRecording.set(false)
         if (audioFile != null) {
             val audioFileUri = Uri.fromFile(audioFile)
-            disposable.add(messageListViewModel.sendAudioMessage(audioFileUri)
+            disposable.add(messageListViewModel.sendAudioMessage(audioFileUri, time)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnComplete {
@@ -492,13 +649,22 @@ class AmityChatRoomWithTextComposeBarFragment() : AmityPickerFragment(),
         }
     }
 
+
     override fun showMessage() {
         val layout: View = layoutInflater.inflate(
             R.layout.amity_view_audio_msg_error,
             activity?.findViewById(R.id.errorMessageContainer)
         )
         val textView = layout.findViewById<TextView>(R.id.tvMessage)
-        textView.setShape(null, null, null, null, R.color.amityColorBase, null, null)
+        textView.setShape(
+            null,
+            null,
+            null,
+            null,
+            com.amity.socialcloud.uikit.common.R.color.amityColorBase,
+            null,
+            null
+        )
         layout.showSnackBar("", Snackbar.LENGTH_SHORT)
     }
 

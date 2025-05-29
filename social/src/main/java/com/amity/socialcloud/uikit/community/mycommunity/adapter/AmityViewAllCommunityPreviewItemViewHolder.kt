@@ -16,7 +16,7 @@ class AmityViewAllCommunityPreviewItemViewHolder(itemView: View, val listener: A
 
     override fun bind(data: AmityCommunity?, position: Int) {
         avatar.setBackgroundColor(null, AmityColorShade.SHADE4)
-        avatar.setImageResource(R.drawable.amity_ic_arrow_forward)
+        avatar.setImageResource(com.amity.socialcloud.uikit.common.R.drawable.amity_ic_arrow_forward)
 
         viewMoreLayout.setOnClickListener {
             listener.onCommunitySelected(null)

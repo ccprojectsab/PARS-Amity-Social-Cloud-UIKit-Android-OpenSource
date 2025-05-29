@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <inset android:drawable="@drawable/bg_amity_search" android:insetRight="20dp"  android:insetTop="8dp" android:insetBottom="8dp"/>
+    </item>
+
+</selector>

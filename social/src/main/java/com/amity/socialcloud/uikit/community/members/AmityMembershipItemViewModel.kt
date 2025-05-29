@@ -2,6 +2,7 @@ package com.amity.socialcloud.uikit.community.members
 
 import android.content.Context
 import com.amity.socialcloud.sdk.api.core.AmityCoreClient
+import com.amity.socialcloud.sdk.api.core.user.AmityUserRepository
 import com.amity.socialcloud.sdk.api.social.AmitySocialClient
 import com.amity.socialcloud.sdk.model.core.permission.AmityPermission
 import com.amity.socialcloud.sdk.model.core.user.AmityUser
@@ -58,7 +59,7 @@ class AmityMembershipItemViewModel : AmityBaseViewModel() {
                 itemList.add(
                     AmityMenuItem(
                         AmityConstants.ID_REMOVE_USER,
-                        context.getString(R.string.amity_remove_from_community),
+                        context.getString(com.amity.socialcloud.uikit.common.R.string.amity_remove_from_community),
                         true
                     )
                 )
@@ -108,7 +109,7 @@ class AmityMembershipItemViewModel : AmityBaseViewModel() {
                 itemList.add(
                     AmityMenuItem(
                         AmityConstants.ID_REMOVE_USER,
-                        context.getString(R.string.amity_remove_from_community)
+                        context.getString(com.amity.socialcloud.uikit.common.R.string.amity_remove_from_community)
                     )
                 )
             }
@@ -137,6 +138,13 @@ class AmityMembershipItemViewModel : AmityBaseViewModel() {
     fun getUser(userId: String): Flowable<AmityUser> {
         val userRepository = AmityCoreClient.newUserRepository()
         return userRepository.getUser(userId)
+    }
+
+    fun getUsers(
+        userRepository: AmityUserRepository,
+        userIds: Set<String>
+    ) {
+        userRepository.getUserByIds(userIds = userIds)
     }
 
     fun removeUser(list: List<String>): Completable {

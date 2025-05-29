@@ -94,7 +94,7 @@ class AmityUserProfileEditorFragment : AmityPickerFragment() {
         viewModel.updateProfileUri(profileUri)
         Glide.with(requireContext())
             .load(profileUri)
-            .placeholder(R.drawable.amity_ic_default_profile1)
+            .placeholder(com.amity.socialcloud.uikit.common.R.drawable.amity_ic_default_profile1)
             .centerCrop()
             .into(binding.ivAvatar)
     }
@@ -142,8 +142,8 @@ class AmityUserProfileEditorFragment : AmityPickerFragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         menuItemSaveProfile =
-            menu.add(Menu.NONE, ID_MENU_ITEM_SAVE_PROFILE, Menu.NONE, getString(R.string.amity_save))
-        menuItemSaveProfile?.setTitle(R.string.amity_save)
+            menu.add(Menu.NONE, ID_MENU_ITEM_SAVE_PROFILE, Menu.NONE, getString(com.amity.socialcloud.uikit.common.R.string.amity_save))
+        menuItemSaveProfile?.setTitle(com.amity.socialcloud.uikit.common.R.string.amity_save)
             ?.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS)
         updateSaveProfileMenu(viewModel.hasProfileUpdate.value ?: false)
         super.onCreateOptionsMenu(menu, inflater)
@@ -163,7 +163,7 @@ class AmityUserProfileEditorFragment : AmityPickerFragment() {
 
     private fun updateSaveProfileMenu(enabled: Boolean) {
         menuItemSaveProfile?.isEnabled = enabled
-        val s = SpannableString(getString(R.string.amity_save))
+        val s = SpannableString(getString(com.amity.socialcloud.uikit.common.R.string.amity_save))
         s.setSpan(
             ForegroundColorSpan(
                 AmityOptionMenuColorUtil.getColor(

@@ -2,7 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+    <data>
 
+
+        <import type="com.amity.socialcloud.uikit.common.common.views.AmityColorShade" />
+
+
+    </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/rootView"
         android:layout_width="match_parent"
@@ -11,8 +17,8 @@
 
         <ImageView
             android:id="@+id/ivIcon"
-            android:layout_width="@dimen/amity_padding_l"
-            android:layout_height="@dimen/amity_padding_l"
+            android:layout_width="@dimen/amity_padding_m3"
+            android:layout_height="@dimen/amity_padding_m3"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/tvTitle"
             tools:src="@drawable/amity_ic_pen" />
@@ -26,6 +32,7 @@
             android:paddingTop="@dimen/amity_padding_xxs"
             android:textColor="@color/amityColorBase"
             android:textSize="@dimen/amity_text_size_body"
+            android:fontFamily="@font/recoleta_regular"
             android:layout_marginStart="@dimen/amity_padding_s"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -39,7 +46,9 @@
             android:layout_height="wrap_content"
             android:ellipsize="none"
             android:maxLines="2"
-            android:textColor="@color/amityColorShuttleGray"
+            textColorShade="@{AmityColorShade.SHADE4}"
+            android:textColor="@color/amityColorBase"
+            android:fontFamily="@font/recoleta_regular"
             android:textSize="@dimen/amity_text_size_caption"
             android:layout_marginTop="@dimen/amity_padding_xxs"
             app:layout_constraintBottom_toBottomOf="parent"

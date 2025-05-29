@@ -57,6 +57,10 @@ class AmityToolBar : MaterialToolbar {
         binding.leftString = value
     }
 
+    fun setCenterString(value: String) {
+        binding.centerString = value
+    }
+
     fun setLeftDrawable(value: Drawable?, color: Int? = null) {
         binding.leftDrawable = value
         if (color != null && binding.leftDrawable != null) {
@@ -79,15 +83,15 @@ class AmityToolBar : MaterialToolbar {
         if (value) {
             binding.tvRight.setTextColor(
                 AmityColorPaletteUtil.getColor(
-                    ContextCompat.getColor(context, R.color.amityColorHighlight),
+                    ContextCompat.getColor(context, R.color.amityColorBase),
                     AmityColorShade.DEFAULT
                 )
             )
         } else {
             binding.tvRight.setTextColor(
                 AmityColorPaletteUtil.getColor(
-                    ContextCompat.getColor(context, R.color.amityColorHighlight),
-                    AmityColorShade.SHADE2
+                    ContextCompat.getColor(context, R.color.amityColorBase),
+                    AmityColorShade.DEFAULT
                 )
             )
         }

@@ -15,7 +15,7 @@ import com.amity.socialcloud.uikit.community.newsfeed.model.PostMedia
 class AmityPostItemVideoViewHolder(itemView: View) : AmityPostContentViewHolder(itemView) {
 
     private val imageRecyclerView = itemView.findViewById<RecyclerView>(R.id.rvImages)
-    private val space = itemView.context.resources.getDimensionPixelSize(R.dimen.amity_padding_xs)
+    private val space = itemView.context.resources.getDimensionPixelSize(com.amity.socialcloud.uikit.common.R.dimen.amity_padding_xs)
     private val itemDecor = AmitySpacesItemDecoration(0, 0, 0, space)
     private var adapter: AmityPostImageChildrenAdapter? = null
     private var videoClickListener = object : AmityPostVideoClickListener {

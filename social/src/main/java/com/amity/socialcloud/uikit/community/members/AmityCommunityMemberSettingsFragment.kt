@@ -126,7 +126,7 @@ class AmityCommunityMemberSettingsFragment : AmityBaseFragment() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        val drawable = ContextCompat.getDrawable(requireContext(), R.drawable.amity_ic_add)
+        val drawable = ContextCompat.getDrawable(requireContext(), com.amity.socialcloud.uikit.common.R.drawable.amity_ic_add)
         menu.add(Menu.NONE, 1, Menu.NONE, getString(R.string.amity_add))
             ?.setIcon(drawable)
             ?.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS)

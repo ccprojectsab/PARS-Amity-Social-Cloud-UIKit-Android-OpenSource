@@ -6,25 +6,25 @@ apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.firebase.crashlytics'
 
 android {
-    compileSdkVersion 33
+    compileSdkVersion 34
     buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.amity.sample.ascuikit"
         minSdkVersion 21
-        targetSdkVersion 33
+        targetSdkVersion 34
         versionCode 1
-        versionName "3.19.0"
+        versionName "3.25.0"
         multiDexEnabled true
     }
 
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = JavaVersion.VERSION_17
     }
 
     buildFeatures {
@@ -43,12 +43,29 @@ android {
             minifyEnabled false
         }
     }
-
-    packagingOptions {
-        pickFirst("META-INF/*.kotlin_module")
-        exclude 'META-INF/INDEX.LIST'
-        exclude 'META-INF/io.netty.versions.properties'
+    flavorDimensions "environment"
+    productFlavors {
+        register("staging") {
+            dimension = "environment"
+        }
+        register("production") {
+            dimension = "environment"
+        }
     }
+    packagingOptions {
+        resources {
+            excludes += ['META-INF/INDEX.LIST', 'META-INF/io.netty.versions.properties']
+            pickFirsts += ['META-INF/*.kotlin_module']
+        }
+    }
+
+    namespace 'com.amity.socialcloud.uikit.sample'
+    configurations.configureEach {
+        resolutionStrategy {
+            force("androidx.core:core-ktx:1.9.0")
+        }
+    }
+
 }
 
 dependencies {

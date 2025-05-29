@@ -33,6 +33,7 @@ class AmityAudioRecorderView : ConstraintLayout {
     private var mListener: AmityAudioRecorderListener? = null
     private var startTime = 0L
     private var fileSent = false
+    var recordedTime = 0L
 
     constructor(context: Context) : super(context) {
         init()
@@ -76,6 +77,7 @@ class AmityAudioRecorderView : ConstraintLayout {
                 startRecording()
                 startChronometer()
             }
+
             MotionEvent.ACTION_MOVE -> {
                 val currentPos = xPos?.toInt() ?: 0
                 val currentHeight = event.rawY.toInt()
@@ -86,6 +88,7 @@ class AmityAudioRecorderView : ConstraintLayout {
                         mBinding.delete = true
                         mBinding.disable = true
                     }
+
                     else -> {
                         mBinding.delete = false
                         mBinding.disable = false
@@ -103,6 +106,7 @@ class AmityAudioRecorderView : ConstraintLayout {
                 }
 
             }
+
             MotionEvent.ACTION_UP -> {
                 dismissRecordingUi()
             }
@@ -110,7 +114,8 @@ class AmityAudioRecorderView : ConstraintLayout {
     }
 
     private fun dismissRecordingUi() {
-        val recordedTime = System.currentTimeMillis() - startTime
+         recordedTime = System.currentTimeMillis() - startTime
+        Log.d("MyTag", "dismissRecordingUi: ${recordedTime}")
         stopRecording(recordedTime)
         if (mBinding.delete == true) {
             audioFile?.delete()
@@ -142,13 +147,16 @@ class AmityAudioRecorderView : ConstraintLayout {
                 i++
             }
             chronometer.text = context.getString(R.string.amity_time, seconds)
+            Log.d("MyTag", "startChronometer:${chronometer.text}")
         }
+
         mBinding.chronometer.start()
     }
 
 
     private fun resetDeleteButton() {
-        mBinding.btnDelete.layoutParams.width = resources.getDimensionPixelSize(R.dimen.amity_forty_eight)
+        mBinding.btnDelete.layoutParams.width =
+            resources.getDimensionPixelSize(R.dimen.amity_forty_eight)
         mBinding.btnDelete.layoutParams.height =
             resources.getDimensionPixelSize(R.dimen.amity_forty_eight)
         mBinding.btnDelete.requestLayout()
@@ -230,12 +238,12 @@ class AmityAudioRecorderView : ConstraintLayout {
             audioFile?.delete()
             try {
                 mListener?.showMessage()
-            } catch(e: Exception) {
+            } catch (e: Exception) {
                 Log.e("EkoAudioRecorderView", "stopRecording: Recorded time is less than 1 second")
             }
         } else {
             if (!fileSent) {
-                mListener?.onFileRecorded(audioFile)
+                mListener?.onFileRecorded(audioFile, recordedTime)
                 fileSent = true
             }
 

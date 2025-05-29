@@ -15,7 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/amity_ic_no_post"
-            android:layout_marginTop="@dimen/amity_one_hundred_sixty"
+            android:layout_marginTop="@dimen/amity_eighty"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -23,12 +23,11 @@
         <TextView
             android:id="@+id/tvNoPost"
             style="@style/AmityTextStyleBody"
-            textColorShade="@{AmityColorShade.SHADE3}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/amity_padding_s"
             android:text="@string/amity_no_post"
-            android:textColor="@color/amityColorBase"
+            android:textColor="#A5A9B5"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/ivNoPost" />

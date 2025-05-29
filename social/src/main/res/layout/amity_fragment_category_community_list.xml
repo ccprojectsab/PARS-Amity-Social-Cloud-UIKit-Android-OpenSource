@@ -22,6 +22,21 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+
+        <LinearLayout
+            android:id="@+id/progressBar"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
         <LinearLayout
             android:id="@+id/emptyView"
             android:layout_width="match_parent"
@@ -42,22 +57,23 @@
             <TextView
                 android:id="@+id/tvEmptyCommunity"
                 style="@style/AmityTextStyleHeadline"
-                textColorShade="@{AmityColorShade.SHADE2}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/amity_padding_s"
+                android:textSize="30sp"
                 android:text="@string/amity_empty_category_community"
                 android:textColor="@color/amityColorBase" />
 
             <TextView
                 android:id="@+id/tvEmptyCommunityMessage"
                 style="@style/AmityTextStyleBody"
-                textColorShade="@{AmityColorShade.SHADE2}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/recoleta_regular"
                 android:gravity="center"
+                android:layout_marginTop="@dimen/amity_padding_s"
                 android:text="@string/amity_no_comments_found"
-                android:textColor="@color/amityColorBase" />
+                android:textColor="@color/amityColorBlack" />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -53,13 +53,13 @@ class AmityRecentItemDecoration(private val context: Context, private val margin
             val child = parent.getChildAt(i)
             val params = child.layoutParams as RecyclerView.LayoutParams
             val top =
-                child.bottom + params.bottomMargin + context.resources.getDimensionPixelSize(R.dimen.amity_ten)
+                child.bottom + params.bottomMargin + context.resources.getDimensionPixelSize(com.amity.socialcloud.uikit.common.R.dimen.amity_ten)
             val dividerHeight = mDivider?.intrinsicHeight ?: 0
             val bottom = top + dividerHeight
 
             mDivider?.setBounds(
-                left + context.resources.getDimensionPixelSize(R.dimen.amity_sixty_eight),
-                top, right - context.resources.getDimensionPixelSize(R.dimen.amity_padding_m1), bottom
+                left + context.resources.getDimensionPixelSize(com.amity.socialcloud.uikit.common.R.dimen.amity_sixty_eight),
+                top, right - context.resources.getDimensionPixelSize(com.amity.socialcloud.uikit.common.R.dimen.amity_padding_m1), bottom
             )
             mDivider?.draw(c)
         }

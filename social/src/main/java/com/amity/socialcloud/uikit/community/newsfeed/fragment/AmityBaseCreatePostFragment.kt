@@ -16,7 +16,9 @@ import android.text.style.ForegroundColorSpan
 import android.view.*
 import androidx.annotation.StringRes
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.LiveDataReactiveStreams
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.toPublisher
 import androidx.paging.ExperimentalPagingApi
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -143,7 +145,7 @@ abstract class AmityBaseCreatePostFragment : AmityBaseFragment(),
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         menuItemPost =
-            menu.add(Menu.NONE, ID_MENU_ITEM_POST, Menu.NONE, getString(R.string.amity_save))
+            menu.add(Menu.NONE, ID_MENU_ITEM_POST, Menu.NONE, getString(com.amity.socialcloud.uikit.common.R.string.amity_save))
         menuItemPost?.setTitle(getPostMenuText())
             ?.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS)
         updatePostMenu(isRightButtonActive())
@@ -191,10 +193,7 @@ abstract class AmityBaseCreatePostFragment : AmityBaseFragment(),
 
     private fun observeImageData() {
         Flowable.fromPublisher(
-            LiveDataReactiveStreams.toPublisher(
-                viewLifecycleOwner,
-                viewModel.getImages()
-            )
+            viewModel.getImages().toPublisher(viewLifecycleOwner)
         )
             .throttleLatest(1, TimeUnit.SECONDS, true)
             .subscribeOn(Schedulers.io())
@@ -210,12 +209,12 @@ abstract class AmityBaseCreatePostFragment : AmityBaseFragment(),
             }
     }
 
+
     private fun observeFileAttachments() {
         setupFileAttachmentAdapter()
         Flowable.fromPublisher(
-            LiveDataReactiveStreams.toPublisher(
-                viewLifecycleOwner,
-                viewModel.getFiles()
+            viewModel.getFiles().toPublisher(
+                viewLifecycleOwner
             )
         )
             .throttleLatest(1, TimeUnit.SECONDS, true)
@@ -406,7 +405,7 @@ abstract class AmityBaseCreatePostFragment : AmityBaseFragment(),
                     }
                 }
             }
-            BottomSheetMenuItem(imageRes, null, it.optionName, action)
+            BottomSheetMenuItem(imageRes, com.amity.socialcloud.uikit.common.R.color.amityColorBase, it.optionName, action)
         }
         if (options.isNotEmpty()) {
             bottomSheet.show(options)
@@ -548,7 +547,7 @@ abstract class AmityBaseCreatePostFragment : AmityBaseFragment(),
                 binding.rvAttachment.removeItemDecoration(itemDecor!!)
             }
 
-            val space = resources.getDimensionPixelSize(R.dimen.amity_padding_xs)
+            val space = resources.getDimensionPixelSize(com.amity.socialcloud.uikit.common.R.dimen.amity_padding_xs)
             itemDecor = AmitySpacesItemDecoration(0, 0, 0, space)
 
             mediaAdapter = createPostMediaAdapter()
@@ -578,7 +577,7 @@ abstract class AmityBaseCreatePostFragment : AmityBaseFragment(),
             if (itemDecor != null) {
                 binding.rvAttachment.removeItemDecoration(itemDecor!!)
             }
-            val space = resources.getDimensionPixelSize(R.dimen.amity_padding_xs)
+            val space = resources.getDimensionPixelSize(com.amity.socialcloud.uikit.common.R.dimen.amity_padding_xs)
 
             itemDecor = AmitySpacesItemDecoration(0, 0, 0, space)
             binding.rvAttachment.addItemDecoration(itemDecor!!)
@@ -694,7 +693,7 @@ abstract class AmityBaseCreatePostFragment : AmityBaseFragment(),
         val exitConfirmationDialogFragment = AmityAlertDialogFragment
             .newInstance(
                 R.string.amity_discard_post_title, R.string.amity_discard_post_message,
-                R.string.amity_discard, R.string.amity_cancel
+                R.string.amity_delete, R.string.amity_cancel
             )
         exitConfirmationDialogFragment.show(childFragmentManager, AmityAlertDialogFragment.TAG);
         exitConfirmationDialogFragment.listener = this
@@ -718,7 +717,7 @@ abstract class AmityBaseCreatePostFragment : AmityBaseFragment(),
                 .maxSelectable(MAX_IMAGE_SELECTABLE - selectedImageCount)
                 .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
                 .imageEngine(GlideEngine())
-                .theme(R.style.AmityImagePickerTheme)
+                .theme(com.amity.socialcloud.uikit.common.R.style.AmityImagePickerTheme)
                 .forResult(AmityConstants.PICK_IMAGES)
         }
     }
@@ -746,7 +745,7 @@ abstract class AmityBaseCreatePostFragment : AmityBaseFragment(),
                 .maxSelectable(MAX_VIDEO_SELECTABLE - selectedVideoCount)
                 .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
                 .imageEngine(GlideEngine())
-                .theme(R.style.AmityImagePickerTheme)
+                .theme(com.amity.socialcloud.uikit.common.R.style.AmityImagePickerTheme)
                 .forResult(AmityConstants.PICK_VIDEOS)
         }
     }
@@ -842,7 +841,7 @@ abstract class AmityBaseCreatePostFragment : AmityBaseFragment(),
         val dialogFragment = AmityAlertDialogFragment
             .newInstance(
                 R.string.amity_upload_incomplete, R.string.amity_image_upload_failed_message,
-                null, R.string.amity_ok
+                null, com.amity.socialcloud.uikit.common.R.string.amity_ok
             )
         dialogFragment.show(childFragmentManager, AmityAlertDialogFragment.TAG);
         dialogFragment.setAlertDialogActionListener(object :
@@ -864,7 +863,7 @@ abstract class AmityBaseCreatePostFragment : AmityBaseFragment(),
                 R.string.amity_upload_incomplete,
                 R.string.amity_attachment_upload_failed_message,
                 null,
-                R.string.amity_ok
+                com.amity.socialcloud.uikit.common.R.string.amity_ok
             )
         dialogFragment.show(childFragmentManager, AmityAlertDialogFragment.TAG);
         dialogFragment.setAlertDialogActionListener(object :
@@ -942,7 +941,7 @@ abstract class AmityBaseCreatePostFragment : AmityBaseFragment(),
                 R.string.amity_file_max_limit_exceed_title,
                 R.string.amity_file_max_limit_exceed_message,
                 null,
-                R.string.amity_ok
+                com.amity.socialcloud.uikit.common.R.string.amity_ok
             )
         dialogFragment.setAlertDialogActionListener(object :
             AmityAlertDialogFragment.IAlertDialogActionListener {

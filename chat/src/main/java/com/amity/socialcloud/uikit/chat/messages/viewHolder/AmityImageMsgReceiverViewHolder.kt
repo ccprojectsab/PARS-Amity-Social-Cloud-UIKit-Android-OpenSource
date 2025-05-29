@@ -58,8 +58,8 @@ class AmityImageMsgReceiverViewHolder(
         } else {
             binding?.ivImageIncoming?.setShape(
                 null, null,
-                itemView.context.resources.getDimension(R.dimen.amity_zero),
-                null, R.color.amityColorBase, null, AmityColorShade.SHADE4
+                itemView.context.resources.getDimension(com.amity.socialcloud.uikit.common.R.dimen.amity_zero),
+                null, com.amity.socialcloud.uikit.common.R.color.amityColorBase, null, AmityColorShade.SHADE4
             )
         }
 

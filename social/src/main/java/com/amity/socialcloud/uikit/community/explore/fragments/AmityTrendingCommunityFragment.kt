@@ -51,9 +51,9 @@ class AmityTrendingCommunityFragment : AmityBaseFragment(),
         binding.rvTrendingCommunity.adapter = adapter
         binding.rvTrendingCommunity.addItemDecoration(
             AmityRecyclerViewItemDecoration(
-                requireContext().resources.getDimensionPixelSize(R.dimen.amity_padding_m1),
-                requireContext().resources.getDimensionPixelSize(R.dimen.amity_zero),
-                requireContext().resources.getDimensionPixelSize(R.dimen.amity_padding_xs)
+                requireContext().resources.getDimensionPixelSize(com.amity.socialcloud.uikit.common.R.dimen.amity_padding_m1),
+                requireContext().resources.getDimensionPixelSize(com.amity.socialcloud.uikit.common.R.dimen.amity_zero),
+                requireContext().resources.getDimensionPixelSize(com.amity.socialcloud.uikit.common.R.dimen.amity_padding_xs)
             )
         )
         getTrendingCommunity()

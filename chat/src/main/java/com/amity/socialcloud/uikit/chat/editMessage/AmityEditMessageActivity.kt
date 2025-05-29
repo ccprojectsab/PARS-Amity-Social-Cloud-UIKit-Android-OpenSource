@@ -34,7 +34,7 @@ class AmityEditMessageActivity :
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        editMessageViewModel.saveColor.set(ContextCompat.getColor(this, R.color.amityColorPrimary))
+        editMessageViewModel.saveColor.set(ContextCompat.getColor(this, com.amity.socialcloud.uikit.common.R.color.amityColorPrimary))
         setUpToolbar()
         getMessage()
         mViewDataBinding.lMessage.setOnClickListener {

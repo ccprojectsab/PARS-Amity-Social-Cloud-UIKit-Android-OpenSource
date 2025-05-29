@@ -74,8 +74,8 @@ class AmityMyCommunityPreviewFragment : AmityBaseFragment(),
         binding.rvMyCommunity.itemAnimator = null
         binding.rvMyCommunity.addItemDecoration(
             AmityRecyclerViewItemDecoration(
-                0, resources.getDimensionPixelSize(R.dimen.amity_padding_m1), 0,
-                resources.getDimensionPixelSize(R.dimen.amity_padding_m1)
+                0, resources.getDimensionPixelSize(com.amity.socialcloud.uikit.common.R.dimen.amity_padding_m1), 0,
+                resources.getDimensionPixelSize(com.amity.socialcloud.uikit.common.R.dimen.amity_padding_m1)
             )
         )
         binding.rvMyCommunity.setHasFixedSize(true)

@@ -37,7 +37,7 @@ class AmityPostTargetPickerFragment : AmityBaseFragment(),
             AmityPostCreatorActivity
                 .AmityCreateCommunityPostActivityContract()
         ) {
-            if(it != null){
+            if (it != null) {
                 getCommunity()
                 handleBackPress()
             }
@@ -53,7 +53,7 @@ class AmityPostTargetPickerFragment : AmityBaseFragment(),
                     AmityPostDetailsActivity.newIntent(requireContext(), createdPostId, null, null)
                 startActivity(intent)
             }
-            if(createdPostId != null){
+            if (createdPostId != null) {
                 getCommunity()
                 handleBackPress()
             }
@@ -63,7 +63,7 @@ class AmityPostTargetPickerFragment : AmityBaseFragment(),
         AmityPollPostCreatorActivity
             .AmityPollCreatorActivityContract()
     ) {
-        if(it != null){
+        if (it != null) {
             getCommunity()
             handleBackPress()
         }
@@ -102,9 +102,11 @@ class AmityPostTargetPickerFragment : AmityBaseFragment(),
             POST_CREATION_TYPE_GENERIC -> {
                 createGenericPost.launch(null)
             }
+
             POST_CREATION_TYPE_LIVE_STREAM -> {
                 createLiveStreamPost.launch(null)
             }
+
             POST_CREATION_TYPE_POLL -> {
                 createPollPost.launch(null)
             }
@@ -113,7 +115,7 @@ class AmityPostTargetPickerFragment : AmityBaseFragment(),
 
     private fun initProfileImage() {
         val user = viewModel.getUser()
-        val imageURL = user.getAvatar()?.getUrl(AmityImage.Size.SMALL)
+        val imageURL = user?.getAvatar()?.getUrl(AmityImage.Size.SMALL)
         Glide.with(this)
             .load(imageURL)
             .placeholder(R.drawable.amity_ic_default_profile_large)
@@ -132,10 +134,11 @@ class AmityPostTargetPickerFragment : AmityBaseFragment(),
             layoutManager = LinearLayoutManager(requireContext())
             this.adapter = communityAdapter
             addItemDecoration(
-                    AmityRecyclerViewItemDecoration(
-                            resources.getDimensionPixelSize(R.dimen.amity_padding_xs),
-                            0, resources.getDimensionPixelSize(R.dimen.amity_padding_xs)
-                    )
+                AmityRecyclerViewItemDecoration(
+                    resources.getDimensionPixelSize(com.amity.socialcloud.uikit.common.R.dimen.amity_padding_xs),
+                    0,
+                    resources.getDimensionPixelSize(com.amity.socialcloud.uikit.common.R.dimen.amity_padding_xs)
+                )
             )
             hasFixedSize()
         }
@@ -156,7 +159,8 @@ class AmityPostTargetPickerFragment : AmityBaseFragment(),
     }
 
     private fun handleCommunitySectionVisibility() {
-        val communitySectionVisibility = if (communityAdapter.itemCount > 0) View.VISIBLE else View.GONE
+        val communitySectionVisibility =
+            if (communityAdapter.itemCount > 0) View.VISIBLE else View.GONE
         binding.separator.visibility = communitySectionVisibility
         binding.tvCommunityLabel.visibility = communitySectionVisibility
     }
@@ -167,9 +171,11 @@ class AmityPostTargetPickerFragment : AmityBaseFragment(),
             POST_CREATION_TYPE_GENERIC -> {
                 createGenericPost.launch(community.getCommunityId())
             }
+
             POST_CREATION_TYPE_LIVE_STREAM -> {
                 createLiveStreamPost.launch(community.getCommunityId())
             }
+
             POST_CREATION_TYPE_POLL -> {
                 createPollPost.launch(community.getCommunityId())
             }

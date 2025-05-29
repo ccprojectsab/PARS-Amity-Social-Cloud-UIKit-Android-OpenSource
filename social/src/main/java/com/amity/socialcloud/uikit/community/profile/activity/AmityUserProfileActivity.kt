@@ -23,9 +23,10 @@ class AmityUserProfileActivity : AmityBaseToolbarFragmentContainerActivity() {
         getToolBar()?.setLeftDrawable(
             ContextCompat.getDrawable(
                 this,
-                R.drawable.amity_ic_arrow_back
+                com.amity.socialcloud.uikit.common.R.drawable.amity_ic_arrow_back
             )
         )
+
     }
 
     override fun getContentFragment(): Fragment {

@@ -10,16 +10,23 @@ import com.amity.socialcloud.sdk.api.chat.AmityChatClient
 import com.amity.socialcloud.sdk.api.chat.channel.AmityChannelRepository
 import com.amity.socialcloud.sdk.api.chat.message.AmityMessageRepository
 import com.amity.socialcloud.sdk.api.chat.message.query.AmityMessageQuery
+import com.amity.socialcloud.sdk.api.core.AmityCoreClient
 import com.amity.socialcloud.sdk.model.chat.channel.AmityChannel
 import com.amity.socialcloud.sdk.model.chat.member.AmityChannelMember
 import com.amity.socialcloud.sdk.model.chat.message.AmityMessage
+import com.amity.socialcloud.sdk.model.chat.message.AmityMessageAttachment
+import com.amity.socialcloud.sdk.model.core.user.AmityUser
 import com.amity.socialcloud.uikit.common.components.AmityChatComposeBarClickListener
 import com.amity.socialcloud.uikit.common.model.AmityEventIdentifier
+import com.amity.socialcloud.uikit.common.utils.AmityConstants
+import com.google.gson.JsonArray
+import com.google.gson.JsonObject
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.observers.DisposableCompletableObserver
 import io.reactivex.rxjava3.schedulers.Schedulers
+import java.io.File
 
 class AmityMessageListViewModel : AmityChatMessageBaseViewModel() {
 
@@ -56,6 +63,11 @@ class AmityMessageListViewModel : AmityChatMessageBaseViewModel() {
     fun getChannelType(): Flowable<AmityChannel> {
         val channelRepository: AmityChannelRepository = AmityChatClient.newChannelRepository()
         return channelRepository.getChannel(channelID)
+    }
+
+    fun getDisplayNameUser(channelID: String): Flowable<AmityUser> {
+        val userRepository = AmityCoreClient.newUserRepository()
+        return userRepository.getUser(channelID)
     }
 
     fun getDisplayName(): Flowable<PagingData<AmityChannelMember>> {
@@ -121,10 +133,81 @@ class AmityMessageListViewModel : AmityChatMessageBaseViewModel() {
             .image(imageUri).build().send()
     }
 
-    fun sendAudioMessage(audioFileUri: Uri): Completable {
+    fun sendAudioMessage(audioFileUri: Uri, duration: Long? = null): Completable {
         val messageRepository: AmityMessageRepository = AmityChatClient.newMessageRepository()
-        return messageRepository.createMessage(channelID).with()
-            .audio(audioFileUri).build().send()
+
+
+        val audioMessageBuilder = messageRepository.createMessage(channelID)
+            .with()
+            .audio(audioFileUri)
+
+
+        if (duration != null) {
+            val metaData = JsonObject().apply {
+                addProperty(AmityConstants.AUDIO_FILE_DURATION, duration)
+            }
+            audioMessageBuilder.metadata(metaData)
+        }
+
+        val audioMessageCreator = audioMessageBuilder.build()
+        return audioMessageCreator.send()
+    }
+
+    /*    fun sendFileMessage(fileUri: Uri): Completable {
+            val chatRepository: AmityMessageRepository = AmityChatClient.newMessageRepository()
+
+            return chatRepository.createMessage(channelID).with().file(fileUri).build().send()
+
+
+        }*/
+
+    fun sendFileMessage(
+        fileUri: Uri
+    ): Completable {
+        // Create file message with Uri
+        val messageRepository: AmityMessageRepository = AmityChatClient.newMessageRepository()
+
+        val uriAttachment = AmityMessageAttachment.URL(fileUri)
+        return messageRepository.createFileMessage(
+            subChannelId = channelID,
+            attachment = uriAttachment
+        )
+            .build()
+            .send()
+
+
+        /* // Create file message with fileId
+         val fileId: String = "fileId from existing file"
+         val fileIdAttachment = AmityMessageAttachment.FILE_ID(fileId)
+         messageRepository.createFileMessage(
+             subChannelId =channelID ,
+             attachment = fileIdAttachment
+         )
+             .build()
+             .send()
+             .doOnComplete {
+                 // Void
+             }
+             .doOnError {
+                 // Exception
+             }
+             .subscribe()
+
+         // Create file message with metadata
+         messageRepository.createFileMessage(
+             subChannelId = channelID,
+             attachment = uriAttachment
+         )
+             .metadata(metadata = JsonObject()) // flexible data structure for additional custom data
+             .build()
+             .send()
+             .doOnComplete {
+                 // Void
+             }
+             .doOnError {
+                 // Exception
+             }
+             .subscribe()*/
     }
 
     fun toggleComposeBar() {
@@ -141,6 +224,7 @@ class AmityMessageListViewModel : AmityChatMessageBaseViewModel() {
         }
 
         override fun onFileClicked() {
+            triggerEvent(AmityEventIdentifier.PICK_FILE)
         }
 
         override fun onLocationCLicked() {

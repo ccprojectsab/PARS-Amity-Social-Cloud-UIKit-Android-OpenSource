@@ -25,6 +25,7 @@
             android:id="@+id/etSearch"
             style="@style/AmitySearchEditTextStyle"
             android:text="@={viewModel.searchString}"
+            android:paddingVertical="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

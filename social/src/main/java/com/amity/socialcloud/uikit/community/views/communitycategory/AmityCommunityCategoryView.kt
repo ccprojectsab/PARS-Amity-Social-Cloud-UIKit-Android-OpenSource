@@ -34,7 +34,7 @@ class AmityCommunityCategoryView : ConstraintLayout {
     fun setImageUrl(url: String) {
         Glide.with(context)
             .load(url)
-            .placeholder(R.drawable.amity_ic_default_category_avatar)
+            .placeholder(com.amity.socialcloud.uikit.common.R.drawable.amity_ic_default_category_avatar)
             .centerCrop()
             .into(binding.categoryAvatar)
     }

@@ -59,7 +59,7 @@ internal class AmitySimpleVideoPlayerFragment : Fragment() {
             binding.videoViewer.requestFocus()
             val dataSourceFactory: DataSource.Factory = DefaultDataSourceFactory(
                 nonNullContext,
-                Util.getUserAgent(nonNullContext, resources.getString(R.string.app_name))
+                Util.getUserAgent(nonNullContext, resources.getString(net.ossrs.yasea.R.string.app_name))
             )
             val extractorsFactory = DefaultExtractorsFactory()
             val videoSource: MediaSource =

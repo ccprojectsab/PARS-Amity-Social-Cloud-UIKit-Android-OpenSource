@@ -15,15 +15,17 @@ class AmityCommunityHomePageActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(binding.root)
-        initToolbar()
+     //   initToolbar()
         loadFragment()
+
     }
 
     private fun initToolbar() {
-        supportActionBar?.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM
         setSupportActionBar(binding.communityHomeToolbar)
         binding.communityHomeToolbar.setLeftString(getString(R.string.amity_community))
+
     }
 
     private fun loadFragment() {

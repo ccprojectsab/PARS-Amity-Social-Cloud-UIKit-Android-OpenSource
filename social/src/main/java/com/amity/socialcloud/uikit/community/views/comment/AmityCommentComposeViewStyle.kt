@@ -16,8 +16,8 @@ class AmityCommentComposeViewStyle : AmityStyle {
 
     init {
         backgroundColor = getColor(android.R.color.transparent)
-        textColor = getColor(R.color.amityColorBase)
-        hintTextColor = getColor(R.color.amityColorBase)
+        textColor = getColor(com.amity.socialcloud.uikit.common.R.color.amityColorBase)
+        hintTextColor = getColor(com.amity.socialcloud.uikit.common.R.color.amityColorBase)
         hint = R.string.amity_post_comment_hint
     }
 

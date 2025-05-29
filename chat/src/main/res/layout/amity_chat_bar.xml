@@ -37,8 +37,8 @@
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/ivAvatar"
                 style="@style/AmityCircularAvatarStyle"
-                backgroundColorShade="@{AmityColorShade.SHADE3}"
                 amityBackgroundColor="@{@color/amityColorPrimary}"
+                backgroundColorShade="@{AmityColorShade.SHADE3}"
                 imageUrl="@{avatar}"
                 android:layout_width="@dimen/amity_thirty_two"
                 android:layout_height="@dimen/amity_thirty_two"
@@ -51,13 +51,29 @@
                 android:id="@+id/tvName"
                 style="@style/AmityTextStyleTitleBold"
                 safeText="@{title}"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:scrollHorizontally="true"
+                android:ellipsize="end"
+                android:singleLine="true"
                 android:layout_marginStart="@dimen/amity_padding_xs"
                 android:textColor="@color/amityColorBase"
+                app:layout_constraintEnd_toStartOf="@id/ivsetting"
                 app:layout_constraintBottom_toBottomOf="@id/ivAvatar"
                 app:layout_constraintStart_toEndOf="@id/ivAvatar"
                 app:layout_constraintTop_toTopOf="@id/ivAvatar" />
+
+            <ImageView
+                android:id="@+id/ivsetting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/amity_padding_m2"
+                android:layout_marginEnd="@dimen/amity_padding_m2"
+                android:visibility="gone"
+                android:src="@drawable/amity_ic_settings"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

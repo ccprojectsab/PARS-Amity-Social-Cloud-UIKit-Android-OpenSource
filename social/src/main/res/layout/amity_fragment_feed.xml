@@ -3,14 +3,25 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent">
 
-    <com.google.android.material.progressindicator.CircularProgressIndicator
+   <!-- <com.google.android.material.progressindicator.CircularProgressIndicator
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:indeterminate="true"
         android:layout_centerHorizontal="true"
         android:visibility="gone"
-        android:layout_marginTop="@dimen/amity_padding_xl"/>
+        android:layout_marginTop="@dimen/amity_padding_xl"/>-->
+
+    <include android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/shimmer_community_list"
+        android:id="@+id/shimmerCommunity"/>
+
+    <include android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/shimmer_post_list"
+        android:layout_below="@id/shimmerCommunity"
+        android:id="@+id/shimmerPosts"/>
 
     <LinearLayout
         android:layout_width="match_parent"

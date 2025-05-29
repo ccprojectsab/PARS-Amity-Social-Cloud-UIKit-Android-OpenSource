@@ -1,6 +1,5 @@
 package com.amity.socialcloud.uikit.community.setting.user
 
-import com.amity.socialcloud.sdk.model.core.follow.AmityFollowStatus
 import com.amity.socialcloud.sdk.model.core.user.AmityUser
 import com.amity.socialcloud.uikit.community.R
 import com.amity.socialcloud.uikit.community.setting.AmitySettingsItem
@@ -60,20 +59,4 @@ class AmityOtherUserSettingsMenuCreatorImpl(private val fragment: AmityUserSetti
             callback = { fragment.shareUserProfile(userId) }
         )
     }
-
-    override fun createBlockUserMenu(followStatus: AmityFollowStatus): AmitySettingsItem.NavigationContent {
-        return AmitySettingsItem.NavigationContent(
-            title = if (followStatus == AmityFollowStatus.BLOCKED) {
-                R.string.amity_unblock_user
-            } else {
-                R.string.amity_block_user
-            },
-            icon = R.drawable.amity_ic_block_user,
-            iconNavigation = null,
-            callback = {
-                fragment.updateBlockStatus(followStatus)
-            }
-        )
-    }
-
 }

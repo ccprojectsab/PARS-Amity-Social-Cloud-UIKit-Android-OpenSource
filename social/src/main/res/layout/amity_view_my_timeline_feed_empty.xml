@@ -11,18 +11,28 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/tvEmptyFeed"
-            style="@style/AmityTextStyleBodyBold"
-            textColorShade="@{AmityColorShade.SHADE3}"
+        <ImageView
+            android:id="@+id/ivIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/amity_empty_feed"
-            android:textColor="@color/amityColorBase"
-            android:layout_marginTop="@dimen/amity_one_hundred_sixty"
+            android:layout_marginTop="108dp"
+            android:src="@drawable/amity_ic_no_post"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvEmptyFeed"
+            style="@style/AmityTextStyleBodyBold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/amity_one_hundred_sixty"
+            android:text="@string/amity_no_post"
+            android:textColor="#A5A9B5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+<!--
 
         <TextView
             android:id="@+id/tvStartPost"
@@ -30,9 +40,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/amity_start_post"
-            android:textColor="@color/amityColorBase"
+            android:textColor="@color/amityColorPrimary"
             app:layout_constraintStart_toStartOf="@id/tvEmptyFeed"
             app:layout_constraintTop_toBottomOf="@id/tvEmptyFeed" />
+-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

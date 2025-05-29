@@ -1,14 +1,18 @@
 package com.amity.socialcloud.uikit.community.explore.fragments
 
+import android.content.Context
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.amity.socialcloud.sdk.model.core.error.AmityError
 import com.amity.socialcloud.sdk.model.social.category.AmityCommunityCategory
 import com.amity.socialcloud.sdk.model.social.community.AmityCommunity
 import com.amity.socialcloud.uikit.common.base.AmityBaseFragment
@@ -20,8 +24,10 @@ import com.amity.socialcloud.uikit.community.detailpage.AmityCommunityPageActivi
 import com.amity.socialcloud.uikit.community.explore.adapter.AmityCategoryCommunityListAdapter
 import com.amity.socialcloud.uikit.community.explore.listener.AmityCommunityItemClickListener
 import com.amity.socialcloud.uikit.community.explore.viewmodel.AmityCategoryCommunityListViewModel
+import com.amity.socialcloud.uikit.community.newsfeed.events.AmityFeedLoadStateEvent
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
+import io.reactivex.rxjava3.subjects.PublishSubject
 
 const val ARG_CATEGORY_ID = "Category_id"
 const val ARG_CATEGORY_NAME = "Category_name"
@@ -33,6 +39,12 @@ class AmityCategoryCommunityListFragment : AmityBaseFragment(),
     private var categoryId: String? = null
     private var categoryName: String? = null
     lateinit var binding: AmityFragmentCategoryCommunityListBinding
+
+    private var isRefreshing = false
+    private var isFirstLoad = true
+    internal open val showProgressBarOnLaunched = true
+
+    private val emptyStatePublisher = PublishSubject.create<Boolean>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,6 +67,9 @@ class AmityCategoryCommunityListFragment : AmityBaseFragment(),
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        if (showProgressBarOnLaunched) {
+            binding.progressBar.visibility = View.VISIBLE
+        }
         adapter = AmityCategoryCommunityListAdapter(
             AmityCategoryCommunityListAdapter.AmityCommunityDiffUtil(),
             this
@@ -63,9 +78,35 @@ class AmityCategoryCommunityListFragment : AmityBaseFragment(),
         initView()
         getCategories()
         adapter.addLoadStateListener { loadState ->
-            if (loadState.source.refresh is LoadState.NotLoading) {
-                handleListVisibility()
+            when(loadState.source.refresh){
+                is LoadState.Loading ->{
+                    binding.progressBar.visibility = View.VISIBLE
+                }
+                is LoadState.NotLoading -> {
+/*                  if(adapter.itemCount > 0){
+                      binding.progressBar.visibility = View.GONE
+                      binding.emptyView.visibility = View.GONE
+                      binding.rvCommunity.visibility = View.VISIBLE
+                  }*/
+                    Handler().postDelayed({
+                        if (adapter.itemCount > 0){
+                            binding.progressBar.visibility = View.GONE
+                            binding.emptyView.visibility = View.GONE
+                            binding.rvCommunity.visibility = View.VISIBLE
+                        }else{
+                            binding.progressBar.visibility = View.GONE
+                            binding.emptyView.visibility = View.VISIBLE
+                            binding.rvCommunity.visibility = View.GONE
+                        }
+                    },2000)
+
+                }
+
+                else->{}
             }
+/*            if (loadState.source.refresh is LoadState.NotLoading) {
+                handleListVisibility()
+            }*/
         }
     }
 
@@ -77,7 +118,7 @@ class AmityCategoryCommunityListFragment : AmityBaseFragment(),
 
     private fun initView() {
         val itemDecorSpace =
-            AmityRecyclerViewItemDecoration(resources.getDimensionPixelSize(R.dimen.amity_padding_xs))
+            AmityRecyclerViewItemDecoration(resources.getDimensionPixelSize(com.amity.socialcloud.uikit.common.R.dimen.amity_padding_xs))
         binding.rvCommunity.layoutManager = LinearLayoutManager(requireContext())
         binding.rvCommunity.adapter = adapter
         binding.rvCommunity.addItemDecoration(itemDecorSpace)
@@ -96,6 +137,7 @@ class AmityCategoryCommunityListFragment : AmityBaseFragment(),
             .subscribe()
         )
     }
+
 
     private fun handleListVisibility() {
         binding.rvCommunity.visibility = if (adapter.itemCount > 0) View.VISIBLE else View.GONE

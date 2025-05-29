@@ -79,7 +79,7 @@ class AmityPostCreatorFragment : AmityBaseCreatePostFragment() {
         AmityAlertDialogUtil.showDialog(requireContext(),
             getString(R.string.amity_create_post_pending_post_title_dialog),
             getString(R.string.amity_create_post_pending_post_message_dialog),
-            getString(R.string.amity_ok),
+            getString(com.amity.socialcloud.uikit.common.R.string.amity_ok),
             negativeButton = null,
             cancelable = false
         ) { dialog, which ->

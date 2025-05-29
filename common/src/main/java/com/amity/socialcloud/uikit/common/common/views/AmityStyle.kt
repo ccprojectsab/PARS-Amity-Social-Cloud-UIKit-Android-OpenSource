@@ -24,15 +24,15 @@ open class AmityStyle {
     }
 
     protected fun getSystemAccentColor(): Int {
-        return getSystemColor(R.attr.colorAccent)
+        return getSystemColor(com.google.android.material.R.attr.colorAccent)
     }
 
     protected fun getSystemPrimaryColor(): Int {
-        return getSystemColor(R.attr.colorPrimary)
+        return getSystemColor(com.google.android.material.R.attr.colorPrimary)
     }
 
     protected fun getSystemPrimaryDarkColor(): Int {
-        return getSystemColor(R.attr.colorPrimaryDark)
+        return getSystemColor(com.google.android.material.R.attr.colorPrimaryDark)
     }
 
     protected fun getSystemPrimaryTextColor(): Int {

@@ -49,22 +49,6 @@ class AmityUserSettingsViewModel (private val savedState: SavedStateHandle) : Am
             .observeOn(AndroidSchedulers.mainThread())
     }
 
-    fun blockUser(): Completable {
-        return AmityCoreClient.newUserRepository()
-            .relationship()
-            .blockUser(userId)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-    }
-
-    fun unblockUser(): Completable {
-        return AmityCoreClient.newUserRepository()
-            .relationship()
-            .unblockUser(userId)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-    }
-
     fun getSettingsItemBasedOnStatus(
         otherUserMenuCreator: AmityOtherUserSettingsMenuCreator,
         selfMenuCreator: AmityUserSettingsMenuCreator,
@@ -95,14 +79,12 @@ class AmityUserSettingsViewModel (private val savedState: SavedStateHandle) : Am
 
                 settingsItems.add(menuCreator.createManageHeader())
                 if (followInfo.getStatus() == AmityFollowStatus.ACCEPTED) {
-                    settingsItems.add(AmitySettingsItem.Margin(R.dimen.amity_padding_xs))
+                    settingsItems.add(AmitySettingsItem.Margin(com.amity.socialcloud.uikit.common.R.dimen.amity_padding_xs))
                     settingsItems.add(menuCreator.createUnfollowMenu(user.getUserId()))
                 }
-                settingsItems.add(AmitySettingsItem.Margin(R.dimen.amity_padding_xs))
+                settingsItems.add(AmitySettingsItem.Margin(com.amity.socialcloud.uikit.common.R.dimen.amity_padding_xs))
                 settingsItems.add(menuCreator.createReportUserMenu(user))
-                settingsItems.add(AmitySettingsItem.Margin(R.dimen.amity_padding_xs))
-                settingsItems.add(menuCreator.createBlockUserMenu(followInfo.getStatus()))
-                settingsItems.add(AmitySettingsItem.Margin(R.dimen.amity_padding_xs))
+                settingsItems.add(AmitySettingsItem.Margin(com.amity.socialcloud.uikit.common.R.dimen.amity_padding_xs))
                 settingsItems.add(separator)
                 settingsItems
             }
@@ -115,9 +97,9 @@ class AmityUserSettingsViewModel (private val savedState: SavedStateHandle) : Am
         val separator = AmitySettingsItem.Separator
 
         settingsItems.add(menuCreator.createBasicInfoHeader())
-        settingsItems.add(AmitySettingsItem.Margin(R.dimen.amity_padding_xs))
+        settingsItems.add(AmitySettingsItem.Margin(com.amity.socialcloud.uikit.common.R.dimen.amity_padding_xs))
         settingsItems.add(menuCreator.createEditProfileMenu())
-        settingsItems.add(AmitySettingsItem.Margin(R.dimen.amity_padding_xs))
+        settingsItems.add(AmitySettingsItem.Margin(com.amity.socialcloud.uikit.common.R.dimen.amity_padding_xs))
         settingsItems.add(separator)
         return Flowable.just(settingsItems)
     }

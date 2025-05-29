@@ -63,7 +63,7 @@ class AmityCategoryPreviewFragment : AmityBaseFragment(),
         binding.rvCommunityCategory.adapter = communityCategoryAdapter
         binding.rvCommunityCategory.addItemDecoration(
             AmityRecyclerViewItemDecoration(
-                requireContext().resources.getDimensionPixelSize(R.dimen.amity_padding_s)
+                requireContext().resources.getDimensionPixelSize(com.amity.socialcloud.uikit.common.R.dimen.amity_padding_xs)
             )
         )
         getCategories()

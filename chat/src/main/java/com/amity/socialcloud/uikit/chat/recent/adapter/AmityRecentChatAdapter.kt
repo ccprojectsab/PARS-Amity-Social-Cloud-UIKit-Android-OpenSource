@@ -1,6 +1,7 @@
 package com.amity.socialcloud.uikit.chat.recent.adapter
 
 import android.view.View
+import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.amity.socialcloud.sdk.model.chat.channel.AmityChannel
@@ -8,7 +9,7 @@ import com.amity.socialcloud.uikit.chat.R
 import com.amity.socialcloud.uikit.chat.home.callback.AmityRecentChatItemClickListener
 import com.amity.socialcloud.uikit.common.base.AmityBaseRecyclerViewPagingDataAdapter
 
-class AmityRecentChatAdapter : AmityBaseRecyclerViewPagingDataAdapter<AmityChannel>(diffCallBack) {
+class AmityRecentChatAdapter(private val lifecycleOwner: LifecycleOwner? = null) : AmityBaseRecyclerViewPagingDataAdapter<AmityChannel>(diffCallBack) {
 
     private var recentChatItemClickListener: AmityRecentChatItemClickListener? = null
 
@@ -27,7 +28,7 @@ class AmityRecentChatAdapter : AmityBaseRecyclerViewPagingDataAdapter<AmityChann
         R.layout.amity_item_recent_message
 
     override fun getViewHolder(view: View, viewType: Int): RecyclerView.ViewHolder =
-        AmityRecentChatViewHolder(view, recentChatItemClickListener)
+        AmityRecentChatViewHolder(view, recentChatItemClickListener, lifecycleOwner)
 
     fun setCommunityChatItemClickListener(listener: AmityRecentChatItemClickListener?) {
         this.recentChatItemClickListener = listener

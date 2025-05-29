@@ -129,7 +129,7 @@ class AmityAudioMessageHelper(
                 Player.STATE_ENDED -> {
                     exoPlayer.seekTo(0)
                     updateNotPlayingState()
-                    playingAmityAudioHolder?.audioMsgBaseViewModel?.duration?.set("0:00")
+                 //   playingAmityAudioHolder?.audioMsgBaseViewModel?.duration?.set("0:00")
                     exoPlayer.clearMediaItems()
                     exoPlayer.stop()
                 }

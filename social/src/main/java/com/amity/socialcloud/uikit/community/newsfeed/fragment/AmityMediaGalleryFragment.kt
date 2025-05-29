@@ -1,5 +1,6 @@
 package com.amity.socialcloud.uikit.community.newsfeed.fragment
 
+import android.graphics.Typeface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -68,9 +69,9 @@ class AmityMediaGalleryFragment : AmityBaseFragment() {
             binding.mediaGalleryViewpager
         ) { _, _ -> }.attach()
         val photoTabTextView =
-            View.inflate(requireContext(), R.layout.amity_view_media_gallery_tab, null) as TextView
+            View.inflate(requireContext(), com.amity.socialcloud.uikit.common.R.layout.amity_view_media_gallery_tab, null) as TextView
         val videoTabTextView =
-            View.inflate(requireContext(), R.layout.amity_view_media_gallery_tab, null) as TextView
+            View.inflate(requireContext(), com.amity.socialcloud.uikit.common.R.layout.amity_view_media_gallery_tab, null) as TextView
         photoTabTextView.text = fragmentStateAdapter.getTitle(0)
         videoTabTextView.text = fragmentStateAdapter.getTitle(1)
         binding.mediaGalleryTabLayout.getTabAt(0)?.customView = photoTabTextView
@@ -110,9 +111,9 @@ class AmityMediaGalleryFragment : AmityBaseFragment() {
         postGalleryFragment(AmityPost.DataType.VIDEO)
     )
 
-    private fun selectedTextColor() = resources.getColor(R.color.amityColorWhite)
+    private fun selectedTextColor() = resources.getColor(com.amity.socialcloud.uikit.common.R.color.blue)
 
-    private fun unselectedTextColor() = resources.getColor(R.color.amityPlaceHolderDarkColor)
+    private fun unselectedTextColor() = resources.getColor(com.amity.socialcloud.uikit.common.R.color.amityPlaceHolderDarkColor)
 
     private fun selectedTextBackground() = ResourcesCompat.getDrawable(
         resources,

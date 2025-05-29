@@ -1,7 +1,9 @@
 package com.amity.socialcloud.uikit.chat.home.fragment
 
+import android.content.Context
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -18,15 +20,15 @@ import com.amity.socialcloud.uikit.common.common.showSnackBar
 import com.amity.socialcloud.uikit.common.contract.AmityPickMemberContract
 import com.ekoapp.rxlifecycle.extension.untilLifecycleEnd
 
-class AmityChatHomePageFragment private constructor() : Fragment() {
+class AmityChatHomePageFragment : Fragment() {
     private lateinit var mViewModel: AmityChatHomePageViewModel
     private lateinit var fragmentStateAdapter: AmityFragmentStateAdapter
 
     private var _binding: AmityFragmentChatHomePageBinding? = null
     private val binding get() = _binding!!
+    private val selectMembers = registerForActivityResult(AmityPickMemberContract(1)) { userList ->
 
-    private val selectMembers = registerForActivityResult(AmityPickMemberContract()) { userList ->
-        if (userList.isNotEmpty()) {
+        if (!userList.isNullOrEmpty()) {
             view?.showSnackBar(msg = getString(R.string.amity_channel_creation_loading))
             mViewModel.createChat(selectedMembers = userList,
                 onChatCreateSuccess = { channelId: String ->
@@ -53,7 +55,7 @@ class AmityChatHomePageFragment private constructor() : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = AmityFragmentChatHomePageBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -65,11 +67,15 @@ class AmityChatHomePageFragment private constructor() : Fragment() {
     }
 
     private fun initToolbar() {
+        val sharedPref = context?.getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
+        val isLiveStreamPermitted =
+            sharedPref?.getBoolean("PREF_USER_CAN_LIVESTREAM", false) ?: false
         binding.chatHomeToolBar.setLeftString(getString(R.string.amity_chat))
         (activity as AppCompatActivity).supportActionBar?.displayOptions =
             ActionBar.DISPLAY_SHOW_CUSTOM
         (activity as AppCompatActivity).setSupportActionBar(binding.chatHomeToolBar as Toolbar)
-        setHasOptionsMenu(true)
+
+        setHasOptionsMenu(isLiveStreamPermitted)
     }
 
     private fun initTabLayout() {
@@ -117,13 +123,13 @@ class AmityChatHomePageFragment private constructor() : Fragment() {
         _binding = null
     }
 
-    class Builder internal constructor() {
+    class Builder() {
         private var recentChatFragmentDelegate: AmityRecentChatFragmentDelegate? = null
 
         fun build(activity: AppCompatActivity): AmityChatHomePageFragment {
             val fragment = AmityChatHomePageFragment()
             fragment.mViewModel =
-                ViewModelProvider(activity).get(AmityChatHomePageViewModel::class.java)
+                ViewModelProvider(activity)[AmityChatHomePageViewModel::class.java]
             return fragment
         }
 

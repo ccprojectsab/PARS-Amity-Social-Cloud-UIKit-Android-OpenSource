@@ -7,6 +7,7 @@ import com.amity.socialcloud.sdk.model.chat.message.AmityMessage
 import com.amity.socialcloud.uikit.chat.R
 import com.amity.socialcloud.uikit.chat.messages.viewHolder.*
 import com.amity.socialcloud.uikit.chat.messages.viewModel.AmityAudioMsgViewModel
+import com.amity.socialcloud.uikit.chat.messages.viewModel.AmityFileMsgViewModel
 import com.amity.socialcloud.uikit.chat.messages.viewModel.AmityImageMsgViewModel
 import com.amity.socialcloud.uikit.chat.messages.viewModel.AmityTextMessageViewModel
 import com.amity.socialcloud.uikit.chat.messages.viewModel.AmityUnknownMsgViewModel
@@ -29,6 +30,7 @@ class AmityMessageItemUtil {
                 itemType,
                 viewHolderListener
             )
+
             MessageType.MESSAGE_ID_TEXT_SENDER -> getSenderTextMsgViewHolder(
                 inflater,
                 parent,
@@ -36,18 +38,21 @@ class AmityMessageItemUtil {
                 viewHolderListener,
                 messageItemListener
             )
+
             MessageType.MESSAGE_ID_IMAGE_RECEIVER -> getReceiverImageMsgViewHolder(
                 inflater,
                 parent,
                 itemType,
                 viewHolderListener
             )
+
             MessageType.MESSAGE_ID_IMAGE_SENDER -> getSenderImageMsgViewHolder(
                 inflater,
                 parent,
                 itemType,
                 viewHolderListener
             )
+
             MessageType.MESSAGE_ID_AUDIO_RECEIVER -> getReceiverAudioMsgViewHolder(
                 inflater,
                 parent,
@@ -55,6 +60,7 @@ class AmityMessageItemUtil {
                 viewHolderListener,
                 audioPlayListener
             )
+
             MessageType.MESSAGE_ID_AUDIO_SENDER -> getSenderAudioMsgViewHolder(
                 inflater,
                 parent,
@@ -62,18 +68,34 @@ class AmityMessageItemUtil {
                 viewHolderListener,
                 audioPlayListener
             )
+
             MessageType.MESSAGE_ID_CUSTOM_RECEIVER -> getReceiverCustomMessageViewHolder(
                 inflater,
                 parent,
                 itemType,
                 viewHolderListener
             )
+
             MessageType.MESSAGE_ID_CUSTOM_SENDER -> getSenderCustomMessageViewHolder(
                 inflater,
                 parent,
                 itemType,
                 viewHolderListener
             )
+
+            MessageType.MESSAGE_ID_FILE_RECEIVER -> getReceiverFileMsgViewHolder(
+                inflater,
+                parent,
+                itemType,
+                viewHolderListener
+            )
+
+            MessageType.MESSAGE_ID_FILE_SENDER -> getSenderFileMsgViewHolder(
+                inflater,
+                parent,
+                itemType, viewHolderListener
+            )
+
             else -> getUnknownMessageViewHolder(inflater, parent)
         }
     }
@@ -195,6 +217,43 @@ class AmityMessageItemUtil {
         }
     }
 
+    private fun getReceiverFileMsgViewHolder(
+        inflater: LayoutInflater, parent: ViewGroup,
+        itemType: Int,
+        viewHolderListener: AmityMessagePagingAdapter.CustomViewHolderListener?,
+    ): AmityChatMessageBaseViewHolder {
+        return if (viewHolderListener?.getViewHolder(inflater, parent, itemType) != null) {
+            viewHolderListener.getViewHolder(inflater, parent, itemType)!!
+        } else {
+            val itemViewModel = AmityFileMsgViewModel()
+            AmityFileMsgReceiverViewHolder(
+                inflater.inflate(
+                    R.layout.amity_item_file_message_receiver,
+                    parent, false
+                ), itemViewModel, parent.context
+            )
+        }
+    }
+
+    private fun getSenderFileMsgViewHolder(
+        inflater: LayoutInflater, parent: ViewGroup,
+        itemType: Int,
+        viewHolderListener: AmityMessagePagingAdapter.CustomViewHolderListener?,
+
+        ): AmityChatMessageBaseViewHolder {
+        return if (viewHolderListener?.getViewHolder(inflater, parent, itemType) != null) {
+            viewHolderListener.getViewHolder(inflater, parent, itemType)!!
+        } else {
+            val itemViewModel = AmityFileMsgViewModel()
+            AmityFileMsgSenderViewHolder(
+                inflater.inflate(
+                    R.layout.amity_item_file_message_sender,
+                    parent, false
+                ), itemViewModel, parent.context
+            )
+        }
+    }
+
     private fun getUnknownMessageViewHolder(inflater: LayoutInflater, parent: ViewGroup):
             AmityChatMessageBaseViewHolder {
         return AmityUnknownMessageViewHolder(
@@ -253,26 +312,31 @@ class AmityMessageItemUtil {
             } else {
                 MessageType.MESSAGE_ID_TEXT_RECEIVER
             }
+
             AmityMessage.DataType.IMAGE -> if (isSelf) {
                 MessageType.MESSAGE_ID_IMAGE_SENDER
             } else {
                 MessageType.MESSAGE_ID_IMAGE_RECEIVER
             }
+
             AmityMessage.DataType.FILE -> if (isSelf) {
                 MessageType.MESSAGE_ID_FILE_SENDER
             } else {
                 MessageType.MESSAGE_ID_FILE_RECEIVER
             }
+
             AmityMessage.DataType.AUDIO -> if (isSelf) {
                 MessageType.MESSAGE_ID_AUDIO_SENDER
             } else {
                 MessageType.MESSAGE_ID_AUDIO_RECEIVER
             }
+
             AmityMessage.DataType.CUSTOM -> if (isSelf) {
                 MessageType.MESSAGE_ID_CUSTOM_SENDER
             } else {
                 MessageType.MESSAGE_ID_CUSTOM_RECEIVER
             }
+
             else -> MessageType.MESSAGE_ID_UNKNOWN
         }
     }

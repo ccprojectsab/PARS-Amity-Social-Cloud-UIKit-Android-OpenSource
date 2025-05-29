@@ -90,11 +90,7 @@ class AmityExpandableTextView : AppCompatTextView {
                 val displayText: CharSequence
                 if (visibleText!!.contains(newLine)) {
                     val lastLineIndex = visibleText.lastIndexOf(newLine)
-                    val lastLineStartIndex =  lastLineIndex + 1
-                    val lastLineEndIndex = visibleText.length - 1
-                    // avoid index out of bound
-                    val lastLineSubsequenceIndex = if (lastLineStartIndex > lastLineEndIndex ) lastLineEndIndex else lastLineStartIndex
-                    var lastLine = visibleText.subSequence(lastLineSubsequenceIndex, lastLineEndIndex)
+                    var lastLine = visibleText.subSequence(lastLineIndex + 1,visibleText.length - 1)
                     if (lastLine.length > 30) {
                         lastLine = TextUtils.concat(lastLine.subSequence(
                             0,

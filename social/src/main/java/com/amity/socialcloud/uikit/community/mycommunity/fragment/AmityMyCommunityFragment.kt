@@ -77,7 +77,7 @@ class AmityMyCommunityFragment : AmityBaseFragment(),
     private fun handleEditTextInput() {
         binding.etSearch.setShape(
             null, null, null, null,
-            R.color.amityColorBase, null, AmityColorShade.SHADE4
+            com.amity.socialcloud.uikit.common.R.color.amityColorBase, null, AmityColorShade.SHADE4
         )
         binding.etSearch.setOnEditorActionListener(object : TextView.OnEditorActionListener {
             override fun onEditorAction(v: TextView?, actionId: Int, event: KeyEvent?): Boolean {
@@ -125,8 +125,8 @@ class AmityMyCommunityFragment : AmityBaseFragment(),
             this.adapter = mAdapter
             addItemDecoration(
                     AmityRecyclerViewItemDecoration(
-                            resources.getDimensionPixelSize(R.dimen.amity_padding_xs),
-                            0, resources.getDimensionPixelSize(R.dimen.amity_padding_xs), 0
+                            resources.getDimensionPixelSize(com.amity.socialcloud.uikit.common.R.dimen.amity_padding_xs),
+                            0, resources.getDimensionPixelSize(com.amity.socialcloud.uikit.common.R.dimen.amity_padding_xs), 0
                     )
             )
             setHasFixedSize(true)
@@ -151,7 +151,7 @@ class AmityMyCommunityFragment : AmityBaseFragment(),
         val shouldShowAddButton =
             resources.getBoolean(R.bool.amity_uikit_social_community_creation_button_visible)
         if (shouldShowAddButton) {
-            val drawable = ContextCompat.getDrawable(requireContext(), R.drawable.amity_ic_add)
+            val drawable = ContextCompat.getDrawable(requireContext(), com.amity.socialcloud.uikit.common.R.drawable.amity_ic_add)
             menu.add(Menu.NONE, 1, Menu.NONE, getString(R.string.amity_add))
                 ?.setIcon(drawable)
                 ?.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS)

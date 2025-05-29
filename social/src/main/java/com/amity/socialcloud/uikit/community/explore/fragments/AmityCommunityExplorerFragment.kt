@@ -47,7 +47,7 @@ class AmityCommunityExplorerFragment : Fragment() {
     }
 
     private fun initListener() {
-        binding.refreshLayout.setColorSchemeResources(R.color.amityColorPrimary)
+        binding.refreshLayout.setColorSchemeResources(com.amity.socialcloud.uikit.common.R.color.amityColorPrimary)
         binding.refreshLayout.setOnRefreshListener {
             childFragmentManager.fragments.forEach { fragment ->
                 when (fragment) {

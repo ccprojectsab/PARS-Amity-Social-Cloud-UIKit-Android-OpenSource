@@ -5,6 +5,7 @@ import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PagingData
+import androidx.paging.filter
 import com.amity.socialcloud.sdk.api.core.AmityCoreClient
 import com.amity.socialcloud.sdk.api.social.AmitySocialClient
 import com.amity.socialcloud.sdk.api.social.member.query.AmityCommunityMembershipSortOption
@@ -56,6 +57,7 @@ class AmityCommunityMembersViewModel : AmityBaseViewModel() {
                     .build()
                     .query()
             }
+            .map { it.filter { user -> user.getUser()?.isDeleted() == false } }
             .doOnNext { onMembersLoaded.invoke(it) }
             .doOnError { onMembersLoadFailed.invoke() }
             .subscribeOn(Schedulers.io())
@@ -65,7 +67,7 @@ class AmityCommunityMembersViewModel : AmityBaseViewModel() {
 
     private fun getCommunity(): Flowable<AmityCommunity> {
         if (community != null) {
-            return Flowable.just(community)
+            return Flowable.just(this.community!!)
         }
         return AmitySocialClient.newCommunityRepository().getCommunity(communityId)
             .subscribeOn(Schedulers.io())
@@ -101,6 +103,7 @@ class AmityCommunityMembersViewModel : AmityBaseViewModel() {
             .roles(listOf(AmityConstants.CHANNEL_MODERATOR_ROLE, AmityConstants.COMMUNITY_MODERATOR_ROLE))
             .build()
             .query()
+            .map { it.filter { user -> user.getUser()?.isDeleted() == false } }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnNext { onModeratorsLoaded.invoke(it) }

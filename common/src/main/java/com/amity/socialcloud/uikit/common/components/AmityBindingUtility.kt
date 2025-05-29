@@ -17,6 +17,7 @@ import android.widget.TextView
 import androidx.annotation.ColorRes
 import androidx.annotation.DimenRes
 import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.ViewCompat
 import androidx.core.widget.ImageViewCompat
 import androidx.databinding.BindingAdapter
@@ -37,14 +38,23 @@ import java.io.File
 
 
 @BindingAdapter(
-        value = ["textColorShade", "textColorHintShade"],
+        value = ["textColorShade", "textColorHintShade", "drawableTintColor", "drawableTintShade"],
         requireAll = false)
-fun setTextColor(view: TextView, colorShade: AmityColorShade?, textColorHintShade: AmityColorShade?) {
+fun setTextColor(view: TextView, colorShade: AmityColorShade?, textColorHintShade: AmityColorShade?, drawableTintColor: Int?, drawableTintShade: AmityColorShade?) {
     colorShade?.let {
         view.setTextColor(AmityColorPaletteUtil.getColor(view.currentTextColor, colorShade))
     }
     textColorHintShade?.let {
         view.setHintTextColor(AmityColorPaletteUtil.getColor(view.currentHintTextColor, textColorHintShade))
+    }
+    if (drawableTintColor != null) {
+        val tintColor: Int = AmityColorPaletteUtil.getColor(drawableTintColor, drawableTintShade
+            ?: AmityColorShade.DEFAULT)
+        if (drawableTintShade != null) {
+            for (drawable in view.compoundDrawables) {
+                drawable?.colorFilter = PorterDuffColorFilter(tintColor, PorterDuff.Mode.SRC_IN)
+            }
+        }
     }
 }
 
@@ -330,10 +340,11 @@ fun setText(textView: TextView, input: CharSequence?) {
 
 @BindingAdapter("isBold")
 fun setBold(view: TextView, isBold: Boolean) {
+    val typeface = ResourcesCompat.getFont(view.context, R.font.recoleta_regular)
     if (isBold) {
-        view.setTypeface(null, Typeface.BOLD)
+        view.setTypeface(typeface, Typeface.BOLD)
     } else {
-        view.setTypeface(null, Typeface.NORMAL)
+        view.setTypeface(typeface, Typeface.NORMAL)
     }
 }
 

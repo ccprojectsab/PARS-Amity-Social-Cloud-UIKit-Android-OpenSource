@@ -5,8 +5,13 @@
 
     <data>
 
+        <variable
+            name="vmTextMessage"
+            type="com.amity.socialcloud.uikit.chat.messages.viewModel.AmityTextMessageViewModel" />
+
         <import type="com.amity.socialcloud.uikit.common.common.views.AmityColorShade" />
     </data>
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -15,8 +20,8 @@
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/ivAvatar"
             style="@style/AmityCircularAvatarStyle"
-            backgroundColorShade="@{AmityColorShade.SHADE3}"
             amityBackgroundColor="@{@color/amityColorPrimary}"
+            backgroundColorShade="@{AmityColorShade.SHADE3}"
             android:layout_width="@dimen/amity_forty"
             android:layout_height="@dimen/amity_forty"
             android:layout_marginStart="@dimen/amity_padding_m1"
@@ -30,13 +35,34 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/amity_padding_m1"
             android:drawablePadding="@dimen/amity_padding_xxs"
+            android:lines="1"
             android:maxWidth="147dp"
-            app:layout_constraintBottom_toBottomOf="@id/ivAvatar"
+            android:singleLine="true"
+            android:textColor="@color/amityColorBase"
             app:layout_constraintEnd_toStartOf="@id/tvMemberCount"
             app:layout_constraintStart_toEndOf="@id/ivAvatar"
             app:layout_constraintTop_toTopOf="@id/ivAvatar"
             tools:text="Community" />
 
+
+        <TextView
+            android:id="@+id/tvMessage"
+            style="@style/AmityTextStyleTitleBold"
+            textColorShade="@{AmityColorShade.SHADE2}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/amity_padding_m1"
+            android:layout_marginEnd="5dp"
+            android:drawablePadding="@dimen/amity_padding_xxs"
+            android:lines="1"
+            android:singleLine="true"
+            android:textColor="@color/amityColorBase"
+            app:layout_constraintBottom_toBottomOf="@id/ivAvatar"
+            app:layout_constraintStart_toEndOf="@id/ivAvatar"
+            app:layout_constraintTop_toBottomOf="@+id/tvDisplayName"
+            app:layout_constraintEnd_toStartOf="@+id/tvTime"
+            app:layout_constraintHorizontal_bias="0"
+            tools:text="Community" />
 
         <TextView
             android:id="@+id/tvMemberCount"
@@ -80,6 +106,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvTime"
             tools:text="64" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

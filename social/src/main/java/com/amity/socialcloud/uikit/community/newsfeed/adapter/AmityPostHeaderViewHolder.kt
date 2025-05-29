@@ -95,7 +95,7 @@ class AmityPostHeaderViewHolder(
         val shouldShowTarget = showTarget && !isTargetingOwnFeed
         var arrowIcon: Drawable? = null
         if (shouldShowTarget) {
-            arrowIcon = ContextCompat.getDrawable(context, R.drawable.amity_ic_arrow)
+            arrowIcon = ContextCompat.getDrawable(context, com.amity.socialcloud.uikit.common.R.drawable.amity_ic_arrow)
             val text = when (target) {
                 is AmityPost.Target.COMMUNITY -> {
                     target.getCommunity()?.getDisplayName()?.trim() ?: ""
@@ -118,7 +118,7 @@ class AmityPostHeaderViewHolder(
         val isOfficial =
             (post.getTarget() as? AmityPost.Target.COMMUNITY)?.getCommunity()?.isOfficial() ?: false
         val officialBadgeIcon = if (isOfficial) {
-            ContextCompat.getDrawable(context, R.drawable.amity_ic_verified)
+            ContextCompat.getDrawable(context, com.amity.socialcloud.uikit.common.R.drawable.amity_ic_verified)
         } else {
             null
         }

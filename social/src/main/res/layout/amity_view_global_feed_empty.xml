@@ -10,7 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
+        android:gravity="center_horizontal"
         android:orientation="vertical">
 
         <ImageView
@@ -23,41 +23,48 @@
         <TextView
             android:id="@+id/tvEmptyGlobalFeed"
             style="@style/AmityTextStyleHeadline"
-            textColorShade="@{AmityColorShade.SHADE2}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/amity_padding_s"
             android:text="@string/amity_empty_feed"
-            android:textColor="@color/amityColorBase" />
+            android:textColor="#351F65"
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/tvFindCommunity"
             style="@style/AmityTextStyleBody"
-            textColorShade="@{AmityColorShade.SHADE2}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingTop="10dp"
             android:text="@string/amity_find_community"
-            android:textColor="@color/amityColorBase" />
+            android:textColor="#351F65"
+            android:textSize="14sp" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnExplore"
             style="@style/AmityMaterialButtonStyle"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="@dimen/amity_padding_s"
+            android:layout_marginEnd="20dp"
             android:paddingHorizontal="@dimen/amity_padding_m3"
             android:text="@string/amity_explore_community"
-            app:icon="@drawable/amity_ic_search"
+            android:textSize="18.sp"
             app:iconGravity="textStart" />
 
         <TextView
             android:id="@+id/tvCreateCommunity"
-            style="@style/AmityTextStyleBody"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/amity_padding_m1"
+            android:fontFamily="@font/recoleta_medium"
             android:text="@string/amity_create_community"
-            android:textColor="@color/amityColorPrimary" />
+            android:textColor="#351F65"
+            android:textSize="18.sp"
+            android:textStyle="bold"
+            android:visibility="visible" />
 
     </LinearLayout>
 </layout>

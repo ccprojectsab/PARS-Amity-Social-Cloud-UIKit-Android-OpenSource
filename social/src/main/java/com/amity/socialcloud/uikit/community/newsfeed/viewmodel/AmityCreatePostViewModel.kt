@@ -330,12 +330,15 @@ class AmityCreatePostViewModel : AmityBaseViewModel() {
             is AmityPost.Data.VIDEO -> {
                 textData.edit().videoAttachments(videos).text(postText)
             }
+
             is AmityPost.Data.IMAGE -> {
                 textData.edit().imageAttachments(images).text(postText)
             }
+
             is AmityPost.Data.FILE -> {
                 textData.edit().fileAttachments(files).text(postText)
             }
+
             else -> {
                 textData.edit().text(postText)
             }
@@ -456,10 +459,10 @@ class AmityCreatePostViewModel : AmityBaseViewModel() {
             postTextCreator.build().post()
         }
     }
-    
+
     fun uploadMediaList(postMedia: List<PostMedia>): Completable {
         return Flowable.fromIterable(postMedia)
-                .flatMapCompletable(::uploadMedia)
+            .flatMapCompletable(::uploadMedia)
     }
 
     private fun uploadMedia(postMedia: PostMedia): Completable {
@@ -472,6 +475,7 @@ class AmityCreatePostViewModel : AmityBaseViewModel() {
                     .doOnNext { updateMediaUploadStatus(postMedia, it) }
                     .ignoreElements()
             }
+
             PostMedia.Type.VIDEO -> {
                 return fileRepository
                     .uploadVideo(postMedia.url, AmityContentFeedType.POST)
@@ -480,6 +484,7 @@ class AmityCreatePostViewModel : AmityBaseViewModel() {
                     .doOnNext { updateMediaUploadStatus(postMedia, it) }
                     .ignoreElements()
             }
+
             else -> {
                 return Completable.error(Throwable("The media is not video or image"))
             }
@@ -504,6 +509,7 @@ class AmityCreatePostViewModel : AmityBaseViewModel() {
                                 Completable.complete()
                             }
                         }
+
                         is AmityPost.Data.VIDEO -> {
                             if (postData.getThumbnailImage()?.getFileId() in deletedImageIds) {
                                 ekoPostItem.delete()
@@ -511,6 +517,7 @@ class AmityCreatePostViewModel : AmityBaseViewModel() {
                                 Completable.complete()
                             }
                         }
+
                         is AmityPost.Data.FILE -> {
                             if (postData.getFile()?.getFileId() in deletedFileIds) {
                                 ekoPostItem.delete()
@@ -518,6 +525,7 @@ class AmityCreatePostViewModel : AmityBaseViewModel() {
                                 Completable.complete()
                             }
                         }
+
                         else -> {
                             Completable.complete()
                         }
@@ -591,6 +599,7 @@ class AmityCreatePostViewModel : AmityBaseViewModel() {
                 )
                 updateList(updatedFeedImage)
             }
+
             is AmityUploadResult.COMPLETE -> {
                 uploadFailedMediaMap.remove(postMedia.url.toString())
                 uploadedMediaMap[imageUpload.getFile().getFileId()] = imageUpload.getFile()
@@ -607,6 +616,7 @@ class AmityCreatePostViewModel : AmityBaseViewModel() {
                     triggerImageUploadFailedEvent()
                 }
             }
+
             is AmityUploadResult.ERROR, AmityUploadResult.CANCELLED -> {
                 Log.d(TAG, "Image upload error " + postMedia.url)
                 if (imageMap.containsKey(postMedia.url.toString())) {
@@ -667,6 +677,7 @@ class AmityCreatePostViewModel : AmityBaseViewModel() {
                     userMentions
                 )
             }
+
             isUploadedVideoMedia() -> {
                 createPostTextAndVideos(
                     postText,
@@ -678,6 +689,7 @@ class AmityCreatePostViewModel : AmityBaseViewModel() {
             uploadedFilesMap.isNotEmpty() -> {
                 createPostTextAndFiles(postText, uploadedFilesMap.values.toList(), userMentions)
             }
+
             else -> {
                 createPostText(postText, userMentions)
             }
@@ -778,7 +790,7 @@ class AmityCreatePostViewModel : AmityBaseViewModel() {
     }
 
 
-    fun removeFile(file: AmityFileAttachment) {
+    fun removeFile(file:  AmityFileAttachment) {
         filesMap.remove(file.uri.toString())
         uploadFailedFile.remove(file.uri.toString())
         cancelUpload(file.uploadId)
@@ -818,6 +830,7 @@ class AmityCreatePostViewModel : AmityBaseViewModel() {
                 )
                 updateList(updatedFileAttachment)
             }
+
             is AmityUploadResult.COMPLETE -> {
                 Log.d(TAG, "File upload Complete " + fileAttachment.name)
                 uploadedFilesMap[fileUpload.getFile().getFileId()] = fileUpload.getFile()
@@ -828,6 +841,7 @@ class AmityCreatePostViewModel : AmityBaseViewModel() {
                     triggerFileUploadFailedEvent()
                 }
             }
+
             is AmityUploadResult.ERROR, AmityUploadResult.CANCELLED -> {
                 Log.d(TAG, "File upload error " + fileAttachment.name)
                 if (filesMap.containsKey(fileAttachment.uri.toString())) {

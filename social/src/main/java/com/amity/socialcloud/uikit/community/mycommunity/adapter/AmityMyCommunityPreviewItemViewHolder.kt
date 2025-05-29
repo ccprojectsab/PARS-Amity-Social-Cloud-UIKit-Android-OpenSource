@@ -19,7 +19,7 @@ class AmityMyCommunityPreviewItemViewHolder(itemView: View, val listener: AmityM
         binding?.listener = listener
         binding?.ivAvatar?.loadImage(
             data?.getAvatar()?.getUrl(AmityImage.Size.SMALL),
-            R.drawable.amity_ic_default_community_avatar_circular
+            R.drawable.newplaceholder_img
         )
     }
 

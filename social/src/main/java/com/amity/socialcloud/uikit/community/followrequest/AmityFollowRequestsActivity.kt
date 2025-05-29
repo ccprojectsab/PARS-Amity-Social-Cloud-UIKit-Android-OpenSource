@@ -11,7 +11,7 @@ class AmityFollowRequestsActivity : AmityBaseToolbarFragmentContainerActivity() 
 
     override fun initToolbar() {
         getToolBar()?.setLeftDrawable(
-            ContextCompat.getDrawable(this, R.drawable.amity_ic_arrow_back)
+            ContextCompat.getDrawable(this, com.amity.socialcloud.uikit.common.R.drawable.amity_ic_arrow_back)
         )
         getToolBar()?.setLeftString(getString(R.string.amity_follow_requests))
         showToolbarDivider()

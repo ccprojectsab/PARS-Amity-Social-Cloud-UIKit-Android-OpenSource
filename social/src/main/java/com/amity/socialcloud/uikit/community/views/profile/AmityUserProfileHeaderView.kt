@@ -71,12 +71,12 @@ class AmityUserProfileHeaderView : ConstraintLayout {
         headerBinding.tvFollowingCount.setText(
             getStylisedText(
                 followInfo.getFollowingCount().toString(),
-                context.getString(R.string.amity_following_count)
+                context.getString(com.amity.socialcloud.uikit.common.R.string.amity_following_count)
             ),
             TextView.BufferType.SPANNABLE
         )
-        headerBinding.isSelf = true
-        headerBinding.followStatus = AmityFollowStatus.ACCEPTED
+        headerBinding.isSelf = false
+        headerBinding.connectionState = AmityFollowStatus.ACCEPTED
 
         if (followInfo.getPendingRequestCount() > 0) {
             headerBinding.layoutPendingRequests.visibility = View.VISIBLE
@@ -96,7 +96,7 @@ class AmityUserProfileHeaderView : ConstraintLayout {
         headerBinding.tvFollowingCount.setText(
             getStylisedText(
                 userFollowInfo.getFollowingCount().toString(),
-                context.getString(R.string.amity_following_count)
+                context.getString(com.amity.socialcloud.uikit.common.R.string.amity_following_count)
             ),
             TextView.BufferType.SPANNABLE
         )
@@ -108,11 +108,11 @@ class AmityUserProfileHeaderView : ConstraintLayout {
         val textColor = when (followStatus) {
             AmityFollowStatus.NONE, AmityFollowStatus.PENDING -> {
                 AmityColorPaletteUtil.getColor(
-                    ContextCompat.getColor(context, R.color.amityColorBase), AmityColorShade.SHADE2
+                    ContextCompat.getColor(context, com.amity.socialcloud.uikit.common.R.color.amityColorBase), AmityColorShade.SHADE2
                 )
             }
             else -> {
-                ContextCompat.getColor(context, R.color.amityColorBase)
+                ContextCompat.getColor(context, com.amity.socialcloud.uikit.common.R.color.amityColorBase)
             }
         }
         headerBinding.tvPostCount.setTextColor(textColor)
@@ -123,7 +123,7 @@ class AmityUserProfileHeaderView : ConstraintLayout {
     fun getHeaderBinding(): AmityViewUserProfileHeaderBinding = headerBinding
 
     fun updateState(newState: AmityFollowStatus) {
-        headerBinding.followStatus = newState
+        headerBinding.connectionState = newState
         setTextColor(newState)
     }
 

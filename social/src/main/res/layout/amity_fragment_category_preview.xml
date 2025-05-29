@@ -16,12 +16,13 @@
 
         <TextView
             android:id="@+id/tvTitle"
-            style="@style/AmityTextStyleTitleBold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/amity_padding_m1"
+            android:fontFamily="@font/recoleta_medium"
+            android:textSize="@dimen/amity_text_size_title"
             android:text="@string/amity_categories"
-            android:textColor="@color/amityColorBase"
+            android:textColor="@color/blue"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

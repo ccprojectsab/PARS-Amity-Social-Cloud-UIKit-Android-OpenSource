@@ -9,28 +9,30 @@
     <color name="amityMessageBubble">@color/upstraMessageBubble</color>
     <color name="amityMessageBubbleInverse">@color/upstraMessageBubbleInverse</color>
 
-    <color name="amityColorWhite">#FFFFFF</color>
+    <color name="amityColorWhite">#F6F4EE</color>
     <color name="amityColorBlack">#000</color>
     <color name="amityBlueLight">#4A82F2</color>
-    <color name="amityPlaceHolderColor">#EBECEF</color>
+    <color name="amityPlaceHolderColor">#F6F4EE</color>
     <color name="amityPlaceHolderDarkColor">#A5A9B5</color>
     <color name="amityColorRed">#FF305A</color>
     <color name="amityColorDarkTranslucent">#B3000000</color>
     <color name="amityColorGrey">#B8B8B8</color>
     <color name="amityColorGreen">#57CA6A</color>
 
-
-
+    <color name="color_primary">#FFEAA794</color>
+    <color name="blue">#FF351F65</color>
     <color name="upstraColorPrimary">#1054DE</color>
     <color name="upstraColorSecondary">#292B32</color>
     <color name="upstraColorAlert">#FA4D30</color>
     <color name="upstraColorHighlight">#1054DE</color>
-    <color name="upstraColorBase">#292B32</color>
+    <color name="upstraColorBase">#351F65</color>
     <color name="upstraColorBaseInverse">#FFFFFF</color>
     <color name="upstraMessageBubble">#1054DE</color>
     <color name="upstraMessageBubbleInverse">#EBECEF</color>
 
     <color name="amityTranslucentBackground">#4D000000</color>
     <color name="amityTransparentBackground">#00000000</color>
+    <color name="amitytabunselected">#A5A9B5</color>
+    <color name="grey">#A5A9B5</color>
 
 </resources>

@@ -2,7 +2,10 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+    <data>
 
+        <import type="com.amity.socialcloud.uikit.common.common.views.AmityColorShade" />
+    </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/rootView"
         android:layout_width="match_parent"
@@ -26,9 +29,11 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="1"
+            android:fontFamily="@font/recoleta_regular"
             android:paddingStart="@dimen/amity_padding_s"
             android:paddingEnd="@dimen/amity_padding_s"
-            android:textColor="@color/amityColorShuttleGray"
+            android:textColor="@color/amityColorBase"
+            textColorShade="@{AmityColorShade.SHADE1}"
             android:textSize="@dimen/amity_text_size_caption"
             app:layout_constraintBottom_toBottomOf="@id/ivNavigation"
             app:layout_constraintEnd_toStartOf="@id/ivNavigation"

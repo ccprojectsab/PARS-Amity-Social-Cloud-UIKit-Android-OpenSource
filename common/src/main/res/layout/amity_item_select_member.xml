@@ -39,6 +39,7 @@
             android:layout_marginEnd="@dimen/amity_padding_xs"
             android:ellipsize="end"
             android:maxLines="1"
+            android:fontFamily="@font/inter_regular"
             android:textColor="@color/amityColorBase"
             app:layout_constraintBottom_toBottomOf="@id/smAvatar"
             app:layout_constraintEnd_toStartOf="@id/ivStatus"

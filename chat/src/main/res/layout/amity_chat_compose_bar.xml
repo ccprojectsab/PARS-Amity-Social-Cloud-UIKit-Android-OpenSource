@@ -89,7 +89,6 @@
             android:onClick="@{() -> clickListener.onFileClicked()}"
             android:rotation="-45"
             android:src="@drawable/amity_ic_attachment"
-            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/ivAlbum"
             app:layout_constraintTop_toTopOf="@id/ivCamera" />
@@ -104,7 +103,6 @@
             android:gravity="center"
             android:text="@string/amity_file"
             android:textColor="@color/amityColorBase"
-            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="@id/ivFile"
             app:layout_constraintStart_toStartOf="@id/ivFile"
             app:layout_constraintTop_toBottomOf="@id/ivFile" />

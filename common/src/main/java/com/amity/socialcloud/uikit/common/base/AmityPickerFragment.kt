@@ -1,8 +1,10 @@
 package com.amity.socialcloud.uikit.common.base
 
 import android.Manifest
+import android.content.Intent
 import android.net.Uri
 import android.os.Build
+import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import com.amity.socialcloud.uikit.common.R
 import com.amity.socialcloud.uikit.common.common.showSnackBar
@@ -19,6 +21,17 @@ abstract class AmityPickerFragment : AmityBaseFragment() {
     private val pickImage = registerForActivityResult(AmityPickImageContract()) { data ->
         onImagePicked(data)
     }
+    val allowedMimeTypes = arrayOf(
+        "application/pdf",        // PDF
+        "text/plain",             // Plain text
+        "text/*",                 // General text files
+        "application/rtf",        // RTF
+        "application/vnd.ms-excel", // Excel (XLS)
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", // Excel (XLSX)
+        "application/vnd.ms-powerpoint", // PowerPoint (PPT)
+        "application/vnd.openxmlformats-officedocument.presentationml.presentation" // PowerPoint (PPTX)
+    )
+
 
     private val pickImagePermission =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) {
@@ -29,14 +42,21 @@ abstract class AmityPickerFragment : AmityBaseFragment() {
             }
         }
 
-    private val pickFile = registerForActivityResult(AmityPickFileContract()) { data ->
-        onFilePicked(data)
-    }
+    /*  private val pickFile = registerForActivityResult(AmityPickFileContract()) { data ->
+          onFilePicked(data)
+      }*/
+
+    private val pickFile =
+        registerForActivityResult(ActivityResultContracts.OpenDocument()) { uri: Uri? ->
+            uri?.let {
+                onFilePicked(uri)
+            } ?: Log.d("FilePicker", "No file selected")
+        }
 
     private val pickFilePermission =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) {
             if (it) {
-                pickFile.launch("")
+                pickFile.launch(allowedMimeTypes)
             } else {
                 view?.showSnackBar("Permission denied", Snackbar.LENGTH_SHORT)
             }
@@ -46,7 +66,7 @@ abstract class AmityPickerFragment : AmityBaseFragment() {
         registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
             var permissionGranted = true
             permissions.entries.forEach {
-                if(it.value == false) {
+                if (it.value == false) {
                     permissionGranted = false
                 }
             }
@@ -60,7 +80,7 @@ abstract class AmityPickerFragment : AmityBaseFragment() {
         }
 
     private val takePhoto = registerForActivityResult(ActivityResultContracts.TakePicture()) {
-        if(it) {
+        if (it) {
             onPhotoClicked(photoFile)
         }
     }
@@ -79,7 +99,7 @@ abstract class AmityPickerFragment : AmityBaseFragment() {
 
     fun pickFile() {
 
-        //pickFilePermission.launch(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        pickFilePermission.launch(Manifest.permission.WRITE_EXTERNAL_STORAGE)
     }
 
     fun takePicture() {

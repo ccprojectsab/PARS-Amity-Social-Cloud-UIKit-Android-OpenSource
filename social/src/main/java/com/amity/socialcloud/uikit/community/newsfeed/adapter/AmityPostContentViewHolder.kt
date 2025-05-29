@@ -59,7 +59,7 @@ open class AmityPostContentViewHolder(itemView: View) : RecyclerView.ViewHolder(
     }
 
     private fun getHighlightTextUserMentions(post: AmityPost): SpannableString {
-        val postText = (post.getData() as? AmityPost.Data.TEXT)?.getText() ?: ""
+        val postText = (post.getData() as? AmityPost.Data.TEXT)?.getText()?.trim() ?: ""
         val spannable = SpannableString(postText)
         if (spannable.isNotEmpty() && post.getMetadata() != null) {
             val mentionUserIds = post.getMentionees().map { (it as? AmityMentionee.USER)?.getUserId() }

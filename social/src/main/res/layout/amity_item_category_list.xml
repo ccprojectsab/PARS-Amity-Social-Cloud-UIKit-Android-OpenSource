@@ -20,10 +20,9 @@
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/categoryAvatar"
             style="@style/AmityCircularAvatarStyle"
-            amityFillColor="@{@color/amityColorPrimary}"
-            amityFillShade="@{AmityColorShade.SHADE3}"
+            android:background="#A5B0E3"
             imageUrl="@{avatarUrl}"
-            placeHolder="@{@drawable/amity_ic_default_category_avatar}"
+            placeHolder="@{@drawable/newplaceholder_img}"
             android:layout_width="@dimen/amity_forty"
             android:layout_height="@dimen/amity_forty"
             app:layout_constraintStart_toStartOf="parent"

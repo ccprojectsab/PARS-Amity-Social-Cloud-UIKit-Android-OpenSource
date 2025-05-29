@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -40,7 +41,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:layout_margin="@dimen/amity_padding_m1"
+                android:layout_marginStart="@dimen/amity_padding_m1"
+                android:layout_marginTop="@dimen/amity_padding_m1"
+                android:layout_marginEnd="@dimen/amity_padding_m1"
+                android:layout_marginBottom="@dimen/amity_padding_m1"
+                tools:layout_alignParentBottom="false"
                 android:orientation="vertical">
 
                 <TextView
@@ -48,8 +53,8 @@
                     style="@style/AmityTextStyleHeadline"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawableTint="@color/amityColorBaseInverse"
                     android:drawablePadding="@dimen/amity_padding_xxs"
+                    android:drawableTint="@color/amityColorBaseInverse"
                     android:ellipsize="end"
                     android:maxLines="2"
                     android:text="Commmunity"
@@ -58,6 +63,7 @@
                 <TextView
                     android:id="@+id/tvCategory"
                     style="@style/AmityTextStyleBody"
+                    android:fontFamily="@font/inter_regular"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/amity_padding_m1"
@@ -138,6 +144,7 @@
         <TextView
             android:id="@+id/tvDescription"
             style="@style/AmityTextStyleBody"
+            android:fontFamily="@font/inter_regular"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/amity_padding_m1"
@@ -156,36 +163,37 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/button_chat"
-                    style="@style/AmityOutlinedButtonStyle"
-                    amityButtonStrokeShade="@{AmityColorShade.SHADE3}"
+                    style="@style/AmityMaterialButtonStyle"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:text="@string/amity_message"
                     android:visibility="gone"
+                    tools:visibility="visible"
                     app:icon="@drawable/amity_ic_conversation"
                     app:iconGravity="textStart"
                     app:iconTint="@color/amityColorBase" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/button_chat_shorten"
-                    style="@style/AmityOutlinedButtonStyle"
+                    style="@style/AmityMaterialButtonStyle"
                     android:layout_width="@dimen/amity_forty_eight"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:visibility="gone"
+                    tools:visibility="visible"
                     app:icon="@drawable/amity_ic_conversation"
                     app:iconGravity="textStart"
                     app:iconTint="@color/amityColorBase" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/button_edit_profile"
-                    style="@style/AmityOutlinedButtonStyle"
-                    amityButtonStrokeShade="@{AmityColorShade.SHADE3}"
+                    style="@style/AmityMaterialButtonStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_toStartOf="@+id/button_chat"
                     android:text="@string/amity_edit_profile"
                     android:visibility="gone"
+                    tools:visibility="visible"
                     app:icon="@drawable/amity_ic_create"
                     app:iconGravity="textStart"
                     app:iconTint="@color/amityColorBase" />
@@ -197,6 +205,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/amity_join"
                     android:visibility="gone"
+                    tools:visibility="gone"
                     app:icon="@drawable/amity_ic_plus"
                     app:iconGravity="textStart" />
 

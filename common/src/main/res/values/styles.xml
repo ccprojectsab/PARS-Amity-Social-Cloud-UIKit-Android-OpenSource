@@ -9,6 +9,7 @@
         <item name="android:textColor">@color/amityColorBase</item>
     </style>
 
+
     <style name="AmityIconOutlinedButtonStyle" parent="Widget.MaterialComponents.Button.OutlinedButton.Icon">
         <item name="iconPadding">0dp</item>
         <item name="iconGravity">textStart</item>
@@ -59,7 +60,8 @@
         <item name="android:layout_marginEnd">@dimen/amity_padding_m1</item>
         <item name="android:hint">@string/amity_search</item>
         <item name="android:textSize">@dimen/amity_text_size_body</item>
-        <item name="drawableTint">#636768</item>
+        <item name="drawableTint">#a58ed7</item>
+        <item name="backgroundTint">#D9D9D9</item>
     </style>
 
     <style name="AmityCircularAvatarStyle">
@@ -101,6 +103,11 @@
         <item name="bottomToolbar.apply.textColor">@color/amityColorBase</item>
         <item name="item.checkCircle.backgroundColor">@color/amityColorBase</item>
 
+    </style>
+    <style name="MyCustomTextInputEditText" parent="Widget.Design.TextInputLayout">
+        <!-- Customize the background color -->
+        <item name="backgroundTint">@color/amityColorBase</item>
+        <!-- Add any other customizations you need -->
     </style>
 
     <style name="AmityImagePickerToolbarStyle" parent="Toolbar.Zhihu">

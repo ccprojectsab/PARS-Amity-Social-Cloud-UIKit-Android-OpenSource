@@ -9,7 +9,7 @@ import com.amity.socialcloud.uikit.community.newsfeed.fragment.AmityMyFeedFragme
 class AmityMyFeedActivity : AmityBaseToolbarFragmentContainerActivity() {
 
     override fun initToolbar() {
-        getToolBar()?.setLeftDrawable(ContextCompat.getDrawable(this, R.drawable.amity_ic_cross))
+        getToolBar()?.setLeftDrawable(ContextCompat.getDrawable(this, com.amity.socialcloud.uikit.common.R.drawable.amity_ic_cross))
     }
 
     override fun getContentFragment(): Fragment {

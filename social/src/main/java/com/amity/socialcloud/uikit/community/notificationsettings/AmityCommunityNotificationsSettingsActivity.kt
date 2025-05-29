@@ -34,7 +34,7 @@ class AmityCommunityNotificationsSettingsActivity : AppCompatActivity(), AmityTo
         binding.pushNotificationToolBar.setLeftDrawable(
             ContextCompat.getDrawable(
                 this,
-                R.drawable.amity_ic_arrow_back
+                com.amity.socialcloud.uikit.common.R.drawable.amity_ic_arrow_back
             )
         )
         binding.pushNotificationToolBar.setClickListener(this)

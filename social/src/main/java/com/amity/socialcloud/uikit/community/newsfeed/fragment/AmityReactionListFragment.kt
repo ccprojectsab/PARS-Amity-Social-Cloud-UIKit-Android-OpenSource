@@ -11,6 +11,7 @@ import com.amity.socialcloud.sdk.model.core.reaction.AmityReactionReferenceType
 import com.amity.socialcloud.uikit.common.base.AmityBaseFragment
 import com.amity.socialcloud.uikit.common.base.AmityFragmentStateAdapter
 import com.amity.socialcloud.uikit.common.common.readableNumber
+import com.amity.socialcloud.uikit.community.R
 import com.amity.socialcloud.uikit.community.databinding.AmityFragmentReactionListBinding
 import com.amity.socialcloud.uikit.community.newsfeed.viewmodel.AmityReactionListViewModel
 
@@ -42,7 +43,7 @@ class AmityReactionListFragment : AmityBaseFragment() {
         fragmentStateAdapter.setFragmentList(
             arrayListOf(
                 AmityFragmentStateAdapter.AmityPagerModel(
-                    "All ${formattedReactionCount()}",
+                    getString(R.string.all, formattedReactionCount()),
                     getSingleReactionFragment(null)
                 ),
                 /*

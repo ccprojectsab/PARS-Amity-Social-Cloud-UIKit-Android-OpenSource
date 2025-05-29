@@ -126,7 +126,7 @@ open class AmityCommunityBaseNotificationSettingsFragment internal constructor()
             requireContext(),
             getString(title),
             getString(description),
-            getString(R.string.amity_ok),
+            getString(com.amity.socialcloud.uikit.common.R.string.amity_ok),
             null
         ) { dialog, which ->
             AmityAlertDialogUtil.checkConfirmDialog(isPositive = which, confirmed = {
@@ -137,6 +137,6 @@ open class AmityCommunityBaseNotificationSettingsFragment internal constructor()
     }
 
     private fun showSnackBar() {
-        Snackbar.make(binding.rvNewPostSettings, R.string.amity_saved, Snackbar.LENGTH_SHORT).show()
+        Snackbar.make(binding.rvNewPostSettings, com.amity.socialcloud.uikit.common.R.string.amity_saved, Snackbar.LENGTH_SHORT).show()
     }
 }

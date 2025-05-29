@@ -23,8 +23,6 @@
 
         <TextView
             style="@style/AmityTextStyleCaption"
-            colorShade="@{AmityColorShade.SHADE4}"
-            fillColor="@{dateFillColor}"
             roundedCorner="@{true}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

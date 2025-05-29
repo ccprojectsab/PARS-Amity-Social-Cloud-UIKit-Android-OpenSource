@@ -45,7 +45,7 @@ class AmityCommunityProfileActivity : AppCompatActivity(), AmityToolBarClickList
     private fun setUpToolbar() {
         binding.editCommunityToolbar.apply {
             setLeftDrawable(
-                    ContextCompat.getDrawable(this@AmityCommunityProfileActivity, R.drawable.amity_ic_arrow_back)
+                    ContextCompat.getDrawable(this@AmityCommunityProfileActivity, com.amity.socialcloud.uikit.common.R.drawable.amity_ic_arrow_back)
             )
             setLeftString(getString(R.string.amity_edit_profile))
 

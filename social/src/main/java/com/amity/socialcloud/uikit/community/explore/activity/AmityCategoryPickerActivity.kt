@@ -24,7 +24,7 @@ class AmityCategoryPickerActivity :
     override fun initToolbar() {
         showToolbarDivider()
         getToolBar()?.setLeftDrawable(
-            ContextCompat.getDrawable(this, R.drawable.amity_ic_cross)
+            ContextCompat.getDrawable(this, com.amity.socialcloud.uikit.common.R.drawable.amity_ic_cross)
         )
         getToolBar()?.setLeftString(getString(R.string.amity_select_category))
     }

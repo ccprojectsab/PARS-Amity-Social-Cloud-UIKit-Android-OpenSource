@@ -61,8 +61,8 @@ class AmityImageMsgSenderViewHolder(
         } else {
             binding?.ivMsgOutgoing?.setShape(
                 null, null,
-                itemView.context.resources.getDimension(R.dimen.amity_zero),
-                null, R.color.amityColorBase, null, AmityColorShade.SHADE4
+                itemView.context.resources.getDimension(com.amity.socialcloud.uikit.common.R.dimen.amity_zero),
+                null, com.amity.socialcloud.uikit.common.R.color.amityColorBase, null, AmityColorShade.SHADE4
             )
         }
 
@@ -73,7 +73,7 @@ class AmityImageMsgSenderViewHolder(
         }
 
         binding?.progressBar?.trackColor = AmityColorPaletteUtil.getColor(
-            ContextCompat.getColor(context, R.color.amityColorBase),
+            ContextCompat.getColor(context, com.amity.socialcloud.uikit.common.R.color.amityColorBase),
             AmityColorShade.SHADE3
         )
     }

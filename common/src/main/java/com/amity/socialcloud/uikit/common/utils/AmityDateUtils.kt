@@ -10,7 +10,7 @@ object AmityDateUtils {
     private const val DAY_OF_WEEK = "EEEE"
     private const val YEAR = "yyyy"
     private const val MONTH_WITH_DATE = "MMMM d"
-    private const val TIME_FORMAT = "h:mm a"
+    private const val TIME_FORMAT = "HH:mm"
     const val TIME_MINUTE_FORMAT = "m:ss"
     private const val TIME_HOUR_FORMAT = "HH:mm:ss"
     private const val HOUR_IN_MILLISECOND = 3600000
@@ -52,11 +52,11 @@ object AmityDateUtils {
     }
 
     private fun getFormattedTime(milliSeconds: Int): String {
-        if (milliSeconds / HOUR_IN_MILLISECOND > 0) {
-            formatter = SimpleDateFormat(TIME_MINUTE_FORMAT, Locale.getDefault())
-        }
-        val date = Date(milliSeconds.toLong())
-        return formatter.format(date)
+        val totalSeconds = milliSeconds / 1000
+        val minutes = totalSeconds / 60
+        val seconds = totalSeconds % 60
+
+        return String.format("%d:%02d", minutes, seconds)
     }
 
     fun getFormattedTimeForChat(milliSeconds: Int): String {

@@ -46,11 +46,11 @@ class AmityPostEditorFragment : AmityBaseCreatePostFragment() {
 
     override fun setToolBarText() {
         (activity as AppCompatActivity).supportActionBar?.title =
-            getString(R.string.amity_edit_post)
+            getString(com.amity.socialcloud.uikit.common.R.string.amity_edit_post)
     }
 
     override fun getPostMenuText(): String {
-        return getString(R.string.amity_save_caps)
+        return getString(com.amity.socialcloud.uikit.common.R.string.amity_save_caps)
     }
 
     override fun isRightButtonActive(): Boolean {

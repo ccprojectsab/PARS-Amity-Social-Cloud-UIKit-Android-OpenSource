@@ -73,10 +73,10 @@ class AmityCommunityProfileFragment : RxFragment() {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         if (shouldShowOptionsMenu) {
             val drawable =
-                ContextCompat.getDrawable(requireContext(), R.drawable.amity_ic_more_horiz)
+                ContextCompat.getDrawable(requireContext(), com.amity.socialcloud.uikit.common.R.drawable.amity_ic_more_horiz)
             drawable?.mutate()
             drawable?.colorFilter = BlendModeColorFilterCompat.createBlendModeColorFilterCompat(
-                R.color.amityColorBlack, BlendModeCompat.SRC_ATOP
+                com.amity.socialcloud.uikit.common.R.color.amityColorBlack, BlendModeCompat.SRC_ATOP
             )
             menuItem = menu.add(Menu.NONE, 1, Menu.NONE, getString(R.string.amity_cancel))
             menuItem?.setIcon(drawable)?.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS)
@@ -163,10 +163,10 @@ class AmityCommunityProfileFragment : RxFragment() {
         val leftDrawable = if (community.isPublic()) {
             null
         } else {
-            ContextCompat.getDrawable(requireContext(), R.drawable.amity_ic_lock1)
+            ContextCompat.getDrawable(requireContext(), com.amity.socialcloud.uikit.common.R.drawable.amity_ic_lock1)
         }
         val rightDrawable = if (community.isOfficial()) {
-            ContextCompat.getDrawable(requireContext(), R.drawable.amity_ic_verified)
+            ContextCompat.getDrawable(requireContext(), com.amity.socialcloud.uikit.common.R.drawable.amity_ic_verified)
         } else {
             null
         }

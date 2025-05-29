@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.databinding.ObservableField
@@ -56,6 +57,7 @@ class AmityCommunitySearchFragment :
             AmityCommunityGlobalSearchViewModel::class.java
         )
         initSearchRecyclerView()
+
         viewModel.setPropertyChangeCallback()
         observeSearchEvent()
     }
@@ -80,18 +82,19 @@ class AmityCommunitySearchFragment :
             layoutManager = LinearLayoutManager(requireContext())
             addItemDecoration(
                 AmityRecyclerViewItemDecoration(
-                    resources.getDimensionPixelSize(R.dimen.amity_padding_m1)
+                    resources.getDimensionPixelSize(com.amity.socialcloud.uikit.common.R.dimen.amity_padding_m1)
                 )
             )
             setHasFixedSize(true)
         }
         binding.tvNoResults.setTextColor(
             AmityColorPaletteUtil.getColor(
-                ContextCompat.getColor(requireContext(), R.color.amityColorBase),
+                ContextCompat.getColor(requireContext(), com.amity.socialcloud.uikit.common.R.color.amityColorBase),
                 AmityColorShade.SHADE3
             )
         )
     }
+
 
     private fun observeSearchEvent() {
         viewModel.onAmityEventReceived += { event ->

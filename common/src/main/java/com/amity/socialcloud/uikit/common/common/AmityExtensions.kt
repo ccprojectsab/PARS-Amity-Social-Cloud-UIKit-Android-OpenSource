@@ -5,6 +5,7 @@ import android.content.res.Resources
 import android.graphics.Rect
 import android.graphics.drawable.Drawable
 import android.os.AsyncTask
+import android.text.format.DateUtils
 import android.view.TouchDelegate
 import android.view.View
 import android.widget.ImageView
@@ -27,9 +28,11 @@ import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
 import java.math.RoundingMode
 import java.text.DecimalFormat
+import java.util.Date
 import java.util.concurrent.TimeUnit
 import kotlin.math.ln
 import kotlin.math.pow
+
 
 fun String.isNotEmptyOrBlank(): Boolean {
     return this.isNotEmpty() && this.isNotBlank()
@@ -77,13 +80,32 @@ fun Long.readableFeedPostTime(context: Context): String {
     val days = TimeUnit.MILLISECONDS.toDays(diff)
     val hours = TimeUnit.MILLISECONDS.toHours(diff)
     val minutes = TimeUnit.MILLISECONDS.toMinutes(diff)
+    val weeks = (days / 7).toInt()
+    val months = (weeks / 4)
+    val years = (months / 12)
 
     return when {
+        years > 0 -> context.resources.getQuantityString(
+            R.plurals.amity_number_of_years,
+            years,
+            years
+        )
+        months > 0 -> context.resources.getQuantityString(
+            R.plurals.amity_number_of_months,
+            months,
+            months
+        )
+        weeks > 0 -> context.resources.getQuantityString(
+            R.plurals.amity_number_of_weeks,
+            weeks,
+            weeks
+        )
         days > 0 -> context.resources.getQuantityString(
             R.plurals.amity_number_of_days,
             days.toInt(),
             days
         )
+        isYesterday(this) -> context.resources.getString(R.string.amity_yesterday)
         hours > 0 -> context.resources.getQuantityString(
             R.plurals.amity_number_of_hours,
             hours.toInt(),
@@ -96,6 +118,10 @@ fun Long.readableFeedPostTime(context: Context): String {
         )
         else -> context.getString(R.string.amity_just_now)
     }
+}
+
+fun isYesterday(time: Long): Boolean {
+    return DateUtils.isToday(time + DateUtils.DAY_IN_MILLIS)
 }
 
 fun isPlurals(number: Long): Boolean {

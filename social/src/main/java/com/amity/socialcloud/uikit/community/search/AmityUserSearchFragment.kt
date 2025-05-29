@@ -70,14 +70,14 @@ class AmityUserSearchFragment : RxFragment(R.layout.amity_fragment_users_global_
             layoutManager = LinearLayoutManager(requireContext())
             addItemDecoration(
                 AmityRecyclerViewItemDecoration(
-                    resources.getDimensionPixelSize(R.dimen.amity_padding_m1)
+                    resources.getDimensionPixelSize(com.amity.socialcloud.uikit.common.R.dimen.amity_padding_m1)
                 )
             )
             setHasFixedSize(true)
         }
         binding.tvNoResults.setTextColor(
             AmityColorPaletteUtil.getColor(
-                ContextCompat.getColor(requireContext(), R.color.amityColorBase),
+                ContextCompat.getColor(requireContext(), com.amity.socialcloud.uikit.common.R.color.amityColorBase),
                 AmityColorShade.SHADE3
             )
         )

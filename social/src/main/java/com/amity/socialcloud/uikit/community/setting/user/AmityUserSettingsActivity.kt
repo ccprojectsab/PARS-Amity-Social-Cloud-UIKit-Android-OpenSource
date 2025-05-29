@@ -22,7 +22,7 @@ class AmityUserSettingsActivity : AmityBaseToolbarFragmentContainerActivity() {
             setLeftDrawable(
                 ContextCompat.getDrawable(
                     this@AmityUserSettingsActivity,
-                    R.drawable.amity_ic_arrow_back
+                    com.amity.socialcloud.uikit.common.R.drawable.amity_ic_arrow_back
                 )
             )
             setLeftString(

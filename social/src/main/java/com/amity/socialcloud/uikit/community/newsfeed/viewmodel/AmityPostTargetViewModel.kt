@@ -25,10 +25,14 @@ class AmityPostTargetViewModel(private val savedState: SavedStateHandle) : ViewM
         savedState.get<String>(SAVED_POST_CREATION_TYPE)?.let { postCreationType = it }
     }
 
-    fun getUser(): AmityUser {
-        return AmityCoreClient.getCurrentUser().blockingFirst()
+    fun getUser(): AmityUser? {
+        try {
+            return AmityCoreClient.getCurrentUser().blockingFirst()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+       return null
     }
-
 
     fun getCommunityList(): Flowable<PagingData<AmityCommunity>> {
         val communityRepository = AmitySocialClient.newCommunityRepository()

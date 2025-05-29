@@ -15,8 +15,8 @@ import com.amity.socialcloud.uikit.community.utils.EXTRA_PARAM_POST_ID
 class AmityPostEditorActivity : AmityBaseToolbarFragmentContainerActivity() {
 
     override fun initToolbar() {
-        getToolBar()?.setLeftDrawable(ContextCompat.getDrawable(this, R.drawable.amity_ic_cross))
-        getToolBar()?.setLeftString(getString(R.string.amity_edit_post))
+        getToolBar()?.setLeftDrawable(ContextCompat.getDrawable(this, com.amity.socialcloud.uikit.common.R.drawable.amity_ic_cross))
+        getToolBar()?.setLeftString(getString(com.amity.socialcloud.uikit.common.R.string.amity_edit_post))
     }
 
     override fun getContentFragment(): Fragment {

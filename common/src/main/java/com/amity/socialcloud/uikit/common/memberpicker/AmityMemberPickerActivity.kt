@@ -1,5 +1,6 @@
 package com.amity.socialcloud.uikit.common.memberpicker
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
@@ -21,6 +22,7 @@ class AmityMemberPickerActivity : AmityBaseActivity<AmityActivityPickMemberListB
     private val mViewModel: AmityMemberPickerViewModel by viewModels()
     private lateinit var mFragment: AmityMemberPickerFragment
 
+    private var maxSelection: Int = Int.MAX_VALUE
 
     override fun getLayoutId(): Int = R.layout.amity_activity_pick_member_list
 
@@ -31,6 +33,7 @@ class AmityMemberPickerActivity : AmityBaseActivity<AmityActivityPickMemberListB
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setUpToolBar()
+       maxSelection= intent.getIntExtra("maxSelection", maxSelection)
         loadFragment()
     }
 
@@ -39,7 +42,7 @@ class AmityMemberPickerActivity : AmityBaseActivity<AmityActivityPickMemberListB
             ?.let { list ->
                 val fragmentManager = supportFragmentManager
                 val fragmentTransaction = fragmentManager.beginTransaction()
-                mFragment = AmityMemberPickerFragment.newInstance()
+                mFragment = AmityMemberPickerFragment.newInstance(maxSelection)
                     .selectedMembers(list)
                     .build()
                 fragmentTransaction.replace(R.id.fragmentContainer, mFragment)

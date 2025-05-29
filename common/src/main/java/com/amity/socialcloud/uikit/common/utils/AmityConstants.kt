@@ -16,8 +16,8 @@ object AmityConstants {
     const val MAX_SELECTION_COUNT = 20
 
     // UI strings
-    const val TODAY = "Today"
-    const val YESTERDAY = "Yesterday"
+    const val TODAY = "Idag"
+    const val YESTERDAY = "Igår"
     const val DOT_SEPARATOR = "·"
 
     const val ID_REPORT_USER = 1000
@@ -38,4 +38,10 @@ object AmityConstants {
     const val POST_REACTION = "like"
 
     const val NO_PERMISSION_ERROR_CODE = 400301
+    const val CHAT_METADATA_USER_IDS = "userIds"
+    const val CHAT_METADATA_IS_DIRECT_CHAT = "isDirectChat"
+    const val CHAT_METADATA_CREATOR_ID = "creatorId"
+    const val CHAT_SDK_TYPE = "sdk_type"
+    const val CHAT_USER_ARCHIVE = "CHAT_USER_ARCHIVE"
+    const val AUDIO_FILE_DURATION = "AUDIO_FILE_DURATION"
 }

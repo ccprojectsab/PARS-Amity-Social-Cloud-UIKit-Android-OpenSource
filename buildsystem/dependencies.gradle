@@ -1,5 +1,4 @@
 //  User need to apply this gradle script in their Project level build.gradle file to define dependencies used by UIKit
-//  apply from: "../Amity-Social-Cloud-UIKit-Android-OpenSource/buildsystem/dependencies.gradle"
 
 buildscript {
     ext {
@@ -10,7 +9,7 @@ buildscript {
         amityKotlinVersion = "1.6.20"
         amityLifecycleExtensionVersion = "2.0.0"
         amityMockkVersion = "1.10.0"
-        amityMessagingSdkVersion = '6.26.0'
+        amityMessagingSdkVersion = '6.33.2'
         amityRxLifeCycleVersion = '1.1.2-beta01'
 
         amityJacocoVersion = '0.8.5'

@@ -224,6 +224,7 @@
                 android:layout_marginEnd="@dimen/amity_padding_xs"
                 android:ellipsize="end"
                 android:maxLines="1"
+                android:fontFamily="@font/inter_regular"
                 android:text="@{viewModel.category.name.empty? @string/amity_please_select_category:viewModel.category.name}"
                 android:textColor="@color/amityColorBase"
                 app:layout_constraintEnd_toStartOf="@id/categoryArrow"
@@ -300,16 +301,15 @@
 
             <ImageView
                 android:id="@+id/iv_globe"
-                amityFillColor="@{@color/amityColorBase}"
-                amityFillShade="@{AmityColorShade.SHADE4}"
                 android:layout_width="@dimen/amity_forty"
                 android:layout_height="@dimen/amity_forty"
                 android:layout_marginStart="@dimen/amity_padding_m1"
                 android:layout_marginTop="@dimen/amity_padding_m1"
                 android:padding="@dimen/amity_ten"
-                android:src="@drawable/amity_ic_globe"
+                android:src="@{viewModel.isPublic() ? @drawable/amity_ic_globe_active : @drawable/amity_ic_globe}"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/divider5" />
+                app:layout_constraintTop_toBottomOf="@id/divider5"
+                 />
 
             <TextView
                 android:id="@+id/tv_public"
@@ -353,13 +353,11 @@
 
             <ImageView
                 android:id="@+id/iv_lock"
-                amityFillColor="@{@color/amityColorBase}"
-                amityFillShade="@{AmityColorShade.SHADE4}"
                 android:layout_width="@dimen/amity_forty"
                 android:layout_height="@dimen/amity_forty"
                 android:layout_marginTop="@dimen/amity_fifty"
                 android:padding="@dimen/amity_ten"
-                android:src="@drawable/amity_ic_lock1"
+                android:src="@{!viewModel.isPublic() ? @drawable/amity_ic_lock1_active : @drawable/amity_ic_lock1}"
                 app:layout_constraintStart_toStartOf="@id/ccName"
                 app:layout_constraintTop_toBottomOf="@id/iv_globe" />
 
@@ -379,6 +377,7 @@
                 style="@style/AmityPublicDescriptionTextStyle"
                 textColorShade="@{AmityColorShade.SHADE1}"
                 android:text="@string/amity_private_description"
+                android:paddingBottom="10.dp"
                 app:layout_constraintEnd_toStartOf="@id/rb_private"
                 app:layout_constraintStart_toStartOf="@id/tv_private"
                 app:layout_constraintTop_toBottomOf="@id/tv_private" />
@@ -427,8 +426,6 @@
 
             <ImageView
                 android:id="@+id/ivAdd"
-                amityFillColor="@{@color/amityColorBase}"
-                amityFillShade="@{AmityColorShade.SHADE4}"
                 android:layout_width="@dimen/amity_forty"
                 android:layout_height="@dimen/amity_forty"
                 android:layout_marginTop="@dimen/amity_padding_xs"
@@ -453,6 +450,7 @@
                 android:id="@+id/barrier"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingTop="30dp"
                 app:barrierDirection="bottom"
                 app:constraint_referenced_ids="rvAddedMembers,ivAdd" />
 
