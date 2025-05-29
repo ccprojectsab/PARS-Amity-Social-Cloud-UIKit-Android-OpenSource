@@ -28,9 +28,10 @@ class AmityChatHomePageFragment : Fragment() {
     private val binding get() = _binding!!
     private val selectMembers = registerForActivityResult(AmityPickMemberContract(1)) { userList ->
 
-        if (!userList.isNullOrEmpty()) {
+    private val selectMembers = registerForActivityResult(AmityPickMemberContract()) { userList ->
+        if (userList?.isNotEmpty() ?: false) {
             view?.showSnackBar(msg = getString(R.string.amity_channel_creation_loading))
-            mViewModel.createChat(selectedMembers = userList,
+            mViewModel.createChat(selectedMembers = userList!!,
                 onChatCreateSuccess = { channelId: String ->
                     val chatListIntent =
                         AmityMessageListActivity.newIntent(requireContext(), channelId)

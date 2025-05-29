@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.core.content.ContextCompat
 import com.amity.socialcloud.uikit.community.R
 import com.amity.socialcloud.uikit.community.databinding.AmityActivityLivestreamVideoPlayerBinding
 import com.amity.socialcloud.uikit.community.newsfeed.viewmodel.AmityLiveStreamVideoPlayerViewModel
@@ -29,6 +30,7 @@ open class AmityLivestreamVideoPlayerActivity : RxAppCompatActivity() {
         prepareToStream()
         observeInvalidStream()
         binding.backBtn.setOnClickListener { onBackPressed() }
+        setupListener()
     }
 
     override fun onDestroy() {
@@ -97,6 +99,20 @@ open class AmityLivestreamVideoPlayerActivity : RxAppCompatActivity() {
             getString(R.string.amity_video_stream_unavailable_description),
             Toast.LENGTH_SHORT
         ).show()
+    }
+
+    private fun setupListener() {
+        binding.btnAudioToggle.setOnClickListener {
+            val isMuted = binding.videoPlayer.getVolume() == 0f
+            binding.videoPlayer.setVolume(if (isMuted) 1f else 0f)
+
+            binding.btnAudioToggle.setImageDrawable(
+                ContextCompat.getDrawable(
+                    this,
+                    if (isMuted) R.drawable.amity_ic_story_audio_unmute else R.drawable.amity_ic_story_audio_mute
+                )
+            )
+        }
     }
 
     companion object {

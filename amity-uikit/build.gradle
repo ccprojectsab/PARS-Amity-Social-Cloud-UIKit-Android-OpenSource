@@ -3,7 +3,17 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-kapt'
 
 android {
+
     namespace 'com.amity.socialcloud.uikit'
+    lint {
+        abortOnError false
+        checkAllWarnings true
+        checkDependencies false
+        disable 'GoogleAppIndexingWarning', 'NewerVersionAvailable', 'UnusedResources', 'LogNotTimber', 'StringFormatInTimber', 'ThrowableNotAtBeginning', 'BinaryOperationInTimber', 'TimberArgCount', 'TimberArgTypes', 'TimberTagLength', 'TimberExceptionLogging'
+        quiet true
+        warningsAsErrors true
+        xmlReport false
+    }
     buildFeatures {
         dataBinding = true
         viewBinding = true
@@ -23,6 +33,11 @@ android {
         }
         register("production") {
             dimension = "environment"
+        }
+    }
+    configurations.configureEach {
+        resolutionStrategy {
+            force("androidx.core:core-ktx:1.9.0")
         }
     }
 }

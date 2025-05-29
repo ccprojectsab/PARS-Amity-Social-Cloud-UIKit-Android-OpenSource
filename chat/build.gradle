@@ -23,6 +23,19 @@ android {
     }
 }
 
+android {
+    namespace 'com.amity.socialcloud.uikit.chat'
+    lint {
+        abortOnError false
+        checkAllWarnings true
+        checkDependencies false
+        disable 'GoogleAppIndexingWarning', 'NewerVersionAvailable', 'UnusedResources', 'LogNotTimber', 'StringFormatInTimber', 'ThrowableNotAtBeginning', 'BinaryOperationInTimber', 'TimberArgCount', 'TimberArgTypes', 'TimberTagLength', 'TimberExceptionLogging'
+        quiet true
+        warningsAsErrors true
+        xmlReport false
+    }
+}
+
 dependencies {
     implementation project(path: ':common')
     implementation 'androidx.appcompat:appcompat:1.6.1'
