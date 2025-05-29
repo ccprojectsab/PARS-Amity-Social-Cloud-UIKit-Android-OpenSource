@@ -21,7 +21,7 @@ abstract class AmityPickerFragment : AmityBaseFragment() {
 
     private var photoFile: File? = null
 
-    private val pickImage = registerForActivityResult(AmityPickImageContract()) { data ->
+    private val pickImage = registerForActivityResult(AmityPickFileContract()) { data ->
         onImagePicked(data)
     }
     val allowedMimeTypes = arrayOf(

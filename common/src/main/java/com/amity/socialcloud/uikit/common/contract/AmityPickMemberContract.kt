@@ -19,10 +19,10 @@ class AmityPickMemberContract(private val maxSelection: Int = Int.MAX_VALUE) :
         }
     }
 
-    override fun parseResult(resultCode: Int, intent: Intent?): ArrayList<AmitySelectMemberItem>? {
-        return if (resultCode == Activity.RESULT_OK) intent?.getParcelableArrayListExtra(
+    override fun parseResult(resultCode: Int, intent: Intent?): ArrayList<AmitySelectMemberItem> {
+        return if (resultCode == Activity.RESULT_OK) (intent?.getParcelableArrayListExtra(
             AmityConstants.MEMBERS_LIST
-        )
-        else null
+        )) ?: arrayListOf<AmitySelectMemberItem>()
+        else arrayListOf()
     }
 }

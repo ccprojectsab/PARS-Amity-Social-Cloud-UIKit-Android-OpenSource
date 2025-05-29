@@ -18,6 +18,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.amity.socialcloud.sdk.model.core.error.AmityException
 import com.amity.socialcloud.sdk.model.core.file.upload.AmityUploadResult
 import com.amity.socialcloud.uikit.common.common.showSnackBar
+import com.amity.socialcloud.uikit.common.contract.AmityPickFileContract
 import com.amity.socialcloud.uikit.common.utils.AmityAlertDialogUtil
 import com.amity.socialcloud.uikit.common.utils.AmityConstants
 import com.amity.socialcloud.uikit.community.R
@@ -44,7 +45,7 @@ AmityCommunityCreateBaseFragment : RxFragment() {
     lateinit var viewModel: AmityCreateCommunityViewModel
     internal lateinit var binding: AmityFragmentCreateCommunityBinding
 
-    private val pickImage = registerForActivityResult(AmityPickImageContract()) { data ->
+    private val pickImage = registerForActivityResult(AmityPickFileContract()) { data ->
         if(data != null) {
             imageUri = data
             viewModel.initialStateChanged.set(true)

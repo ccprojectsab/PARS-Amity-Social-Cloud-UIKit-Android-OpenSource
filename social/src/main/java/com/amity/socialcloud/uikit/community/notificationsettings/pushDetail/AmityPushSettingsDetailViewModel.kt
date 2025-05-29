@@ -147,6 +147,7 @@ class AmityPushSettingsDetailViewModel : AmityPushNotificationBaseViewModel() {
             is AmityCommunityNotificationEvent.STORY_COMMENT_CREATED,
             is AmityCommunityNotificationEvent.STORY_CREATED,
             is AmityCommunityNotificationEvent.STORY_REACTED -> {}
+            else -> {}
         }
         if (!isGlobalModerator) {
             choices.add(Pair(R.string.amity_everyone, !isModerator))
