@@ -3,8 +3,8 @@
 buildscript {
     ext {
         amityMinSdkVersion = 21
-        amityTargetSdkVersion = 33
-        amityCompileSdkVersion = 33
+        amityTargetSdkVersion = 34
+        amityCompileSdkVersion = 34
         amityKotlinJDKVersion = "8"
         amityKotlinVersion = "1.6.20"
         amityLifecycleExtensionVersion = "2.0.0"
