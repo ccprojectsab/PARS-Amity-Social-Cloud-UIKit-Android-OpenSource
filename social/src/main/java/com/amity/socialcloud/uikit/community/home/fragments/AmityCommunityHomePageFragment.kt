@@ -47,22 +47,27 @@ import io.reactivex.rxjava3.subjects.PublishSubject
 import java.util.concurrent.TimeUnit
 
 
-class AmityCommunityHomePageFragment : Fragment() {
+class AmityCommunityHomePageFragment : Fragment(), AmityToolBarClickListener {
+    interface TabSelectionListener {
+        fun onTabSelected(tabIndex: Int)
+    }
 
     private lateinit var fragmentStateAdapter: AmityFragmentStateAdapter
     private lateinit var globalSearchStateAdapter: AmityFragmentStateAdapter
     private lateinit var searchMenuItem: MenuItem
     private lateinit var binding: AmityFragmentCommunityHomePageBinding
-    private val viewModel: AmityCommunityHomeViewModel by viewModels()
+    private val viewModel: AmityCommunityHomeViewModel by activityViewModels()
     private var textChangeDisposable: Disposable? = null
     private val textChangeSubject: PublishSubject<String> = PublishSubject.create()
     private val searchString = ObservableField("")
-
+    private var selectedTab = SelectedTab.NEWS_FEED
+    var tabSelectionListener: TabSelectionListener? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        Log.d("MyTag", "On Create - $selectedTab")
         binding = DataBindingUtil.inflate(
             inflater,
             R.layout.amity_fragment_community_home_page,
@@ -79,8 +84,7 @@ class AmityCommunityHomePageFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setHasOptionsMenu(true)
-        initTabLayout()
+        initToolbar()
         setUpSearchTabLayout()
         addViewModelListeners()
         subscribeTextChangeEvents()
@@ -90,6 +94,33 @@ class AmityCommunityHomePageFragment : Fragment() {
         super.onDestroyView()
         if (textChangeDisposable?.isDisposed == false) {
             textChangeDisposable?.dispose()
+        }
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is TabSelectionListener) {
+            tabSelectionListener = context
+        } else {
+            throw RuntimeException("$context must implement TabSelectionListener")
+        }
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        tabSelectionListener = null
+    }
+
+    fun switchTab(tab: SelectedTab) {
+        selectedTab = tab
+        Log.d("MyTag", "switchTab $selectedTab")
+        if (this::binding.isInitialized) {
+            Log.d("MyTag", "is intialized $selectedTab")
+            if (tab == SelectedTab.EXPLORE) {
+                binding.tabLayout.switchTab(1, false)
+            } else {
+                binding.tabLayout.switchTab(0, false)
+            }
         }
     }
 
@@ -116,7 +147,33 @@ class AmityCommunityHomePageFragment : Fragment() {
             )
         )
         binding.tabLayout.setAdapter(fragmentStateAdapter)
+        Log.d("MyTag", "tabLayout$selectedTab")
+        if (selectedTab == SelectedTab.EXPLORE) {
+            binding.tabLayout.switchTab(1, false)
+        } else {
+            binding.tabLayout.switchTab(0, false)
+        }
+
+        binding.tabLayout.setPageChangeListener(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                (activity as? TabSelectionListener)?.onTabSelected(position)
+                //  fragmentStateAdapter.notifyItemChanged(position)
+                //   currentSelectedPosition = position
+
+                super.onPageSelected(position)
+                //  currentSelectedPosition = position
             }
+        })
+
+        /*   binding.tabLayout.setPageChangeListener(object : ViewPager2.OnPageChangeCallback() {
+               override fun onPageSelected(position: Int) {
+                   Log.d("PAGE_CHANGED", "page changed---$position")
+                   fragmentStateAdapter.notifyItemChanged(position)
+                   super.onPageSelected(position)
+               }
+           })*/
+    }
+
 
     private fun getExploreFragment(): Fragment {
         return AmityCommunityExplorerFragment.newInstance().build()
@@ -128,6 +185,7 @@ class AmityCommunityHomePageFragment : Fragment() {
 
     private fun addViewModelListeners() {
         viewModel.onAmityEventReceived += { event ->
+            Log.d("MyTag", "eventListerners${event.type}")
             when (event.type) {
 
                 AmityEventIdentifier.EXPLORE_COMMUNITY -> {
@@ -136,10 +194,19 @@ class AmityCommunityHomePageFragment : Fragment() {
                 }
 
                 else -> {
-
+//                    binding.tabLayout.switchTab(0)
+                }
             }
         }
     }
+
+    private fun initToolbar() {
+
+        binding.communityHomeToolbar.setLeftString(getString(R.string.amity_community))
+        (activity as AppCompatActivity).supportActionBar?.displayOptions =
+            ActionBar.DISPLAY_SHOW_CUSTOM
+        (activity as AppCompatActivity).setSupportActionBar(binding.communityHomeToolbar as Toolbar)
+        setHasOptionsMenu(true)
     }
 
     private fun setUpSearchTabLayout() {
@@ -179,6 +246,8 @@ class AmityCommunityHomePageFragment : Fragment() {
             SearchView((activity as AppCompatActivity).supportActionBar!!.themedContext)
         searchView.queryHint = getString(com.amity.socialcloud.uikit.common.R.string.amity_search)
         searchView.maxWidth = Int.MAX_VALUE
+        searchView.setBackgroundResource(R.drawable.amity_search_bg_selector)
+
 
         val searchEditText =
             searchView.findViewById<EditText>(androidx.appcompat.R.id.search_src_text)
@@ -244,11 +313,22 @@ class AmityCommunityHomePageFragment : Fragment() {
 
     }
 
+    class Builder() {
+
+        fun build(): AmityCommunityHomePageFragment {
+
+            return AmityCommunityHomePageFragment().apply {
+
+            }
+
+        }
+    }
+    /*
         class Builder internal constructor() {
             fun build(): AmityCommunityHomePageFragment {
                 return AmityCommunityHomePageFragment()
             }
-    }
+        }*/
 
     companion object {
 
@@ -260,5 +340,13 @@ class AmityCommunityHomePageFragment : Fragment() {
         fun newInstance(): Builder {
             return Builder()
         }
+    }
+
+    override fun leftIconClick() {
+        activity?.onBackPressed()
+    }
+
+    override fun rightIconClick() {
+
     }
 }
