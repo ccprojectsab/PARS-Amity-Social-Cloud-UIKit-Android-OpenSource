@@ -13,6 +13,7 @@ import android.view.View
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import com.amity.socialcloud.uikit.common.R
+import com.amity.socialcloud.uikit.common.AmityLocalisation
 
 class AmityExpandableTextView : AppCompatTextView {
     private var readMoreClicked: Boolean = false
@@ -60,7 +61,7 @@ class AmityExpandableTextView : AppCompatTextView {
     }
 
     private fun setText() {
-        if (!text.endsWith(context.getString(R.string.amity_read_more))) {
+        if (!text.endsWith(AmityLocalisation.getString(R.string.amity_read_more))) {
             originalText = text
             trimmedText = getTrimmedText(text)
         }
@@ -85,7 +86,7 @@ class AmityExpandableTextView : AppCompatTextView {
                 val truncatedSpannableString: SpannableString
                 val lastCharShown = layout.getLineVisibleEnd(maxLines - 1)
 
-                val readMoreString = context.getString(R.string.amity_read_more)
+                val readMoreString = AmityLocalisation.getString(R.string.amity_read_more)
                 val visibleText = text?.subSequence(0, lastCharShown)
                 val displayText: CharSequence
                 if (visibleText!!.contains(newLine)) {

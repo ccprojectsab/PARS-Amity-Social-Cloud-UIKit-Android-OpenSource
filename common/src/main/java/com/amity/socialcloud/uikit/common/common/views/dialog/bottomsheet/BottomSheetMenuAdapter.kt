@@ -4,8 +4,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.amity.socialcloud.uikit.common.AmityLocalisation
 import com.amity.socialcloud.uikit.common.R
 import com.amity.socialcloud.uikit.common.databinding.AmityItemBottomSheetMenuBinding
+
 
 class BottomSheetMenuAdapter(private var items: List<BottomSheetMenuItem>) : RecyclerView.Adapter<BottomSheetMenuAdapter.BottomSheetMenuViewHolder>() {
 
@@ -23,7 +25,7 @@ class BottomSheetMenuAdapter(private var items: List<BottomSheetMenuItem>) : Rec
 
         fun bind(item: BottomSheetMenuItem) {
             with(binding) {
-                bottomMenuTitle.text = itemView.resources.getString(item.titleResId)
+                bottomMenuTitle.text = AmityLocalisation.getString(item.titleResId)
                 if(item.iconResId != null) {
                     bottomMenuIcon.setImageResource(item.iconResId)
                     bottomMenuIcon.visibility = View.VISIBLE

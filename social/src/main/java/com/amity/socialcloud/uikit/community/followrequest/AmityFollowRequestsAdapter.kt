@@ -10,6 +10,7 @@ import com.amity.socialcloud.sdk.model.core.follow.AmityFollowRelationship
 import com.amity.socialcloud.uikit.common.base.AmityBaseRecyclerViewPagingDataAdapter
 import com.amity.socialcloud.uikit.common.common.showSnackBar
 import com.amity.socialcloud.uikit.common.utils.AmityAlertDialogUtil
+import com.amity.socialcloud.uikit.common.AmityLocalisation
 import com.amity.socialcloud.uikit.community.R
 import com.amity.socialcloud.uikit.community.databinding.AmityItemFollowRequestBinding
 
@@ -40,7 +41,7 @@ class AmityFollowRequestsAdapter(private val context: Context) :
                     btnAccept.setOnClickListener {
                         itemViewModel.accept(user?.getUserId() ?: "",
                             onSuccess = {
-                                itemView.showSnackBar(context.getString(R.string.amity_done))
+                                itemView.showSnackBar(AmityLocalisation.getString(R.string.amity_done))
                             },
                             onError = {
                                 showErrorDialog()
@@ -51,7 +52,7 @@ class AmityFollowRequestsAdapter(private val context: Context) :
                     btnDecline.setOnClickListener {
                         itemViewModel.decline(user?.getUserId() ?: "",
                             onSuccess = {
-                                itemView.showSnackBar(context.getString(R.string.amity_done))
+                                itemView.showSnackBar(AmityLocalisation.getString(R.string.amity_done))
                             },
                             onError = {
                                 showErrorDialog()
@@ -65,9 +66,9 @@ class AmityFollowRequestsAdapter(private val context: Context) :
         private fun showErrorDialog() {
             AmityAlertDialogUtil.showDialog(
                 context = context,
-                title = context.getString(R.string.amity_request_error),
-                msg = context.getString(R.string.amity_request_withdrawn),
-                positiveButton = context.getString(com.amity.socialcloud.uikit.common.R.string.amity_ok),
+                title = AmityLocalisation.getString(R.string.amity_request_error),
+                msg = AmityLocalisation.getString(R.string.amity_request_withdrawn),
+                positiveButton = AmityLocalisation.getString(com.amity.socialcloud.uikit.common.R.string.amity_ok),
                 negativeButton = null
             ) { dialog, which ->
                 if (which == DialogInterface.BUTTON_POSITIVE) {

@@ -23,6 +23,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.widget.ImageViewCompat
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.amity.socialcloud.uikit.common.AmityLocalisation
 import com.amity.socialcloud.uikit.common.R
 import com.amity.socialcloud.uikit.common.common.isNotEmptyOrBlank
 import com.amity.socialcloud.uikit.common.common.views.AmityColorPaletteUtil
@@ -335,7 +336,7 @@ fun setText(textView: TextView, input: CharSequence?) {
     if (input != null && input.isNotEmpty()) {
         textView.text = input
     } else {
-        textView.text = textView.context.getString(R.string.amity_anonymous)
+        textView.text = AmityLocalisation.getString(R.string.amity_anonymous)
     }
 }
 

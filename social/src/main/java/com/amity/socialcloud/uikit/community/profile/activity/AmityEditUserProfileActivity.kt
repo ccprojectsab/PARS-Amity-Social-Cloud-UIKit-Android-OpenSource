@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import com.amity.socialcloud.uikit.common.base.AmityBaseToolbarFragmentContainerActivity
 import com.amity.socialcloud.uikit.community.R
 import com.amity.socialcloud.uikit.community.profile.fragment.AmityUserProfileEditorFragment
+import com.amity.socialcloud.uikit.common.AmityLocalisation
 
 class AmityEditUserProfileActivity : AmityBaseToolbarFragmentContainerActivity() {
 
@@ -19,7 +20,7 @@ class AmityEditUserProfileActivity : AmityBaseToolbarFragmentContainerActivity()
         getToolBar()?.setLeftDrawable(
             ContextCompat.getDrawable(this, com.amity.socialcloud.uikit.common.R.drawable.amity_ic_arrow_back)
         )
-        getToolBar()?.setLeftString(getString(R.string.amity_edit_profile))
+        getToolBar()?.setLeftString(AmityLocalisation.getString(R.string.amity_edit_profile))
     }
 
     override fun getContentFragment(): Fragment {

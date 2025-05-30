@@ -16,6 +16,7 @@ import com.amity.socialcloud.uikit.community.newsfeed.model.AmityUserMention
 import com.amity.socialcloud.uikit.community.newsfeed.util.AmityNewsFeedEvents
 import com.amity.socialcloud.uikit.community.utils.EXTRA_PARAM_NEWS_FEED_ID
 import com.ekoapp.rxlifecycle.extension.untilLifecycleEnd
+import com.amity.socialcloud.uikit.common.AmityLocalisation
 
 class AmityPostEditorFragment : AmityBaseCreatePostFragment() {
 
@@ -46,11 +47,11 @@ class AmityPostEditorFragment : AmityBaseCreatePostFragment() {
 
     override fun setToolBarText() {
         (activity as AppCompatActivity).supportActionBar?.title =
-            getString(com.amity.socialcloud.uikit.common.R.string.amity_edit_post)
+            AmityLocalisation.getString(com.amity.socialcloud.uikit.common.R.string.amity_edit_post)
     }
 
     override fun getPostMenuText(): String {
-        return getString(com.amity.socialcloud.uikit.common.R.string.amity_save_caps)
+        return AmityLocalisation.getString(com.amity.socialcloud.uikit.common.R.string.amity_save_caps)
     }
 
     override fun isRightButtonActive(): Boolean {

@@ -21,6 +21,7 @@ import com.amity.socialcloud.uikit.common.common.setSafeOnClickListener
 import com.amity.socialcloud.uikit.common.common.views.dialog.bottomsheet.AmityBottomSheetDialog
 import com.amity.socialcloud.uikit.common.common.views.dialog.bottomsheet.BottomSheetMenuItem
 import com.amity.socialcloud.uikit.common.utils.AmityAlertDialogUtil
+import com.amity.socialcloud.uikit.common.AmityLocalisation
 import com.amity.socialcloud.uikit.community.R
 import com.amity.socialcloud.uikit.community.databinding.AmityFragmentUserProfilePageBinding
 import com.amity.socialcloud.uikit.community.databinding.AmityViewUserProfileHeaderBinding
@@ -216,8 +217,8 @@ class AmityUserProfilePageFragment : AmityBaseFragment(),
                     binding.userProfileHeader.updateState(it)
                 }, onError = {
                     showErrorDialog(
-                        getString(R.string.amity_follow_error, currentUser.getDisplayName()),
-                        getString(R.string.amity_something_went_wrong_pls_try),
+                        AmityLocalisation.getString(R.string.amity_follow_error, currentUser.getDisplayName()),
+                        AmityLocalisation.getString(R.string.amity_something_went_wrong_pls_try),
                         AmityFollowStatus.NONE
                     )
                 }).untilLifecycleEnd(this@AmityUserProfilePageFragment)
@@ -228,8 +229,8 @@ class AmityUserProfilePageFragment : AmityBaseFragment(),
                 binding.userProfileHeader.updateState(AmityFollowStatus.NONE)
                 viewModel.unFollow().doOnError {
                     showErrorDialog(
-                        getString(R.string.amity_unfollow_error, currentUser.getDisplayName()),
-                        getString(R.string.amity_something_went_wrong_pls_try),
+                        AmityLocalisation.getString(R.string.amity_unfollow_error, currentUser.getDisplayName()),
+                        AmityLocalisation.getString(R.string.amity_something_went_wrong_pls_try),
                         AmityFollowStatus.PENDING
                     )
                 }.untilLifecycleEnd(this@AmityUserProfilePageFragment)
@@ -313,11 +314,11 @@ class AmityUserProfilePageFragment : AmityBaseFragment(),
         fragmentStateAdapter.setFragmentList(
             arrayListOf(
                 AmityFragmentStateAdapter.AmityPagerModel(
-                    getString(R.string.amity_timeline),
+                    AmityLocalisation.getString(R.string.amity_timeline),
                     getTimeLineFragment()
                 ),
                 AmityFragmentStateAdapter.AmityPagerModel(
-                    getString(R.string.amity_gallery_title),
+                    AmityLocalisation.getString(R.string.amity_gallery_title),
                     getPostGalleryFragment()
                 )
             )
@@ -346,7 +347,7 @@ class AmityUserProfilePageFragment : AmityBaseFragment(),
 
     private fun showErrorDialog(title: String, description: String, prevState: AmityFollowStatus) {
         AmityAlertDialogUtil.showDialog(requireContext(), title, description,
-            getString(com.amity.socialcloud.uikit.common.R.string.amity_ok), null,
+            AmityLocalisation.getString(com.amity.socialcloud.uikit.common.R.string.amity_ok), null,
             DialogInterface.OnClickListener { dialog, which ->
                 if (which == DialogInterface.BUTTON_POSITIVE) {
                     dialog.cancel()
@@ -362,7 +363,7 @@ class AmityUserProfilePageFragment : AmityBaseFragment(),
         drawable?.colorFilter = BlendModeColorFilterCompat.createBlendModeColorFilterCompat(
             com.amity.socialcloud.uikit.common.R.color.amityColorBlack, BlendModeCompat.SRC_ATOP
         )
-        menu.add(Menu.NONE, 1, Menu.NONE, getString(R.string.amity_more_options))
+        menu.add(Menu.NONE, 1, Menu.NONE, AmityLocalisation.getString(R.string.amity_more_options))
             ?.setIcon(drawable)
             ?.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS)
         super.onCreateOptionsMenu(menu, inflater)

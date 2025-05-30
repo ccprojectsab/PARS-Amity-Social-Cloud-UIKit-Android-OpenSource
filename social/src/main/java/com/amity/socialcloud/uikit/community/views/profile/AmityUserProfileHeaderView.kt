@@ -15,10 +15,12 @@ import com.amity.socialcloud.sdk.model.core.follow.AmityFollowStatus
 import com.amity.socialcloud.sdk.model.core.follow.AmityMyFollowInfo
 import com.amity.socialcloud.sdk.model.core.follow.AmityUserFollowInfo
 import com.amity.socialcloud.sdk.model.core.user.AmityUser
+import com.amity.socialcloud.uikit.common.AmityLocalisation
 import com.amity.socialcloud.uikit.common.common.views.AmityColorPaletteUtil
 import com.amity.socialcloud.uikit.common.common.views.AmityColorShade
 import com.amity.socialcloud.uikit.community.R
 import com.amity.socialcloud.uikit.community.databinding.AmityViewUserProfileHeaderBinding
+
 
 class AmityUserProfileHeaderView : ConstraintLayout {
     private lateinit var headerBinding: AmityViewUserProfileHeaderBinding
@@ -43,7 +45,7 @@ class AmityUserProfileHeaderView : ConstraintLayout {
         headerBinding.amityUser = user
         headerBinding.postCount = "10"
         headerBinding.tvPostCount.setText(
-            getStylisedText("10", context.getString(R.string.amity_posts)),
+            getStylisedText("10", AmityLocalisation.getString(R.string.amity_posts)),
             TextView.BufferType.SPANNABLE
         )
 
@@ -64,14 +66,14 @@ class AmityUserProfileHeaderView : ConstraintLayout {
         headerBinding.tvFollowersCount.setText(
             getStylisedText(
                 followInfo.getFollowerCount().toString(),
-                context.getString(R.string.amity_followers)
+                AmityLocalisation.getString(R.string.amity_followers)
             ),
             TextView.BufferType.SPANNABLE
         )
         headerBinding.tvFollowingCount.setText(
             getStylisedText(
                 followInfo.getFollowingCount().toString(),
-                context.getString(com.amity.socialcloud.uikit.common.R.string.amity_following_count)
+                AmityLocalisation.getString(com.amity.socialcloud.uikit.common.R.string.amity_following_count)
             ),
             TextView.BufferType.SPANNABLE
         )
@@ -89,19 +91,18 @@ class AmityUserProfileHeaderView : ConstraintLayout {
         headerBinding.tvFollowersCount.setText(
             getStylisedText(
                 userFollowInfo.getFollowerCount().toString(),
-                context.getString(R.string.amity_followers)
+                AmityLocalisation.getString(R.string.amity_followers)
             ),
             TextView.BufferType.SPANNABLE
         )
         headerBinding.tvFollowingCount.setText(
             getStylisedText(
                 userFollowInfo.getFollowingCount().toString(),
-                context.getString(com.amity.socialcloud.uikit.common.R.string.amity_following_count)
+                AmityLocalisation.getString(com.amity.socialcloud.uikit.common.R.string.amity_following_count)
             ),
             TextView.BufferType.SPANNABLE
         )
         updateState(userFollowInfo.getStatus())
-
     }
 
     private fun setTextColor(followStatus: AmityFollowStatus) {

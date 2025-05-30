@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import com.amity.socialcloud.sdk.api.social.AmitySocialClient
 import com.amity.socialcloud.sdk.api.social.community.AmityCommunityRepository
 import com.amity.socialcloud.sdk.model.social.community.AmityCommunity
+import com.amity.socialcloud.uikit.common.AmityLocalisation
 import com.amity.socialcloud.uikit.common.base.AmityBaseToolbarFragmentContainerActivity
 import com.amity.socialcloud.uikit.community.R
 import com.amity.socialcloud.uikit.community.newsfeed.fragment.AmityPollPostCreatorFragment
@@ -28,7 +29,7 @@ class AmityPollPostCreatorActivity : AmityBaseToolbarFragmentContainerActivity()
         if (communityId != null) {
             getCommunity(communityRepository,communityId)
         } else {
-            getToolBar()?.setLeftString(getString(R.string.amity_my_timeline))
+            getToolBar()?.setLeftString(AmityLocalisation.getString(R.string.amity_my_timeline))
         }
     }
     private fun getCommunity(communityRepository: AmityCommunityRepository, communityId: Any) {

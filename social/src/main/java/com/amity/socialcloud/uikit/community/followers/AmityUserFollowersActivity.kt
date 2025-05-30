@@ -6,6 +6,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.amity.socialcloud.uikit.common.base.AmityBaseToolbarFragmentContainerActivity
 import com.amity.socialcloud.uikit.community.R
+import com.amity.socialcloud.uikit.common.AmityLocalisation
 import java.lang.Exception
 
 class AmityUserFollowersActivity : AmityBaseToolbarFragmentContainerActivity() {
@@ -16,7 +17,7 @@ class AmityUserFollowersActivity : AmityBaseToolbarFragmentContainerActivity() {
             ContextCompat.getDrawable(this, com.amity.socialcloud.uikit.common.R.drawable.amity_ic_arrow_back)
         )
         getToolBar()?.setLeftString(
-            intent.extras?.getString(DISPLAY_NAME) ?: getString(com.amity.socialcloud.uikit.common.R.string.amity_anonymous)
+            intent.extras?.getString(DISPLAY_NAME) ?: AmityLocalisation.getString(com.amity.socialcloud.uikit.common.R.string.amity_anonymous)
         )
     }
 

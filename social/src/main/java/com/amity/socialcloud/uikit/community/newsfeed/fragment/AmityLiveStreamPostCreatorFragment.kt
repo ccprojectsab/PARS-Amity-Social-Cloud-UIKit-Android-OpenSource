@@ -25,6 +25,7 @@ import com.amity.socialcloud.sdk.video.AmityStreamBroadcasterConfiguration
 import com.amity.socialcloud.sdk.video.StreamBroadcaster
 import com.amity.socialcloud.sdk.video.model.AmityBroadcastResolution
 import com.amity.socialcloud.sdk.video.model.AmityStreamBroadcasterState
+import com.amity.socialcloud.uikit.common.AmityLocalisation
 import com.amity.socialcloud.uikit.common.common.showSnackBar
 import com.amity.socialcloud.uikit.common.common.views.dialog.bottomsheet.AmityBottomSheetDialog
 import com.amity.socialcloud.uikit.common.common.views.dialog.bottomsheet.BottomSheetMenuItem
@@ -205,10 +206,10 @@ class AmityLiveStreamPostCreatorFragment : RxFragment() {
 
     private fun showStopStreamingDialog() {
         MaterialAlertDialogBuilder(requireContext())
-            .setTitle(R.string.amity_video_stream_stop_confirmation_title)
-            .setMessage(R.string.amity_video_stream_stop_confirmation_description)
-            .setNeutralButton(R.string.amity_general_keep_live_stream) { _, _ -> }
-            .setNegativeButton(R.string.amity_general_end_live_stream) { _, _ -> stopStreaming() }
+            .setTitle(AmityLocalisation.getString(R.string.amity_video_stream_stop_confirmation_title))
+            .setMessage(AmityLocalisation.getString(R.string.amity_video_stream_stop_confirmation_description))
+            .setNeutralButton(AmityLocalisation.getString(R.string.amity_general_keep_live_stream)) { _, _ -> }
+            .setNegativeButton(AmityLocalisation.getString(R.string.amity_general_end_live_stream)) { _, _ -> stopStreaming() }
             .show()
     }
 
@@ -238,9 +239,9 @@ class AmityLiveStreamPostCreatorFragment : RxFragment() {
     private fun showPermissionErrorDialog() {
         MaterialAlertDialogBuilder(requireContext())
             .setCancelable(false)
-            .setTitle(R.string.amity_general_error)
-            .setMessage(R.string.amity_general_error_permission)
-            .setNeutralButton(R.string.amity_general_understand) { _, _ -> activity?.finish() }
+            .setTitle(AmityLocalisation.getString(R.string.amity_general_error))
+            .setMessage(AmityLocalisation.getString(R.string.amity_general_error_permission))
+            .setNeutralButton(AmityLocalisation.getString(R.string.amity_general_understand)) { _, _ -> activity?.finish() }
             .show()
     }
 
@@ -320,7 +321,7 @@ class AmityLiveStreamPostCreatorFragment : RxFragment() {
 
     private fun showErrorDialog(title: String, message: String) {
         AmityAlertDialogUtil.showDialog(requireContext(), title, message,
-            resources.getString(R.string.amity_done),
+            AmityLocalisation.getString(R.string.amity_done),
             null,
             DialogInterface.OnClickListener { dialog, which ->
                 AmityAlertDialogUtil.checkConfirmDialog(
@@ -341,7 +342,7 @@ class AmityLiveStreamPostCreatorFragment : RxFragment() {
     }
 
     private fun showReconnectLabel() {
-        binding.liveLabel.text = getString(R.string.amity_video_stream_connecting)
+        binding.liveLabel.text = AmityLocalisation.getString(R.string.amity_video_stream_connecting)
         binding.liveLabel.visibility = View.VISIBLE
     }
 
@@ -358,7 +359,7 @@ class AmityLiveStreamPostCreatorFragment : RxFragment() {
                 val durationMs = it * 1000
                 val second = durationMs / 1000 % 60
                 val min = durationMs / 1000 / 60
-                binding.liveLabel.text = getString(
+                binding.liveLabel.text = AmityLocalisation.getString(
                     R.string.amity_video_stream_live_with_time,
                     min.format(),
                     second.format()
@@ -368,7 +369,7 @@ class AmityLiveStreamPostCreatorFragment : RxFragment() {
     }
 
     private fun Long.format(): String {
-        return String.format("%02d", this)
+        return AmityLocalisation.getString(R.string.amity_characters_limit_dynamic_error_msg, this)
     }
 
     private fun hasPermission(permission: String): Boolean {
@@ -423,7 +424,7 @@ class AmityLiveStreamPostCreatorFragment : RxFragment() {
 
     private fun presentUploadFailedThumbnail() {
         removeThumbnail()
-        binding.root.showSnackBar(msg = getString(R.string.amity_image_upload_error))
+        binding.root.showSnackBar(msg = AmityLocalisation.getString(R.string.amity_image_upload_error))
     }
 
     private fun removeThumbnail() {

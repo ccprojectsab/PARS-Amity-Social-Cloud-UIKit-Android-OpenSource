@@ -12,6 +12,7 @@ import com.amity.socialcloud.uikit.community.databinding.AmityActivityLivestream
 import com.amity.socialcloud.uikit.community.newsfeed.viewmodel.AmityLiveStreamVideoPlayerViewModel
 import com.ekoapp.rxlifecycle.extension.untilLifecycleEnd
 import com.trello.rxlifecycle4.components.support.RxAppCompatActivity
+import com.amity.socialcloud.uikit.common.AmityLocalisation
 
 @androidx.annotation.OptIn(androidx.media3.common.util.UnstableApi::class)
 open class AmityLivestreamVideoPlayerActivity : RxAppCompatActivity() {
@@ -96,7 +97,7 @@ open class AmityLivestreamVideoPlayerActivity : RxAppCompatActivity() {
     private fun presentStreamLoadingError() {
         Toast.makeText(
             this,
-            getString(R.string.amity_video_stream_unavailable_description),
+            AmityLocalisation.getString(R.string.amity_video_stream_unavailable_description),
             Toast.LENGTH_SHORT
         ).show()
     }

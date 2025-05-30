@@ -30,6 +30,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.viewpager2.widget.ViewPager2
+import com.amity.socialcloud.uikit.common.AmityLocalisation
 import com.amity.socialcloud.uikit.common.base.AmityFragmentStateAdapter
 import com.amity.socialcloud.uikit.common.common.views.AmityColorPaletteUtil
 import com.amity.socialcloud.uikit.common.common.views.AmityColorShade
@@ -137,11 +138,11 @@ class AmityCommunityHomePageFragment : Fragment(), AmityToolBarClickListener {
         fragmentStateAdapter.setFragmentList(
             arrayListOf(
                 AmityFragmentStateAdapter.AmityPagerModel(
-                    getString(R.string.amity_title_news_feed),
+                    AmityLocalisation.getString(R.string.amity_title_news_feed),
                     getNewsFeedFragment()
                 ),
                 AmityFragmentStateAdapter.AmityPagerModel(
-                    getString(R.string.amity_title_explore),
+                    AmityLocalisation.getString(R.string.amity_title_explore),
                     getExploreFragment()
                 )
             )
@@ -202,7 +203,7 @@ class AmityCommunityHomePageFragment : Fragment(), AmityToolBarClickListener {
 
     private fun initToolbar() {
 
-        binding.communityHomeToolbar.setLeftString(getString(R.string.amity_community))
+        binding.communityHomeToolbar.setLeftString(AmityLocalisation.getString(R.string.amity_community))
         (activity as AppCompatActivity).supportActionBar?.displayOptions =
             ActionBar.DISPLAY_SHOW_CUSTOM
         (activity as AppCompatActivity).setSupportActionBar(binding.communityHomeToolbar as Toolbar)
@@ -213,12 +214,12 @@ class AmityCommunityHomePageFragment : Fragment(), AmityToolBarClickListener {
         globalSearchStateAdapter.setFragmentList(
             arrayListOf(
                 AmityFragmentStateAdapter.AmityPagerModel(
-                    getString(R.string.amity_communities),
+                    AmityLocalisation.getString(R.string.amity_communities),
                     AmityCommunitySearchFragment.newInstance(searchString)
                         .build(requireActivity() as AppCompatActivity)
                 ),
                 AmityFragmentStateAdapter.AmityPagerModel(
-                    getString(R.string.amity_accounts),
+                    AmityLocalisation.getString(R.string.amity_accounts),
                     AmityUserSearchFragment.newInstance(searchString)
                         .build(requireActivity() as AppCompatActivity)
                 )

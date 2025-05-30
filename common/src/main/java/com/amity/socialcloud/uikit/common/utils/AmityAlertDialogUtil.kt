@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
 import androidx.core.content.ContextCompat
+import com.amity.socialcloud.uikit.common.AmityLocalisation
 import com.amity.socialcloud.uikit.common.R
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
@@ -61,9 +62,9 @@ object AmityAlertDialogUtil {
 
     fun showNoPermissionDialog(context: Context, listener: DialogInterface.OnClickListener) {
         val builder = MaterialAlertDialogBuilder(context)
-        builder.setTitle(context.getString(R.string.amity_no_permission_title))
-                .setMessage(context.getString(R.string.amity_no_permission_message))
-                .setPositiveButton(context.getText(R.string.amity_ok)) { dialog, _ ->
+        builder.setTitle(AmityLocalisation.getString(R.string.amity_no_permission_title))
+                .setMessage(AmityLocalisation.getString(R.string.amity_no_permission_message))
+                .setPositiveButton(AmityLocalisation.getString(R.string.amity_ok)) { dialog, _ ->
                     listener.onClick(dialog, DialogInterface.BUTTON_POSITIVE)
                 }
         val dialog = builder.create()

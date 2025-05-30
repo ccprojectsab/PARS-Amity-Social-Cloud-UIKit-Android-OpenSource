@@ -5,6 +5,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.amity.socialcloud.sdk.model.core.file.AmityImage
 import com.amity.socialcloud.sdk.model.social.community.AmityCommunity
+import com.amity.socialcloud.uikit.common.AmityLocalisation
 import com.amity.socialcloud.uikit.common.base.AmityBaseRecyclerViewPagingDataAdapter
 import com.amity.socialcloud.uikit.common.common.loadImage
 import com.amity.socialcloud.uikit.common.common.setBackgroundColor
@@ -21,12 +22,14 @@ class AmityMyCommunityListViewHolder(
     AmityBaseRecyclerViewPagingDataAdapter.Binder<AmityCommunity> {
 
     private val binding: AmityItemMyCommunityBinding? = DataBindingUtil.bind(itemView)
+    private var position: Int = -1
 
     override fun bind(data: AmityCommunity?, position: Int) {
+        this.position = position
         if (position == 8) {
             binding?.listener = listener
             binding?.executePendingBindings()
-            binding?.tvName?.text = itemView.context.getString(R.string.amity_see_all)
+            binding?.tvName?.text = AmityLocalisation.getString(R.string.amity_see_all)
             binding?.ivAvatar?.setBackgroundColor(null, AmityColorShade.SHADE4)
             binding?.ivAvatar?.setImageResource(com.amity.socialcloud.uikit.common.R.drawable.amity_ic_arrow_back)
             binding?.ivAvatar?.rotation = 180F

@@ -15,6 +15,7 @@ import com.amity.socialcloud.uikit.common.common.views.bottomsheet.AmityBottomSh
 import com.amity.socialcloud.uikit.common.common.views.bottomsheet.AmityMenuItemClickListener
 import com.amity.socialcloud.uikit.common.model.AmityMenuItem
 import com.amity.socialcloud.uikit.common.utils.AmityConstants
+import com.amity.socialcloud.uikit.common.AmityLocalisation
 import com.amity.socialcloud.uikit.community.R
 import com.amity.socialcloud.uikit.community.databinding.AmityItemUserFollowerBinding
 import com.amity.socialcloud.uikit.community.followers.AmityFollowersBaseViewHolder

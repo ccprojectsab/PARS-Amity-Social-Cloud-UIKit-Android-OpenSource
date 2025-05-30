@@ -7,6 +7,7 @@ import androidx.activity.result.contract.ActivityResultContract
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.amity.socialcloud.sdk.model.social.comment.AmityComment
+import com.amity.socialcloud.uikit.common.AmityLocalisation
 import com.amity.socialcloud.uikit.common.base.AmityBaseToolbarFragmentContainerActivity
 import com.amity.socialcloud.uikit.community.R
 import com.amity.socialcloud.uikit.community.newsfeed.fragment.AmityCommentEditorFragment
@@ -24,9 +25,9 @@ class AmityEditCommentActivity : AmityBaseToolbarFragmentContainerActivity() {
         val isReply = comment?.getParentId()?.isNotEmpty() == true
 
         if (isReply) {
-            getToolBar()?.setLeftString(getString(R.string.amity_edit_reply))
+            getToolBar()?.setLeftString(AmityLocalisation.getString(R.string.amity_edit_reply))
         } else {
-            getToolBar()?.setLeftString(getString(R.string.amity_edit_comment))
+            getToolBar()?.setLeftString(AmityLocalisation.getString(R.string.amity_edit_comment))
         }
     }
 

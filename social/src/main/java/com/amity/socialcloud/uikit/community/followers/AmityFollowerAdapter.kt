@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.amity.socialcloud.sdk.api.core.AmityCoreClient
 import com.amity.socialcloud.sdk.model.core.follow.AmityFollowRelationship
 import com.amity.socialcloud.sdk.model.core.user.AmityUser
+import com.amity.socialcloud.uikit.common.AmityLocalisation
 import com.amity.socialcloud.uikit.common.base.AmityBaseRecyclerViewPagingDataAdapter
 import com.amity.socialcloud.uikit.common.common.showSnackBar
 import com.amity.socialcloud.uikit.common.common.views.bottomsheet.AmityBottomSheetListFragment
@@ -102,14 +103,14 @@ class AmityFollowerAdapter(
                 items.add(
                     AmityMenuItem(
                         AmityConstants.ID_UN_REPORT_USER,
-                        context.getString(R.string.amity_un_report_user)
+                        AmityLocalisation.getString(R.string.amity_un_report_user)
                     )
                 )
             } else {
                 items.add(
                     AmityMenuItem(
                         AmityConstants.ID_REPORT_USER,
-                        context.getString(R.string.amity_report_user)
+                        AmityLocalisation.getString(R.string.amity_report_user)
                     )
                 )
             }
@@ -117,7 +118,7 @@ class AmityFollowerAdapter(
                 items.add(
                     AmityMenuItem(
                         AmityConstants.ID_REMOVE_USER,
-                        context.getString(R.string.amity_remove_user),
+                        AmityLocalisation.getString(R.string.amity_remove_user),
                         true
                     )
                 )
@@ -140,16 +141,10 @@ class AmityFollowerAdapter(
         fun showRemoveUserDialog(user: AmityUser) {
             AmityAlertDialogUtil.showDialog(
                 context,
-                String.format(
-                    context.getString(com.amity.socialcloud.uikit.common.R.string.amity_remove_follower),
-                    user.getDisplayName()
-                ),
-                String.format(
-                    context.getString(com.amity.socialcloud.uikit.common.R.string.amity_remove_follower_msg),
-                    user.getDisplayName()
-                ),
-                context.getString(R.string.amity_remove),
-                context.getString(R.string.amity_cancel),
+                AmityLocalisation.getString(com.amity.socialcloud.uikit.common.R.string.amity_remove_follower, user.getDisplayName()),
+                AmityLocalisation.getString(com.amity.socialcloud.uikit.common.R.string.amity_remove_follower_msg, user.getDisplayName()),
+                AmityLocalisation.getString(R.string.amity_remove),
+                AmityLocalisation.getString(R.string.amity_cancel),
                 DialogInterface.OnClickListener { dialog, which ->
                     if (which == DialogInterface.BUTTON_POSITIVE) {
                         removeUser(user)
@@ -161,9 +156,9 @@ class AmityFollowerAdapter(
         private fun removeUser(user: AmityUser) {
             itemViewModel.removeUser(user.getUserId())
                 .doOnComplete {
-                    itemView.showSnackBar(context.getString(R.string.amity_removed))
+                    itemView.showSnackBar(AmityLocalisation.getString(R.string.amity_removed))
                 }.doOnError {
-                    itemView.showSnackBar(context.getString(R.string.amity_unable_to_remove))
+                    itemView.showSnackBar(AmityLocalisation.getString(R.string.amity_unable_to_remove))
                 }
                 .untilLifecycleEnd(itemView).subscribe()
         }

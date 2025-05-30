@@ -8,6 +8,7 @@ import com.amity.socialcloud.sdk.model.social.comment.AmityComment
 import com.amity.socialcloud.uikit.common.common.showSnackBar
 import com.amity.socialcloud.uikit.community.R
 import com.amity.socialcloud.uikit.community.newsfeed.viewmodel.AmityCommentViewModel
+import com.amity.socialcloud.uikit.common.AmityLocalisation
 
 class AmityCommentCreatorFragment : AmityCommentBaseFragment() {
 
@@ -21,7 +22,7 @@ class AmityCommentCreatorFragment : AmityCommentBaseFragment() {
     }
 
     override fun getCommentMenuText(): String {
-        return getString(R.string.amity_post_caps)
+        return AmityLocalisation.getString(R.string.amity_post_caps)
     }
 
     private fun addComment() {
@@ -33,12 +34,12 @@ class AmityCommentCreatorFragment : AmityCommentBaseFragment() {
             },
             onError = {
                 if (AmityError.from(it) == AmityError.BAN_WORD_FOUND) {
-                    view?.showSnackBar(getString(R.string.amity_add_blocked_words_comment_error_message))
+                    view?.showSnackBar(AmityLocalisation.getString(R.string.amity_add_blocked_words_comment_error_message))
                 } else {
                     if (viewModel.getReply() != null) {
-                        view?.showSnackBar(getString(R.string.amity_add_reply_error_message))
+                        view?.showSnackBar(AmityLocalisation.getString(R.string.amity_add_reply_error_message))
                     } else {
-                        view?.showSnackBar(getString(R.string.amity_add_comment_error_message))
+                        view?.showSnackBar(AmityLocalisation.getString(R.string.amity_add_comment_error_message))
                     }
                 }
                 updateCommentMenu(true)

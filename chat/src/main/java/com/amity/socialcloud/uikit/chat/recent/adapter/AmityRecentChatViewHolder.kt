@@ -35,6 +35,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.reactive.collect
 import kotlinx.coroutines.withContext
+import com.amity.socialcloud.uikit.common.AmityLocalisation
 
 class AmityRecentChatViewHolder(
     itemView: View,
@@ -76,7 +77,7 @@ class AmityRecentChatViewHolder(
                 name.text = data.getDisplayName()
             } else {
                 name.text =
-                    itemView.context.getString(com.amity.socialcloud.uikit.common.R.string.amity_anonymous)
+                    AmityLocalisation.getString(com.amity.socialcloud.uikit.common.R.string.amity_anonymous)
             }
             getChannelMessagePreview(data)
             setUpAvatarView(data)
@@ -85,8 +86,7 @@ class AmityRecentChatViewHolder(
             binding?.tvTime?.text =
                 AmityDateUtils.getMessageTime(data.getLastActivity().millis)
             memberCount.text =
-                String.format(
-                    itemView.context.getString(R.string.amity_member_count),
+                String.format(AmityLocalisation.getString(R.string.amity_member_count),
                     data.getMemberCount()
                 )
             val metadata: JsonObject? = data.getMetadata()
@@ -171,7 +171,7 @@ class AmityRecentChatViewHolder(
                         name.text = data.getDisplayName()
                     } else {
                         name.text =
-                            itemView.context.getString(com.amity.socialcloud.uikit.common.R.string.amity_anonymous)
+                            AmityLocalisation.getString(com.amity.socialcloud.uikit.common.R.string.amity_anonymous)
                     }
                     setUpAvatarView(data)
                 }
@@ -182,7 +182,7 @@ class AmityRecentChatViewHolder(
                     name.text = data.getDisplayName()
                 } else {
                     name.text =
-                        itemView.context.getString(com.amity.socialcloud.uikit.common.R.string.amity_anonymous)
+                        AmityLocalisation.getString(com.amity.socialcloud.uikit.common.R.string.amity_anonymous)
                 }
                 setUpAvatarView(data)
             }
@@ -265,7 +265,7 @@ class AmityRecentChatViewHolder(
             "ME"
         } else {
             item.getCreator()?.getDisplayName()
-                ?: itemView.context.getString(com.amity.socialcloud.uikit.common.R.string.amity_anonymous)
+                ?: AmityLocalisation.getString(com.amity.socialcloud.uikit.common.R.string.amity_anonymous)
         }
     }
 

@@ -17,6 +17,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.amity.socialcloud.sdk.model.core.error.AmityException
 import com.amity.socialcloud.sdk.model.core.file.upload.AmityUploadResult
+import com.amity.socialcloud.uikit.common.AmityLocalisation
 import com.amity.socialcloud.uikit.common.common.showSnackBar
 import com.amity.socialcloud.uikit.common.contract.AmityPickFileContract
 import com.amity.socialcloud.uikit.common.utils.AmityAlertDialogUtil
@@ -215,10 +216,10 @@ AmityCommunityCreateBaseFragment : RxFragment() {
 
     private fun showDialog() {
         AmityAlertDialogUtil.showDialog(requireContext(),
-            getString(R.string.amity_cc_leave),
-            getString(R.string.amity_cc_dialog_msg),
-            getString(R.string.amity_leave),
-            getString(R.string.amity_cancel),
+            AmityLocalisation.getString(R.string.amity_cc_leave),
+            AmityLocalisation.getString(R.string.amity_cc_dialog_msg),
+            AmityLocalisation.getString(R.string.amity_leave),
+            AmityLocalisation.getString(R.string.amity_cancel),
             DialogInterface.OnClickListener { dialog, which ->
                 if (which == DialogInterface.BUTTON_POSITIVE) {
                     requireActivity().finish()
@@ -251,7 +252,7 @@ AmityCommunityCreateBaseFragment : RxFragment() {
                         }
                         is AmityUploadResult.ERROR, AmityUploadResult.CANCELLED -> {
                             binding.btnCreateCommunity.isEnabled = true
-                            view?.showSnackBar(getString(R.string.amity_image_upload_error), Snackbar.LENGTH_SHORT)
+                            view?.showSnackBar(AmityLocalisation.getString(R.string.amity_image_upload_error), Snackbar.LENGTH_SHORT)
                         }
                         else -> {
                         }

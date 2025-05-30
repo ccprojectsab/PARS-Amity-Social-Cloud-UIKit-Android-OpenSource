@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.viewpager2.widget.ViewPager2
 import com.amity.socialcloud.sdk.model.social.post.AmityPost
+import com.amity.socialcloud.uikit.common.AmityLocalisation
 import com.amity.socialcloud.uikit.common.base.AmityBaseFragment
 import com.amity.socialcloud.uikit.common.base.AmityFragmentStateAdapter
 import com.amity.socialcloud.uikit.community.R
@@ -80,8 +81,8 @@ class AmityMediaGalleryFragment : AmityBaseFragment() {
     }
 
     private fun registerTabChangeListener(photoTabTextView: TextView, videoTabTextView: TextView) {
-        val videoTitle = requireActivity().getString(R.string.amity_general_videos)
-        val photoTitle = requireActivity().getString(R.string.amity_general_photos)
+        val videoTitle = AmityLocalisation.getString(R.string.amity_general_videos)
+        val photoTitle = AmityLocalisation.getString(R.string.amity_general_photos)
         binding.mediaGalleryViewpager.registerOnPageChangeCallback(object :
             ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
@@ -102,12 +103,12 @@ class AmityMediaGalleryFragment : AmityBaseFragment() {
     }
 
     private fun photoGalleryFragment() = AmityFragmentStateAdapter.AmityPagerModel(
-        requireActivity().getString(R.string.amity_general_photos),
+        AmityLocalisation.getString(R.string.amity_general_photos),
         postGalleryFragment(AmityPost.DataType.IMAGE)
     )
 
     private fun videoGalleryFragment() = AmityFragmentStateAdapter.AmityPagerModel(
-        requireActivity().getString(R.string.amity_general_videos),
+        AmityLocalisation.getString(R.string.amity_general_videos),
         postGalleryFragment(AmityPost.DataType.VIDEO)
     )
 

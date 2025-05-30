@@ -27,6 +27,7 @@ import com.google.android.material.snackbar.Snackbar
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 import java.io.File
+import com.amity.socialcloud.uikit.common.AmityLocalisation
 
 class AmityUserProfileEditorFragment : AmityPickerFragment() {
     private var menuItemSaveProfile: MenuItem? = null
@@ -137,13 +138,13 @@ class AmityUserProfileEditorFragment : AmityPickerFragment() {
 
     private fun initToolBar() {
         setHasOptionsMenu(true)
-        (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.amity_edit_profile)
+        (activity as AppCompatActivity).supportActionBar?.title = AmityLocalisation.getString(R.string.amity_edit_profile)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         menuItemSaveProfile =
-            menu.add(Menu.NONE, ID_MENU_ITEM_SAVE_PROFILE, Menu.NONE, getString(com.amity.socialcloud.uikit.common.R.string.amity_save))
-        menuItemSaveProfile?.setTitle(com.amity.socialcloud.uikit.common.R.string.amity_save)
+            menu.add(Menu.NONE, ID_MENU_ITEM_SAVE_PROFILE, Menu.NONE, AmityLocalisation.getString(com.amity.socialcloud.uikit.common.R.string.amity_save))
+        menuItemSaveProfile?.setTitle(AmityLocalisation.getString(com.amity.socialcloud.uikit.common.R.string.amity_save))
             ?.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS)
         updateSaveProfileMenu(viewModel.hasProfileUpdate.value ?: false)
         super.onCreateOptionsMenu(menu, inflater)
@@ -163,7 +164,7 @@ class AmityUserProfileEditorFragment : AmityPickerFragment() {
 
     private fun updateSaveProfileMenu(enabled: Boolean) {
         menuItemSaveProfile?.isEnabled = enabled
-        val s = SpannableString(getString(com.amity.socialcloud.uikit.common.R.string.amity_save))
+        val s = SpannableString(AmityLocalisation.getString(com.amity.socialcloud.uikit.common.R.string.amity_save))
         s.setSpan(
             ForegroundColorSpan(
                 AmityOptionMenuColorUtil.getColor(
@@ -190,7 +191,7 @@ class AmityUserProfileEditorFragment : AmityPickerFragment() {
     }
 
     private fun handleErrorProfilePictureUpload() {
-        view?.showSnackBar(getString(R.string.amity_upload_failed_profile_picture), Snackbar.LENGTH_SHORT)
+        view?.showSnackBar(AmityLocalisation.getString(R.string.amity_upload_failed_profile_picture), Snackbar.LENGTH_SHORT)
     }
 
     private fun uploadProfilePicture(uri: Uri) {
@@ -238,7 +239,7 @@ class AmityUserProfileEditorFragment : AmityPickerFragment() {
                 }, {
                     viewModel.errorOnUpdate()
                     context?.also {
-                        view?.showSnackBar(getString(R.string.amity_edit_profile_update_failed), Snackbar.LENGTH_SHORT)
+                        view?.showSnackBar(AmityLocalisation.getString(R.string.amity_edit_profile_update_failed), Snackbar.LENGTH_SHORT)
                     }
                 })
         )

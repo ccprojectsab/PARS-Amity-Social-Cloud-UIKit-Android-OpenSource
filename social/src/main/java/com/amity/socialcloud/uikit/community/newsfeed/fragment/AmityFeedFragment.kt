@@ -19,6 +19,7 @@ import com.amity.socialcloud.sdk.model.core.file.AmityImage
 import com.amity.socialcloud.sdk.model.social.comment.AmityComment
 import com.amity.socialcloud.sdk.model.social.post.AmityPost
 import com.amity.socialcloud.sdk.model.video.stream.AmityStream
+import com.amity.socialcloud.uikit.common.AmityLocalisation
 import com.amity.socialcloud.uikit.common.base.AmityBaseFragment
 import com.amity.socialcloud.uikit.common.common.AmityFileManager
 import com.amity.socialcloud.uikit.common.common.showSnackBar
@@ -564,7 +565,7 @@ abstract class AmityFeedFragment : AmityBaseFragment() {
 
     private fun reportPost(post: AmityPost) {
         getViewModel().reportPost(post, {
-            view?.showSnackBar(getString(R.string.amity_report_sent))
+            view?.showSnackBar(AmityLocalisation.getString(R.string.amity_report_sent))
         }, {})
             .untilLifecycleEnd(this)
             .subscribe()
@@ -572,7 +573,7 @@ abstract class AmityFeedFragment : AmityBaseFragment() {
 
     private fun unReportPost(post: AmityPost) {
         getViewModel().unReportPost(post, {
-            view?.showSnackBar(getString(R.string.amity_unreport_sent))
+            view?.showSnackBar(AmityLocalisation.getString(R.string.amity_unreport_sent))
         }, {})
             .untilLifecycleEnd(this)
             .subscribe()
@@ -698,9 +699,9 @@ abstract class AmityFeedFragment : AmityBaseFragment() {
     private fun showAlreadyReviewedDialog() {
         AmityAlertDialogUtil.showDialog(
             requireContext(),
-            getString(R.string.amity_post_approve_error_dialog_title),
-            getString(R.string.amity_post_approve_error_dialog_description),
-            getString(R.string.amity_ok),
+            AmityLocalisation.getString(R.string.amity_post_approve_error_dialog_title),
+            AmityLocalisation.getString(R.string.amity_post_approve_error_dialog_description),
+            AmityLocalisation.getString(R.string.amity_ok),
             negativeButton = null,
             cancelable = false
         ) { dialog, which ->
@@ -750,7 +751,7 @@ abstract class AmityFeedFragment : AmityBaseFragment() {
 
     private fun reportComment(comment: AmityComment) {
         getViewModel().reportComment(comment, {
-            view?.showSnackBar(getString(R.string.amity_report_sent))
+            view?.showSnackBar(AmityLocalisation.getString(R.string.amity_report_sent))
         }, {})
             .untilLifecycleEnd(this)
             .subscribe()
@@ -758,7 +759,7 @@ abstract class AmityFeedFragment : AmityBaseFragment() {
 
     private fun unReportComment(comment: AmityComment) {
         getViewModel().unReportComment(comment, {
-            view?.showSnackBar(getString(R.string.amity_unreport_sent))
+            view?.showSnackBar(AmityLocalisation.getString(R.string.amity_unreport_sent))
         }, {})
             .untilLifecycleEnd(this)
             .subscribe()
@@ -819,7 +820,7 @@ abstract class AmityFeedFragment : AmityBaseFragment() {
     }
 
     private fun showDownloadingSnackBar(fileName: String) {
-        val text = (requireContext().getString(R.string.amity_downloading_file)) + " " + fileName
+        val text = AmityLocalisation.getString(R.string.amity_downloading_file) + " " + fileName
         Snackbar.make(binding.recyclerViewFeed, text, Snackbar.LENGTH_SHORT).show()
     }
 }

@@ -15,6 +15,7 @@ import com.linkedin.android.spyglass.mentions.MentionSpan
 import com.linkedin.android.spyglass.mentions.MentionSpanConfig
 import com.linkedin.android.spyglass.mentions.Mentionable
 import com.linkedin.android.spyglass.ui.MentionsEditText
+import com.amity.socialcloud.uikit.common.AmityLocalisation
 
 private const val MENTIONS_LIMIT: Int = 30
 private const val CHARACTERS_LIMIT: Int = 50000
@@ -38,8 +39,8 @@ class AmityPostComposeView : MentionsEditText {
     override fun insertMention(mention: Mentionable) {
         if (getUserMentions().size >= MENTIONS_LIMIT) {
             showErrorDialog(
-                context.resources.getString(R.string.amity_mention_error_title),
-                context.resources.getString(R.string.amity_mention_error_msg)
+                AmityLocalisation.getString(R.string.amity_mention_error_title),
+                AmityLocalisation.getString(R.string.amity_mention_error_msg)
             )
         } else {
             super.insertMention(mention)
@@ -63,8 +64,8 @@ class AmityPostComposeView : MentionsEditText {
             if (!text.isNullOrEmpty() && text.length > CHARACTERS_LIMIT) {
                 getText().delete(CHARACTERS_LIMIT, getText().length)
                 showErrorDialog(
-                    context.resources.getString(R.string.amity_post_characters_limit_error_title),
-                    context.resources.getString(R.string.amity_characters_limit_error_msg)
+                    AmityLocalisation.getString(R.string.amity_post_characters_limit_error_title),
+                    AmityLocalisation.getString(R.string.amity_characters_limit_error_msg)
                 )
             }
         }
@@ -82,7 +83,7 @@ class AmityPostComposeView : MentionsEditText {
     private fun showErrorDialog(title: String, message: String) {
         AmityAlertDialogUtil.showDialog(
             context, title, message,
-            context.resources.getString(R.string.amity_done),
+            AmityLocalisation.getString(R.string.amity_done),
             null
         ) { dialog, which ->
             AmityAlertDialogUtil.checkConfirmDialog(

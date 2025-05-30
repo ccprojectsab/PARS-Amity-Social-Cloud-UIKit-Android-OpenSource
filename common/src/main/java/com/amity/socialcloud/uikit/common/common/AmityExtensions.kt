@@ -14,6 +14,7 @@ import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.paging.PagedList
+import com.amity.socialcloud.uikit.common.AmityLocalisation
 import com.amity.socialcloud.uikit.common.R
 import com.amity.socialcloud.uikit.common.common.views.AmityColorPaletteUtil
 import com.amity.socialcloud.uikit.common.common.views.AmityColorShade
@@ -85,38 +86,38 @@ fun Long.readableFeedPostTime(context: Context): String {
     val years = (months / 12)
 
     return when {
-        years > 0 -> context.resources.getQuantityString(
+        years > 0 -> AmityLocalisation.getString(
             R.plurals.amity_number_of_years,
             years,
             years
         )
-        months > 0 -> context.resources.getQuantityString(
+        months > 0 -> AmityLocalisation.getString(
             R.plurals.amity_number_of_months,
             months,
             months
         )
-        weeks > 0 -> context.resources.getQuantityString(
+        weeks > 0 -> AmityLocalisation.getString(
             R.plurals.amity_number_of_weeks,
             weeks,
             weeks
         )
-        days > 0 -> context.resources.getQuantityString(
+        days > 0 -> AmityLocalisation.getString(
             R.plurals.amity_number_of_days,
             days.toInt(),
             days
         )
-        isYesterday(this) -> context.resources.getString(R.string.amity_yesterday)
-        hours > 0 -> context.resources.getQuantityString(
+        isYesterday(this) -> AmityLocalisation.getString(R.string.amity_yesterday)
+        hours > 0 -> AmityLocalisation.getString(
             R.plurals.amity_number_of_hours,
             hours.toInt(),
             hours
         )
-        minutes > 0 -> context.resources.getQuantityString(
+        minutes > 0 -> AmityLocalisation.getString(
             R.plurals.amity_number_of_mins,
             minutes.toInt(),
             minutes
         )
-        else -> context.getString(R.string.amity_just_now)
+        else -> AmityLocalisation.getString(R.string.amity_just_now)
     }
 }
 

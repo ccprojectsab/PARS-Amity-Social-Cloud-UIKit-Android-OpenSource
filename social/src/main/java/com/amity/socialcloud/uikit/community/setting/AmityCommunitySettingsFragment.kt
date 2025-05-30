@@ -20,6 +20,7 @@ import com.amity.socialcloud.uikit.community.utils.EXTRA_PARAM_COMMUNITY_ID
 import com.ekoapp.rxlifecycle.extension.untilLifecycleEnd
 import com.trello.rxlifecycle4.components.support.RxFragment
 import java.util.*
+import com.amity.socialcloud.uikit.common.AmityLocalisation
 
 class AmityCommunitySettingsFragment : RxFragment() {
 
@@ -99,10 +100,10 @@ class AmityCommunitySettingsFragment : RxFragment() {
 
     internal fun confirmCloseCommunity() {
         AmityAlertDialogUtil.showDialog(requireContext(),
-            "${getString(R.string.amity_close_community)}?",
-            getString(R.string.amity_close_community_msg),
-            getString(R.string.amity_close).toUpperCase(Locale.getDefault()),
-            getString(R.string.amity_cancel).toUpperCase(Locale.getDefault()),
+            "${AmityLocalisation.getString(R.string.amity_close_community)}?",
+            AmityLocalisation.getString(R.string.amity_close_community_msg),
+            AmityLocalisation.getString(R.string.amity_close).toUpperCase(Locale.getDefault()),
+            AmityLocalisation.getString(R.string.amity_cancel).toUpperCase(Locale.getDefault()),
             DialogInterface.OnClickListener { dialog, which ->
                 checkConfirmDialog(
                     isPositive = which,
@@ -124,10 +125,10 @@ class AmityCommunitySettingsFragment : RxFragment() {
 
     private fun confirmLastModeratorLeaveCommunity() {
         AmityAlertDialogUtil.showDialog(requireContext(),
-            "${getString(R.string.amity_leave_community)}?",
-            getString(R.string.amity_last_moderator_leave_community_msg),
-            getString(R.string.amity_close).toUpperCase(Locale.getDefault()),
-            getString(R.string.amity_cancel).toUpperCase(Locale.getDefault()),
+            "${AmityLocalisation.getString(R.string.amity_leave_community)}?",
+            AmityLocalisation.getString(R.string.amity_last_moderator_leave_community_msg),
+            AmityLocalisation.getString(R.string.amity_close).toUpperCase(Locale.getDefault()),
+            AmityLocalisation.getString(R.string.amity_cancel).toUpperCase(Locale.getDefault()),
             DialogInterface.OnClickListener { dialog, which ->
                 checkConfirmDialog(
                     isPositive = which,
@@ -149,10 +150,10 @@ class AmityCommunitySettingsFragment : RxFragment() {
 
     internal fun confirmLeaveCommunity() {
         AmityAlertDialogUtil.showDialog(requireContext(),
-            "${getString(R.string.amity_leave_community)}?",
-            getString(R.string.amity_leave_community_msg),
-            getString(R.string.amity_leave).toUpperCase(Locale.getDefault()),
-            getString(R.string.amity_cancel).toUpperCase(Locale.getDefault()),
+            "${AmityLocalisation.getString(R.string.amity_leave_community)}?",
+            AmityLocalisation.getString(R.string.amity_leave_community_msg),
+            AmityLocalisation.getString(R.string.amity_leave).toUpperCase(Locale.getDefault()),
+            AmityLocalisation.getString(R.string.amity_cancel).toUpperCase(Locale.getDefault()),
             DialogInterface.OnClickListener { dialog, which ->
                 checkConfirmDialog(
                     isPositive = which,
@@ -174,10 +175,10 @@ class AmityCommunitySettingsFragment : RxFragment() {
 
     internal fun confirmModeratorLeaveCommunity() {
         AmityAlertDialogUtil.showDialog(requireContext(),
-            "${getString(R.string.amity_leave_community)}?",
-            getString(R.string.amity_moderator_leave_community_msg),
-            getString(R.string.amity_leave).toUpperCase(Locale.getDefault()),
-            getString(R.string.amity_cancel).toUpperCase(Locale.getDefault()),
+            "${AmityLocalisation.getString(R.string.amity_leave_community)}?",
+            AmityLocalisation.getString(R.string.amity_moderator_leave_community_msg),
+            AmityLocalisation.getString(R.string.amity_leave).toUpperCase(Locale.getDefault()),
+            AmityLocalisation.getString(R.string.amity_cancel).toUpperCase(Locale.getDefault()),
             DialogInterface.OnClickListener { dialog, which ->
                 checkConfirmDialog(
                     isPositive = which,
@@ -242,9 +243,9 @@ class AmityCommunitySettingsFragment : RxFragment() {
 
     private fun errorDialog(title: Int, description: Int) {
         AmityAlertDialogUtil.showDialog(requireContext(),
-            getString(title),
-            getString(description),
-            getString(com.amity.socialcloud.uikit.common.R.string.amity_ok),
+            AmityLocalisation.getString(title),
+            AmityLocalisation.getString(description),
+            AmityLocalisation.getString(com.amity.socialcloud.uikit.common.R.string.amity_ok),
             null,
             DialogInterface.OnClickListener { dialog, which ->
                 checkConfirmDialog(isPositive = which, confirmed = dialog::cancel)

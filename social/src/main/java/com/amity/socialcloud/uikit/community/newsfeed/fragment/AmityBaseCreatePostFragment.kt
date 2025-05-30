@@ -78,6 +78,7 @@ import io.reactivex.rxjava3.subjects.PublishSubject
 import java.io.File
 import java.util.UUID
 import java.util.concurrent.TimeUnit
+import com.amity.socialcloud.uikit.common.AmityLocalisation
 
 
 const val REQUEST_STORAGE_PERMISSION_IMAGE_UPLOAD = 100
@@ -178,7 +179,7 @@ abstract class AmityBaseCreatePostFragment : AmityBaseFragment(),
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         menuItemPost =
-            menu.add(Menu.NONE, ID_MENU_ITEM_POST, Menu.NONE, getString(com.amity.socialcloud.uikit.common.R.string.amity_save))
+            menu.add(Menu.NONE, ID_MENU_ITEM_POST, Menu.NONE, AmityLocalisation.getString(com.amity.socialcloud.uikit.common.R.string.amity_save))
         menuItemPost?.setTitle(getPostMenuText())
             ?.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS)
         updatePostMenu(isRightButtonActive())
@@ -447,7 +448,7 @@ abstract class AmityBaseCreatePostFragment : AmityBaseFragment(),
 
     private fun handleCamera() {
         if (hasReachedSelectionLimit()) {
-            view?.showSnackBar(getString(R.string.amity_create_post_max_image_selected_warning))
+            view?.showSnackBar(AmityLocalisation.getString(R.string.amity_create_post_max_image_selected_warning))
         } else {
             when {
                 viewModel.isUploadingImageMedia() -> {
@@ -477,11 +478,11 @@ abstract class AmityBaseCreatePostFragment : AmityBaseFragment(),
             val items = arrayListOf(
                 AmityMenuItem(
                     AmityConstants.ID_SELECT_IMAGE_CAMERA,
-                    getString(R.string.amity_general_photos)
+                    AmityLocalisation.getString(R.string.amity_general_photos)
                 ),
                 AmityMenuItem(
                     AmityConstants.ID_SELECT_VIDEO_CAMERA,
-                    getString(R.string.amity_general_videos)
+                    AmityLocalisation.getString(R.string.amity_general_videos)
                 )
             )
             val imageInputFragment = AmityBottomSheetListFragment.newInstance(items)
@@ -504,7 +505,7 @@ abstract class AmityBaseCreatePostFragment : AmityBaseFragment(),
 
     private fun handleAddFiles() {
         if (hasReachedSelectionLimit()) {
-            view?.showSnackBar(getString(R.string.amity_create_post_max_image_selected_warning))
+            view?.showSnackBar(AmityLocalisation.getString(R.string.amity_create_post_max_image_selected_warning))
         } else {
             grantStoragePermission(REQUEST_STORAGE_PERMISSION_FILE_UPLOAD) { openFilePicker() }
         }
@@ -512,7 +513,7 @@ abstract class AmityBaseCreatePostFragment : AmityBaseFragment(),
 
     private fun handleAddPhotos() {
         if (hasReachedSelectionLimit()) {
-            view?.showSnackBar(getString(R.string.amity_create_post_max_image_selected_warning))
+            view?.showSnackBar(AmityLocalisation.getString(R.string.amity_create_post_max_image_selected_warning))
         } else {
             openImagePicker()
         }
@@ -520,7 +521,7 @@ abstract class AmityBaseCreatePostFragment : AmityBaseFragment(),
 
     private fun handleAddVideos() {
         if (hasReachedSelectionLimit()) {
-            view?.showSnackBar(getString(R.string.amity_create_post_max_image_selected_warning))
+            view?.showSnackBar(AmityLocalisation.getString(R.string.amity_create_post_max_image_selected_warning))
         } else {
             openVideoPicker()
         }
@@ -743,9 +744,7 @@ abstract class AmityBaseCreatePostFragment : AmityBaseFragment(),
     private fun canSelectImage(): Boolean {
         val selectedImageCount = viewModel.getImages().value?.size ?: 0
         if (selectedImageCount == MAX_IMAGE_SELECTABLE) {
-            view?.showSnackBar(
-                getString(R.string.amity_create_post_max_image_selected_warning)
-            )
+            view?.showSnackBar(AmityLocalisation.getString(R.string.amity_create_post_max_image_selected_warning))
             return false
         }
         return true
@@ -754,7 +753,7 @@ abstract class AmityBaseCreatePostFragment : AmityBaseFragment(),
     private fun openVideoPicker() {
         val selectedVideoCount = viewModel.getImages().value?.size ?: 0
         if (selectedVideoCount == MAX_VIDEO_SELECTABLE) {
-            view?.showSnackBar(getString(R.string.amity_create_post_max_image_selected_warning))
+            view?.showSnackBar(AmityLocalisation.getString(R.string.amity_create_post_max_image_selected_warning))
         } else {
             videoPickerLauncher.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.VideoOnly))
 
@@ -991,12 +990,12 @@ abstract class AmityBaseCreatePostFragment : AmityBaseFragment(),
     }
 
     private fun showDuplicateFilesMessage() {
-        view?.showSnackBar(getString(R.string.amity_duplicate_files))
+        view?.showSnackBar(AmityLocalisation.getString(R.string.amity_duplicate_files))
     }
 
 
     private fun showErrorMessage(@StringRes error: Int) {
-        view?.showSnackBar(getString(error))
+        view?.showSnackBar(AmityLocalisation.getString(error))
     }
 
     private fun exceedMaxFileSize(size: Long): Boolean {
