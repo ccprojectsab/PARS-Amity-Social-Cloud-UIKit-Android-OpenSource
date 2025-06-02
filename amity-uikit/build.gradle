@@ -46,5 +46,6 @@ android {
 dependencies {
     api project(path: ':social')
     api project(path: ':chat')
+    api project(path: ':localisation')
     api "com.github.AmityCo.Amity-Social-Cloud-SDK-Android:amity-sdk:$amityMessagingSdkVersion"
 }

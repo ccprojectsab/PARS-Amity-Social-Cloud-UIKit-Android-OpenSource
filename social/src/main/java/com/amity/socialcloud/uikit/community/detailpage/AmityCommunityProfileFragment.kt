@@ -13,7 +13,7 @@ import androidx.paging.ExperimentalPagingApi
 import com.amity.socialcloud.sdk.model.core.file.AmityImage
 import com.amity.socialcloud.sdk.model.social.community.AmityCommunity
 import com.amity.socialcloud.sdk.model.social.feed.AmityFeedType
-import com.amity.socialcloud.uikit.common.AmityLocalisation
+import com.amity.socialcloud.uikit.AmityLocalisationSocial
 import com.amity.socialcloud.uikit.common.common.formatCount
 import com.amity.socialcloud.uikit.common.common.readableNumber
 import com.amity.socialcloud.uikit.community.R
@@ -234,7 +234,7 @@ class AmityCommunityProfileFragment : RxFragment() {
         if (data.isVisible) {
             binding.layoutPendingPostBanner.visibility = View.VISIBLE
             if (data.isReviewer) {
-                val reviewerMessage = AmityLocalisation.getString(
+                val reviewerMessage = AmityLocalisationSocial.getString(
                     R.plurals.amity_community_banner_number_of_pending_posts,
                     data.postCount,
                     data.postCount.readableNumber()
@@ -242,7 +242,7 @@ class AmityCommunityProfileFragment : RxFragment() {
                 binding.textviewBannerDescription.text = reviewerMessage
             } else {
                 binding.textviewBannerDescription.text =
-                    AmityLocalisation.getString(R.string.amity_pending_posts_banner_member_message)
+                    AmityLocalisationSocial.getString(R.string.amity_pending_posts_banner_member_message)
             }
             binding.layoutPendingPostBanner.setOnClickListener {
                 val intent =

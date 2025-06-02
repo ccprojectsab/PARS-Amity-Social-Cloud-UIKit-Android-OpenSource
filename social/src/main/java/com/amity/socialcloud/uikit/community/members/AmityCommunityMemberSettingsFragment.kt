@@ -17,7 +17,7 @@ import com.amity.socialcloud.uikit.community.R
 import com.amity.socialcloud.uikit.community.databinding.AmityFragmentCommunityMemberSettingsBinding
 import com.ekoapp.rxlifecycle.extension.untilLifecycleEnd
 import timber.log.Timber
-import com.amity.socialcloud.uikit.common.AmityLocalisation
+import com.amity.socialcloud.uikit.AmityLocalisationSocial
 
 private const val ARG_COMMUNITY_ID = "ARG_COMMUNITY_ID"
 private const val ARG_IS_MEMBER = "ARG_IS_MEMBER"
@@ -85,7 +85,7 @@ class AmityCommunityMemberSettingsFragment : AmityBaseFragment() {
 
     private fun setUpToolbar() {
         (activity as AppCompatActivity).supportActionBar?.title =
-            AmityLocalisation.getString(R.string.amity_members_capital)
+            AmityLocalisationSocial.getString(R.string.amity_members_capital)
         viewModel.checkModeratorPermission { granted ->
             setHasOptionsMenu(granted)
             viewModel.isModerator.set(granted)
@@ -100,11 +100,11 @@ class AmityCommunityMemberSettingsFragment : AmityBaseFragment() {
         fragmentStateAdapter.setFragmentList(
             arrayListOf(
                 AmityFragmentStateAdapter.AmityPagerModel(
-                    AmityLocalisation.getString(R.string.amity_members_capital),
+                    AmityLocalisationSocial.getString(R.string.amity_members_capital),
                     memberFragment
                 ),
                 AmityFragmentStateAdapter.AmityPagerModel(
-                    AmityLocalisation.getString(R.string.amity_moderators),
+                    AmityLocalisationSocial.getString(R.string.amity_moderators),
                     modFragment
                 )
             )
@@ -130,7 +130,7 @@ class AmityCommunityMemberSettingsFragment : AmityBaseFragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         val drawable = ContextCompat.getDrawable(requireContext(), com.amity.socialcloud.uikit.common.R.drawable.amity_ic_add)
-        menu.add(Menu.NONE, 1, Menu.NONE, AmityLocalisation.getString(R.string.amity_add))
+        menu.add(Menu.NONE, 1, Menu.NONE, AmityLocalisationSocial.getString(R.string.amity_add))
             ?.setIcon(drawable)
             ?.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS)
         super.onCreateOptionsMenu(menu, inflater)

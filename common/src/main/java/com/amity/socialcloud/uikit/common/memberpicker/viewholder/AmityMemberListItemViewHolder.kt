@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.amity.socialcloud.sdk.api.core.AmityCoreClient
 import com.amity.socialcloud.sdk.model.core.file.AmityImage
 import com.amity.socialcloud.sdk.model.core.user.AmityUser
-import com.amity.socialcloud.uikit.common.AmityLocalisation
+import com.amity.socialcloud.uikit.common.AmityLocalisationCommon
 import com.amity.socialcloud.uikit.common.R
 import com.amity.socialcloud.uikit.common.base.AmityBaseRecyclerViewPagingDataAdapter
 import com.amity.socialcloud.uikit.common.components.setVisibility
@@ -24,7 +24,7 @@ class AmityMemberListItemViewHolder(
     override fun bind(data: AmityUser?, position: Int) {
         if (data != null) {
             binding?.smTitle?.text = if (data.getDisplayName().isNullOrEmpty()) {
-                AmityLocalisation.getString(R.string.amity_anonymous)
+                AmityLocalisationCommon.getString(R.string.amity_anonymous)
             } else {
                 data.getDisplayName()
             }

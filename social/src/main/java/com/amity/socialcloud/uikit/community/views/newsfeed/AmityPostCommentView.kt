@@ -19,7 +19,7 @@ import com.amity.socialcloud.sdk.model.social.post.AmityPost
 import com.amity.socialcloud.uikit.common.common.readableFeedPostTime
 import com.amity.socialcloud.uikit.common.common.readableNumber
 import com.amity.socialcloud.uikit.common.utils.AmityConstants
-import com.amity.socialcloud.uikit.common.AmityLocalisation
+import com.amity.socialcloud.uikit.AmityLocalisationSocial
 import com.amity.socialcloud.uikit.community.R
 import com.amity.socialcloud.uikit.community.databinding.AmityItemCommentNewsFeedBinding
 import com.amity.socialcloud.uikit.community.newsfeed.events.CommentContentClickEvent
@@ -65,7 +65,7 @@ class AmityPostCommentView : ConstraintLayout {
     fun setComment(comment: AmityComment, post: AmityPost? = null, isReadOnly: Boolean? = false) {
         binding.avatarUrl = comment.getCreator()?.getAvatar()?.getUrl(AmityImage.Size.SMALL)
         binding.tvUserName.text =
-            comment.getCreator()?.getDisplayName() ?: AmityLocalisation.getString(com.amity.socialcloud.uikit.common.R.string.amity_anonymous)
+            comment.getCreator()?.getDisplayName() ?: AmityLocalisationSocial.getString(com.amity.socialcloud.uikit.common.R.string.amity_anonymous)
         binding.tvCommentTime.text = comment.getCreatedAt().millis.readableFeedPostTime(context)
         binding.edited = comment.isEdited()
         binding.isFailed = comment.getState() == AmityComment.State.FAILED

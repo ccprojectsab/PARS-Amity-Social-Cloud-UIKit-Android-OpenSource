@@ -3,7 +3,7 @@ package com.amity.socialcloud.uikit.community.newsfeed.adapter
 import android.view.View
 import com.amity.socialcloud.sdk.api.core.AmityCoreClient
 import com.amity.socialcloud.sdk.model.social.post.AmityPost
-import com.amity.socialcloud.uikit.common.AmityLocalisation
+import com.amity.socialcloud.uikit.AmityLocalisationSocial
 import com.amity.socialcloud.uikit.common.common.readableNumber
 import com.amity.socialcloud.uikit.common.utils.AmityConstants
 import com.amity.socialcloud.uikit.community.R
@@ -55,7 +55,7 @@ class AmityPostFooterPostEngagementViewHolder(
 
     private fun setNumberOfComments(commentCount: Int) {
         binding.tvNumberOfComments.visibility = if (commentCount > 0) View.VISIBLE else View.GONE
-        binding.tvNumberOfComments.text = AmityLocalisation.getString(
+        binding.tvNumberOfComments.text = AmityLocalisationSocial.getString(
             R.plurals.amity_feed_number_of_comments,
             commentCount,
             commentCount
@@ -64,7 +64,7 @@ class AmityPostFooterPostEngagementViewHolder(
 
     private fun setNumberOfReactions(reactionCount: Int) {
         binding.tvNumberOfReactions.visibility = if (reactionCount > 0) View.VISIBLE else View.GONE
-        binding.tvNumberOfReactions.text = AmityLocalisation.getString(
+        binding.tvNumberOfReactions.text = AmityLocalisationSocial.getString(
             R.plurals.amity_feed_number_of_likes,
             reactionCount,
             reactionCount.readableNumber()

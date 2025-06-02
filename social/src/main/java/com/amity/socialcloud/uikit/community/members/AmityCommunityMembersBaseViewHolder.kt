@@ -20,7 +20,7 @@ import com.ekoapp.rxlifecycle.extension.untilLifecycleEnd
 import com.google.android.material.snackbar.Snackbar
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
-import com.amity.socialcloud.uikit.common.AmityLocalisation
+import com.amity.socialcloud.uikit.AmityLocalisationSocial
 
 abstract class AmityCommunityMembersBaseViewHolder(
     itemView: View, private val context: Context,
@@ -59,10 +59,10 @@ abstract class AmityCommunityMembersBaseViewHolder(
 
     fun showRemoveUserDialog(ekoUser: AmityUser) {
         AmityAlertDialogUtil.showDialog(context,
-            AmityLocalisation.getString(R.string.amity_remove_user),
-            AmityLocalisation.getString(R.string.amity_remove_user_msg),
-            AmityLocalisation.getString(R.string.amity_remove),
-            AmityLocalisation.getString(R.string.amity_cancel),
+            AmityLocalisationSocial.getString(R.string.amity_remove_user),
+            AmityLocalisationSocial.getString(R.string.amity_remove_user_msg),
+            AmityLocalisationSocial.getString(R.string.amity_remove),
+            AmityLocalisationSocial.getString(R.string.amity_cancel),
             DialogInterface.OnClickListener { dialog, which ->
                 if (which == DialogInterface.BUTTON_POSITIVE) {
                     removeUser(ekoUser)

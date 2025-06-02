@@ -9,7 +9,7 @@ import com.amity.socialcloud.uikit.common.base.AmityViewHolder
 import com.amity.socialcloud.uikit.common.utils.AmityAndroidUtil
 import com.amity.socialcloud.uikit.community.R
 import com.amity.socialcloud.uikit.community.databinding.AmityItemPollDraftAnswerBinding
-import com.amity.socialcloud.uikit.common.AmityLocalisation
+import com.amity.socialcloud.uikit.AmityLocalisationSocial
 import com.amity.socialcloud.uikit.community.newsfeed.fragment.MAX_ANSWER_LENGTH
 
 class AmityPollDraftAnswerViewHolder(val context: Context, private val removeCallback: (answer: AmityPollDraftAnswerAdapter.DraftAnswer) -> Unit) :
@@ -51,8 +51,8 @@ class AmityPollDraftAnswerViewHolder(val context: Context, private val removeCal
         )
 
         binding.errorTextView.text = when {
-            data.data.isEmpty() && !data.allowEmpty -> AmityLocalisation.getString(R.string.amity_poll_answer_error_empty)
-            binding.answerEditText.length() > MAX_ANSWER_LENGTH -> AmityLocalisation.getString(R.string.amity_poll_answer_error_exceed_limit)
+            data.data.isEmpty() && !data.allowEmpty -> AmityLocalisationSocial.getString(R.string.amity_poll_answer_error_empty)
+            binding.answerEditText.length() > MAX_ANSWER_LENGTH -> AmityLocalisationSocial.getString(R.string.amity_poll_answer_error_exceed_limit)
             else -> ""
         }
 

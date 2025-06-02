@@ -7,7 +7,7 @@ import com.amity.socialcloud.sdk.model.social.poll.AmityPollAnswer
 import com.amity.socialcloud.uikit.common.base.AmityViewHolder
 import com.amity.socialcloud.uikit.community.R
 import com.amity.socialcloud.uikit.community.databinding.AmityItemPollAnswerVotedBinding
-import com.amity.socialcloud.uikit.common.AmityLocalisation
+import com.amity.socialcloud.uikit.AmityLocalisationSocial
 
 class AmityPollAnswerVotedViewHolder(val context: Context, private val totalVoteCount: Int) :
     AmityViewHolder<AmityPollAnswer>(
@@ -40,7 +40,7 @@ class AmityPollAnswerVotedViewHolder(val context: Context, private val totalVote
             }
         )
 
-        binding.voteCountTextView.text = AmityLocalisation.getString(
+        binding.voteCountTextView.text = AmityLocalisationSocial.getString(
             R.plurals.amity_poll_vote_count,
             data.voteCount,
             data.voteCount

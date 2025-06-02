@@ -8,8 +8,7 @@ import com.amity.socialcloud.uikit.chat.R
 import com.amity.socialcloud.uikit.chat.messages.viewModel.AmitySelectableMessageViewModel
 import com.amity.socialcloud.uikit.common.model.AmityEventIdentifier
 import com.amity.socialcloud.uikit.common.utils.AmityAlertDialogUtil
-import com.amity.socialcloud.uikit.common.AmityLocalisation
-import com.amity.socialcloud.uikit.common.common.showSnackBar
+import com.amity.socialcloud.uikit.chat.AmityLocalisationChat
 import com.google.android.material.snackbar.Snackbar
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.observers.DisposableCompletableObserver
@@ -64,10 +63,10 @@ abstract class AmitySelectableMessageViewHolder(
     }
 
     private fun showDeleteDialog() {
-        AmityAlertDialogUtil.showDialog(context, AmityLocalisation.getString(com.amity.socialcloud.uikit.common.R.string.amity_delete_msg),
-            AmityLocalisation.getString(com.amity.socialcloud.uikit.common.R.string.amity_dlt_dlg_body),
-            AmityLocalisation.getString(R.string.amity_delete),
-            AmityLocalisation.getString(com.amity.socialcloud.uikit.common.R.string.amity_cancel)
+        AmityAlertDialogUtil.showDialog(context, AmityLocalisationChat.getString(com.amity.socialcloud.uikit.common.R.string.amity_delete_msg),
+            AmityLocalisationChat.getString(com.amity.socialcloud.uikit.common.R.string.amity_dlt_dlg_body),
+            AmityLocalisationChat.getString(R.string.amity_delete),
+            AmityLocalisationChat.getString(com.amity.socialcloud.uikit.common.R.string.amity_cancel)
         ) { dialog, which ->
             if (which == DialogInterface.BUTTON_POSITIVE) {
                 deleteMessage()
@@ -78,9 +77,9 @@ abstract class AmitySelectableMessageViewHolder(
     }
 
     private fun showFailedMessageDialog() {
-        AmityAlertDialogUtil.showDialog(context, AmityLocalisation.getString(com.amity.socialcloud.uikit.common.R.string.amity_delete_msg),
-            AmityLocalisation.getString(com.amity.socialcloud.uikit.common.R.string.amity_failed_dlg_body), AmityLocalisation.getString(R.string.amity_delete),
-            AmityLocalisation.getString(com.amity.socialcloud.uikit.common.R.string.amity_cancel)
+        AmityAlertDialogUtil.showDialog(context, AmityLocalisationChat.getString(com.amity.socialcloud.uikit.common.R.string.amity_delete_msg),
+            AmityLocalisationChat.getString(com.amity.socialcloud.uikit.common.R.string.amity_failed_dlg_body), AmityLocalisationChat.getString(R.string.amity_delete),
+            AmityLocalisationChat.getString(com.amity.socialcloud.uikit.common.R.string.amity_cancel)
         ) { dialog, which ->
             if (which == DialogInterface.BUTTON_POSITIVE) {
                 deleteMessage()
@@ -105,8 +104,8 @@ abstract class AmitySelectableMessageViewHolder(
     }
 
     private fun showDeleteFailedDialog() {
-        AmityAlertDialogUtil.showDialog(context, AmityLocalisation.getString(com.amity.socialcloud.uikit.common.R.string.amity_unable_to_delete),
-            AmityLocalisation.getString(com.amity.socialcloud.uikit.common.R.string.amity_try_again), AmityLocalisation.getString(com.amity.socialcloud.uikit.common.R.string.amity_ok),
+        AmityAlertDialogUtil.showDialog(context, AmityLocalisationChat.getString(com.amity.socialcloud.uikit.common.R.string.amity_unable_to_delete),
+            AmityLocalisationChat.getString(com.amity.socialcloud.uikit.common.R.string.amity_try_again), AmityLocalisationChat.getString(com.amity.socialcloud.uikit.common.R.string.amity_ok),
             null
         ) { dialog, which ->
             if (which == DialogInterface.BUTTON_POSITIVE) {
@@ -122,7 +121,7 @@ abstract class AmitySelectableMessageViewHolder(
                     CoroutineScope(Dispatchers.Main).launch {
                         val snackBar = Snackbar.make(
                             itemView,
-                            AmityLocalisation.getString(com.amity.socialcloud.uikit.common.R.string.amity_report_msg), Snackbar.LENGTH_SHORT
+                            AmityLocalisationChat.getString(com.amity.socialcloud.uikit.common.R.string.amity_report_msg), Snackbar.LENGTH_SHORT
                         )
                         snackBar.show()
                     }
@@ -141,7 +140,7 @@ abstract class AmitySelectableMessageViewHolder(
                     CoroutineScope(Dispatchers.Main).launch {
                         val snackBar = Snackbar.make(
                             itemView,
-                            AmityLocalisation.getString(com.amity.socialcloud.uikit.common.R.string.amity_report_msg), Snackbar.LENGTH_SHORT
+                            AmityLocalisationChat.getString(com.amity.socialcloud.uikit.common.R.string.amity_report_msg), Snackbar.LENGTH_SHORT
                         )
                         snackBar.show()
                     }

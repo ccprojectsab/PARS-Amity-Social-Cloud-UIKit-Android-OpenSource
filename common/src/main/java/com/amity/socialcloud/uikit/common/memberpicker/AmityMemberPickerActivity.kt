@@ -1,11 +1,10 @@
 package com.amity.socialcloud.uikit.common.memberpicker
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
-import com.amity.socialcloud.uikit.common.AmityLocalisation
+import com.amity.socialcloud.uikit.common.AmityLocalisationCommon
 import com.amity.socialcloud.uikit.common.BR
 import com.amity.socialcloud.uikit.common.R
 import com.amity.socialcloud.uikit.common.base.AmityBaseActivity
@@ -59,7 +58,7 @@ class AmityMemberPickerActivity : AmityBaseActivity<AmityActivityPickMemberListB
                 R.drawable.amity_ic_arrow_back
             )
         )
-        getViewDataBinding().smToolBar.setRightString(AmityLocalisation.getString(R.string.amity_done))
+        getViewDataBinding().smToolBar.setRightString(AmityLocalisationCommon.getString(R.string.amity_done))
         getViewDataBinding().smToolBar.setClickListener(this@AmityMemberPickerActivity)
         setSelectionCount()
     }

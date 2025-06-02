@@ -10,7 +10,7 @@ import com.amity.socialcloud.uikit.common.base.AmityBaseRecyclerViewPagingDataAd
 import com.amity.socialcloud.uikit.common.databinding.AmityItemHeaderSelectMemberBinding
 import com.amity.socialcloud.uikit.common.memberpicker.adapter.DisplayNameGrouper
 import com.amity.socialcloud.uikit.common.memberpicker.listener.AmitySelectMemberListener
-import com.amity.socialcloud.uikit.common.AmityLocalisation
+import com.amity.socialcloud.uikit.common.AmityLocalisationCommon
 
 
 class AmityMemberListHeaderViewHolder(
@@ -29,7 +29,7 @@ class AmityMemberListHeaderViewHolder(
             binding?.tvHeader?.text = groupingKey
             if (data.getDisplayName().isNullOrEmpty()) {
                 binding?.layoutMember?.smTitle?.text =
-                    AmityLocalisation.getString(R.string.amity_anonymous)
+                    AmityLocalisationCommon.getString(R.string.amity_anonymous)
             } else {
                 binding?.layoutMember?.smTitle?.text = data.getDisplayName()
             }

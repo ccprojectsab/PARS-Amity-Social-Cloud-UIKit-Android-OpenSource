@@ -6,7 +6,7 @@ import android.util.AttributeSet
 import androidx.core.content.ContextCompat
 import androidx.core.widget.doAfterTextChanged
 import com.amity.socialcloud.sdk.helper.core.mention.AmityMentionMetadata
-import com.amity.socialcloud.uikit.common.AmityLocalisation
+import com.amity.socialcloud.uikit.AmityLocalisationSocial
 import com.amity.socialcloud.uikit.common.utils.AmityAlertDialogUtil
 import com.amity.socialcloud.uikit.community.R
 import com.amity.socialcloud.uikit.community.newsfeed.model.AmityUserMention
@@ -38,8 +38,8 @@ class AmityCommentComposeView : MentionsEditText {
     override fun insertMention(mention: Mentionable) {
         if (getUserMentions().size >= MENTIONS_LIMIT) {
             showErrorDialog(
-                AmityLocalisation.getString(R.string.amity_mention_error_title),
-                AmityLocalisation.getString(R.string.amity_mention_error_msg)
+                AmityLocalisationSocial.getString(R.string.amity_mention_error_title),
+                AmityLocalisationSocial.getString(R.string.amity_mention_error_msg)
             )
         } else {
             super.insertMention(mention)
@@ -62,8 +62,8 @@ class AmityCommentComposeView : MentionsEditText {
             if (!text.isNullOrEmpty() && text.length > CHARACTERS_LIMIT) {
                 getText().delete(CHARACTERS_LIMIT, getText().length)
                 showErrorDialog(
-                    AmityLocalisation.getString(R.string.amity_comment_characters_limit_error_title),
-                    AmityLocalisation.getString(R.string.amity_characters_limit_error_msg)
+                    AmityLocalisationSocial.getString(R.string.amity_comment_characters_limit_error_title),
+                    AmityLocalisationSocial.getString(R.string.amity_characters_limit_error_msg)
                 )
             }
         }
@@ -72,7 +72,7 @@ class AmityCommentComposeView : MentionsEditText {
     private fun showErrorDialog(title: String, message: String) {
         AmityAlertDialogUtil.showDialog(
             context, title, message,
-            AmityLocalisation.getString(R.string.amity_done),
+            AmityLocalisationSocial.getString(R.string.amity_done),
             null
         ) { dialog, which ->
             AmityAlertDialogUtil.checkConfirmDialog(

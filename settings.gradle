@@ -4,3 +4,5 @@ include ':chat'
 include ':sample'
 include ':common'
 include ':social'
+include ':localisation'
+project(':localisation').projectDir = new File(rootDir, '../localisation/')

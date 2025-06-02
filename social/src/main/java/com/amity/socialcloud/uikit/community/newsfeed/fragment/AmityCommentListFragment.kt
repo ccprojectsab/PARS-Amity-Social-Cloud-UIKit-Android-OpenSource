@@ -17,7 +17,7 @@ import com.amity.socialcloud.uikit.common.common.showSnackBar
 import com.amity.socialcloud.uikit.common.common.views.dialog.AmityAlertDialogFragment
 import com.amity.socialcloud.uikit.common.common.views.dialog.bottomsheet.AmityBottomSheetDialog
 import com.amity.socialcloud.uikit.common.utils.AmityConstants
-import com.amity.socialcloud.uikit.common.AmityLocalisation
+import com.amity.socialcloud.uikit.AmityLocalisationSocial
 import com.amity.socialcloud.uikit.community.R
 import com.amity.socialcloud.uikit.community.databinding.AmityFragmentCommentListBinding
 import com.amity.socialcloud.uikit.community.newsfeed.activity.AmityEditCommentActivity
@@ -218,7 +218,7 @@ class AmityCommentListFragment : RxFragment() {
 
     private fun reportComment(comment: AmityComment) {
         viewModel.reportComment(comment, {
-            view?.showSnackBar(AmityLocalisation.getString(R.string.amity_report_sent))
+            view?.showSnackBar(AmityLocalisationSocial.getString(R.string.amity_report_sent))
         }, {})
             .untilLifecycleEnd(this)
             .subscribe()
@@ -226,7 +226,7 @@ class AmityCommentListFragment : RxFragment() {
 
     private fun unReportComment(comment: AmityComment) {
         viewModel.unReportComment(comment, {
-            view?.showSnackBar(AmityLocalisation.getString(R.string.amity_unreport_sent))
+            view?.showSnackBar(AmityLocalisationSocial.getString(R.string.amity_unreport_sent))
         }, {})
             .untilLifecycleEnd(this)
             .subscribe()

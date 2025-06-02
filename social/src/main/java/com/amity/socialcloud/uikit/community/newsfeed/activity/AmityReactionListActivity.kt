@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment
 import com.amity.socialcloud.sdk.model.core.reaction.AmityReactionReferenceType
 import com.amity.socialcloud.uikit.common.base.AmityBaseToolbarFragmentContainerActivity
 import com.amity.socialcloud.uikit.community.R
-import com.amity.socialcloud.uikit.common.AmityLocalisation
+import com.amity.socialcloud.uikit.AmityLocalisationSocial
 import com.amity.socialcloud.uikit.community.newsfeed.fragment.AmityReactionListFragment
 
 class AmityReactionListActivity : AmityBaseToolbarFragmentContainerActivity() {
@@ -16,7 +16,7 @@ class AmityReactionListActivity : AmityBaseToolbarFragmentContainerActivity() {
         getToolBar()?.setLeftDrawable(
             ContextCompat.getDrawable(this, com.amity.socialcloud.uikit.common.R.drawable.amity_ic_arrow_back)
         )
-        getToolBar()?.setLeftString(AmityLocalisation.getString(R.string.amity_reactions))
+        getToolBar()?.setLeftString(AmityLocalisationSocial.getString(R.string.amity_reactions))
     }
 
     override fun getContentFragment(): Fragment {

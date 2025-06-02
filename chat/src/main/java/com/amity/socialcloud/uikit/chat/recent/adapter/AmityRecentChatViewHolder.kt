@@ -1,6 +1,5 @@
 package com.amity.socialcloud.uikit.chat.recent.adapter
 
-import android.annotation.SuppressLint
 import android.util.Log
 import android.view.View
 import android.widget.TextView
@@ -8,11 +7,7 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
-import androidx.paging.PagingDataAdapter
-import androidx.paging.filter
-import androidx.paging.map
 import androidx.recyclerview.widget.RecyclerView
-import com.amity.socialcloud.sdk.api.chat.member.query.AmityChannelMembershipFilter
 import com.amity.socialcloud.sdk.api.core.AmityCoreClient
 import com.amity.socialcloud.sdk.model.chat.channel.AmityChannel
 import com.amity.socialcloud.sdk.model.chat.message.AmityMessage
@@ -33,9 +28,8 @@ import com.google.gson.JsonObject
 import io.reactivex.rxjava3.core.Flowable
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.reactive.collect
 import kotlinx.coroutines.withContext
-import com.amity.socialcloud.uikit.common.AmityLocalisation
+import com.amity.socialcloud.uikit.chat.AmityLocalisationChat
 
 class AmityRecentChatViewHolder(
     itemView: View,
@@ -77,7 +71,7 @@ class AmityRecentChatViewHolder(
                 name.text = data.getDisplayName()
             } else {
                 name.text =
-                    AmityLocalisation.getString(com.amity.socialcloud.uikit.common.R.string.amity_anonymous)
+                    AmityLocalisationChat.getString(com.amity.socialcloud.uikit.common.R.string.amity_anonymous)
             }
             getChannelMessagePreview(data)
             setUpAvatarView(data)
@@ -86,7 +80,7 @@ class AmityRecentChatViewHolder(
             binding?.tvTime?.text =
                 AmityDateUtils.getMessageTime(data.getLastActivity().millis)
             memberCount.text =
-                String.format(AmityLocalisation.getString(R.string.amity_member_count),
+                String.format(AmityLocalisationChat.getString(R.string.amity_member_count),
                     data.getMemberCount()
                 )
             val metadata: JsonObject? = data.getMetadata()
@@ -265,7 +259,7 @@ class AmityRecentChatViewHolder(
             "ME"
         } else {
             item.getCreator()?.getDisplayName()
-                ?: AmityLocalisation.getString(com.amity.socialcloud.uikit.common.R.string.amity_anonymous)
+                ?: AmityLocalisationChat.getString(com.amity.socialcloud.uikit.common.R.string.amity_anonymous)
         }
     }
 

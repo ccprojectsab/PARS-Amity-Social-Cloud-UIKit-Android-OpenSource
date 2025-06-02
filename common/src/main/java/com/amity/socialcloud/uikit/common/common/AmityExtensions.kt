@@ -14,7 +14,7 @@ import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.paging.PagedList
-import com.amity.socialcloud.uikit.common.AmityLocalisation
+import com.amity.socialcloud.uikit.common.AmityLocalisationCommon
 import com.amity.socialcloud.uikit.common.R
 import com.amity.socialcloud.uikit.common.common.views.AmityColorPaletteUtil
 import com.amity.socialcloud.uikit.common.common.views.AmityColorShade
@@ -29,7 +29,6 @@ import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
 import java.math.RoundingMode
 import java.text.DecimalFormat
-import java.util.Date
 import java.util.concurrent.TimeUnit
 import kotlin.math.ln
 import kotlin.math.pow
@@ -86,38 +85,38 @@ fun Long.readableFeedPostTime(context: Context): String {
     val years = (months / 12)
 
     return when {
-        years > 0 -> AmityLocalisation.getString(
+        years > 0 -> AmityLocalisationCommon.getString(
             R.plurals.amity_number_of_years,
             years,
             years
         )
-        months > 0 -> AmityLocalisation.getString(
+        months > 0 -> AmityLocalisationCommon.getString(
             R.plurals.amity_number_of_months,
             months,
             months
         )
-        weeks > 0 -> AmityLocalisation.getString(
+        weeks > 0 -> AmityLocalisationCommon.getString(
             R.plurals.amity_number_of_weeks,
             weeks,
             weeks
         )
-        days > 0 -> AmityLocalisation.getString(
+        days > 0 -> AmityLocalisationCommon.getString(
             R.plurals.amity_number_of_days,
             days.toInt(),
             days
         )
-        isYesterday(this) -> AmityLocalisation.getString(R.string.amity_yesterday)
-        hours > 0 -> AmityLocalisation.getString(
+        isYesterday(this) -> AmityLocalisationCommon.getString(R.string.amity_yesterday)
+        hours > 0 -> AmityLocalisationCommon.getString(
             R.plurals.amity_number_of_hours,
             hours.toInt(),
             hours
         )
-        minutes > 0 -> AmityLocalisation.getString(
+        minutes > 0 -> AmityLocalisationCommon.getString(
             R.plurals.amity_number_of_mins,
             minutes.toInt(),
             minutes
         )
-        else -> AmityLocalisation.getString(R.string.amity_just_now)
+        else -> AmityLocalisationCommon.getString(R.string.amity_just_now)
     }
 }
 

@@ -13,7 +13,7 @@ import com.amity.socialcloud.uikit.community.R
 import com.amity.socialcloud.uikit.community.databinding.AmityActivityPushSettingsDetailBinding
 import com.amity.socialcloud.uikit.community.utils.EXTRA_PARAM_COMMUNITY_ID
 import com.amity.socialcloud.uikit.community.utils.EXTRA_PARAM_NOTIFICATION_SETTING_TYPE
-import com.amity.socialcloud.uikit.common.AmityLocalisation
+import com.amity.socialcloud.uikit.AmityLocalisationSocial
 
 class AmityCommunityPostNotificationSettingsActivity : AppCompatActivity(),
     AmityToolBarClickListener {
@@ -56,11 +56,11 @@ class AmityCommunityPostNotificationSettingsActivity : AppCompatActivity(),
         binding.pushDetailToolBar.setClickListener(this)
         val postType = intent?.extras?.getString(EXTRA_PARAM_NOTIFICATION_SETTING_TYPE)
         if (postType == SettingType.POSTS.name) {
-            binding.pushDetailToolBar.setLeftString(AmityLocalisation.getString(R.string.amity_Posts))
+            binding.pushDetailToolBar.setLeftString(AmityLocalisationSocial.getString(R.string.amity_Posts))
         } else {
-            binding.pushDetailToolBar.setLeftString(AmityLocalisation.getString(R.string.amity_comments))
+            binding.pushDetailToolBar.setLeftString(AmityLocalisationSocial.getString(R.string.amity_comments))
         }
-        binding.pushDetailToolBar.setRightString(AmityLocalisation.getString(com.amity.socialcloud.uikit.common.R.string.amity_save))
+        binding.pushDetailToolBar.setRightString(AmityLocalisationSocial.getString(com.amity.socialcloud.uikit.common.R.string.amity_save))
         supportActionBar?.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM
         setSupportActionBar(binding.pushDetailToolBar)
     }

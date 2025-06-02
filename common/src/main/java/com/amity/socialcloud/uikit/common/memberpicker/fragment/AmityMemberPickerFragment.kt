@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.SimpleItemAnimator
 import com.amity.socialcloud.sdk.model.core.file.AmityImage
 import com.amity.socialcloud.sdk.model.core.user.AmityUser
-import com.amity.socialcloud.uikit.common.AmityLocalisation
+import com.amity.socialcloud.uikit.common.AmityLocalisationCommon
 import com.amity.socialcloud.uikit.common.R
 import com.amity.socialcloud.uikit.common.common.setShape
 import com.amity.socialcloud.uikit.common.common.views.AmityColorShade
@@ -114,10 +114,10 @@ class AmityMemberPickerFragment : RxFragment(), AmitySelectMemberListener,
     private fun setToolBarState() {
         if (mViewModel.selectedMembersList.size != 0) {
             mViewModel.leftString.value =
-                "${mViewModel.selectedMembersList.size} ${AmityLocalisation.getString(R.string.amity_selected)}"
+                "${mViewModel.selectedMembersList.size} ${AmityLocalisationCommon.getString(R.string.amity_selected)}"
             mViewModel.rightStringActive.value = true
         } else {
-            mViewModel.leftString.value = AmityLocalisation.getString(R.string.amity_select_members)
+            mViewModel.leftString.value = AmityLocalisationCommon.getString(R.string.amity_select_members)
             mViewModel.rightStringActive.value = false
         }
     }
@@ -199,7 +199,7 @@ class AmityMemberPickerFragment : RxFragment(), AmitySelectMemberListener,
             member.getUserId(),
             member.getAvatar()?.getUrl(AmityImage.Size.MEDIUM) ?: "",
             member.getDisplayName()
-                ?: AmityLocalisation.getString(R.string.amity_anonymous), member.getDescription(), false
+                ?: AmityLocalisationCommon.getString(R.string.amity_anonymous), member.getDescription(), false
         )
 
         Log.d("MyTag", "onMemberClicked: $maxSelection")

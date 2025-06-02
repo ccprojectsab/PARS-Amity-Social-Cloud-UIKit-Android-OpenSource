@@ -10,7 +10,7 @@ import com.amity.socialcloud.sdk.api.social.AmitySocialClient
 import com.amity.socialcloud.sdk.api.social.community.AmityCommunityRepository
 import com.amity.socialcloud.sdk.model.social.community.AmityCommunity
 import com.amity.socialcloud.uikit.common.base.AmityBaseToolbarFragmentContainerActivity
-import com.amity.socialcloud.uikit.common.AmityLocalisation
+import com.amity.socialcloud.uikit.AmityLocalisationSocial
 import com.amity.socialcloud.uikit.community.R
 import com.amity.socialcloud.uikit.community.explore.activity.EXTRA_PARAM_COMMUNITY
 import com.amity.socialcloud.uikit.community.newsfeed.fragment.AmityPostCreatorFragment
@@ -29,7 +29,7 @@ class AmityPostCreatorActivity : AmityBaseToolbarFragmentContainerActivity() {
         if (communityId != null) {
             getCommunity(communityRepository,communityId)
         } else {
-            getToolBar()?.setLeftString(AmityLocalisation.getString(R.string.amity_my_timeline))
+            getToolBar()?.setLeftString(AmityLocalisationSocial.getString(R.string.amity_my_timeline))
         }
     }
     fun getCommunity(communityRepository: AmityCommunityRepository, communityId: Any) {

@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.Spannable
 import android.text.SpannableString
-import android.text.TextWatcher
 import android.text.style.ForegroundColorSpan
 import android.view.*
 import android.widget.TextView
@@ -20,7 +19,7 @@ import com.amity.socialcloud.sdk.model.social.poll.AmityPoll
 import com.amity.socialcloud.sdk.model.social.poll.AmityPollAnswer
 import com.amity.socialcloud.uikit.common.base.AmityBaseFragment
 import com.amity.socialcloud.uikit.common.utils.AmityAndroidUtil
-import com.amity.socialcloud.uikit.common.AmityLocalisation
+import com.amity.socialcloud.uikit.AmityLocalisationSocial
 import com.amity.socialcloud.uikit.community.R
 import com.amity.socialcloud.uikit.community.databinding.AmityFragmentPollCreatorBinding
 import com.amity.socialcloud.uikit.community.newsfeed.adapter.AmityPollDraftAnswerAdapter
@@ -198,7 +197,7 @@ class AmityPollPostCreatorFragment : AmityBaseFragment(), SuggestionsVisibilityM
 
     override fun onPrepareOptionsMenu(menu: Menu) {
         val menuItem =
-            menu.add(Menu.NONE, R.id.amity_poll_post, Menu.NONE, AmityLocalisation.getString(R.string.amity_post))
+            menu.add(Menu.NONE, R.id.amity_poll_post, Menu.NONE, AmityLocalisationSocial.getString(R.string.amity_post))
 
         val isEnabled = binding.questionEditText.length() in 1..MAX_QUESTION_LENGTH
                 && adapter.itemCount >= MIN_ANSWER_COUNT
@@ -260,7 +259,7 @@ class AmityPollPostCreatorFragment : AmityBaseFragment(), SuggestionsVisibilityM
     }
     
     private fun setupUserMention() {
-        binding.questionEditText.hint = AmityLocalisation.getString(R.string.amity_poll_question_hint)
+        binding.questionEditText.hint = AmityLocalisationSocial.getString(R.string.amity_poll_question_hint)
         binding.questionEditText.apply {
             setSuggestionsVisibilityManager(this@AmityPollPostCreatorFragment)
             setQueryTokenReceiver(this@AmityPollPostCreatorFragment)

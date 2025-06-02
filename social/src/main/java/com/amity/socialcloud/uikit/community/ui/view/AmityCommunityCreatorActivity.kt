@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import com.amity.socialcloud.uikit.common.AmityLocalisation
+import com.amity.socialcloud.uikit.AmityLocalisationSocial
 import com.amity.socialcloud.uikit.common.components.AmityToolBarClickListener
 import com.amity.socialcloud.uikit.community.R
 import com.amity.socialcloud.uikit.community.databinding.AmityActivityCreateCommunityBinding
@@ -28,7 +28,7 @@ class AmityCommunityCreatorActivity : AppCompatActivity(), AmityToolBarClickList
         binding.communityToolbar.setLeftDrawable(
             ContextCompat.getDrawable(this, com.amity.socialcloud.uikit.common.R.drawable.amity_ic_cross)
         )
-        binding.communityToolbar.setLeftString(AmityLocalisation.getString(R.string.amity_create_community))
+        binding.communityToolbar.setLeftString(AmityLocalisationSocial.getString(R.string.amity_create_community))
         binding.communityToolbar.setClickListener(this)
 
         supportActionBar?.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM

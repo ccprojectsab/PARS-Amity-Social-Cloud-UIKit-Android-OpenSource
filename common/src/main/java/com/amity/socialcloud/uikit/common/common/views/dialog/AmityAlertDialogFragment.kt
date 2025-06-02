@@ -7,7 +7,7 @@ import android.view.ContextThemeWrapper
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
-import com.amity.socialcloud.uikit.common.AmityLocalisation
+import com.amity.socialcloud.uikit.common.AmityLocalisationCommon
 import com.amity.socialcloud.uikit.common.R
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
@@ -55,16 +55,16 @@ class AmityAlertDialogFragment : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val context = ContextThemeWrapper(requireContext(), R.style.AmityAlertDialogTheme)
         var dialog = MaterialAlertDialogBuilder(context)
-            .setTitle(AmityLocalisation.getString(title))
-            .setMessage(AmityLocalisation.getString(message))
+            .setTitle(AmityLocalisationCommon.getString(title))
+            .setMessage(AmityLocalisationCommon.getString(message))
         if (positiveButtonTitle != -1) {
-            dialog.setPositiveButton(AmityLocalisation.getString(positiveButtonTitle!!)) { dialog, which ->
+            dialog.setPositiveButton(AmityLocalisationCommon.getString(positiveButtonTitle!!)) { dialog, which ->
                 listener?.onClickPositiveButton()
                 dialog.dismiss()
             }
         }
         if (negativeButtonTitle != -1) {
-            dialog.setNegativeButton(AmityLocalisation.getString(negativeButtonTitle!!)) { dialog, which ->
+            dialog.setNegativeButton(AmityLocalisationCommon.getString(negativeButtonTitle!!)) { dialog, which ->
                 listener?.onClickNegativeButton()
                 dialog.dismiss()
             }

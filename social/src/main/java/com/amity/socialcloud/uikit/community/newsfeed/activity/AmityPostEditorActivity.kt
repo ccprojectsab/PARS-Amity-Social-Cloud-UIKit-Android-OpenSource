@@ -7,9 +7,8 @@ import androidx.activity.result.contract.ActivityResultContract
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.amity.socialcloud.sdk.model.social.post.AmityPost
-import com.amity.socialcloud.uikit.common.AmityLocalisation
+import com.amity.socialcloud.uikit.AmityLocalisationSocial
 import com.amity.socialcloud.uikit.common.base.AmityBaseToolbarFragmentContainerActivity
-import com.amity.socialcloud.uikit.community.R
 import com.amity.socialcloud.uikit.community.newsfeed.fragment.AmityPostEditorFragment
 import com.amity.socialcloud.uikit.community.utils.EXTRA_PARAM_POST_ID
 
@@ -17,7 +16,7 @@ class AmityPostEditorActivity : AmityBaseToolbarFragmentContainerActivity() {
 
     override fun initToolbar() {
         getToolBar()?.setLeftDrawable(ContextCompat.getDrawable(this, com.amity.socialcloud.uikit.common.R.drawable.amity_ic_cross))
-        getToolBar()?.setLeftString(AmityLocalisation.getString(com.amity.socialcloud.uikit.common.R.string.amity_edit_post))
+        getToolBar()?.setLeftString(AmityLocalisationSocial.getString(com.amity.socialcloud.uikit.common.R.string.amity_edit_post))
     }
 
     override fun getContentFragment(): Fragment {

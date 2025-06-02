@@ -9,7 +9,7 @@ import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.amity.socialcloud.uikit.common.R
 import com.amity.socialcloud.uikit.common.databinding.AmityActivityImagePreviewBinding
-import com.amity.socialcloud.uikit.common.AmityLocalisation
+import com.amity.socialcloud.uikit.common.AmityLocalisationCommon
 
 class AmityImagePreviewActivity : AppCompatActivity() {
     private val binding: AmityActivityImagePreviewBinding by lazy {
@@ -92,7 +92,7 @@ class AmityImagePreviewActivity : AppCompatActivity() {
             supportActionBar?.setDisplayShowTitleEnabled(false)
         } else {
             supportActionBar?.title =
-                String.format(AmityLocalisation.getString(R.string.amity_image_preview_title, position + 1, amityImages.size))
+                String.format(AmityLocalisationCommon.getString(R.string.amity_image_preview_title, position + 1, amityImages.size))
         }
     }
 

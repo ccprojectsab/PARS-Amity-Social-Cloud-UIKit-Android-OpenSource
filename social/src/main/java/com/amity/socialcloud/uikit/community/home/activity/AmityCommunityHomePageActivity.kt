@@ -1,9 +1,8 @@
 package com.amity.socialcloud.uikit.community.home.activity
 
 import android.os.Bundle
-import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
-import com.amity.socialcloud.uikit.common.AmityLocalisation
+import com.amity.socialcloud.uikit.AmityLocalisationSocial
 import com.amity.socialcloud.uikit.community.R
 import com.amity.socialcloud.uikit.community.databinding.AmityActivityCommunityHomeBinding
 import com.amity.socialcloud.uikit.community.home.fragments.AmityCommunityHomePageFragment
@@ -25,7 +24,7 @@ class AmityCommunityHomePageActivity : AppCompatActivity() {
 
     private fun initToolbar() {
         setSupportActionBar(binding.communityHomeToolbar)
-        binding.communityHomeToolbar.setLeftString(AmityLocalisation.getString(R.string.amity_community))
+        binding.communityHomeToolbar.setLeftString(AmityLocalisationSocial.getString(R.string.amity_community))
 
     }
 

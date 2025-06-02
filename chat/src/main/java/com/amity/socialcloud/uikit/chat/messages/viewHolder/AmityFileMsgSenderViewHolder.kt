@@ -12,7 +12,7 @@ import com.amity.socialcloud.sdk.model.chat.message.AmityMessage
 import com.amity.socialcloud.uikit.chat.databinding.AmityItemFileMessageSenderBinding
 import com.amity.socialcloud.uikit.chat.messages.popUp.AmityPopUp
 import com.amity.socialcloud.uikit.chat.messages.viewModel.AmityFileMsgViewModel
-import com.amity.socialcloud.uikit.common.AmityLocalisation
+import com.amity.socialcloud.uikit.chat.AmityLocalisationChat
 import com.amity.socialcloud.uikit.common.common.AmityFileUtils
 import com.amity.socialcloud.uikit.common.model.AmityEventIdentifier
 import com.amity.socialcloud.uikit.common.utils.AmityConstants.FILE_EXTENSION_SEPARATOR
@@ -122,8 +122,8 @@ class AmityFileMsgSenderViewHolder(
 
     fun downloadFile(context: Context) {
         val request = DownloadManager.Request(Uri.parse(itemViewModel.fileUrl.get())).apply {
-            setTitle(AmityLocalisation.getString(com.amity.socialcloud.uikit.common.R.string.amity_downloading_file))
-            setDescription(AmityLocalisation.getString(com.amity.socialcloud.uikit.common.R.string.amity_try_again))
+            setTitle(AmityLocalisationChat.getString(com.amity.socialcloud.uikit.common.R.string.amity_downloading_file))
+            setDescription(AmityLocalisationChat.getString(com.amity.socialcloud.uikit.common.R.string.amity_try_again))
             setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
             setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "")
         }

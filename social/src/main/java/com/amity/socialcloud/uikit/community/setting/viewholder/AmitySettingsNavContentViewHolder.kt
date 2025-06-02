@@ -9,7 +9,7 @@ import com.amity.socialcloud.uikit.common.components.setImageResource
 import com.amity.socialcloud.uikit.common.components.setVisibility
 import com.amity.socialcloud.uikit.community.databinding.AmityItemSettingsNavContentBinding
 import com.amity.socialcloud.uikit.community.setting.AmitySettingsItem
-import com.amity.socialcloud.uikit.common.AmityLocalisation
+import com.amity.socialcloud.uikit.AmityLocalisationSocial
 
 class AmitySettingsNavContentViewHolder(val context: Context, itemView: View) :
         RecyclerView.ViewHolder(itemView),
@@ -23,13 +23,13 @@ class AmitySettingsNavContentViewHolder(val context: Context, itemView: View) :
                     data.icon?.let { setImageResource(mainSettingsContent.ivIcon, it) }
                     setVisibility(mainSettingsContent.ivIcon, data.icon != null)
 
-                    mainSettingsContent.tvTitle.text = AmityLocalisation.getString(data.title)
+                    mainSettingsContent.tvTitle.text = AmityLocalisationSocial.getString(data.title)
                     setBold(mainSettingsContent.tvTitle, data.isTitleBold)
 
-                    mainSettingsContent.tvDescription.text = data.description?.let { AmityLocalisation.getString(it) }
+                    mainSettingsContent.tvDescription.text = data.description?.let { AmityLocalisationSocial.getString(it) }
                     setVisibility(mainSettingsContent.tvDescription, data.description != null)
 
-                    tvValue.text = data.value?.let { AmityLocalisation.getString(it) }
+                    tvValue.text = data.value?.let { AmityLocalisationSocial.getString(it) }
                     setVisibility(tvValue, data.value != null)
 
                     data.iconNavigation?.let { setImageResource(ivNavigation, it) }

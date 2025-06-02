@@ -1,9 +1,5 @@
 package com.amity.socialcloud.uikit.community.home.fragments
 
-import android.R.attr.bottom
-import android.R.attr.left
-import android.R.attr.right
-import android.R.attr.top
 import android.app.SearchManager
 import android.content.Context
 import android.os.Bundle
@@ -17,7 +13,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
@@ -28,9 +23,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ObservableField
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.viewpager2.widget.ViewPager2
-import com.amity.socialcloud.uikit.common.AmityLocalisation
+import com.amity.socialcloud.uikit.AmityLocalisationSocial
 import com.amity.socialcloud.uikit.common.base.AmityFragmentStateAdapter
 import com.amity.socialcloud.uikit.common.common.views.AmityColorPaletteUtil
 import com.amity.socialcloud.uikit.common.common.views.AmityColorShade
@@ -138,11 +132,11 @@ class AmityCommunityHomePageFragment : Fragment(), AmityToolBarClickListener {
         fragmentStateAdapter.setFragmentList(
             arrayListOf(
                 AmityFragmentStateAdapter.AmityPagerModel(
-                    AmityLocalisation.getString(R.string.amity_title_news_feed),
+                    AmityLocalisationSocial.getString(R.string.amity_title_news_feed),
                     getNewsFeedFragment()
                 ),
                 AmityFragmentStateAdapter.AmityPagerModel(
-                    AmityLocalisation.getString(R.string.amity_title_explore),
+                    AmityLocalisationSocial.getString(R.string.amity_title_explore),
                     getExploreFragment()
                 )
             )
@@ -203,7 +197,7 @@ class AmityCommunityHomePageFragment : Fragment(), AmityToolBarClickListener {
 
     private fun initToolbar() {
 
-        binding.communityHomeToolbar.setLeftString(AmityLocalisation.getString(R.string.amity_community))
+        binding.communityHomeToolbar.setLeftString(AmityLocalisationSocial.getString(R.string.amity_community))
         (activity as AppCompatActivity).supportActionBar?.displayOptions =
             ActionBar.DISPLAY_SHOW_CUSTOM
         (activity as AppCompatActivity).setSupportActionBar(binding.communityHomeToolbar as Toolbar)
@@ -214,12 +208,12 @@ class AmityCommunityHomePageFragment : Fragment(), AmityToolBarClickListener {
         globalSearchStateAdapter.setFragmentList(
             arrayListOf(
                 AmityFragmentStateAdapter.AmityPagerModel(
-                    AmityLocalisation.getString(R.string.amity_communities),
+                    AmityLocalisationSocial.getString(R.string.amity_communities),
                     AmityCommunitySearchFragment.newInstance(searchString)
                         .build(requireActivity() as AppCompatActivity)
                 ),
                 AmityFragmentStateAdapter.AmityPagerModel(
-                    AmityLocalisation.getString(R.string.amity_accounts),
+                    AmityLocalisationSocial.getString(R.string.amity_accounts),
                     AmityUserSearchFragment.newInstance(searchString)
                         .build(requireActivity() as AppCompatActivity)
                 )
@@ -245,7 +239,7 @@ class AmityCommunityHomePageFragment : Fragment(), AmityToolBarClickListener {
             requireActivity().getSystemService(Context.SEARCH_SERVICE) as SearchManager
         val searchView =
             SearchView((activity as AppCompatActivity).supportActionBar!!.themedContext)
-        searchView.queryHint = getString(com.amity.socialcloud.uikit.common.R.string.amity_search)
+        searchView.queryHint = AmityLocalisationSocial.getString(com.amity.socialcloud.uikit.common.R.string.amity_search)
         searchView.maxWidth = Int.MAX_VALUE
         searchView.setBackgroundResource(R.drawable.amity_search_bg_selector)
 

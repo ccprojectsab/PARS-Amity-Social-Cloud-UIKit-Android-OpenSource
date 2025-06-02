@@ -3,7 +3,6 @@ package com.amity.socialcloud.uikit.chat.home.fragment
 import android.content.Context
 import android.os.Bundle
 import android.view.*
-import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -18,7 +17,7 @@ import com.amity.socialcloud.uikit.chat.recent.fragment.AmityRecentChatFragment
 import com.amity.socialcloud.uikit.common.base.AmityFragmentStateAdapter
 import com.amity.socialcloud.uikit.common.common.showSnackBar
 import com.amity.socialcloud.uikit.common.contract.AmityPickMemberContract
-import com.amity.socialcloud.uikit.common.AmityLocalisation
+import com.amity.socialcloud.uikit.chat.AmityLocalisationChat
 import com.ekoapp.rxlifecycle.extension.untilLifecycleEnd
 
 class AmityChatHomePageFragment : Fragment() {
@@ -30,14 +29,14 @@ class AmityChatHomePageFragment : Fragment() {
 
     private val selectMembers = registerForActivityResult(AmityPickMemberContract(1)) { userList ->
         if (userList?.isNotEmpty() ?: false) {
-            view?.showSnackBar(msg = AmityLocalisation.getString(R.string.amity_channel_creation_loading))
+            view?.showSnackBar(msg = AmityLocalisationChat.getString(R.string.amity_channel_creation_loading))
             mViewModel.createChat(selectedMembers = userList!!,
                 onChatCreateSuccess = { channelId: String ->
                     val chatListIntent =
                         AmityMessageListActivity.newIntent(requireContext(), channelId)
                     startActivity(chatListIntent)
                 },
-                onChatCreateFailed = { view?.showSnackBar(msg = AmityLocalisation.getString(R.string.amity_channel_creation_error)) })
+                onChatCreateFailed = { view?.showSnackBar(msg = AmityLocalisationChat.getString(R.string.amity_channel_creation_error)) })
                 .untilLifecycleEnd(this.requireView())
                 .subscribe()
         }
@@ -71,7 +70,7 @@ class AmityChatHomePageFragment : Fragment() {
         val sharedPref = context?.getSharedPreferences("SHARED_PREF", Context.MODE_PRIVATE)
         val isLiveStreamPermitted =
             sharedPref?.getBoolean("PREF_USER_CAN_LIVESTREAM", false) ?: false
-        binding.chatHomeToolBar.setLeftString(AmityLocalisation.getString(R.string.amity_chat))
+        binding.chatHomeToolBar.setLeftString(AmityLocalisationChat.getString(R.string.amity_chat))
         (activity as AppCompatActivity).supportActionBar?.displayOptions =
             ActionBar.DISPLAY_SHOW_CUSTOM
         (activity as AppCompatActivity).setSupportActionBar(binding.chatHomeToolBar as Toolbar)
@@ -83,7 +82,7 @@ class AmityChatHomePageFragment : Fragment() {
         fragmentStateAdapter.setFragmentList(
             arrayListOf(
                 AmityFragmentStateAdapter.AmityPagerModel(
-                    AmityLocalisation.getString(R.string.amity_title_recent_chat),
+                    AmityLocalisationChat.getString(R.string.amity_title_recent_chat),
                     getRecentChatFragment()
                 )
             )
