@@ -34,94 +34,94 @@ object AmityLocalisationCommon
 
     private val stringsMap: Map<Int, String> = mapOf(
         // General UI/Actions
-        R.string.amity_general_search to "common.general.action.search",
-        R.string.amity_read_more to "common.general.action.readMore",
-        R.string.amity_feed to "common.general.content.feed",
-        R.string.amity_gallery to "common.media.gallery",
-        R.string.amity_follow to "common.general.action.follow",
-        R.string.amity_followers to "common.general.content.followers",
-        R.string.amity_search to "common.general.action.search",
-        R.string.amity_search_results to "common.general.content.searchResults",
+        R.string.amity_general_search to "app.common.faq.content.searchPlaceholder",
+        R.string.amity_read_more to "app.common.buttons.ok",
+        R.string.amity_feed to "app.home.content.newsTips",
+        R.string.amity_gallery to "app.common.content.generalGallery",
+        R.string.amity_follow to "app.common.content.generalFollow",
+        R.string.amity_followers to "social.community.followRequestsPopup.followers",
+        R.string.amity_search to "app.common.content.generalSearch",
+        R.string.amity_search_results to "app.common.content.generalSearch",
         
         // UI Elements
-        R.string.amity_left_icon to "common.ui.leftIcon",
-        R.string.amity_center_icon to "common.ui.centerIcon",
-        R.string.amity_right_icon to "common.ui.rightIcon",
+        R.string.amity_left_icon to "app.common.content.generalImage_gallery",
+        R.string.amity_center_icon to "app.common.content.generalImage_gallery",
+        R.string.amity_right_icon to "app.common.content.generalImage_gallery",
         
         // Media Related
-        R.string.amity_choose_image to "common.media.chooseImage",
+        R.string.amity_choose_image to "app.userProfile.chooseImage.title",
         
         // Post Actions
-        R.string.amity_edit_post to "common.post.action.edit",
-        R.string.amity_delete_post to "common.post.action.delete",
+        R.string.amity_edit_post to "social.general.content.generalEdit",
+        R.string.amity_delete_post to "social.general.content.generalDelete",
         
         // General Actions
-        R.string.amity_save to "common.general.action.save",
-        R.string.amity_saved to "common.general.content.saved",
-        R.string.amity_delete_msg to "common.general.content.deleteMessage",
-        R.string.amity_dlt_dlg_body to "common.general.content.deleteMessageBody",
-        R.string.amity_failed_dlg_body to "common.error.messageNotSent",
-        R.string.amity_cancel to "common.general.action.cancel",
+        R.string.amity_save to "app.common.buttons.save",
+        R.string.amity_saved to "social.general.content.generalSaved",
+        R.string.amity_delete_msg to "social.general.content.generalDelete",
+        R.string.amity_dlt_dlg_body to "app.common.errors.errorInvalidCredentials",
+        R.string.amity_failed_dlg_body to "app.common.errors.errorInvalidCredentials",
+        R.string.amity_cancel to "app.common.buttons.cancel",
         
         // Time Related
-        R.string.amity_day to "common.general.time.day",
-        R.string.amity_hour to "common.general.time.hour",
-        R.string.amity_min to "common.general.time.minute",
-        R.string.amity_just_now to "common.general.time.justNow",
+        R.string.amity_day to "social.general.unit.content.daySingular",
+        R.string.amity_hour to "social.general.unit.content.hourSingular",
+        R.string.amity_min to "social.general.unit.content.minuteSingular",
+        R.string.amity_just_now to "social.general.time.justNow",
         
         // UI Actions
-        R.string.amity_save_caps to "common.general.action.saveCaps",
-        R.string.amity_anonymous to "common.general.content.anonymous",
-        R.string.amity_edit_profile to "common.profile.action.edit",
-        R.string.amity_message to "common.general.content.message",
-        R.string.amity_display_name to "common.profile.content.displayName",
+        R.string.amity_save_caps to "app.common.buttons.save",
+        R.string.amity_anonymous to "social.general.content.generalAnonymous",
+        R.string.amity_edit_profile to "app.userProfile.editProfile.title",
+        R.string.amity_message to "social.chat.messageBox.inputHint",
+        R.string.amity_display_name to "app.userProfile.createProfile.firstName",
         
         // Status Messages
-        R.string.amity_report_msg to "common.general.content.reportMessage",
-        R.string.amity_max_image_selected to "common.media.error.maxImageLimit",
-        R.string.amity_unable_to_delete to "common.error.unableToDelete",
-        R.string.amity_try_again to "common.general.action.tryAgain",
+        R.string.amity_report_msg to "social.general.content.generalReport",
+        R.string.amity_max_image_selected to "social.post.create.attachmentCountLimitExceed",
+        R.string.amity_unable_to_delete to "social.general.content.errorMessage",
+        R.string.amity_try_again to "social.general.content.errorMessage",
         
         // Media Preview
-        R.string.amity_image_preview_title to "common.media.content.imagePreviewTitle",
-        R.string.amity_release_to_send to "common.general.action.releaseToSend",
+        R.string.amity_image_preview_title to "app.common.content.generalImage_gallery",
+        R.string.amity_release_to_send to "social.chat.messageBox.recordHint",
         
         // Time Format
-        R.string.amity_time to "common.general.time.format",
+        R.string.amity_time to "social.general.time.justNow",
         
         // Community Actions
-        R.string.amity_remove_from_community to "common.community.action.removeMember",
+        R.string.amity_remove_from_community to "social.community.members.removeOption",
         
         // Error Messages
-        R.string.amity_no_permission_title to "common.error.noPermissionTitle",
-        R.string.amity_no_permission_message to "common.error.noPermissionMessage",
+        R.string.amity_no_permission_title to "app.common.errors.errorInvalidCredentials",
+        R.string.amity_no_permission_message to "app.common.errors.errorInvalidCredentials",
         
         // File Operations
-        R.string.amity_downloading_file to "common.media.content.downloadingFile",
-        R.string.amity_download_complete to "common.media.content.downloadComplete",
+        R.string.amity_downloading_file to "social.general.content.generalFile",
+        R.string.amity_download_complete to "social.general.content.generalFile",
         
         // Profile Related
-        R.string.amity_following_count to "common.profile.content.followingCount",
-        R.string.amity_remove_follower to "common.profile.action.removeFollower",
-        R.string.amity_remove_follower_msg to "common.profile.content.removeFollowerMessage",
+        R.string.amity_following_count to "social.community.followRequestsPopup.following",
+        R.string.amity_remove_follower to "social.user.action.remove",
+        R.string.amity_remove_follower_msg to "social.user.content.unfollowDescription",
         
         // General UI States
-        R.string.amity_no_user_found to "common.error.noUserFound",
-        R.string.amity_yesterday to "common.general.time.yesterday",
-        R.string.amity_done to "common.general.action.done",
-        R.string.amity_ok to "common.general.action.ok",
+        R.string.amity_no_user_found to "social.community.basicInfo.noUserFound",
+        R.string.amity_yesterday to "social.general.time.yesterday",
+        R.string.amity_done to "app.common.buttons.done",
+        R.string.amity_ok to "app.common.buttons.ok",
         
         // Member Management
-        R.string.amity_select_members to "common.member.action.select",
-        R.string.amity_add to "common.general.action.add",
-        R.string.amity_selected to "common.general.content.selected",
+        R.string.amity_select_members to "social.community.memberSelect.selectTitle",
+        R.string.amity_add to "social.general.content.generalAdd",
+        R.string.amity_selected to "social.general.content.selected",
 
         // Plurals for Time
-        R.plurals.amity_number_of_years to "common.general.time.years",
-        R.plurals.amity_number_of_months to "common.general.time.months",
-        R.plurals.amity_number_of_weeks to "common.general.time.weeks",
-        R.plurals.amity_number_of_days to "common.general.time.days",
-        R.plurals.amity_number_of_hours to "common.general.time.hours",
-        R.plurals.amity_number_of_mins to "common.general.time.minutes"
+        R.plurals.amity_number_of_years to "social.general.time.years",
+        R.plurals.amity_number_of_months to "social.general.time.months",
+        R.plurals.amity_number_of_weeks to "social.general.time.weeks",
+        R.plurals.amity_number_of_days to "social.general.time.days",
+        R.plurals.amity_number_of_hours to "social.general.time.hours",
+        R.plurals.amity_number_of_mins to "social.general.time.minutes"
     )
 }
