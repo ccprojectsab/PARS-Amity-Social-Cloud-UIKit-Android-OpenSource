@@ -19,7 +19,7 @@ object AmityLocalisationCommon
      * @return Hardcoded string value
      */
     fun getString(@StringRes stringResId: Int): String {
-        return stringsMap[stringResId]?.let { LocalizationManager.getString(it) } ?: applicationContext?.getString(stringResId) ?: "Unknown String"
+        return stringsMap[stringResId] ?: applicationContext?.getString(stringResId) ?: "Unknown String"
     }
 
     /**
@@ -29,7 +29,7 @@ object AmityLocalisationCommon
      * @return Formatted hardcoded string value
      */
     fun getString(@StringRes stringResId: Int, vararg formatArgs: Any?): String {
-        return stringsMap[stringResId]?.let { LocalizationManager.getString(it, formatArgs) } ?: applicationContext?.getString(stringResId, formatArgs) ?: "Unknown String"
+        return stringsMap[stringResId] ?: applicationContext?.getString(stringResId, formatArgs) ?: "Unknown String"
     }
 
     private val stringsMap: Map<Int, String> = mapOf(
@@ -115,7 +115,7 @@ object AmityLocalisationCommon
         R.string.amity_select_members to "social.community.memberSelect.selectTitle",
         R.string.amity_add to "social.general.content.generalAdd",
         R.string.amity_selected to "social.general.content.selected",
-
+        R.string.amity_following_count to "social.community.following",
         // Plurals for Time
         R.plurals.amity_number_of_years to "social.general.time.years",
         R.plurals.amity_number_of_months to "social.general.time.months",
@@ -123,5 +123,6 @@ object AmityLocalisationCommon
         R.plurals.amity_number_of_days to "social.general.time.days",
         R.plurals.amity_number_of_hours to "social.general.time.hours",
         R.plurals.amity_number_of_mins to "social.general.time.minutes"
+
     )
 }

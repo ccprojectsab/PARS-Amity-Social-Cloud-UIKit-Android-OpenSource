@@ -22,7 +22,7 @@ object AmityLocalisationChat {
      * @return Hardcoded string value
      */
     fun getString(@StringRes stringResId: Int): String {
-        return stringsMap[stringResId]?.let { LocalizationManager.getString(it) } ?: applicationContext?.getString(stringResId) ?: "Unknown String"
+        return stringsMap[stringResId] ?: applicationContext?.getString(stringResId) ?: "Unknown String"
     }
     
     /**
@@ -32,7 +32,7 @@ object AmityLocalisationChat {
      * @return Formatted hardcoded string value
      */
     fun getString(@StringRes stringResId: Int, vararg formatArgs: Any?): String {
-        return stringsMap[stringResId]?.let { LocalizationManager.getString(it, formatArgs) } ?: applicationContext?.getString(stringResId, formatArgs) ?: "Unknown String"
+        return stringsMap[stringResId] ?: applicationContext?.getString(stringResId, formatArgs) ?: "Unknown String"
     }
 
     private val stringsMap: Map<Int, String> = mapOf(
@@ -69,6 +69,7 @@ object AmityLocalisationChat {
         R.string.amity_settings_chat_title to "social.chat.settings.leaveChat",
         R.string.amity_leave_chat to "social.chat.settings.leaveChat",
         R.string.amity_leave_chat_title to "social.chat.settings.leaveChatTitle",
-        R.string.amity_leave_chat_des to "social.chat.settings.leaveChatMessage"
-    )
+        R.string.amity_leave_chat_des to "social.chat.settings.leaveChatMessage",
+
+        )
 } 

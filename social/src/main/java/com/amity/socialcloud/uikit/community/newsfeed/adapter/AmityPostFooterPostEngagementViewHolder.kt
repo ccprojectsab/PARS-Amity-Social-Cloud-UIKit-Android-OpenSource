@@ -22,10 +22,10 @@ class AmityPostFooterPostEngagementViewHolder(
 
     override fun bind(data: AmityBasePostFooterItem, position: Int) {
         binding.executePendingBindings()
+        binding.cbComment.text = AmityLocalisationSocial.getString(R.string.amity_comments)
         val postEngagementData = data as AmityBasePostFooterItem.POST_ENGAGEMENT
         setNumberOfReactions(postEngagementData.post.getReactionCount())
-        val isReactedByMe =
-            postEngagementData.post.getMyReactions().contains(AmityConstants.POST_REACTION)
+        val isReactedByMe = postEngagementData.post.getMyReactions().contains(AmityConstants.POST_REACTION)
         setUpLikeView(
             isReactedByMe,
             postEngagementData.post.getReactionCount(),
@@ -33,7 +33,6 @@ class AmityPostFooterPostEngagementViewHolder(
         )
         setNumberOfComments(postEngagementData.post.getCommentCount())
         setReadOnlyMode(postEngagementData.isReadOnly)
-     //   setShareOption(postEngagementData.post)
         setCommentListener(postEngagementData.post)
         setReactionCountListener(postEngagementData.post)
     }
@@ -83,9 +82,9 @@ class AmityPostFooterPostEngagementViewHolder(
 
     private fun setLikeCheckboxText() {
         if (binding.cbLike.isChecked) {
-            binding.cbLike.setText(R.string.amity_liked)
+            binding.cbLike.text = AmityLocalisationSocial.getString(R.string.amity_liked)
         } else {
-            binding.cbLike.setText(R.string.amity_like)
+            binding.cbLike.text = AmityLocalisationSocial.getString(R.string.amity_like)
         }
     }
 

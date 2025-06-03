@@ -67,6 +67,7 @@ class AmityPostCommentView : ConstraintLayout {
         binding.tvUserName.text =
             comment.getCreator()?.getDisplayName() ?: AmityLocalisationSocial.getString(com.amity.socialcloud.uikit.common.R.string.amity_anonymous)
         binding.tvCommentTime.text = comment.getCreatedAt().millis.readableFeedPostTime(context)
+        binding.tvCommentBy.text = AmityLocalisationSocial.getString(R.string.amity_moderator)
         binding.edited = comment.isEdited()
         binding.isFailed = comment.getState() == AmityComment.State.FAILED
         binding.isReplyComment = !comment.getParentId().isNullOrEmpty()
@@ -165,9 +166,9 @@ class AmityPostCommentView : ConstraintLayout {
 
     private fun setLikeCheckboxText() {
         if (binding.cbLike.isChecked) {
-            binding.cbLike.setText(R.string.amity_liked)
+            binding.cbLike.setText(AmityLocalisationSocial.getString(R.string.amity_liked))
         } else {
-            binding.cbLike.setText(R.string.amity_like)
+            binding.cbLike.setText(AmityLocalisationSocial.getString(R.string.amity_like))
         }
     }
 

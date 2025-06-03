@@ -11,6 +11,7 @@ import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.amity.socialcloud.sdk.model.social.community.AmityCommunity
+import com.amity.socialcloud.uikit.AmityLocalisationSocial
 import com.amity.socialcloud.uikit.common.base.AmityBaseFragment
 import com.amity.socialcloud.uikit.common.utils.AmityRecyclerViewItemDecoration
 import com.amity.socialcloud.uikit.community.R
@@ -44,6 +45,7 @@ class AmityMyCommunityPreviewFragment : AmityBaseFragment(),
     ): View? {
         binding =
             AmityFragmentMyCommunityListBinding.inflate(inflater, container, false)
+        binding.tvMyCommunity.text = AmityLocalisationSocial.getString(R.string.amity_my_community)
         return binding.root
     }
 

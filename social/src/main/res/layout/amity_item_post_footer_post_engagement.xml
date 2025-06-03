@@ -118,7 +118,6 @@
                 android:layout_marginStart="@dimen/amity_padding_m1"
                 android:drawablePadding="@dimen/amity_padding_xs"
                 android:gravity="center_vertical"
-                android:text="@string/amity_share"
                 android:textColor="@{@color/amityColorBase}"
                 android:visibility="@{showShareButton? View.VISIBLE: View.GONE}"
                 app:drawableStartCompat="@drawable/amity_ic_share"

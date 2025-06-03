@@ -18,7 +18,7 @@ object AmityLocalisationSocial {
      * @return Hardcoded string value
      */
     fun getString(@StringRes stringResId: Int): String {
-        return stringsMap[stringResId]?.let { LocalizationManager.getString(it) } ?: applicationContext?.getString(stringResId) ?: "Unknown String"
+        return stringsMap[stringResId] ?: applicationContext?.getString(stringResId) ?: "Unknown String"
     }
 
     /**
@@ -28,14 +28,15 @@ object AmityLocalisationSocial {
      * @return Formatted hardcoded string value
      */
     fun getString(@StringRes stringResId: Int, vararg formatArgs: Any?): String {
-        return stringsMap[stringResId]?.let { LocalizationManager.getString(it, formatArgs) } ?: applicationContext?.getString(stringResId, formatArgs) ?: "Unknown String"
+        return stringsMap[stringResId] ?: applicationContext?.getString(stringResId, formatArgs) ?: "Unknown String"
     }
 
     private val stringsMap: Map<Int, String> = mapOf(
         // Community Related
-        R.string.amity_recommended_for_you to "social.community.basicInfo.pageTitle",
+        R.string.amity_recommended_for_you to "social.community.recommended.pageTitle",
         R.string.amity_community_followers to "social.community.followRequestsPopup.followers",
         R.string.amity_todays_trending to "social.community.trending.pageTitle",
+        R.string.amity_my_community to "social.community.myCommunities.title",
         R.string.amity_number_of_followers to "social.community.followRequestsPopup.followers",
         R.string.amity_posts to "social.general.unit.content.postPlural",
         R.string.amity_followers to "social.community.followRequestsPopup.followers",
@@ -43,15 +44,15 @@ object AmityLocalisationSocial {
         R.string.amity_following to "social.community.followRequestsPopup.following",
         R.string.amity_title_news_feed to "social.post.newsfeed.pageTitle",
         R.string.amity_title_explore to "social.community.socialTabBar.exploreTab",
-        R.string.amity_community to "social.community.basicInfo.pageTitle",
+        R.string.amity_community to "social.community.home.pageTitle",
         R.string.amity_create_community to "social.community.createForm.createTitle",
         R.string.amity_cc_hint to "social.community.createForm.nameHint",
-        R.string.amity_about to "social.community.basicInfo.pageTitle",
+        R.string.amity_about to "social.community.basicInfo.aboutField",
         R.string.amity_enter_description to "social.community.createForm.aboutHint",
-        R.string.amity_tv_public to "social.community.settings.publicTitle",
-        R.string.amity_admin_description to "social.community.settings.adminRuleDesc",
+        R.string.amity_tv_public to "social.community.createForm.publicTitle",
+        R.string.amity_admin_description to "social.community.createForm.adminRuleDesc",
         R.string.amity_public_description to "social.community.createForm.publicDesc",
-        R.string.amity_tv_private to "social.community.settings.privateTitle",
+        R.string.amity_tv_private to "social.community.createForm.privateTitle",
         R.string.amity_private_description to "social.community.createForm.privateDesc",
         R.string.amity_only_admin to "social.community.settings.adminRuleTitle",
         R.string.amity_add_members to "social.community.createForm.addMemberTitle",
@@ -62,10 +63,10 @@ object AmityLocalisationSocial {
         
         // Post Related
         R.string.amity_feed_post_time to "social.general.time.justNow",
-        R.string.amity_post_compose_hint to "social.post.create.textHint",
+        R.string.amity_post_compose_hint to "social.post.create.textPlaceholder",
         R.string.amity_post to "social.general.content.generalPost",
         R.string.amity_post_caps to "social.general.content.generalPost",
-        R.string.amity_new_post to "social.post.create.button",
+        R.string.amity_new_post to "social.post.create.submitButton",
         R.string.amity_attachment_size_limit_exceed to "social.general.content.filSizeError",
         R.string.amity_attachment_count_limit_exceed to "social.general.content.maxFileNumberReached",
         R.string.amity_discard_post_title to "social.post.create.discardTitle",
@@ -102,10 +103,10 @@ object AmityLocalisationSocial {
         R.string.amity_discard_reply_title to "social.post.detail.discardReplyTitle",
         
         // Settings Related
-        R.string.amity_community_setting to "social.community.settings.pageTitle",
+        R.string.amity_community_setting to "social.community.basicInfo.settingsTitle",
         R.string.amity_basic_info to "social.community.settings.basicInfoHeader",
         R.string.amity_community_permissions to "social.community.settings.permissionsHeader",
-        R.string.amity_notification_settings to "social.community.notificationSettings.pageTitle",
+        R.string.amity_notification_settings to "social.community.settings.notificationsTitle",
         R.string.amity_notification to "social.community.notificationSettings.enableToggle",
         R.string.amity_notifications to "social.community.notificationSettings.pageTitle",
         R.string.amity_notification_on to "social.community.notificationSettings.enableToggle",
@@ -136,16 +137,16 @@ object AmityLocalisationSocial {
         R.string.amity_done to "social.general.content.generalDone",
         R.string.amity_ok to "social.general.content.generalOk",
         R.string.amity_report to "social.general.content.generalReport",
-        R.string.amity_report_user to "social.general.content.generalReportUser",
-        R.string.amity_un_report_user to "social.general.content.generalUnreportUser",
+        R.string.amity_report_user to "social.chat.settings.reportUser",
+        R.string.amity_un_report_user to "social.chat.settings.unreportUser",
         R.string.amity_undo_report to "social.general.content.generalUndoReport",
-        R.string.amity_manage to "social.general.content.generalSettings",
+        R.string.amity_manage to "social.community.members.promote",
         R.string.amity_others to "social.general.content.others",
         R.string.amity_settings to "social.general.content.generalSettings",
         
         // Error Messages
-        R.string.amity_error_name to "social.general.content.errorTitle",
-        R.string.amity_connectivity_issue to "social.general.content.errorMessage",
+        R.string.amity_error_name to "social.community.alert.unableToPerformActionTitle",
+        R.string.amity_connectivity_issue to "social.community.alert.unableToPerformActionDescription",
         R.string.amity_add_comment_error_message to "social.general.content.errorMessage",
         R.string.amity_update_comment_error_message to "social.general.content.errorMessage",
         R.string.amity_settings_error to "social.general.content.errorMessage",
@@ -154,20 +155,22 @@ object AmityLocalisationSocial {
         R.string.amity_unfollow_error to "social.general.content.errorMessage",
         R.string.amity_request_error to "social.general.content.errorMessage",
         R.string.amity_unable_to_remove to "social.general.content.errorMessage",
-        R.string.amity_refresh_error to "social.general.content.errorMessage",
-        R.string.amity_error_loading_feed to "social.general.content.errorMessage",
+        R.string.amity_refresh_error to "social.community.followRequestsPopup.cannotRefreshFeed",
+        R.string.amity_error_loading_feed to "social.community.followRequestsPopup.cannotRefreshFeed",
+        R.string.amity_something_went_wrong to "social.community.basicInfo.errorText",
+        R.string.amity_something_went_wrong_pls_try to "social.community.basicInfo.errorText",
         
         // Success Messages
-        R.string.amity_report_sent to "social.general.content.statusMessagesSuccess",
-        R.string.amity_unreport_sent to "social.general.content.statusMessagesSuccess",
+        R.string.amity_report_sent to "social.chat.settings.reportSent",
+        R.string.amity_unreport_sent to "social.chat.settings.unreportUser",
         R.string.amity_report_has_been_sent to "social.general.content.statusMessagesSuccess",
         R.string.amity_community_success to "social.general.content.statusMessagesSuccess",
         
         // Video/Media Related
         R.string.amity_general_photos to "social.general.emptyState.noPhotos",
         R.string.amity_general_videos to "social.general.emptyState.noVideos",
-        R.string.amity_video_stream_title to "social.livestreaming.content.liveStatus",
-        R.string.amity_video_stream_live to "social.livestreaming.content.liveStatus",
+        R.string.amity_video_stream_title to "social.livestreaming.content.addPostTitle",
+        R.string.amity_video_stream_live to "social.livestreaming.content.goLive",
         R.string.amity_video_stream_recorded to "social.livestreaming.content.recordedStatus",
         R.string.amity_video_stream_ended_title to "social.livestreaming.content.streamEnded",
         R.string.amity_video_stream_ended_description to "social.livestreaming.content.playbackSoon",
@@ -182,7 +185,7 @@ object AmityLocalisationSocial {
         R.string.amity_no_pending_posts to "social.post.pending.emptyTitle",
         
         // Additional Strings
-        R.string.amity_edit_profile to "social.userProfile.editProfile.title",
+        R.string.amity_edit_profile to "social.community.detail.editProfileButton",
         R.string.amity_message to "social.chat.messageBox.inputHint",
         R.string.amity_no_user_found to "social.community.basicInfo.noUserFound",
         R.string.amity_cancel_request to "social.general.content.generalCancel",
@@ -197,14 +200,14 @@ object AmityLocalisationSocial {
         
         // Additional Community Strings
         R.string.amity_community_name to "social.community.createForm.nameField",
-        R.string.amity_category to "social.community.createForm.categoryField",
+        R.string.amity_category to "social.community.category.pageTitle",
         R.string.amity_category_required_field to "social.community.createForm.categoryField",
-        R.string.amity_please_select_category to "social.community.category.selectHint",
+        R.string.amity_please_select_category to "social.community.createForm.categoryHint",
         R.string.amity_categories to "social.community.category.list",
         R.string.amity_cc_leave to "social.community.create.leaveTitle",
         R.string.amity_cc_dialog_msg to "social.community.create.leaveDesc",
         R.string.amity_successfully_created_community to "social.community.create.successMessage",
-        R.string.amity_moderator to "social.community.role.moderator",
+        R.string.amity_moderator to "social.community.members.moderator",
         
         // Comment Related
         R.string.amity_delete_comment to "social.comment.delete.button",
@@ -213,8 +216,8 @@ object AmityLocalisationSocial {
         R.string.amity_delete_comment_warning_message to "social.comment.delete.message",
         R.string.amity_discard_comment_title to "social.comment.discard.title",
         R.string.amity_discard_comment_message to "social.comment.discard.message",
-        R.string.amity_comment_deleted_message to "social.comment.delete.success",
-        R.string.amity_comments to "social.comment.list.title",
+        R.string.amity_comment_deleted_message to "social.post.detail.deletedCommentMessage",
+        R.string.amity_comments to "social.general.unit.content.commentSingular",
         R.string.amity_add_comment to "social.comment.create.button",
         R.string.amity_add_blocked_words_comment_error_message to "social.comment.create.blockedWordsError",
         R.string.amity_replying_to to "social.comment.reply.replyingTo",
@@ -222,7 +225,7 @@ object AmityLocalisationSocial {
         // Post Related
         R.string.amity_edited to "social.post.edit.indicator",
         R.string.amity_create_post_max_image_selected_warning to "social.post.create.maxImagesError",
-        R.string.amity_timeline to "social.post.timeline.title",
+        R.string.amity_timeline to "social.post.timeline.pageTitle",
         R.string.amity_no_post to "social.post.list.empty",
         R.string.amity_select_category to "social.community.category.selectTitle",
         R.string.amity_start_post to "social.post.create.startPrompt",
@@ -246,8 +249,8 @@ object AmityLocalisationSocial {
         R.string.amity_edit_profile_update_failed to "social.profile.edit.updateError",
         
         // Mention Related
-        R.string.amity_mention_error_title to "social.mention.error.title",
-        R.string.amity_mention_error_msg to "social.mention.error.message",
+        R.string.amity_mention_error_title to "social.post.mention.errorTitle",
+        R.string.amity_mention_error_msg to "social.post.mention.postErrorDesc",
         
         // Character Limits
         R.string.amity_post_characters_limit_error_title to "social.post.create.characterLimitTitle",
@@ -256,29 +259,29 @@ object AmityLocalisationSocial {
         R.string.amity_characters_limit_dynamic_error_msg to "social.general.error.characterLimitFormat",
         
         // Post Review
-        R.string.amity_unable_turn_off_post_review_title to "social.post.review.disableError",
-        R.string.amity_unable_turn_on_post_review_title to "social.post.review.enableError",
-        R.string.amity_something_went_wrong_pls_try to "social.general.error.tryAgain",
-        R.string.amity_something_went_wrong to "social.general.error.unknown",
+        R.string.amity_unable_turn_off_post_review_title to "social.community.settings.postReviewOffError",
+        R.string.amity_unable_turn_on_post_review_title to "social.community.settings.postReviewOnError",
+        R.string.amity_turn_off_post_review to "social.community.settings.postReviewOffTitle",
+        R.string.amity_turn_off_post_review_msg to "social.community.settings.postReviewOffDesc",
         
         // Community Permissions
         R.string.amity_approve_member_post to "social.community.permission.postApproval",
         R.string.amity_approve_member_post_desc to "social.community.permission.postApprovalDesc",
         
         // Plurals
-        R.plurals.amity_feed_number_of_likes to "social.general.unit.content.likePlural",
+        R.plurals.amity_feed_number_of_likes to "social.general.unit.content.likeSingular",
         R.plurals.amity_feed_number_of_comments to "social.general.unit.content.commentPlural",
         R.plurals.amity_community_banner_number_of_pending_posts to "social.post.review.pendingPosts",
         
         // User Management
-        R.string.amity_unfollow_user to "social.community.followRequestsPopup.unavailableFollowRequest",
+        R.string.amity_unfollow_user to "social.community.followRequestsPopup.declineButton",
         R.string.amity_unfollow to "social.general.content.generalUnreportUser",
         R.string.amity_share_profile to "social.general.content.generalShare",
         R.string.amity_communities to "social.community.basicInfo.communityList",
         R.string.amity_accounts to "social.community.basicInfo.accountList",
         R.string.amity_follow_requests to "social.community.followRequestsPopup.title",
-        R.string.amity_private_account to "social.community.followRequestsPopup.unavailableFollowRequest",
-        R.string.amity_follow_user to "social.general.content.generalFollow",
+        R.string.amity_private_account to "social.post.userFeed.privateTitle",
+        R.string.amity_follow_user to "social.post.userFeed.privateSubtitle",
         R.string.amity_pending_requests to "social.community.followRequestsPopup.title",
         R.string.amity_requests_review to "social.community.followRequestsPopup.title",
         R.string.amity_accept to "social.community.followRequestsPopup.acceptButton",
@@ -294,9 +297,9 @@ object AmityLocalisationSocial {
         R.string.amity_error_loading_feed to "social.community.followRequestsPopup.cannotRefreshFeed",
         
         // Pending Posts
-        R.string.amity_pending_posts to "social.post.pending.headerTitle",
+        R.string.amity_pending_posts to "social.post.pending.pageTitle",
         R.string.amity_pending_posts_description to "social.post.pending.emptyTitle",
-        R.string.amity_pending_posts_banner_member_message to "social.post.pending.notAvailable",
+        R.string.amity_pending_posts_banner_member_message to "social.post.pending.memberDesc",
         R.string.amity_delete_pending_post_warning_message to "social.post.pending.deleteDesc",
         R.string.amity_create_post_pending_post_title_dialog to "social.post.pending.deleteTitle",
         R.string.amity_create_post_pending_post_message_dialog to "social.post.pending.deleteErrorDesc",
@@ -304,6 +307,68 @@ object AmityLocalisationSocial {
         
         // Reactions
         R.string.amity_title_no_reactions to "social.post.reaction.emptyTitle",
-        R.string.amity_content_no_reactions to "social.post.reaction.emptySubtitle"
+        R.string.amity_content_no_reactions to "social.post.reaction.emptySubtitle",
+        
+        // Community Settings
+        R.string.amity_leave_community to "social.community.settings.leaveTitle",
+        R.string.amity_close_community to "social.community.settings.closeTitle",
+        R.string.amity_close_community_description to "social.community.settings.closeDesc",
+        R.string.amity_moderator_leave_community_msg to "social.community.settings.leaveModeratorDesc",
+        R.string.amity_last_moderator_leave_community_msg to "social.community.settings.leaveLastModeratorDesc",
+        R.string.amity_close_community_msg to "social.community.settings.closeAlertDesc",
+        R.string.amity_leave_community_msg to "social.community.settings.leaveAlertDesc",
+        R.string.amity_leave_community_error_title to "social.community.settings.leaveErrorTitle",
+        R.string.amity_close_community_error_title to "social.community.settings.closeErrorTitle",
+        
+        // Community Creation
+        R.string.amity_community_name to "social.community.createForm.nameField",
+        R.string.amity_cc_hint to "social.community.createForm.nameHint",
+        R.string.amity_category to "social.community.createForm.categoryField",
+        R.string.amity_category_required_field to "social.community.createForm.categoryField",
+        R.string.amity_please_select_category to "social.community.createForm.categoryHint",
+        
+        // Community Detail
+        R.string.amity_join to "social.community.detail.joinButton",
+        R.string.amity_join_community_message to "social.post.detail.joinMessage",
+        
+        // Livestreaming
+        R.string.amity_video_stream_title to "social.livestreaming.content.addPostTitle",
+        R.string.amity_video_stream_live to "social.livestreaming.content.goLive",
+        R.string.amity_video_stream_recorded to "social.livestreaming.content.recordedStatus",
+        R.string.amity_video_stream_ended_title to "social.livestreaming.content.streamEnded",
+        R.string.amity_video_stream_ended_description to "social.livestreaming.content.playbackSoon",
+        
+        // Community Members
+        R.string.amity_promote_moderator to "social.community.members.promoteToMod",
+        R.string.amity_remove_moderator to "social.community.members.removeMod",
+        R.string.amity_remove to "social.community.members.removeMember",
+        R.string.amity_remove_user_msg to "social.community.members.removeDesc",
+
+        //New
+        R.string.amity_upload_image to "social.general.content.generalUploadImage",
+        R.string.amity_community_name to "social.community.createForm.nameField",
+        R.string.amity_cc_hint to "social.community.createForm.nameHint",
+        R.string.amity_about to "social.community.createForm.aboutField",
+        R.string.amity_enter_description to "social.community.createForm.aboutHint",
+        R.string.amity_category_required_field to "social.community.createForm.categoryField",
+        R.string.amity_please_select_category to "social.community.createForm.categoryHint",
+        R.string.amity_only_admin to "social.community.createForm.postReview.title",
+        R.string.amity_admin_description to "social.community.createForm.publicDesc",
+        R.string.amity_tv_public to "social.community.createForm.public",
+        R.string.amity_public_description to "social.community.createForm.publicDescription",
+        R.string.amity_tv_private to "social.community.createForm.private",
+        R.string.amity_private_description to "social.community.createForm.privateDesc",
+        R.string.amity_add_members to "social.community.createForm.addMembers",
+        R.string.amity_create_community to "social.community.createForm.submitButton",
+        R.string.amity_edit_profile to "social.profile.edit",
+        R.string.amity_message to "social.profile.message",
+        R.string.amity_cancel_request to "social.profile.cancelRequest",
+        R.string.amity_pending_requests to "social.profile.pendingRequests",
+        R.string.amity_requests_review to "social.profile.requestsReview",
+        R.string.amity_posts to "social.profile.posts",
+        R.string.amity_followers to "social.profile.followers",
+        R.string.amity_following to "social.profile.following" ,
+        R.string.amity_categories to "social.community.category.pageTitle",
+        R.string.amity_general to "social.general."
     )
 }

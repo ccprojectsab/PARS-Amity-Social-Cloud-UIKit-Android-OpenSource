@@ -196,10 +196,8 @@ class AmityCommunityHomePageFragment : Fragment(), AmityToolBarClickListener {
     }
 
     private fun initToolbar() {
-
         binding.communityHomeToolbar.setLeftString(AmityLocalisationSocial.getString(R.string.amity_community))
-        (activity as AppCompatActivity).supportActionBar?.displayOptions =
-            ActionBar.DISPLAY_SHOW_CUSTOM
+        (activity as AppCompatActivity).supportActionBar?.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM
         (activity as AppCompatActivity).setSupportActionBar(binding.communityHomeToolbar as Toolbar)
         setHasOptionsMenu(true)
     }

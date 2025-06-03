@@ -74,6 +74,7 @@ class AmityMemberPickerFragment : RxFragment(), AmitySelectMemberListener,
             R.layout.amity_fragment_select_members_list, container, false
         )
         binding.viewModel = mViewModel
+
         return binding.root
     }
 

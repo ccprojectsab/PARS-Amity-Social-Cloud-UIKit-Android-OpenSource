@@ -16,6 +16,7 @@ import com.amity.socialcloud.sdk.model.core.follow.AmityMyFollowInfo
 import com.amity.socialcloud.sdk.model.core.follow.AmityUserFollowInfo
 import com.amity.socialcloud.sdk.model.core.user.AmityUser
 import com.amity.socialcloud.uikit.AmityLocalisationSocial
+import com.amity.socialcloud.uikit.common.AmityLocalisationCommon
 import com.amity.socialcloud.uikit.common.common.views.AmityColorPaletteUtil
 import com.amity.socialcloud.uikit.common.common.views.AmityColorShade
 import com.amity.socialcloud.uikit.community.R
@@ -73,7 +74,7 @@ class AmityUserProfileHeaderView : ConstraintLayout {
         headerBinding.tvFollowingCount.setText(
             getStylisedText(
                 followInfo.getFollowingCount().toString(),
-                AmityLocalisationSocial.getString(com.amity.socialcloud.uikit.common.R.string.amity_following_count)
+                AmityLocalisationCommon.getString(com.amity.socialcloud.uikit.common.R.string.amity_following_count)
             ),
             TextView.BufferType.SPANNABLE
         )
@@ -132,6 +133,21 @@ class AmityUserProfileHeaderView : ConstraintLayout {
         val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         headerBinding =
             DataBindingUtil.inflate(inflater, R.layout.amity_view_user_profile_header, this, true)
+        headerBinding.tvFollowingCount.text = AmityLocalisationSocial.getString(R.string.amity_following)
+        // Set all static strings
+        headerBinding.btnProfileDefaultAction.text = if (headerBinding.isSelf == true) {
+            AmityLocalisationSocial.getString(R.string.amity_edit_profile)
+        } else {
+            AmityLocalisationSocial.getString(R.string.amity_message)
+        }
+
+        headerBinding.btnFollow.text = AmityLocalisationCommon.getString(com.amity.socialcloud.uikit.common.R.string.amity_follow)
+        headerBinding.btnCancelRequest.text = AmityLocalisationSocial.getString(R.string.amity_cancel_request)
+        headerBinding.tvPendingRequets.text = AmityLocalisationSocial.getString(R.string.amity_pending_requests)
+
+        // Set the review requests text
+        val reviewRequestsTextView = headerBinding.layoutPendingRequests.findViewById<TextView>(R.id.tvPendingRequets)
+        reviewRequestsTextView.text = AmityLocalisationSocial.getString(R.string.amity_requests_review)
     }
 
     private fun getStylisedText(s1: String, s2: String): Spannable {

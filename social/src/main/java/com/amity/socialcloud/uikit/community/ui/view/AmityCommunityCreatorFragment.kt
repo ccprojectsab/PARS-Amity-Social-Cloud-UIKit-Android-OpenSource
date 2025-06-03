@@ -3,6 +3,7 @@ package com.amity.socialcloud.uikit.community.ui.view
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
+import com.amity.socialcloud.uikit.AmityLocalisationSocial
 import com.amity.socialcloud.uikit.common.contract.AmityPickMemberContract
 import com.amity.socialcloud.uikit.common.memberpicker.adapter.AmityAddedMembersAdapter
 import com.amity.socialcloud.uikit.common.memberpicker.listener.AmityAddedMemberClickListener
@@ -26,7 +27,24 @@ class AmityCommunityCreatorFragment : AmityCommunityCreateBaseFragment(),
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        binding.amityImageText.text = AmityLocalisationSocial.getString(R.string.amity_upload_image)
+        binding.tvCommName.text = AmityLocalisationSocial.getString(R.string.amity_community_name)
+        binding.amityImageText.text = AmityLocalisationSocial.getString(R.string.amity_upload_image)
+        binding.tvCommName.text = AmityLocalisationSocial.getString(R.string.amity_community_name)
+        binding.ccName.hint = AmityLocalisationSocial.getString(R.string.amity_cc_hint)
+        binding.tvAbout.text = AmityLocalisationSocial.getString(R.string.amity_about)
+        binding.etDescription.hint = AmityLocalisationSocial.getString(R.string.amity_enter_description)
+        binding.tvCategory.text = AmityLocalisationSocial.getString(R.string.amity_category_required_field)
+        binding.category.hint = AmityLocalisationSocial.getString(R.string.amity_please_select_category)
+        binding.tvAdmin.text = AmityLocalisationSocial.getString(R.string.amity_only_admin)
+        binding.tvAdminDescription.text = AmityLocalisationSocial.getString(R.string.amity_admin_description)
+        binding.tvPublic.text = AmityLocalisationSocial.getString(R.string.amity_tv_public)
+        binding.tvPublicDescription.text = AmityLocalisationSocial.getString(R.string.amity_public_description)
+        binding.tvPrivate.text = AmityLocalisationSocial.getString(R.string.amity_tv_private)
+        binding.tvPrivateDescription.text = AmityLocalisationSocial.getString(R.string.amity_private_description)
+        binding.tvAddMembers.text = AmityLocalisationSocial.getString(R.string.amity_add_members)
+        binding.btnCreateCommunity.text = AmityLocalisationSocial.getString(R.string.amity_create_community)
+        binding.btnEditCommunity.text = AmityLocalisationSocial.getString(com.amity.socialcloud.uikit.common.R.string.amity_save)
         addMembers()
         setAddedMemberRecyclerView()
     }

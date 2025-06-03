@@ -181,7 +181,7 @@ class AmityCommunityProfileFragment : RxFragment() {
         val category = community.getCategories().joinToString(separator = " ") { it.getName() }
             .takeIf { it.isNotEmpty() }
         
-        binding.tvCategory.text = category ?: getString(R.string.amity_general)
+        binding.tvCategory.text = category ?: AmityLocalisationSocial.getString(R.string.amity_general)
 
         community.getPostCount(AmityFeedType.PUBLISHED)
             .subscribeOn(Schedulers.io())

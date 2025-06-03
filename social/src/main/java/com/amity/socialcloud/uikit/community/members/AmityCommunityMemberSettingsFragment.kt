@@ -67,6 +67,7 @@ class AmityCommunityMemberSettingsFragment : AmityBaseFragment() {
         })
         setUpToolbar()
         setUpTabLayout()
+
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

@@ -22,6 +22,7 @@ class AmityCommunityCreatorActivity : AppCompatActivity(), AmityToolBarClickList
         setContentView(binding.root)
         setUpToolBar()
         loadFragment()
+
     }
 
     private fun setUpToolBar() {
@@ -30,7 +31,6 @@ class AmityCommunityCreatorActivity : AppCompatActivity(), AmityToolBarClickList
         )
         binding.communityToolbar.setLeftString(AmityLocalisationSocial.getString(R.string.amity_create_community))
         binding.communityToolbar.setClickListener(this)
-
         supportActionBar?.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM
         setSupportActionBar(binding.communityToolbar)
     }

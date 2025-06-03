@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.paging.LoadState
 import com.amity.socialcloud.sdk.model.social.category.AmityCommunityCategory
+import com.amity.socialcloud.uikit.AmityLocalisationSocial
 import com.amity.socialcloud.uikit.common.base.AmityBaseFragment
 import com.amity.socialcloud.uikit.common.common.expandViewHitArea
 import com.amity.socialcloud.uikit.common.utils.AmityExceptionCatchGridLayoutManager
@@ -45,7 +46,7 @@ class AmityCategoryPreviewFragment : AmityBaseFragment(),
         super.onViewCreated(view, savedInstanceState)
         initializeRecyclerView()
         initListener()
-
+       binding.tvTitle.text = AmityLocalisationSocial.getString(R.string.amity_categories)
         binding.ivMore.expandViewHitArea()?.setOnClickListener {
             val intent = Intent(requireContext(), AmityCategoryListActivity::class.java)
             startActivity(intent)
