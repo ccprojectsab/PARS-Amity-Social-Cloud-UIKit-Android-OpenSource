@@ -196,6 +196,9 @@ class AmityCommunityProfileFragment : RxFragment() {
             .subscribe()
 
         binding.tvMemberCount.text = community.getMemberCount().toDouble().formatCount()
+        binding.tvPostUnit.text = AmityLocalisationSocial.getString(R.string.amity_posts)
+        binding.tvMemberUnit.text = AmityLocalisationSocial.getString(R.string.amity_members)
+        binding.btnJoin.text = AmityLocalisationSocial.getString(R.string.amity_join)
         val description = community.getDescription().trim()
         if (description.isEmpty()) {
             binding.tvDescription.visibility = View.GONE

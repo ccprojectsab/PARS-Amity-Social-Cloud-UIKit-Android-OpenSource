@@ -19,7 +19,7 @@ object AmityLocalisationCommon
      * @return Hardcoded string value
      */
     fun getString(@StringRes stringResId: Int): String {
-        return stringsMap[stringResId] ?: applicationContext?.getString(stringResId) ?: "Unknown String"
+        return stringsMap[stringResId] ?.let { LocalizationManager.getString(it) }?: applicationContext?.getString(stringResId) ?: "Unknown String"
     }
 
     /**
@@ -29,7 +29,7 @@ object AmityLocalisationCommon
      * @return Formatted hardcoded string value
      */
     fun getString(@StringRes stringResId: Int, vararg formatArgs: Any?): String {
-        return stringsMap[stringResId] ?: applicationContext?.getString(stringResId, formatArgs) ?: "Unknown String"
+        return stringsMap[stringResId] ?.let { LocalizationManager.getString(it) }?: applicationContext?.getString(stringResId, formatArgs) ?: "Unknown String"
     }
 
     private val stringsMap: Map<Int, String> = mapOf(
@@ -50,7 +50,8 @@ object AmityLocalisationCommon
         
         // Media Related
         R.string.amity_choose_image to "app.userProfile.chooseImage.title",
-        
+
+
         // Post Actions
         R.string.amity_edit_post to "social.general.content.generalEdit",
         R.string.amity_delete_post to "social.general.content.generalDelete",

@@ -50,6 +50,8 @@ class AmityChatSettingsActivity : AppCompatActivity() {
         tvReportDivider = findViewById(R.id.tvDivider1)
         channelId = intent.getStringExtra(INTENT_CHANNEL_ID) ?: ""
         userId = intent.getStringExtra(INTENT_USER_ID) ?: ""
+        val leaveChannel = findViewById<TextView>(R.id.tvLeave)
+        leaveChannel.text = AmityLocalisationChat.getString(R.string.amity_leave_chat)
         initToolbar()
         setResult(RESULT_CANCELED)
         Log.d("Mytag", "user id is - $userId")
@@ -151,9 +153,9 @@ class AmityChatSettingsActivity : AppCompatActivity() {
 
     private fun setReportUserText(user: AmityUser) {
         if (user.isFlaggedByMe()) {
-            tvReport.setText(R.string.amity_un_report_user)
+            tvReport.setText(AmityLocalisationChat.getString(R.string.amity_un_report_user))
         } else {
-            tvReport.setText(R.string.amity_report_user)
+            tvReport.setText(AmityLocalisationChat.getString(R.string.amity_report_user))
         }
     }
 

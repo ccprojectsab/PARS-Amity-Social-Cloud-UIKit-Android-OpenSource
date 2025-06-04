@@ -14,6 +14,8 @@ import com.amity.socialcloud.sdk.model.core.error.AmityError
 import com.amity.socialcloud.sdk.model.core.file.AmityImage
 import com.amity.socialcloud.sdk.model.core.file.AmityVideo
 import com.amity.socialcloud.sdk.model.social.post.AmityPost
+import com.amity.socialcloud.uikit.AmityLocalisationSocial
+import com.amity.socialcloud.uikit.common.AmityLocalisationCommon
 import com.amity.socialcloud.uikit.common.base.AmityBaseFragment
 import com.amity.socialcloud.uikit.common.imagepreview.AmityImagePreviewActivity
 import com.amity.socialcloud.uikit.common.imagepreview.AmityPreviewImage
@@ -152,11 +154,11 @@ class AmityMediaPostFragment : AmityBaseFragment() {
         binding.postGalleryRecyclerview.visibility = View.GONE
         when (viewModel.postType) {
             AmityPost.DataType.IMAGE.getApiKey() -> {
-                binding.postGalleryEmptyTextview.setText(R.string.amity_gallery_no_photos)
+                binding.postGalleryEmptyTextview.setText(AmityLocalisationSocial.getString(R.string.amity_gallery_no_photos))
                 binding.postGalleryEmptyImageview.setImageResource(R.drawable.amity_ic_photo_empty)
             }
             AmityPost.DataType.VIDEO.getApiKey() -> {
-                binding.postGalleryEmptyTextview.setText(R.string.amity_gallery_no_videos)
+                binding.postGalleryEmptyTextview.setText(AmityLocalisationSocial.getString(R.string.amity_gallery_no_videos))
                 binding.postGalleryEmptyImageview.setImageResource(R.drawable.amity_ic_video_empty)
             }
         }
