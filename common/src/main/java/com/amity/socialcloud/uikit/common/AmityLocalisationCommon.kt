@@ -19,7 +19,7 @@ object AmityLocalisationCommon
      * @return Hardcoded string value
      */
     fun getString(@StringRes stringResId: Int): String {
-        return stringsMap[stringResId] ?.let { LocalizationManager.getString(it) }?: applicationContext?.getString(stringResId) ?: "Unknown String"
+        return stringsMap[stringResId] ?: applicationContext?.getString(stringResId) ?: "Unknown String"
     }
 
     /**
@@ -38,7 +38,7 @@ object AmityLocalisationCommon
         R.string.amity_read_more to "app.common.buttons.ok",
         R.string.amity_feed to "app.home.content.newsTips",
         R.string.amity_gallery to "app.common.content.generalGallery",
-        R.string.amity_follow to "app.common.content.generalFollow",
+        R.string.amity_follow to "social.general.content.generalFollow",
         R.string.amity_followers to "social.community.followRequestsPopup.followers",
         R.string.amity_search to "app.common.content.generalSearch",
         R.string.amity_search_results to "app.common.content.generalSearch",
@@ -123,7 +123,13 @@ object AmityLocalisationCommon
         R.plurals.amity_number_of_weeks to "social.general.time.weeks",
         R.plurals.amity_number_of_days to "social.general.time.days",
         R.plurals.amity_number_of_hours to "social.general.time.hours",
-        R.plurals.amity_number_of_mins to "social.general.time.minutes"
+        R.plurals.amity_number_of_mins to "social.general.time.minutes",
+        R.string.amity_edit_post to "social.post.create.editButton",
+        R.string.amity_delete_post to "social.post.create.deleteButton",
+       R.string.amity_edit_post to "social.post.create.editButton",
+        R.string.amity_undo_report to "social.chat.settings.report",
+        R.string.amity_close_poll to "",
+        R.string.amity_delete_poll to ""
 
     )
 }

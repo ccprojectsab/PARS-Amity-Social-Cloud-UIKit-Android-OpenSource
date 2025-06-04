@@ -75,4 +75,10 @@
     <string name="amity_selected">Selected</string>
     <string name="amity_no_user_found">No user found</string>
     <string name="amity_yesterday">I går</string>
+    <string name="amity_report">Report</string>
+    <string name="amity_report_user">Report user</string>
+    <string name="amity_un_report_user">Unreport user</string>
+    <string name="amity_undo_report">Undo Report</string>
+    <string name="amity_delete_poll">Delete Poll</string>
+    <string name="amity_close_poll">Close Poll</string>
 </resources>

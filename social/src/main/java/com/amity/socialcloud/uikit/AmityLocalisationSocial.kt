@@ -18,7 +18,7 @@ object AmityLocalisationSocial {
      * @return Hardcoded string value
      */
     fun getString(@StringRes stringResId: Int): String {
-        return stringsMap[stringResId] ?.let { LocalizationManager.getString(it) }?: applicationContext?.getString(stringResId) ?: "Unknown String"
+        return stringsMap[stringResId] ?: applicationContext?.getString(stringResId) ?:"Unknown String"
     }
 
     /**
@@ -323,7 +323,7 @@ object AmityLocalisationSocial {
         // Community Creation
         R.string.amity_community_name to "social.community.createForm.nameField",
         R.string.amity_cc_hint to "social.community.createForm.nameHint",
-        R.string.amity_category to "social.community.createForm.categoryField",
+        R.string.amity_category to "social.community.category.pageTitle",
         R.string.amity_category_required_field to "social.community.createForm.categoryField",
         R.string.amity_please_select_category to "social.community.createForm.categoryHint",
         
@@ -366,12 +366,16 @@ object AmityLocalisationSocial {
         R.string.amity_pending_requests to "social.profile.pendingRequests",
         R.string.amity_requests_review to "social.profile.requestsReview",
         R.string.amity_posts to "social.community.notificationSettings.postLabel",
-        R.string.amity_followers to "social.profile.followers",
+        R.string.amity_followers to "social.community.followRequestsPopup.followers",
         R.string.amity_following to "social.profile.following" ,
         R.string.amity_categories to "social.community.category.pageTitle",
         R.string.amity_general to "social.general.",
         R.string.amity_gallery_no_videos to "social.post.media.noVideos",
         R.string.amity_gallery_no_photos to "social.post.media.noPhotos",
-
+        //R.string.amity_report to "social.chat.settings.report",
+        com.amity.socialcloud.uikit.common.R.string.amity_edit_post to "social.post.create.editButton",
+        com.amity.socialcloud.uikit.common.R.string.amity_delete_post to "social.post.create.deleteButton",
+        R.string.amity_close_poll to "" ,
+        R.string.amity_delete_poll to ""
     )
 }
