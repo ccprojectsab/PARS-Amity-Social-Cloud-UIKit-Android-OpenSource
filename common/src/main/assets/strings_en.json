@@ -1,0 +1,785 @@
+{
+    "version": "2",
+    "lastUpdated": "2025-04-14",
+    "en" : {
+        "metadata": {
+            "language": "en"
+        },
+        "data": {
+            "app": {
+                "common": {
+                    "buttons": {
+                        "ok": "Ok",
+                        "save": "Save",
+                        "close": "Close",
+                        "done": "Done",
+                        "next": "Next",
+                        "skip": "Skip",
+                        "invalid": "Invalid",
+                        "proceed": "Proceed",
+                        "backToLogin" : "Back to login",
+                        "startOnboarding" : "Start onboarding"
+                    },
+                    "errors": {
+                        "errorInvalidEmail": "Please enter a valid email",
+                        "errorInvalidPassword": "Password must be at least 6 characters",
+                        "errorPasswordsDontMatch": "Passwords don't match",
+                        "errorEmailInUse": "Email already in use",
+                        "errorInvalidCredentials": "Invalid email or password",
+                        "errorEmailNotExist": "The email does not exist",
+                        "errorPhoneNumberLimit": "The phone number must be at least 10 characters long",
+                        "messageAlreadyUsedTitle": "The link has already been used!",
+                        "messageAlreadyUsedDescription": "Please reset the password again.",
+                        "messageInvalidTokenTitle": "The session has unfortunately expired!",
+                        "messageInvalidTokenDescription": "Please request a new password on the login page.",
+                        "errorCreateProfileFailed": "Failed to create profile",
+                        "passwordRequirementsDescription" : "Your password must contain: At least 8 characters , At least 1 number ,At least 1 special character (e.g. !@%&?)"
+                    },
+                    "network": {
+                        "noInternetTitle": "No Internet",
+                        "noInternetSubtitleLine1": "Your device is not connected to any network.",
+                        "noInternetSubtitleLine2": "Turn on your WiFi or mobile data.",
+                        "noInternetRetry" : "Retry"
+                    },
+                    "logout": {
+                        "logoutTitle": "Log out",
+                        "message": "Are you sure you want to log out?",
+                        "confirm": "Log out",
+                        "cancel": "Cancel"
+                    },
+                    "update" : {
+                        "title" : "App update",
+                        "Description" : "available",
+                        "okButton" : "Ok",
+                        "laterButton" : "later"
+                    }
+                },
+                "auth": {
+                    "login": {
+                        "email": "Email",
+                        "placeholderEmail": "Enter your email",
+                        "password": "Password",
+                        "placeholderPassword": "Enter your password",
+                        "buttonForgotPassword": "Forgot Password?",
+                        "buttonLogIn": "Log In",
+                        "textNoAccount": "Don't have an account?",
+                        "buttonSkip": "Skip for now"
+                    },
+                    "register": {
+                        "title": "Create Account",
+                        "fullName": "Full Name",
+                        "email": "Email",
+                        "password": "Password",
+                        "confirmPassword": "Confirm Password",
+                        "placeholderEmail": "Enter your email",
+                        "placeholderPassword": "Enter your password",
+                        "placeholderConfirmPassword": "Re-enter your password",
+                        "textHaveAccount": "Already have an account?",
+                        "buttonSignIn": "Sign In",
+                        "buttonCreateAccount": "Create Account"
+                    },
+                    "forgotPassword": {
+                        "titleLine1": "Forgot your password?",
+                        "titleLine2": "No worries - you'll get a new one!",
+                        "subtitle": "Enter your email and we'll send you a link.",
+                        "buttonReset": "Reset password",
+                        "successTitle": "Check your email - a new password is on its way!",
+                        "successSubtitle": "Go to your email and open the link to continue.",
+                        "buttonResend": "Didn't receive an email? Click here"
+                    },
+                    "resetPassword": {
+                        "title": "Choose a new password!",
+                        "newPassword": "New Password",
+                        "confirmPassword": "Re-enter your new password",
+                        "buttonResetPassword": "Reset Password",
+                        "buttonSaveNewPassword": "Save new password",
+                        "messageSuccess": "Awesome - you now have a new password!",
+                        "subtitle": "Your password must be longer than six characters and contain a combination of numbers, letters, and special characters (e.g. !@%&?)",
+                        "successSubtitle": "Please log in again to access the app."
+                    },
+                    "passwordRequirement": {
+                      "title": "Your password must contain:",
+                      "rule1": "- At least 8 characters",
+                      "rule2": "- At least 1 number",
+                      "rule3": "- At least one special character (e.g. !@%&?)"
+                    }
+                },
+                "userProfile" : {
+                    "createProfile": {
+                        "title": "Create Profile",
+                        "firstName": "First Name",
+                        "lastName": "Last Name",
+                        "mobileNumber": "Mobile Number",
+                        "placeholderFirstName": "placeholder",
+                        "placeholderLastName": "placeholder",
+                        "placeholderMobileNumber": "073 12 34 56 7"
+                    },
+                    "editProfile": {
+                        "title": "Profile",
+                        "editProfile": "Edit Profile",
+                        "firstName": "First Name",
+                        "lastName": "Last Name",
+                        "email": "Email Address",
+                        "mobileNumber": "Mobile Number",
+                        "mobileNumberValidation" : "The phone number must be at least 10 characters long",
+                        "password": "New Password",
+                        "confirmPassword": "Confirm Password",
+                        "confirmPasswordPlaceholder": "******",
+                        "confirmPasswordNotMatching": "The passwords do not match",
+                        "profileCreatedMessage": "Profile has been updated"
+                    },
+                    "chooseImage": {
+                        "title": "Choose Image",
+                        "camera": "Camera",
+                        "gallery": "Gallery",
+                        "removePhoto": "Remove Photo",
+                        "buttonDone": "Done",
+                        "noCameraTitle":"Warning",
+                        "noCameraTitleMessage": "You don't have a camera",
+                        "buttonNoCameraTitleOk": "OK"
+                    }
+                },
+                "onboarding": {
+                    "welcome": {
+                        "title": "Welcome!",
+                        "subtitle": "A warm welcome to our employee app!"
+                    },
+                    "infoBank": {
+                        "title": "Information Bank",
+                        "subtitle": "Wondering about something? Search here!"
+                    },
+                    "schedule": {
+                        "title": "My Schedule",
+                        "subtitle": "Efficient planning and easy access to your schedule, all in one place."
+                    },
+                    "learning": {
+                        "title": "Onboarding & E-learning",
+                        "subtitle": "Make sure to be prepared for your first day at work!"
+                    },
+                    "social": {
+                        "title": "Pontus Social",
+                        "subtitle": "Chat with your colleagues, managers - or directly with the on-call team to possibly swap a shift. You can also start smaller teams for different purposes."
+                    },
+                    "media": {
+                        "title": "Pontus's Social Media",
+                        "subtitle": "Participate in our live-streamed meetings."
+                    }
+                },
+                "quiz": {
+                    "content" : {
+                        "headingLine1": "Your onboarding",
+                        "headingLine2": "begins here",
+                        "subHeadingLine1": "Welcome to your onboarding! You will now answer a number of questions with multiple-choice answers.",
+                        "subHeadingLine2": "Good luck!",
+                        "watchVideo": "Watch video again",
+                        "startQuiz": "Start quiz",
+                        "finish": "Finish",
+                        "videoCount": "Video"
+                    },
+                    "empty": {
+                        "title": "Start your onboarding",
+                        "description": "This is where you start your onboarding, a way for you to be prepared for your first day at work!"
+                    },
+                    "status": {
+                        "title": "To Do",
+                        "completed": "Completed"
+                    },
+                    "congratulations": {
+                        "title": "Yes, you made it!",
+                        "subtitle": "Now you have completed your onboarding - well done! If you need a refresher later, you can always search in our information bank. Or ask a colleague or manager, of course.",
+                        "okButton": "Back to onboarding"
+                    }
+                },
+                "unauth": {
+                    "content" : {
+                        "backButton": "Home",
+                        "title": "You're welcome!",
+                        "subTitle": "You need to be logged in to enter. Contact your staffing manager for login details.",
+                        "buttonMoreAboutUs": "More about us",
+                        "buttonLogin": "Log in"
+                    }
+                },
+                "faq": {
+                    "content" : {
+                        "searchPlaceholder" : "Search..."
+                    }
+                },
+                "menu": {
+                    "content" : {
+                        "settings": "Settings",
+                        "infobank": "Informationbank",
+                        "about": "Get to know Pontus",
+                        "gdpr": "GDPR",
+                        "whistleblower": "Whistleblower Function"
+                    }
+                },
+                "settings": {
+                    "content" : {
+                        "title": "Settings",
+                        "account": "Account",
+                        "loggedInTitle": "Logins",
+                        "loginTitle": "Login",
+                        "deleteAccountTitle": "Delete Account",
+                        "logoutTitle" : "Log out"
+                    },
+                    "notifications": {
+                        "title": "Notifications",
+                        "allow": "Allow push notifications",
+                        "permissionTitle": "Never miss a Pontus update",
+                        "permissionDescription": "Stay updated with notifications about everything from news to job openings.",
+                        "permissionEnableButton": "Enable notifications"
+                    }
+                },
+                "home": {
+                    "tabBar": {
+                        "home": "Home",
+                        "communtity": "Community",
+                        "schema": "Schedule",
+                        "chat": "Chat",
+                        "onBoarding": "onBoarding"
+                    },
+                    "navigationTitle": {
+                        "settings": "Settings",
+                        "onboarding": "Onboarding",
+                        "latestNews": "Latest news",
+                        "news": "News",
+                        "newJobs": "New Jobs",
+                        "informationBank": "Information Bank",
+                        "aboutUs": "Om Pontus",
+                        "onDuty": "on Duty",
+                        "privacyPolicy": "Privacy Policy"
+                    },
+                    "greetings": {
+                        "morning": "Good morning",
+                        "afternoon": "Good afternoon",
+                        "evening": "Good evening"
+                    },
+                    "content" : {
+                        "newsTips": "News & Tips",
+                        "availablePositions": "Available positions",
+                        "moreJobs": "View more job openings",
+                        "moreNews": "see more",
+                        "readMoreAboutUs": "Read More About Us",
+                        "applyJob": "Apply for the job"
+                    },
+                    "moreAboutUs": {
+                        "title": "More About Us",
+                        "description": "Since we started staffing the healthcare industry over ten years ago, our focus has been clear – to take care of healthcare."
+                    }
+                }
+            },
+            "social": {
+                "community": {
+
+                    "socialTabBar": {
+                        "homeTab": "Home",
+                        "exploreTab": "Explore",
+                        "communityTab": "Community",
+                        "chatTab": "Chat"
+                    },
+                    "emptyCommunity" : {
+                       "title" : "Its empty here...",
+                      "description" : " No community found in this category"
+                    },
+                    "basicInfo": {
+                        "pageTitle": "Community",
+                        "memberCount": "Members",
+                        "settingsButton": "Settings",
+                        "searchBox": "Search",
+                        "noResults": "No results found",
+                        "communityList": "Communities",
+                        "accountList": "Accounts",
+                        "errorText": "Something went wrong. Please try again.",
+                        "noInternet": "No internet connection",
+                        "settingsTitle": "Community Settings",
+                        "skipForNow": "Skip for now",
+                        "messageTooShort": "Message is too short",
+                        "titlePlaceholder": "Enter title",
+                        "descriptionPlaceholder": "Enter description",
+                        "editMessageTitle": "Edit Message",
+                        "viewAllCommentsTitle": "View All Comments",
+                        "viewAllFilesTitle": "View All Files",
+                        "messageReadMore": "...Read More",
+                        "noUserFound": "No users found",
+                        "searchResults": "Search Results",
+                        "searchResultNotFound": "No results found",
+                        "unavailablePreview": "Preview not available",
+                        "checkUrlError": "Please make sure the URL is correct and try again."
+                    },
+                    "createForm": {
+                        "formTitle": "Create Community",
+                        "nameField": "Community Name",
+                        "nameHint": "Enter community name",
+                        "aboutField": "About",
+                        "aboutHint": "Enter community description",
+                        "categoryField": "Category",
+                        "categoryHint": "Select category",
+                        "submitButton": "Create Community",
+                        "nameExists": "Community name already taken",
+                        "editTitle": "Edit Community",
+                        "createTitle": "Create Community",
+                        "adminRuleTitle": "Admin Rules",
+                        "adminRuleDesc": "Set admin rules",
+                        "publicTitle": "Public",
+                        "publicDesc": "Anyone can join and view content",
+                        "privateTitle": "Private",
+                        "privateDesc": "Only approved members can join and view content",
+                        "addMemberTitle": "Add Members",
+                        "alertTitle": "Create Community",
+                        "alertDesc": "Are you sure you want to create this community?"
+                    },
+                    "notificationSettings": {
+                        "pageTitle": "Notifications",
+                        "enableToggle": "Enable notifications",
+                        "newPostAlert": "New posts",
+                        "newCommentAlert": "New comments",
+                        "postReactionTitle": "Post Reactions",
+                        "postReactionDesc": "When someone reacts to your posts",
+                        "commentReactionTitle": "Comment Reactions",
+                        "commentReactionDesc": "When someone reacts to your comments",
+                        "newPostTitle": "New Posts",
+                        "newPostDesc": "When new posts are created",
+                        "newCommentTitle": "New Comments",
+                        "newCommentDesc": "When new comments are added",
+                        "replyTitle": "Replies",
+                        "replyDesc": "When someone replies to your comments",
+                        "postLabel": "Posts",
+                        "commentLabel": "Comments",
+                        "everyoneLabel": "Everyone",
+                        "moderatorLabel": "Only Moderators"
+                    },
+                    "permissions": {
+                        "pageTitle": "Permissions",
+                        "publicLabel": "Public",
+                        "privateLabel": "Private",
+                        "publicDesc": "Anyone can join and view content",
+                        "privateDesc": "Only approved members can join and view content"
+                    },
+                    "moderation": {
+                        "pageTitle": "Moderation",
+                        "postReview": "Post Review",
+                        "approvePostTitle": "Approve Member Posts",
+                        "approvePostDesc": "All member posts require approval"
+                    },
+                    "settings": {
+                        "basicInfoHeader": "Basic Information",
+                        "permissionsHeader": "Community Permissions",
+                        "editProfileTitle": "Edit Profile",
+                        "membersTitle": "Members",
+                        "notificationsTitle": "Notifications",
+                        "postReviewTitle": "Post Review",
+                        "leaveTitle": "Leave Community",
+                        "closeTitle": "Close Community",
+                        "closeDesc": "This action cannot be undone",
+                        "leaveAlertTitle": "Leave Community",
+                        "leaveAlertDesc": "Are you sure you want to leave this community?",
+                        "leaveModeratorDesc": "You are a moderator. Are you sure you want to leave?",
+                        "leaveLastModeratorDesc": "You are the last moderator. Assign another moderator before leaving",
+                        "closeAlertTitle": "Close Community",
+                        "closeAlertDesc": "Are you sure you want to close this community?",
+                        "leaveErrorTitle": "You can't leave the community",
+                        "closeErrorTitle": "It is not possible to close the community",
+                        "notificationOnError": "Cannot enable notifications",
+                        "notificationOffError": "Cannot turn off notifications",
+                        "postReviewOffTitle": "Turn Off Post Review",
+                        "postReviewOffDesc": "Are you sure you want to turn off post review?",
+                        "postReviewOffSuccess": "Post review turned off",
+                        "postReviewOnError": "Failed to turn on post review",
+                        "postReviewOffError": "Failed to turn off post review"
+                    },
+                    "members": {
+                        "pageTitle": "Members",
+                        "promoteToMod": "Promote to Moderator",
+                        "removeMod": "Remove Moderator",
+                        "removeMember": "Remove from Community",
+                        "promoteModOption": "Promote to Moderator",
+                        "dismissModOption": "Dismiss as Moderator",
+                        "removeOption": "Remove from Community",
+                        "settingsTitle": "Member Settings",
+                        "settingsDesc": "Choose an action for this member",
+                        "memberLabel": "Members",
+                        "moderatorLabel": "Moderator",
+                        "detailsTitle": "Member Details",
+                        "removeTitle": "Remove Member",
+                        "removeDesc": "Are you sure you want to remove this member?"
+                    },
+                    "home": {
+                        "pageTitle": "Community Home"
+                    },
+                    "detail": {
+                        "joinButton": "Join",
+                        "messageButton": "Message",
+                        "editProfileButton": "Edit Profile"
+                    },
+                    "trending": {
+                        "pageTitle": "Trending Communities",
+                        "memberCount": "Members"
+                    },
+                    "recommended": {
+                        "pageTitle": "Recommended Communities"
+                    },
+                    "category": {
+                        "pageTitle": "Categories",
+                        "selectTitle": "Select Category"
+                    },
+                    "memberSelect": {
+                        "listTitle": "Select Members",
+                        "selectedTitle": "Selected Members"
+                    },
+                    "myCommunities": {
+                        "title": "My Communities",
+                        "seeAll": "See All"
+                    },
+                    "alert": {
+                        "unableToPerformActionTitle": "Unable to Perform Action",
+                        "unableToPerformActionDescription": "You don't have permission to perform this action",
+                        "unableToLeaveCommunityTitle": "Unable to Leave Community",
+                        "unableToLeaveCommunityDescription": "You cannot leave the community at this time"
+                    },
+                    "followRequestsPopup": {
+                        "title": "Follow Requests",
+                        "acceptButton": "Accept",
+                        "declineButton": "Decline",
+                        "unavailableFollowRequest": "Follow request unavailable",
+                        "followers": "Followers",
+                        "following": "Following",
+                        "cannotRefreshFeed": "Cannot refresh feed"
+                    }
+                },
+                "chat": {
+                    "messageBox": {
+                        "inputHint": "Type a message",
+                        "sendButton": "Send",
+                        "editOption": "Edit Message",
+                        "deleteOption": "Delete Message",
+                        "recordHint": "Hold to record",
+                        "sendHint": "Release to send",
+                        "sentPhoto": "Sent a photo",
+                        "sentVoice": "Sent a voice message",
+                        "messageEdited": "Message Edited",
+                        "messageDeleted": "Message Deleted",
+                        "chatTitle": "Chat",
+                        "recentTitle": "Recent",
+                        "directoryTitle": "Directory",
+                        "emptyChatList": "No chats yet",
+                        "textMessagePlaceholder": "Type a message"
+                    },
+                    "settings": {
+                        "pageTitle": "Chat Settings",
+                        "notificationToggle": "Notifications",
+                        "leaveButton": "Leave Chat",
+                        "memberList": "Members",
+                        "mediaGallery": "Shared Media",
+                        "fileList": "Files",
+                        "leaveChat": "Delete the chat",
+                        "groupProfile": "Group Profile",
+                        "reportUser": "Report User",
+                        "unreportUser": "Unreport User",
+                        "reportSent": "Report sent",
+                        "leaveChatTitle": "Leave Chat",
+                        "leaveChatMessage": "Are you sure you want to leave this chat?",
+                        "promoteToModerator": "Promote to Moderator",
+                        "dismissToModerator": "Dismiss as Moderator",
+                        "removeFromGroupChat": "Remove from Group Chat",
+                        "report": "Report",
+                        "memberTitle": "Member",
+                        "moderatorTitle": "Moderator",
+                        "memberDetailTitle": "Member Details",
+                        "removeMemberAlertTitle": "Remove Member",
+                        "removeMemberAlertBody": "Are you sure you want to remove this member?"
+                    },
+                    "errors": {
+                        "chatCreateFailed": "Failed to create chat",
+                        "sendFailed": "Failed to send message",
+                        "deleteFailed": "Failed to delete message",
+                        "editFailed": "Failed to edit message",
+                        "sendErrorTitle": "Error",
+                        "sendErrorDesc": "Unable to send message",
+                        "deleteErrorTitle": "Delete Error",
+                        "deleteTitle": "Delete Message",
+                        "deleteDesc": "Are you sure you want to delete this message?"
+                    }
+                },
+                "post": {
+                    "create": {
+                        "button": "Create Post",
+                        "editButton": "Edit Post",
+                        "deleteButton": "Delete Post",
+                        "shareButton": "Share Post",
+                        "reportButton": "Report Post",
+                        "textHint": "What's on your mind?",
+                        "editTitle": "Edit Post",
+                        "timelineTitle": "My Timeline",
+                        "textPlaceholder": "What's happening...",
+                        "discardTitle": "Delete Post?",
+                        "discardMessage": "Are you sure? This action cannot be undone.",
+                        "imageButton": "Select Image",
+                        "videoButton": "Select Video",
+                        "uploadErrorTitle": "Upload Incomplete",
+                        "uploadErrorDesc": "Some files could not be uploaded.\nRemove them and try again",
+                        "submitTitle": "Post Submitted",
+                        "submitDesc": "Your post has been sent to the pending list. It will be reviewed by the community moderator.",
+                        "postErrorTitle": "Unable to Post",
+                        "commentErrorTitle": "Unable to Comment",
+                        "replyErrorTitle": "Unable to Reply",
+                        "postErrorDesc": "You have reached the maximum of 50,000 characters in a post.",
+                        "commentErrorDesc": "You have reached the maximum of 50,000 characters in a comment.",
+                        "replyErrorDesc": "You have reached the maximum of 50,000 characters in a reply."
+                    },
+                    "detail": {
+                        "replyTo": "Replying to",
+                        "createReply": "Create Reply",
+                        "editReply": "Edit Reply",
+                        "deleteReply": "Delete Reply",
+                        "deleteReplyTitle": "Delete Reply",
+                        "deleteReplyMessage": "Are you sure you want to delete this reply?",
+                        "discardReplyTitle": "Discard Reply",
+                        "discardReplyMessage": "Are you sure you want to discard this reply?",
+                        "discardEditedReplyMessage": "Are you sure you want to discard edited reply?",
+                        "viewMoreReplies": "View more replies",
+                        "deletedReplyMessage": "This reply has been deleted",
+                        "commentHint": "Write a comment...",
+                        "deletedCommentMessage": "This comment has been deleted",
+                        "viewAllReplies": "View all replies",
+                        "joinMessage": "Join community to interact with posts",
+                        "editPost": "Edit post",
+                        "deletePost": "Delete post",
+                        "createComment": "Create comment",
+                        "editComment": "Edit comment",
+                        "deleteComment": "Delete comment",
+                        "deleteCommentTitle": "Delete Comment",
+                        "deleteCommentMessage": "Are you sure you want to delete this comment?",
+                        "discardCommentTitle": "Discard Comment",
+                        "discardCommentMessage": "Are you sure you want to discard this comment?",
+                        "discardEditedCommentMessage": "Are you sure you want to discard edited comment?",
+                        "deletePostTitle": "Delete Post",
+                        "deletePostMessage": "Are you sure you want to delete this post?",
+                        "commentEdited": "Comment edited",
+                        "bannedCommentError": "You are banned from commenting",
+                        "postToTitle": "Post to",
+                        "postAsCommunityTitle": "Post as community",
+                        "postAsCommunityMessage": "Your post will appear to be from the community",
+                        "shareTimeline": "Share to My Timeline",
+                        "shareGroup": "Share to Group",
+                        "moreOptions": "More Options",
+                        "placeholderTitle": "Create Post",
+                        "placeholderDesc": "What's on your mind?"
+                    },
+                    "comments": {
+                        "pageTitle": "Comments",
+                        "addButton": "Add Comment",
+                        "editButton": "Edit Comment",
+                        "deleteButton": "Delete Comment",
+                        "replyButton": "Reply",
+                        "textHint": "Write a comment..."
+                    },
+                    "media": {
+                        "photoLabel": "Photo",
+                        "videoLabel": "Video",
+                        "fileLabel": "File",
+                        "uploadButton": "Upload",
+                        "removeButton": "Remove",
+                        "noPhotos": "No photos yet",
+                        "noVideos": "No videos yet",
+                        "noLiveStream": "No livestreams yet"
+                    },
+                    "settings": {
+                        "pageTitle": "Post Settings",
+                        "visibilityLabel": "Visibility",
+                        "notificationsLabel": "Notifications",
+                        "moderationLabel": "Moderation"
+                    },
+                    "newsfeed": {
+                        "pageTitle": "Newsfeed",
+                        "emptyTitle": "No Posts Yet",
+                        "emptySubtitle": "Be the first to post something!",
+                        "exploreButton": "Explore",
+                        "createButton": "Create Post",
+                        "startPost": "Start your first post",
+                        "noPostsTitle": "No Posts"
+                    },
+                    "timeline": {
+                        "pageTitle": "Timeline"
+                    },
+                    "userFeed": {
+                        "privateTitle": "Private Feed",
+                        "privateSubtitle": "This user's feed is private"
+                    },
+                    "pending": {
+                        "pageTitle": "Pending Posts",
+                        "statusTitle": "Status",
+                        "adminDesc": "Admin description",
+                        "memberDesc": "Member description",
+                        "headerTitle": "Pending Posts",
+                        "emptyTitle": "No pending posts",
+                        "deleteTitle": "Delete Post",
+                        "deleteDesc": "Are you sure you want to delete this post?",
+                        "deleteErrorTitle": "Failed to delete post",
+                        "notAvailable": "Post not available",
+                        "deleteErrorDesc": "Cannot delete - post is being approved or declined"
+                    },
+                    "mention": {
+                        "errorTitle": "Unable to Mention User",
+                        "postErrorDesc": "You have reached the maximum of 30 mentioned users in a post.",
+                        "commentErrorDesc": "You have reached the maximum of 30 mentioned users in a comment.",
+                        "replyErrorDesc": "You have reached the maximum of 30 mentioned users in a reply."
+                    },
+                    "reaction": {
+                        "pageTitle": "Reactions",
+                        "emptyTitle": "Sorry, we couldn't display the content.",
+                        "emptySubtitle": "Try again or contact the administrator for more information."
+                    }
+                },
+                "livestreaming" : {
+                    "content" : {
+                        "streamEnded": "This livestream has ended.",
+                        "playbackSoon": "Playback will be available for you to watch shortly.",
+                        "unavailable": "The stream is currently unavailable.",
+                        "liveStatus": "LIVE",
+                        "connectUp": "connects up",
+                        "recordedStatus": "Recorded",
+                       "unablePlayStreaming" : "Unable to play live stream.",
+                        "addPostTitle" : "Title",
+                        "addPostDescriptionPlaceholder" : "Tap to add post description",
+                        "goLive" : "Go Live",
+                        "finishButton" : "Finish",
+                        "doneButton" : "Done",
+                        "endLiveStreamConfirmation" : "Do you want to end the live stream?",
+                        "endStream" : "End stream",
+                        "continueStreaming" : "Continue streaming" ,
+                        "unableMessage" : "Unable message",
+                        "changeCoverImage" : "Change cover image",
+                        "removeCoverImage" : "Remove cover image",
+                        "inputError": "Input Error",
+                        "titleCannotBeEmpty": "Title can not be empty.",
+                        "errorWhileCreating": "Error",
+                        "createPostResultRequired": "Create post result must be ready at this point."
+                    }
+                },
+                "general": {
+                    "emptyState": {
+                        "noPhotos": "No photos yet",
+                        "noVideos": "No videos yet",
+                        "noLiveStream": "No livestreams yet"
+                    },
+                    "mediaButtons": {
+                        "photo": "Photo",
+                        "video": "Video",
+                        "liveStream": "Livestream"
+                    },
+                    "content": {
+                        "generalGallery": "Gallery",
+                        "generalSend": "Send",
+                        "generalCancel": "Cancel",
+                        "generalReport": "Report",
+                        "generalUndoReport": "Undo Report",
+                        "generalReportUser": "Report User",
+                        "generalUnreportUser": "Unreport User",
+                        "generalSettings": "Settings",
+                        "generalAccept": "Accept",
+                        "generalDecline": "Decline",
+                        "generalClose": "Close",
+                        "generalSave": "Save",
+                        "generalSaved": "Saved",
+                        "generalDelete": "Delete",
+                        "generalEdit": "Edit",
+                        "generalDone": "Done",
+                        "generalPost": "Create Post",
+                        "generalPostInternal": "Publish",
+                        "generalDiscard": "Discard",
+                        "generalLeave": "Leave",
+                        "generalLike": "Like",
+                        "generalLiked": "Liked",
+                        "generalComment": "Comment",
+                        "generalShare": "Share",
+                        "generalReply": "Reply",
+                        "generalViewReply": "View Reply",
+                        "generalRemove": "Remove",
+                        "generalTurnOn": "Turn On",
+                        "generalTurnOff": "Turn Off",
+                        "generalFollow": "Follow",
+                        "generalCamera": "Camera",
+                        "generalOn": "On",
+                        "generalOff": "Off",
+                        "generalFile": "File",
+                        "generalLocation": "Location",
+                        "generalAlbum": "Album",
+                        "generalAnonymous": "Anonymous",
+                        "generalGeneral": "General",
+                        "generalOk": "OK",
+                        "generalSearch": "Search",
+                        "generalImage_gallery": "Image Gallery",
+                        "generalUploadImage": "Upload Image",
+                        "generalModerator": "Moderator",
+                        "generalPoll": "Poll",
+                        "generalDay": "Day",
+                        "generalDays": "Days",
+                        "generalTextInputLimitCharactor": "You have reached the character limit.",
+                        "generalVideo": "Video",
+                        "generalPhoto": "Photo",
+                        "generalAttachment": "Attachment",
+                        "generalAll": "All",
+                        "statusMessagesSuccess": "Success",
+                        "statusMessagesLoading": "Loading",
+                        "yesterday": "Yesterday",
+                        "timeToday": "Today",
+                        "newSendFileTitle": "Send File",
+                        "newSendFileMessage": "Do you want to send this file?",
+                        "unableToAttachFile": "Unable to attached the file",
+                        "filSizeError": "The selected file is larger than 1GB. Please select a new file.",
+                         "maxFileNumberReached" : "Maximum number of files exceeded",
+                         "permissionRequiredTitle" : "Permission Required",
+                         "permissionRequiredMessage" : "Please grant permission in iOS settings.",
+                         "errorTitle" : "Something went wrong",
+                         "errorMessage": "Please try again"
+                    },
+                    "unit": {
+                        "content": {
+                            "memberSingular": "Member",
+                            "memberPlural": "Members",
+                            "likeSingular": "Like",
+                            "likePlural": "Likes",
+                            "commentSingular": "Comment",
+                            "commentPlural": "Comments",
+                            "postSingular": "Post",
+                            "postPlural": "Posts",
+                            "shareSingular": "Share",
+                            "sharePlural": "Shares",
+                            "daySingular": "Day",
+                            "dayPlural": "Days",
+                            "hourSingular": "Hour",
+                            "hourPlural": "Hours",
+                            "minuteSingular": "Minute",
+                            "minutePlural": "Minutes"
+                        }
+                    },
+                    "time": {
+                        "years": "year",
+                        "yearsPlural": "years",
+                        "yearsAgo": "ago",
+                        "months": "month",
+                        "monthsPlural": "months",
+                        "monthsAgo": "ago",
+                        "weeks": "week",
+                        "weeksPlural": "weeks",
+                        "weeksAgo": "ago",
+                        "yesterday": "Yesterday",
+                        "days": "day",
+                        "daysPlural": "days",
+                        "daysAgo": "ago",
+                        "hours": "hour",
+                        "hoursPlural": "hours",
+                        "hoursAgo": "ago",
+                        "minutes": "min",
+                        "minutesPlural": "minutes",
+                        "minutesAgo": "ago",
+                        "justNow": "Just now"
+                    }
+                }
+                
+            }
+        }
+    }
+    
+}
+   

@@ -35,30 +35,24 @@
     <string name="amity_try_again">Please try again</string>
     <string name="amity_image_preview_title">%1$d/%2$d</string>
     <string name="amity_release_to_send">Release to send</string>
-    <plurals name="amity_number_of_years">
-        <item quantity="one">%d år sedan</item>
-        <item quantity="other">%d år sedan</item>
-    </plurals>
-    <plurals name="amity_number_of_months">
-        <item quantity="one">%d månad sedan</item>
-        <item quantity="other">%d månader sedan</item>
-    </plurals>
-    <plurals name="amity_number_of_weeks">
-        <item quantity="one">%d vecka sedan</item>
-        <item quantity="other">%d veckor sedan</item>
-    </plurals>
-    <plurals name="amity_number_of_days">
-        <item quantity="one">%d day</item>
-        <item quantity="other">%d days</item>
-    </plurals>
-    <plurals name="amity_number_of_hours">
-        <item quantity="one">%d hour</item>
-        <item quantity="other">%d hours</item>
-    </plurals>
-    <plurals name="amity_number_of_mins">
-        <item quantity="one">%d min</item>
-        <item quantity="other">%d mins</item>
-    </plurals>
+    <string name="amity_year_single">%d år sedan</string>
+    <string name="amity_year_plural">%d år sedan</string>
+    
+    <string name="amity_month_single">%d månad sedan</string>
+    <string name="amity_month_plural">%d månader sedan</string>
+    
+    <string name="amity_week_single">%d vecka sedan</string>
+    <string name="amity_week_plural">%d veckor sedan</string>
+    
+    <string name="amity_day_single">%d day</string>
+    <string name="amity_day_plural">%d days</string>
+    
+    <string name="amity_hour_single">%d hour</string>
+    <string name="amity_hour_plural">%d hours</string>
+    
+    <string name="amity_min_single">%d min</string>
+    <string name="amity_min_plural">%d mins</string>
+
     <string name="amity_time">0:%1s</string>
     <string name="amity_ok">OK</string>
     <string name="amity_remove_from_community">Ta bort från gruppen</string>

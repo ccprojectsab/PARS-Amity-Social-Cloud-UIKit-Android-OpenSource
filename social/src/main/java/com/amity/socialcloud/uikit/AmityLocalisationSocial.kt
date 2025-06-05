@@ -18,7 +18,7 @@ object AmityLocalisationSocial {
      * @return Hardcoded string value
      */
     fun getString(@StringRes stringResId: Int): String {
-        return stringsMap[stringResId] ?: applicationContext?.getString(stringResId) ?:"Unknown String"
+        return stringsMap[stringResId] ?.let { LocalizationManager.getString(it) } ?: applicationContext?.getString(stringResId) ?:"Unknown String"
     }
 
     /**
@@ -167,8 +167,8 @@ object AmityLocalisationSocial {
         R.string.amity_community_success to "social.general.content.statusMessagesSuccess",
         
         // Video/Media Related
-        R.string.amity_general_photos to "social.general.emptyState.noPhotos",
-        R.string.amity_general_videos to "social.general.emptyState.noVideos",
+        R.string.amity_general_photos to "social.general.mediaButtons.photo",
+        R.string.amity_general_videos to "social.general.mediaButtons.video",
         R.string.amity_video_stream_title to "social.livestreaming.content.addPostTitle",
         R.string.amity_video_stream_live to "social.livestreaming.content.goLive",
         R.string.amity_video_stream_recorded to "social.livestreaming.content.recordedStatus",

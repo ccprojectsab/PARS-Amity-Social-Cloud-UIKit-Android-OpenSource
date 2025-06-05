@@ -86,34 +86,28 @@ fun Long.readableFeedPostTime(context: Context): String {
 
     return when {
         years > 0 -> AmityLocalisationCommon.getString(
-            R.plurals.amity_number_of_years,
-            years,
+            if (years == 1) R.string.amity_year_single else R.string.amity_year_plural,
             years
         )
         months > 0 -> AmityLocalisationCommon.getString(
-            R.plurals.amity_number_of_months,
-            months,
+            if (months == 1) R.string.amity_month_single else R.string.amity_month_plural,
             months
         )
         weeks > 0 -> AmityLocalisationCommon.getString(
-            R.plurals.amity_number_of_weeks,
-            weeks,
+            if (weeks == 1) R.string.amity_week_single else R.string.amity_week_plural,
             weeks
         )
         days > 0 -> AmityLocalisationCommon.getString(
-            R.plurals.amity_number_of_days,
-            days.toInt(),
+            if (days == 1L) R.string.amity_day_single else R.string.amity_day_plural,
             days
         )
         isYesterday(this) -> AmityLocalisationCommon.getString(R.string.amity_yesterday)
         hours > 0 -> AmityLocalisationCommon.getString(
-            R.plurals.amity_number_of_hours,
-            hours.toInt(),
+            if (hours == 1L) R.string.amity_hour_single else R.string.amity_hour_plural,
             hours
         )
         minutes > 0 -> AmityLocalisationCommon.getString(
-            R.plurals.amity_number_of_mins,
-            minutes.toInt(),
+            if (minutes == 1L) R.string.amity_min_single else R.string.amity_min_plural,
             minutes
         )
         else -> AmityLocalisationCommon.getString(R.string.amity_just_now)
