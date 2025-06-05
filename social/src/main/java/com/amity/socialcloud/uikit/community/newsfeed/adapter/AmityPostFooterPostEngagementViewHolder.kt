@@ -54,20 +54,22 @@ class AmityPostFooterPostEngagementViewHolder(
 
     private fun setNumberOfComments(commentCount: Int) {
         binding.tvNumberOfComments.visibility = if (commentCount > 0) View.VISIBLE else View.GONE
-        binding.tvNumberOfComments.text = AmityLocalisationSocial.getString(
-            R.plurals.amity_feed_number_of_comments,
-            commentCount,
-            commentCount
-        )
+        val commentText = if (commentCount == 1) {
+            "$commentCount ${AmityLocalisationSocial.getString(R.string.amity_feed_number_of_comments_single)}"
+        } else {
+            "$commentCount ${AmityLocalisationSocial.getString(R.string.amity_feed_number_of_comments_plural)}"
+        }
+        binding.tvNumberOfComments.text = commentText
     }
 
     private fun setNumberOfReactions(reactionCount: Int) {
         binding.tvNumberOfReactions.visibility = if (reactionCount > 0) View.VISIBLE else View.GONE
-        binding.tvNumberOfReactions.text = AmityLocalisationSocial.getString(
-            R.plurals.amity_feed_number_of_likes,
-            reactionCount,
-            reactionCount.readableNumber()
-        )
+        val reactionText = if (reactionCount == 1) {
+            "$reactionCount ${AmityLocalisationSocial.getString(R.string.amity_feed_number_of_likes_single)}"
+        } else {
+            "$reactionCount ${AmityLocalisationSocial.getString(R.string.amity_feed_number_of_likes_plural)}"
+        }
+        binding.tvNumberOfReactions.text = reactionText
     }
 
     private fun setUpLikeView(isReactedByMe: Boolean, reactionCount: Int, post: AmityPost) {

@@ -149,7 +149,7 @@ class AmityCommunityHomePageFragment : Fragment(), AmityToolBarClickListener {
             binding.tabLayout.switchTab(0, false)
         }
 
-        binding.tabLayout.setPageChangeListener(object : ViewPager2.OnPageChangeCallback() {
+        binding.tabLayout.setPageChangeListener(object : ViewPager2.OnPageChangeCallback()  {
             override fun onPageSelected(position: Int) {
                 (activity as? TabSelectionListener)?.onTabSelected(position)
                 //  fragmentStateAdapter.notifyItemChanged(position)

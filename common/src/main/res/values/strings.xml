@@ -35,23 +35,23 @@
     <string name="amity_try_again">Please try again</string>
     <string name="amity_image_preview_title">%1$d/%2$d</string>
     <string name="amity_release_to_send">Release to send</string>
-    <string name="amity_year_single">%d år sedan</string>
-    <string name="amity_year_plural">%d år sedan</string>
+    <string name="amity_year_single">år sedan</string>
+    <string name="amity_year_plural">år sedan</string>
     
-    <string name="amity_month_single">%d månad sedan</string>
-    <string name="amity_month_plural">%d månader sedan</string>
+    <string name="amity_month_single">månad sedan</string>
+    <string name="amity_month_plural">månader sedan</string>
     
-    <string name="amity_week_single">%d vecka sedan</string>
-    <string name="amity_week_plural">%d veckor sedan</string>
+    <string name="amity_week_single">vecka sedan</string>
+    <string name="amity_week_plural">veckor sedan</string>
     
-    <string name="amity_day_single">%d day</string>
-    <string name="amity_day_plural">%d days</string>
+    <string name="amity_day_single">day</string>
+    <string name="amity_day_plural">days</string>
     
-    <string name="amity_hour_single">%d hour</string>
-    <string name="amity_hour_plural">%d hours</string>
+    <string name="amity_hour_single">hour</string>
+    <string name="amity_hour_plural">hours</string>
     
-    <string name="amity_min_single">%d min</string>
-    <string name="amity_min_plural">%d mins</string>
+    <string name="amity_min_single">min</string>
+    <string name="amity_min_plural">mins</string>
 
     <string name="amity_time">0:%1s</string>
     <string name="amity_ok">OK</string>
@@ -62,7 +62,7 @@
     <string name="amity_download_complete">Download complete.</string>
     <string name="amity_following_count">following</string>
     <string name="amity_remove_follower">Remove %s from follower?</string>
-    <string name="amity_remove_follower_msg">We won’t notify %s that they’ve been remove from your followers</string>
+    <string name="amity_remove_follower_msg">We won\'t notify %s that they\'ve been remove from your followers</string>
     <string name="amity_done">DONE</string>
     <string name="amity_select_members">Select members</string>
     <string name="amity_add">Add</string>
@@ -75,4 +75,12 @@
     <string name="amity_undo_report">Undo Report</string>
     <string name="amity_delete_poll">Delete Poll</string>
     <string name="amity_close_poll">Close Poll</string>
+    <string name="amity_year_ago">ago</string>
+    <string name="ago">ago</string>
+    <string name="month_ago">ago</string>
+    <string name="week_ago">ago</string>
+    <string name="days_ago">ago</string>
+    <string name="hour_ago">ago</string>
+    <string name="minutes_ago">ago</string>
+    <string name="weeks_ago">ago</string>
 </resources>

@@ -106,6 +106,10 @@
     <string name="amity_join_community_message">Join community to interact with all posts</string>
     <string name="amity_timeline">Timeline</string>
     <string name="amity_no_post">No posts yet</string>
+    <string name="amity_home">home</string>
+    <string name="amity_chatt">chatt</string>
+    <string name="amity_explore">Utforska</string>
+
     <string name="amity_comment_deleted_message">This comment has been removed.</string>
     <string name="amity_select_category">Välj grupp</string>
     <string name="amity_start_post">Start your first post</string>
@@ -163,14 +167,10 @@
     <string name="amity_add_comment_error_message">Unable to add comment</string>
     <string name="amity_update_comment_error_message">Unable to update comment</string>
     <string name="amity_add_blocked_words_comment_error_message">Your comment wasn’t created as it contained blocked words. Only you can see this</string>
-    <plurals name="amity_feed_number_of_likes">
-        <item quantity="one">%s like</item>
-        <item quantity="other">%s likes</item>
-    </plurals>
-    <plurals name="amity_feed_number_of_comments">
-        <item quantity="one">%d comment</item>
-        <item quantity="other">%d comments</item>
-    </plurals>
+    <string name="amity_feed_number_of_likes_single">like</string>
+    <string name="amity_feed_number_of_likes_plural">likes</string>
+    <string name="amity_feed_number_of_comments_single">comment</string>
+    <string name="amity_feed_number_of_comments_plural">comments</string>
     <string name="amity_share_to_my_timeline">Share to My Timeline</string>
     <string name="amity_share_to_group">Share to Group</string>
     <string name="amity_more_options">More options…</string>

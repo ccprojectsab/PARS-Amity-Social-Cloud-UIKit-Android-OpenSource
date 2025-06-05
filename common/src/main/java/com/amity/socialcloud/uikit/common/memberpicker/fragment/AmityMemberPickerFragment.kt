@@ -86,7 +86,7 @@ class AmityMemberPickerFragment : RxFragment(), AmitySelectMemberListener,
 
         handleSelectedMembers()
         setUpMembersListRecyclerView()
-
+        binding.etSearch.hint = AmityLocalisationCommon.getString(R.string.amity_search)
         binding.etSearch.setShape(
             null, null, null, null,
             R.color.amityColorBase, null, AmityColorShade.SHADE4

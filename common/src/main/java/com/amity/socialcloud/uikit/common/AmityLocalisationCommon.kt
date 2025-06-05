@@ -33,7 +33,7 @@ object AmityLocalisationCommon {
             ?: applicationContext?.getString(stringResId, formatArgs) ?: "Unknown String"
     }
 
-    private val stringsMap: Map<Int, String> = mapOf(
+    val stringsMap: Map<Int, String> = mapOf(
         // General UI/Actions
         R.string.amity_general_search to "app.common.faq.content.searchPlaceholder",
         R.string.amity_read_more to "app.common.buttons.ok",
@@ -41,7 +41,7 @@ object AmityLocalisationCommon {
         R.string.amity_gallery to "app.common.content.generalGallery",
         R.string.amity_follow to "social.general.content.generalFollow",
         R.string.amity_followers to "social.community.followRequestsPopup.followers",
-        R.string.amity_search to "app.common.content.generalSearch",
+        R.string.amity_search to "social.general.content.generalSearch",
         R.string.amity_search_results to "app.common.content.generalSearch",
 
         // UI Elements
@@ -52,18 +52,13 @@ object AmityLocalisationCommon {
         // Media Related
         R.string.amity_choose_image to "app.userProfile.chooseImage.title",
 
-
-        // Post Actions
-        R.string.amity_edit_post to "social.general.content.generalEdit",
-        R.string.amity_delete_post to "social.general.content.generalDelete",
-
         // General Actions
         R.string.amity_save to "app.common.buttons.save",
         R.string.amity_saved to "social.general.content.generalSaved",
         R.string.amity_delete_msg to "social.general.content.generalDelete",
         R.string.amity_dlt_dlg_body to "app.common.errors.errorInvalidCredentials",
         R.string.amity_failed_dlg_body to "app.common.errors.errorInvalidCredentials",
-        R.string.amity_cancel to "app.common.buttons.cancel",
+        R.string.amity_cancel to "social.general.content.generalCancel",
 
         // Time Related
         R.string.amity_day to "social.general.unit.content.daySingular",
@@ -117,7 +112,7 @@ object AmityLocalisationCommon {
         R.string.amity_select_members to "social.community.memberSelect.selectTitle",
         R.string.amity_add to "social.general.content.generalAdd",
         R.string.amity_selected to "social.general.content.selected",
-        R.string.amity_following_count to "social.community.following",
+        R.string.amity_following_count to "social.community.followRequestsPopup.following",
         // Time Related Strings - Singular and Plural forms
         R.string.amity_year_single to "social.general.time.years",
         R.string.amity_year_plural to "social.general.time.yearsPlural",
@@ -146,13 +141,16 @@ object AmityLocalisationCommon {
         R.plurals.amity_number_of_hours to "social.general.time.hours",
         R.plurals.amity_number_of_mins to "social.general.time.minutes",
         */
-
+        R.string.amity_report to "social.general.content.generalReport",
         R.string.amity_edit_post to "social.post.create.editButton",
         R.string.amity_delete_post to "social.post.create.deleteButton",
-        R.string.amity_edit_post to "social.post.create.editButton",
         R.string.amity_undo_report to "social.chat.settings.report",
-        R.string.amity_close_poll to "",
-        R.string.amity_delete_poll to ""
+        R.string.ago to "social.general.time.yearsAgo",
+        R.string.month_ago to "social.general.time.monthsAgo",
+        R.string.days_ago to "social.general.time.dayssAgo",
+        R.string.hour_ago to "social.general.time.hoursAgo",
+        R.string.minutes_ago to "social.general.time.daysAgo",
+        R.string.weeks_ago to "social.general.time.weeksAgo",
 
     )
 }

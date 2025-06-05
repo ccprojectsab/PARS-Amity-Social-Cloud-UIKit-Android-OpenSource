@@ -70,6 +70,7 @@ object AmityLocalisationChat {
         R.string.amity_leave_chat to "social.chat.settings.leaveChat",
         R.string.amity_leave_chat_title to "social.chat.settings.leaveChatTitle",
         R.string.amity_leave_chat_des to "social.chat.settings.leaveChatMessage",
+        com.amity.socialcloud.uikit.common.R.string.amity_search to "social.general.content.generalSearch",
 
         )
 } 

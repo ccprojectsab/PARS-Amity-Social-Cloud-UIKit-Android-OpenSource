@@ -85,33 +85,35 @@ fun Long.readableFeedPostTime(context: Context): String {
     val years = (months / 12)
 
     return when {
-        years > 0 -> AmityLocalisationCommon.getString(
-            if (years == 1) R.string.amity_year_single else R.string.amity_year_plural,
-            years
-        )
-        months > 0 -> AmityLocalisationCommon.getString(
-            if (months == 1) R.string.amity_month_single else R.string.amity_month_plural,
-            months
-        )
-        weeks > 0 -> AmityLocalisationCommon.getString(
-            if (weeks == 1) R.string.amity_week_single else R.string.amity_week_plural,
-            weeks
-        )
-        days > 0 -> AmityLocalisationCommon.getString(
-            if (days == 1L) R.string.amity_day_single else R.string.amity_day_plural,
-            days
-        )
+        years > 0 -> "$years ${AmityLocalisationCommon.getString(
+            if (years == 1) R.string.amity_year_single else R.string.amity_year_plural
+        )} ${AmityLocalisationCommon.getString(R.string.ago)}"
+
+        months > 0 -> "$months ${AmityLocalisationCommon.getString(
+            if (months == 1) R.string.amity_month_single else R.string.amity_month_plural
+        )} ${AmityLocalisationCommon.getString(R.string.month_ago)}"
+
+        weeks > 0 -> "$weeks ${AmityLocalisationCommon.getString(
+            if (weeks == 1) R.string.amity_week_single else R.string.amity_week_plural
+        )} ${AmityLocalisationCommon.getString(R.string.weeks_ago)}"
+
+        days > 0 -> "$days ${AmityLocalisationCommon.getString(
+            if (days == 1L) R.string.amity_day_single else R.string.amity_day_plural
+        )} ${AmityLocalisationCommon.getString(R.string.days_ago)}"
+
         isYesterday(this) -> AmityLocalisationCommon.getString(R.string.amity_yesterday)
-        hours > 0 -> AmityLocalisationCommon.getString(
-            if (hours == 1L) R.string.amity_hour_single else R.string.amity_hour_plural,
-            hours
-        )
-        minutes > 0 -> AmityLocalisationCommon.getString(
-            if (minutes == 1L) R.string.amity_min_single else R.string.amity_min_plural,
-            minutes
-        )
+
+        hours > 0 -> "$hours ${AmityLocalisationCommon.getString(
+            if (hours == 1L) R.string.amity_hour_single else R.string.amity_hour_plural
+        )} ${AmityLocalisationCommon.getString(R.string.hour_ago)}"
+
+        minutes > 0 -> "$minutes ${AmityLocalisationCommon.getString(
+            if (minutes == 1L) R.string.amity_min_single else R.string.amity_min_plural
+        )} ${AmityLocalisationCommon.getString(R.string.minutes_ago)}"
+
         else -> AmityLocalisationCommon.getString(R.string.amity_just_now)
     }
+
 }
 
 fun isYesterday(time: Long): Boolean {

@@ -2,6 +2,7 @@ package com.amity.socialcloud.uikit
 
 import android.content.Context
 import androidx.annotation.StringRes
+import com.amity.socialcloud.uikit.common.AmityLocalisationCommon
 import com.amity.socialcloud.uikit.community.R
 import com.pars.localisation.LocalizationManager
 
@@ -269,9 +270,11 @@ object AmityLocalisationSocial {
         R.string.amity_approve_member_post_desc to "social.community.permission.postApprovalDesc",
         
         // Plurals
-        R.plurals.amity_feed_number_of_likes to "social.general.unit.content.likeSingular",
-        R.plurals.amity_feed_number_of_comments to "social.general.unit.content.commentPlural",
-        R.plurals.amity_community_banner_number_of_pending_posts to "social.post.review.pendingPosts",
+        R.string.amity_feed_number_of_likes_single to "social.general.unit.content.likeSingular",
+        R.string.amity_feed_number_of_likes_plural to "social.general.unit.content.likePlural",
+        R.string.amity_feed_number_of_comments_single to "social.general.unit.content.commentSingular",
+        R.string.amity_feed_number_of_comments_plural to "social.general.unit.content.commentPlural",
+        //R.string.amity_community_banner_number_of_pending_posts to "social.post.pending.pageTitle",
         
         // User Management
         R.string.amity_unfollow_user to "social.community.followRequestsPopup.declineButton",
@@ -369,13 +372,16 @@ object AmityLocalisationSocial {
         R.string.amity_followers to "social.community.followRequestsPopup.followers",
         R.string.amity_following to "social.profile.following" ,
         R.string.amity_categories to "social.community.category.pageTitle",
-        R.string.amity_general to "social.general.",
         R.string.amity_gallery_no_videos to "social.post.media.noVideos",
         R.string.amity_gallery_no_photos to "social.post.media.noPhotos",
-        //R.string.amity_report to "social.chat.settings.report",
         com.amity.socialcloud.uikit.common.R.string.amity_edit_post to "social.post.create.editButton",
         com.amity.socialcloud.uikit.common.R.string.amity_delete_post to "social.post.create.deleteButton",
-        R.string.amity_close_poll to "" ,
-        R.string.amity_delete_poll to ""
+        com.amity.socialcloud.uikit.common.R.string.amity_search to "social.general.content.generalSearch",
+        com.amity.socialcloud.uikit.common.R.string.amity_following_count to "social.community.followRequestsPopup.following",
+        R.string.amity_gallery_title to "social.general.content.generalGallery",
+        R.string.amity_home to "social.community.socialTabBar.homeTab",
+        R.string.amity_chatt to "social.community.socialTabBar.chatTab",
+        R.string.amity_explore to "social.community.socialTabBar.exploreTab",
+        R.string.amity_community to "social.community.socialTabBar.communityTab"
     )
 }
