@@ -363,7 +363,7 @@ object AmityLocalisationSocial {
         R.string.amity_private_description to "social.community.createForm.privateDesc",
         R.string.amity_add_members to "social.community.createForm.addMemberTitle",
         R.string.amity_create_community to "social.community.createForm.submitButton",
-        R.string.amity_edit_profile to "social.profile.edit",
+        R.string.amity_edit_profile to "social.community.settings.editProfileTitle",
         R.string.amity_message to "social.profile.message",
         R.string.amity_cancel_request to "social.profile.cancelRequest",
         R.string.amity_pending_requests to "social.profile.pendingRequests",
@@ -382,6 +382,7 @@ object AmityLocalisationSocial {
         R.string.amity_home to "social.community.socialTabBar.homeTab",
         R.string.amity_chatt to "social.community.socialTabBar.chatTab",
         R.string.amity_explore to "social.community.socialTabBar.exploreTab",
-        R.string.amity_community to "social.community.socialTabBar.communityTab"
+        R.string.amity_community to "social.community.socialTabBar.communityTab",
+        R.string.amity_video_stream_unavailable_description to "social.livestreaming.content.unavailable"
     )
 }

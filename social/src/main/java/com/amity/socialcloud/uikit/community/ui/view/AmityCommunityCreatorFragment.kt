@@ -35,7 +35,7 @@ class AmityCommunityCreatorFragment : AmityCommunityCreateBaseFragment(),
         binding.tvAbout.text = AmityLocalisationSocial.getString(R.string.amity_about)
         binding.etDescription.hint = AmityLocalisationSocial.getString(R.string.amity_enter_description)
         binding.tvCategory.text = AmityLocalisationSocial.getString(R.string.amity_category_required_field)
-        binding.category.hint = AmityLocalisationSocial.getString(R.string.amity_please_select_category)
+        binding.category.text = AmityLocalisationSocial.getString(R.string.amity_please_select_category)
         binding.tvAdmin.text = AmityLocalisationSocial.getString(R.string.amity_only_admin)
         binding.tvAdminDescription.text = AmityLocalisationSocial.getString(R.string.amity_admin_description)
         binding.tvPublic.text = AmityLocalisationSocial.getString(R.string.amity_tv_public)
