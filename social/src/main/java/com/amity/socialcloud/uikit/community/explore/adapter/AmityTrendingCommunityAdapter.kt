@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.amity.socialcloud.sdk.model.core.file.AmityImage
 import com.amity.socialcloud.sdk.model.social.community.AmityCommunity
+import com.amity.socialcloud.uikit.AmityLocalisationSocial
 import com.amity.socialcloud.uikit.common.base.AmityBaseRecyclerViewListAdapter
 import com.amity.socialcloud.uikit.common.common.formatCount
 import com.amity.socialcloud.uikit.community.R
@@ -59,9 +60,9 @@ class AmityTrendingCommunityAdapter(private val listener: AmityMyCommunityItemCl
             binding?.avatarUrl = data?.getAvatar()?.getUrl(AmityImage.Size.MEDIUM)
             binding?.community = data
             binding?.listener = listener
-            binding?.tvMembersCount?.text = itemView.context.getString(
+            binding?.tvMembersCount?.text = AmityLocalisationSocial.getString(
                 R.string.amity_members_count,
-                "${data?.getMemberCount()?.toDouble()?.formatCount()}"
+                data?.getMemberCount()?.toDouble()?.formatCount() ?: "0"
             )
             binding?.tvCategory?.text =
                 data?.getCategories()?.joinToString(separator = " ") { it.getName() }

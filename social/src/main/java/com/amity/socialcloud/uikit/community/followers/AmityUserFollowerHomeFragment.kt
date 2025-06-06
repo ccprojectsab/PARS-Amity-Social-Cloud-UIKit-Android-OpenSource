@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import com.amity.socialcloud.uikit.AmityLocalisationSocial
 import com.amity.socialcloud.uikit.common.base.AmityFragmentStateAdapter
 import com.amity.socialcloud.uikit.community.R
 import com.amity.socialcloud.uikit.community.databinding.AmityUserFollowerHomeFragmentBinding
@@ -32,12 +33,12 @@ class AmityUserFollowerHomeFragment : RxFragment() {
             fragmentStateAdapter.setFragmentList(
                 arrayListOf(
                     AmityFragmentStateAdapter.AmityPagerModel(
-                        getString(R.string.amity_following),
+                        AmityLocalisationSocial.getString(R.string.amity_following),
                         AmityUserFollowingFragment.newInstance(nonNullUserId)
                             .build(requireActivity() as AppCompatActivity)
                     ),
                     AmityFragmentStateAdapter.AmityPagerModel(
-                        getString(R.string.amity_followers),
+                        AmityLocalisationSocial.getString(R.string.amity_followers),
                         AmityUserFollowerFragment.newInstance(nonNullUserId)
                             .build(requireActivity() as AppCompatActivity)
                     )

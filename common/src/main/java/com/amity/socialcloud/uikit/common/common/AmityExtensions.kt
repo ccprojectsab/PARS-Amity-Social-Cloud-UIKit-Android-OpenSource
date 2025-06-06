@@ -14,6 +14,7 @@ import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.paging.PagedList
+import com.amity.socialcloud.uikit.common.AmityLocalisationCommon
 import com.amity.socialcloud.uikit.common.R
 import com.amity.socialcloud.uikit.common.common.views.AmityColorPaletteUtil
 import com.amity.socialcloud.uikit.common.common.views.AmityColorShade
@@ -28,7 +29,6 @@ import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
 import java.math.RoundingMode
 import java.text.DecimalFormat
-import java.util.Date
 import java.util.concurrent.TimeUnit
 import kotlin.math.ln
 import kotlin.math.pow
@@ -85,39 +85,35 @@ fun Long.readableFeedPostTime(context: Context): String {
     val years = (months / 12)
 
     return when {
-        years > 0 -> context.resources.getQuantityString(
-            R.plurals.amity_number_of_years,
-            years,
-            years
-        )
-        months > 0 -> context.resources.getQuantityString(
-            R.plurals.amity_number_of_months,
-            months,
-            months
-        )
-        weeks > 0 -> context.resources.getQuantityString(
-            R.plurals.amity_number_of_weeks,
-            weeks,
-            weeks
-        )
-        days > 0 -> context.resources.getQuantityString(
-            R.plurals.amity_number_of_days,
-            days.toInt(),
-            days
-        )
-        isYesterday(this) -> context.resources.getString(R.string.amity_yesterday)
-        hours > 0 -> context.resources.getQuantityString(
-            R.plurals.amity_number_of_hours,
-            hours.toInt(),
-            hours
-        )
-        minutes > 0 -> context.resources.getQuantityString(
-            R.plurals.amity_number_of_mins,
-            minutes.toInt(),
-            minutes
-        )
-        else -> context.getString(R.string.amity_just_now)
+        years > 0 -> "$years ${AmityLocalisationCommon.getString(
+            if (years == 1) R.string.amity_year_single else R.string.amity_year_plural
+        )} ${AmityLocalisationCommon.getString(R.string.ago)}"
+
+        months > 0 -> "$months ${AmityLocalisationCommon.getString(
+            if (months == 1) R.string.amity_month_single else R.string.amity_month_plural
+        )} ${AmityLocalisationCommon.getString(R.string.month_ago)}"
+
+        weeks > 0 -> "$weeks ${AmityLocalisationCommon.getString(
+            if (weeks == 1) R.string.amity_week_single else R.string.amity_week_plural
+        )} ${AmityLocalisationCommon.getString(R.string.weeks_ago)}"
+
+        days > 0 -> "$days ${AmityLocalisationCommon.getString(
+            if (days == 1L) R.string.amity_day_single else R.string.amity_day_plural
+        )} ${AmityLocalisationCommon.getString(R.string.days_ago)}"
+
+        isYesterday(this) -> AmityLocalisationCommon.getString(R.string.amity_yesterday)
+
+        hours > 0 -> "$hours ${AmityLocalisationCommon.getString(
+            if (hours == 1L) R.string.amity_hour_single else R.string.amity_hour_plural
+        )} ${AmityLocalisationCommon.getString(R.string.hour_ago)}"
+
+        minutes > 0 -> "$minutes ${AmityLocalisationCommon.getString(
+            if (minutes == 1L) R.string.amity_min_single else R.string.amity_min_plural
+        )} ${AmityLocalisationCommon.getString(R.string.minutes_ago)}"
+
+        else -> AmityLocalisationCommon.getString(R.string.amity_just_now)
     }
+
 }
 
 fun isYesterday(time: Long): Boolean {

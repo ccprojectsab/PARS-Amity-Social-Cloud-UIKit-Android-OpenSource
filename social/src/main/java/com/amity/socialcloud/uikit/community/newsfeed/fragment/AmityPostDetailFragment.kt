@@ -22,6 +22,7 @@ import com.amity.socialcloud.sdk.model.core.file.AmityImage
 import com.amity.socialcloud.sdk.model.social.comment.AmityComment
 import com.amity.socialcloud.sdk.model.social.feed.AmityFeedType
 import com.amity.socialcloud.sdk.model.social.post.AmityPost
+import com.amity.socialcloud.uikit.AmityLocalisationSocial
 import com.amity.socialcloud.uikit.common.base.AmityBaseFragment
 import com.amity.socialcloud.uikit.common.common.expandViewHitArea
 import com.amity.socialcloud.uikit.common.common.showSnackBar
@@ -127,7 +128,7 @@ class AmityPostDetailFragment : AmityBaseFragment(),
                     Menu.NONE,
                     ID_MENU_ITEM,
                     Menu.NONE,
-                    getString(R.string.amity_cancel)
+                    AmityLocalisationSocial.getString(R.string.amity_cancel)
                 )
                 menuItem?.setIcon(drawable)?.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS)
             }
@@ -266,12 +267,12 @@ class AmityPostDetailFragment : AmityBaseFragment(),
                 },
                 onError = {
                     if (AmityError.from(it) == AmityError.BAN_WORD_FOUND) {
-                        view?.showSnackBar(getString(R.string.amity_add_blocked_words_comment_error_message))
+                        view?.showSnackBar(AmityLocalisationSocial.getString(R.string.amity_add_blocked_words_comment_error_message))
                     } else {
                         if (replyTo != null) {
-                            view?.showSnackBar(getString(R.string.amity_add_reply_error_message))
+                            view?.showSnackBar(AmityLocalisationSocial.getString(R.string.amity_add_reply_error_message))
                         } else {
-                            view?.showSnackBar(getString(R.string.amity_add_comment_error_message))
+                            view?.showSnackBar(AmityLocalisationSocial.getString(R.string.amity_add_comment_error_message))
                         }
                     }
                     binding.commentComposeBar.getCommentEditText().setText("")
@@ -371,7 +372,7 @@ class AmityPostDetailFragment : AmityBaseFragment(),
 
     private fun reportPost(post: AmityPost) {
         viewModel.reportPost(post, {
-            view?.showSnackBar(getString(R.string.amity_report_sent))
+            view?.showSnackBar(AmityLocalisationSocial.getString(R.string.amity_report_sent))
         }, {})
             .untilLifecycleEnd(this)
             .subscribe()
@@ -379,7 +380,7 @@ class AmityPostDetailFragment : AmityBaseFragment(),
 
     private fun unReportPost(post: AmityPost) {
         viewModel.unReportPost(post, {
-            view?.showSnackBar(getString(R.string.amity_unreport_sent))
+            view?.showSnackBar(AmityLocalisationSocial.getString(R.string.amity_unreport_sent))
         }, {})
             .untilLifecycleEnd(this)
             .subscribe()

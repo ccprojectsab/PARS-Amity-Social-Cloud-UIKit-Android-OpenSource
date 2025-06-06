@@ -10,6 +10,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import com.amity.socialcloud.sdk.model.core.user.AmityUser
 import com.amity.socialcloud.sdk.model.social.community.AmityCommunity
+import com.amity.socialcloud.uikit.AmityLocalisationSocial
 import com.amity.socialcloud.uikit.common.model.AmityEventIdentifier
 import com.amity.socialcloud.uikit.community.databinding.AmityViewGlobalFeedEmptyBinding
 import com.amity.socialcloud.uikit.community.home.fragments.AmityCommunityHomeViewModel
@@ -21,6 +22,8 @@ import com.amity.socialcloud.uikit.community.ui.view.AmityCommunityCreatorActivi
 import com.amity.socialcloud.uikit.feed.settings.AmityPostShareClickListener
 import com.amity.socialcloud.uikit.social.AmitySocialUISettings
 import io.reactivex.rxjava3.core.Flowable
+
+import com.amity.socialcloud.uikit.community.R
 
 open class AmityGlobalFeedFragment : AmityFeedFragment() {
 
@@ -38,6 +41,7 @@ open class AmityGlobalFeedFragment : AmityFeedFragment() {
             requireView().parent as ViewGroup,
             false
         )
+        binding.btnExplore.text = AmityLocalisationSocial.getString(R.string.amity_explore_community)
         binding.btnExplore.setOnClickListener {
             communityHomeViewModel.triggerEvent(AmityEventIdentifier.EXPLORE_COMMUNITY)
         }

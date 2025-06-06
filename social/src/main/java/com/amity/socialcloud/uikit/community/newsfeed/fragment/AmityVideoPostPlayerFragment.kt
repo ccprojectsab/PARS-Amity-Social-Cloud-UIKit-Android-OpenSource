@@ -23,6 +23,7 @@ import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
 import com.google.android.exoplayer2.util.Util
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
+import com.amity.socialcloud.uikit.AmityLocalisationSocial
 
 internal class AmityVideoPostPlayerFragment : AmityBaseFragment() {
 
@@ -64,7 +65,7 @@ internal class AmityVideoPostPlayerFragment : AmityBaseFragment() {
             binding.videoViewer.requestFocus()
             val dataSourceFactory: DataSource.Factory = DefaultDataSourceFactory(
                 nonNullContext,
-                Util.getUserAgent(nonNullContext, resources.getString(net.ossrs.yasea.R.string.app_name))
+                Util.getUserAgent(nonNullContext, AmityLocalisationSocial.getString(net.ossrs.yasea.R.string.app_name))
             )
             val extractorsFactory = DefaultExtractorsFactory()
             val videoSource: MediaSource =

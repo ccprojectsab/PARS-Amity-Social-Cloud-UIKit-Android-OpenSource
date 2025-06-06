@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.amity.socialcloud.sdk.model.social.notification.AmityCommunityNotificationEvent
+import com.amity.socialcloud.uikit.AmityLocalisationSocial
 import com.amity.socialcloud.uikit.common.utils.AmityAlertDialogUtil
 import com.amity.socialcloud.uikit.community.R
 import com.amity.socialcloud.uikit.community.databinding.AmityFragmentPushSettingsDetailsBinding
@@ -124,9 +125,9 @@ open class AmityCommunityBaseNotificationSettingsFragment internal constructor()
     private fun errorDialog(title: Int, description: Int) {
         AmityAlertDialogUtil.showDialog(
             requireContext(),
-            getString(title),
-            getString(description),
-            getString(com.amity.socialcloud.uikit.common.R.string.amity_ok),
+            AmityLocalisationSocial.getString(title),
+            AmityLocalisationSocial.getString(description),
+            AmityLocalisationSocial.getString(com.amity.socialcloud.uikit.common.R.string.amity_ok),
             null
         ) { dialog, which ->
             AmityAlertDialogUtil.checkConfirmDialog(isPositive = which, confirmed = {

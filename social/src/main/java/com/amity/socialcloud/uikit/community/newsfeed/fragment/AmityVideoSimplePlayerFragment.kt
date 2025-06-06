@@ -7,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.amity.socialcloud.uikit.AmityLocalisationSocial
 import com.amity.socialcloud.uikit.common.utils.safeLet
-import com.amity.socialcloud.uikit.community.R
 import com.amity.socialcloud.uikit.community.databinding.AmityFragmentSocialVideoPlayerBinding
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.SimpleExoPlayer
@@ -59,7 +59,7 @@ internal class AmitySimpleVideoPlayerFragment : Fragment() {
             binding.videoViewer.requestFocus()
             val dataSourceFactory: DataSource.Factory = DefaultDataSourceFactory(
                 nonNullContext,
-                Util.getUserAgent(nonNullContext, resources.getString(net.ossrs.yasea.R.string.app_name))
+                Util.getUserAgent(nonNullContext, AmityLocalisationSocial.getString(net.ossrs.yasea.R.string.app_name))
             )
             val extractorsFactory = DefaultExtractorsFactory()
             val videoSource: MediaSource =

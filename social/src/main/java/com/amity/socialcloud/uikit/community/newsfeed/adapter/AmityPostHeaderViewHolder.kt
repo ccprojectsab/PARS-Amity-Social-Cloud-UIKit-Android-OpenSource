@@ -10,6 +10,8 @@ import com.amity.socialcloud.sdk.model.core.role.AmityRoles
 import com.amity.socialcloud.sdk.model.core.user.AmityUser
 import com.amity.socialcloud.sdk.model.social.community.AmityCommunity
 import com.amity.socialcloud.sdk.model.social.post.AmityPost
+import com.amity.socialcloud.uikit.AmityLocalisationSocial
+import com.amity.socialcloud.uikit.common.AmityLocalisationCommon
 import com.amity.socialcloud.uikit.common.common.readableFeedPostTime
 import com.amity.socialcloud.uikit.common.components.setImageUrl
 import com.amity.socialcloud.uikit.common.utils.AmityConstants
@@ -43,6 +45,7 @@ class AmityPostHeaderViewHolder(
         renderModBadge(post)
         renderTarget(post, data.showTarget)
         renderPostOption(data.showOptions)
+        binding.tvPostBy.text= AmityLocalisationSocial.getString(R.string.amity_moderator)
     }
 
     private fun renderAvatar(post: AmityPost) {

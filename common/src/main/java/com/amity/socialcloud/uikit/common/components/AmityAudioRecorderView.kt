@@ -13,6 +13,7 @@ import android.view.View
 import android.view.ViewAnimationUtils
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.DataBindingUtil
+import com.amity.socialcloud.uikit.common.AmityLocalisationCommon
 import com.amity.socialcloud.uikit.common.R
 import com.amity.socialcloud.uikit.common.databinding.AmityViewAudioRecorderBinding
 import org.joda.time.DateTime
@@ -146,7 +147,7 @@ class AmityAudioRecorderView : ConstraintLayout {
             if (seconds == "00") {
                 i++
             }
-            chronometer.text = context.getString(R.string.amity_time, seconds)
+            chronometer.text = AmityLocalisationCommon.getString(R.string.amity_time, seconds)
             Log.d("MyTag", "startChronometer:${chronometer.text}")
         }
 

@@ -1,6 +1,5 @@
 package com.amity.socialcloud.uikit.community.newsfeed.fragment
 
-import android.graphics.Typeface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.viewpager2.widget.ViewPager2
 import com.amity.socialcloud.sdk.model.social.post.AmityPost
+import com.amity.socialcloud.uikit.AmityLocalisationSocial
 import com.amity.socialcloud.uikit.common.base.AmityBaseFragment
 import com.amity.socialcloud.uikit.common.base.AmityFragmentStateAdapter
 import com.amity.socialcloud.uikit.community.R
@@ -80,8 +80,8 @@ class AmityMediaGalleryFragment : AmityBaseFragment() {
     }
 
     private fun registerTabChangeListener(photoTabTextView: TextView, videoTabTextView: TextView) {
-        val videoTitle = requireActivity().getString(R.string.amity_general_videos)
-        val photoTitle = requireActivity().getString(R.string.amity_general_photos)
+        val videoTitle = AmityLocalisationSocial.getString(R.string.amity_general_videos)
+        val photoTitle = AmityLocalisationSocial.getString(R.string.amity_general_photos)
         binding.mediaGalleryViewpager.registerOnPageChangeCallback(object :
             ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
@@ -102,12 +102,12 @@ class AmityMediaGalleryFragment : AmityBaseFragment() {
     }
 
     private fun photoGalleryFragment() = AmityFragmentStateAdapter.AmityPagerModel(
-        requireActivity().getString(R.string.amity_general_photos),
+        AmityLocalisationSocial.getString(R.string.amity_general_photos),
         postGalleryFragment(AmityPost.DataType.IMAGE)
     )
 
     private fun videoGalleryFragment() = AmityFragmentStateAdapter.AmityPagerModel(
-        requireActivity().getString(R.string.amity_general_videos),
+        AmityLocalisationSocial.getString(R.string.amity_general_videos),
         postGalleryFragment(AmityPost.DataType.VIDEO)
     )
 

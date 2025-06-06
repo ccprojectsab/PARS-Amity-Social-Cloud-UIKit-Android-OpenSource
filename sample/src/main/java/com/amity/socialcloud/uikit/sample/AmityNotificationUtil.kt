@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import kotlin.random.Random
+import com.amity.socialcloud.uikit.common.AmityLocalisation
 
 object AmityNotificationUtil {
     private lateinit var notificationManager: NotificationManager
@@ -41,8 +42,8 @@ object AmityNotificationUtil {
 
     private fun createNotificationChannel(context: Context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val name = context.getString(R.string.amity_notification_channel)
-            val descriptionText = context.getString(R.string.amity_notification_channel_description)
+            val name = AmityLocalisation.getString(R.string.amity_notification_channel)
+            val descriptionText = AmityLocalisation.getString(R.string.amity_notification_channel_description)
             val importance = NotificationManager.IMPORTANCE_DEFAULT
             val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
                 description = descriptionText

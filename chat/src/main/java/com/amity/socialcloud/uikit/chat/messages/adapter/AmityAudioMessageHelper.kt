@@ -16,6 +16,7 @@ import com.google.android.exoplayer2.ext.okhttp.OkHttpDataSource
 import com.google.android.exoplayer2.source.ProgressiveMediaSource
 import com.google.android.material.snackbar.Snackbar
 import okhttp3.OkHttpClient
+import com.amity.socialcloud.uikit.chat.AmityLocalisationChat
 
 class AmityAudioMessageHelper(
     private val context: Context
@@ -143,7 +144,7 @@ class AmityAudioMessageHelper(
             playingAmityAudioHolder?.audioMsgBaseViewModel?.buffering?.set(false)
             playingAmityAudioHolder?.itemView?.findViewById<View>(android.R.id.content)
                 ?.showSnackBar(
-                    context.getString(R.string.amity_playback_error),
+                    AmityLocalisationChat.getString(R.string.amity_playback_error),
                     Snackbar.LENGTH_SHORT
                 )
         }

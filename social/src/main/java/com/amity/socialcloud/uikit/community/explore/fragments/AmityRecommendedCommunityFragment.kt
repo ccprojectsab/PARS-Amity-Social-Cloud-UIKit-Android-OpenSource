@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.amity.socialcloud.sdk.model.social.community.AmityCommunity
+import com.amity.socialcloud.uikit.AmityLocalisationSocial
 import com.amity.socialcloud.uikit.common.base.AmityBaseFragment
 import com.amity.socialcloud.uikit.common.utils.AmityExceptionCatchLinearLayoutManager
 import com.amity.socialcloud.uikit.community.R
@@ -35,6 +36,7 @@ class AmityRecommendedCommunityFragment : AmityBaseFragment(),
         viewModel =
             ViewModelProvider(requireActivity()).get(AmityExploreCommunityViewModel::class.java)
         binding = AmityFragmentRecommendedCommunityBinding.inflate(inflater, container, false)
+        binding.tvRecommended.text = AmityLocalisationSocial.getString(R.string.amity_recommended_for_you)
         return binding.root
     }
 

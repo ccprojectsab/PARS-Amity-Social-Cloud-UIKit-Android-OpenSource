@@ -11,6 +11,7 @@ import com.amity.socialcloud.uikit.common.components.AmityToolBarClickListener
 import com.amity.socialcloud.uikit.community.BR
 import com.amity.socialcloud.uikit.community.R
 import com.amity.socialcloud.uikit.community.databinding.AmityActivityPostReviewSettingsBinding
+import com.amity.socialcloud.uikit.AmityLocalisationSocial
 
 class AmityPostReviewSettingsActivity :
     AmityBaseActivity<AmityActivityPostReviewSettingsBinding, AmityPostReviewSettingsViewModel>(),
@@ -46,7 +47,7 @@ class AmityPostReviewSettingsActivity :
         )
         binding.postReviewToolbar.setClickListener(this)
 
-        val titleToolbar = getString(R.string.amity_post_review)
+        val titleToolbar = AmityLocalisationSocial.getString(R.string.amity_post_review)
         binding.postReviewToolbar.setLeftString(titleToolbar)
 
         supportActionBar?.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM

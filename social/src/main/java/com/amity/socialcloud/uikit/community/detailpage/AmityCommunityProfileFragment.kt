@@ -13,6 +13,7 @@ import androidx.paging.ExperimentalPagingApi
 import com.amity.socialcloud.sdk.model.core.file.AmityImage
 import com.amity.socialcloud.sdk.model.social.community.AmityCommunity
 import com.amity.socialcloud.sdk.model.social.feed.AmityFeedType
+import com.amity.socialcloud.uikit.AmityLocalisationSocial
 import com.amity.socialcloud.uikit.common.common.formatCount
 import com.amity.socialcloud.uikit.common.common.readableNumber
 import com.amity.socialcloud.uikit.community.R
@@ -180,7 +181,7 @@ class AmityCommunityProfileFragment : RxFragment() {
         val category = community.getCategories().joinToString(separator = " ") { it.getName() }
             .takeIf { it.isNotEmpty() }
         
-        binding.tvCategory.text = category ?: getString(R.string.amity_general)
+        binding.tvCategory.text = category ?: AmityLocalisationSocial.getString(R.string.amity_general)
 
         community.getPostCount(AmityFeedType.PUBLISHED)
             .subscribeOn(Schedulers.io())
@@ -195,6 +196,9 @@ class AmityCommunityProfileFragment : RxFragment() {
             .subscribe()
 
         binding.tvMemberCount.text = community.getMemberCount().toDouble().formatCount()
+        binding.tvPostUnit.text = AmityLocalisationSocial.getString(R.string.amity_posts)
+        binding.tvMemberUnit.text = AmityLocalisationSocial.getString(R.string.amity_members)
+        binding.btnJoin.text = AmityLocalisationSocial.getString(R.string.amity_join)
         val description = community.getDescription().trim()
         if (description.isEmpty()) {
             binding.tvDescription.visibility = View.GONE
@@ -233,7 +237,7 @@ class AmityCommunityProfileFragment : RxFragment() {
         if (data.isVisible) {
             binding.layoutPendingPostBanner.visibility = View.VISIBLE
             if (data.isReviewer) {
-                val reviewerMessage = binding.root.resources.getQuantityString(
+                val reviewerMessage = AmityLocalisationSocial.getString(
                     R.plurals.amity_community_banner_number_of_pending_posts,
                     data.postCount,
                     data.postCount.readableNumber()
@@ -241,7 +245,7 @@ class AmityCommunityProfileFragment : RxFragment() {
                 binding.textviewBannerDescription.text = reviewerMessage
             } else {
                 binding.textviewBannerDescription.text =
-                    getString(R.string.amity_pending_posts_banner_member_message)
+                    AmityLocalisationSocial.getString(R.string.amity_pending_posts_banner_member_message)
             }
             binding.layoutPendingPostBanner.setOnClickListener {
                 val intent =

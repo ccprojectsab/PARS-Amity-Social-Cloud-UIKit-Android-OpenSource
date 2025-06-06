@@ -9,20 +9,17 @@ import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.lifecycle.ViewModelProvider
 import com.amity.socialcloud.sdk.api.core.AmityCoreClient
 import com.amity.socialcloud.sdk.model.core.user.AmityUser
 import com.amity.socialcloud.uikit.chat.R
 import com.amity.socialcloud.uikit.chat.apiRequest.DeleteChannelTask
-import com.amity.socialcloud.uikit.common.common.showSnackBar
 import com.amity.socialcloud.uikit.common.utils.AmityAlertDialogUtil
-import com.ekoapp.rxlifecycle.extension.untilLifecycleEnd
+import com.amity.socialcloud.uikit.chat.AmityLocalisationChat
 import com.google.android.material.divider.MaterialDivider
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.schedulers.Schedulers
-import java.util.Locale
 
 class AmityChatSettingsActivity : AppCompatActivity() {
 
@@ -53,6 +50,8 @@ class AmityChatSettingsActivity : AppCompatActivity() {
         tvReportDivider = findViewById(R.id.tvDivider1)
         channelId = intent.getStringExtra(INTENT_CHANNEL_ID) ?: ""
         userId = intent.getStringExtra(INTENT_USER_ID) ?: ""
+        val leaveChannel = findViewById<TextView>(R.id.tvLeave)
+        leaveChannel.text = AmityLocalisationChat.getString(R.string.amity_leave_chat)
         initToolbar()
         setResult(RESULT_CANCELED)
         Log.d("Mytag", "user id is - $userId")
@@ -91,7 +90,7 @@ class AmityChatSettingsActivity : AppCompatActivity() {
     private fun initToolbar() {
         val backButton = findViewById<ImageView>(R.id.ivBack)
         val title = findViewById<TextView>(R.id.tvName)
-        title.text = getText(R.string.amity_settings_chat)
+        title.text = AmityLocalisationChat.getString(R.string.amity_settings_chat)
         backButton.setOnClickListener {
             finish()
         }
@@ -123,10 +122,10 @@ class AmityChatSettingsActivity : AppCompatActivity() {
 
     private fun leaveChannelDialog() {
         AmityAlertDialogUtil.showDialog(this,
-            "${getString(R.string.amity_leave_chat)}?",
-            getString(R.string.amity_leave_chat_des),
-            getString(R.string.amity_leave_chat_title),
-            getString(R.string.amity_cancel_unfollow).uppercase(),
+            "${AmityLocalisationChat.getString(R.string.amity_leave_chat)}?",
+            AmityLocalisationChat.getString(R.string.amity_leave_chat_des),
+            AmityLocalisationChat.getString(R.string.amity_leave_chat_title),
+            AmityLocalisationChat.getString(R.string.amity_cancel_unfollow).uppercase(),
             DialogInterface.OnClickListener { dialog, which ->
                 AmityAlertDialogUtil.checkConfirmDialog(
                     isPositive = which,
@@ -141,12 +140,12 @@ class AmityChatSettingsActivity : AppCompatActivity() {
         if (user.isFlaggedByMe()) {
             unReportUser(user)
                 .doOnComplete {
-                    tvReport.setText(R.string.amity_report_user)
+                    tvReport.text = AmityLocalisationChat.getString(R.string.amity_report_user)
                 }.subscribe()
         } else {
             reportUser(user)
                 .doOnComplete {
-                    tvReport.setText(R.string.amity_un_report_user)
+                    tvReport.text = AmityLocalisationChat.getString(R.string.amity_un_report_user)
                 }
                 .subscribe()
         }
@@ -154,9 +153,9 @@ class AmityChatSettingsActivity : AppCompatActivity() {
 
     private fun setReportUserText(user: AmityUser) {
         if (user.isFlaggedByMe()) {
-            tvReport.setText(R.string.amity_un_report_user)
+            tvReport.setText(AmityLocalisationChat.getString(R.string.amity_un_report_user))
         } else {
-            tvReport.setText(R.string.amity_report_user)
+            tvReport.setText(AmityLocalisationChat.getString(R.string.amity_report_user))
         }
     }
 

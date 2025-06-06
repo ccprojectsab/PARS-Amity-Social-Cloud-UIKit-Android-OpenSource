@@ -16,6 +16,7 @@ import com.amity.socialcloud.uikit.community.R
 import com.amity.socialcloud.uikit.community.newsfeed.activity.EXTRA_PARAM_COMMENT
 import com.amity.socialcloud.uikit.community.newsfeed.model.AmityUserMention
 import com.amity.socialcloud.uikit.community.newsfeed.viewmodel.AmityCommentViewModel
+import com.amity.socialcloud.uikit.AmityLocalisationSocial
 
 class AmityCommentEditorFragment :
     AmityCommentBaseFragment(), AmityAlertDialogFragment.IAlertDialogActionListener {
@@ -28,7 +29,7 @@ class AmityCommentEditorFragment :
     }
 
     override fun getCommentMenuText(): String {
-        return getString(com.amity.socialcloud.uikit.common.R.string.amity_save_caps)
+        return AmityLocalisationSocial.getString(com.amity.socialcloud.uikit.common.R.string.amity_save_caps)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -80,9 +81,9 @@ class AmityCommentEditorFragment :
                 updateCommentMenu(true)
                 val isReply = viewModel.getComment()?.getParentId()?.isNotEmpty() == true
                 if (isReply) {
-                    view?.showSnackBar(getString(R.string.amity_update_reply_error_message))
+                    view?.showSnackBar(AmityLocalisationSocial.getString(R.string.amity_update_reply_error_message))
                 } else {
-                    view?.showSnackBar(getString(R.string.amity_update_comment_error_message))
+                    view?.showSnackBar(AmityLocalisationSocial.getString(R.string.amity_update_comment_error_message))
                 }
             })
             .subscribe()

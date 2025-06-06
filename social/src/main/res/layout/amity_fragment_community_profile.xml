@@ -132,7 +132,7 @@
                     android:id="@+id/tvMemberUnit"
                     style="@style/AmityTextStyleCaption"
                     textColorShade="@{AmityColorShade.SHADE2}"
-                    android:layout_width="wrap_content"
+                    android:layout_width="46dp"
                     android:layout_height="wrap_content"
                     android:text="@string/amity_members"
                     android:textColor="@color/amityColorBase" />

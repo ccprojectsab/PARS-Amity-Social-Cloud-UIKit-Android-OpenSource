@@ -8,6 +8,7 @@ import androidx.activity.result.contract.ActivityResultContract
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.amity.socialcloud.sdk.model.social.comment.AmityComment
+import com.amity.socialcloud.uikit.AmityLocalisationSocial
 import com.amity.socialcloud.uikit.common.base.AmityBaseToolbarFragmentContainerActivity
 import com.amity.socialcloud.uikit.community.R
 import com.amity.socialcloud.uikit.community.newsfeed.fragment.AmityCommentCreatorFragment
@@ -20,9 +21,9 @@ class AmityCommentCreatorActivity : AmityBaseToolbarFragmentContainerActivity() 
         val replyTo: AmityComment? = intent.getParcelableExtra(EXTRA_PARAM_COMMENT_REPLY_TO)
 
         if (replyTo != null) {
-            getToolBar()?.setLeftString(getString(R.string.amity_reply_to))
-        }else {
-            getToolBar()?.setLeftString( getString(R.string.amity_add_comment))
+            getToolBar()?.setLeftString(AmityLocalisationSocial.getString(R.string.amity_reply_to))
+        } else {
+            getToolBar()?.setLeftString(AmityLocalisationSocial.getString(R.string.amity_add_comment))
         }
     }
 

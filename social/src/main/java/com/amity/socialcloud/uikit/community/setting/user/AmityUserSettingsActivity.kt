@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import com.amity.socialcloud.sdk.model.core.user.AmityUser
 import com.amity.socialcloud.uikit.common.base.AmityBaseToolbarFragmentContainerActivity
 import com.amity.socialcloud.uikit.community.R
+import com.amity.socialcloud.uikit.AmityLocalisationSocial
 
 class AmityUserSettingsActivity : AmityBaseToolbarFragmentContainerActivity() {
     private lateinit var currentUser: AmityUser
@@ -26,7 +27,7 @@ class AmityUserSettingsActivity : AmityBaseToolbarFragmentContainerActivity() {
                 )
             )
             setLeftString(
-                getString(R.string.amity_settings)
+                AmityLocalisationSocial.getString(R.string.amity_settings)
             )
         }
     }

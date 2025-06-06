@@ -8,6 +8,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.amity.socialcloud.sdk.model.core.user.AmityUser
 import com.amity.socialcloud.sdk.model.social.community.AmityCommunity
 import com.amity.socialcloud.sdk.model.social.feed.AmityFeedType
+import com.amity.socialcloud.uikit.AmityLocalisationSocial
+import com.amity.socialcloud.uikit.community.R
 import com.amity.socialcloud.uikit.community.databinding.AmityViewMyTimelineFeedEmptyBinding
 import com.amity.socialcloud.uikit.community.databinding.AmityViewOtherUserTimelineEmptyBinding
 import com.amity.socialcloud.uikit.community.databinding.AmityViewPendingPostsEmptyBinding
@@ -67,6 +69,7 @@ class AmityCommunityFeedFragment : AmityFeedFragment() {
             requireView().parent as ViewGroup,
             false
         )
+        binding.tvNoPost.text = AmityLocalisationSocial.getString(R.string.amity_no_post)
         return binding.root
     }
 

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.amity.socialcloud.sdk.model.social.post.AmityPost
+import com.amity.socialcloud.uikit.AmityLocalisationSocial
 import com.amity.socialcloud.uikit.common.utils.AmityAlertDialogUtil
 import com.amity.socialcloud.uikit.common.utils.AmityAndroidUtil
 import com.amity.socialcloud.uikit.community.R
@@ -29,7 +30,7 @@ class AmityPostCreatorFragment : AmityBaseCreatePostFragment() {
     }
 
     override fun getPostMenuText(): String {
-        return getString(R.string.amity_post_caps)
+        return AmityLocalisationSocial.getString(R.string.amity_post_caps)
     }
 
     override fun onClickNegativeButton() {
@@ -39,7 +40,7 @@ class AmityPostCreatorFragment : AmityBaseCreatePostFragment() {
     private fun getToolbarTitleForCreatePost(): String {
         if (viewModel.community != null)
             return viewModel.community!!.getDisplayName()
-        return getString(R.string.amity_my_timeline)
+        return AmityLocalisationSocial.getString(R.string.amity_my_timeline)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -77,9 +78,9 @@ class AmityPostCreatorFragment : AmityBaseCreatePostFragment() {
     
     private fun showPendingPostsDialog (post: AmityPost) {
         AmityAlertDialogUtil.showDialog(requireContext(),
-            getString(R.string.amity_create_post_pending_post_title_dialog),
-            getString(R.string.amity_create_post_pending_post_message_dialog),
-            getString(com.amity.socialcloud.uikit.common.R.string.amity_ok),
+            AmityLocalisationSocial.getString(R.string.amity_create_post_pending_post_title_dialog),
+            AmityLocalisationSocial.getString(R.string.amity_create_post_pending_post_message_dialog),
+            AmityLocalisationSocial.getString(com.amity.socialcloud.uikit.common.R.string.amity_ok),
             negativeButton = null,
             cancelable = false
         ) { dialog, which ->

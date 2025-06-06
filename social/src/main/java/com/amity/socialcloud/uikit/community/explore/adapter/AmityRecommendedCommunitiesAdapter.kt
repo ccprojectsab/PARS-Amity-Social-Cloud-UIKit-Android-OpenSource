@@ -11,6 +11,7 @@ import com.amity.socialcloud.uikit.common.common.formatCount
 import com.amity.socialcloud.uikit.community.R
 import com.amity.socialcloud.uikit.community.databinding.AmityItemRecommCommBinding
 import com.amity.socialcloud.uikit.community.mycommunity.listener.AmityMyCommunityItemClickListener
+import com.amity.socialcloud.uikit.AmityLocalisationSocial
 
 class AmityRecommendedCommunitiesAdapter(private val listener: AmityMyCommunityItemClickListener) :
     AmityBaseRecyclerViewListAdapter<AmityCommunity>(diffCallBack) {
@@ -67,7 +68,7 @@ class AmityRecommendedCommunitiesAdapter(private val listener: AmityMyCommunityI
 
             binding?.ekoCommunity = data
             binding?.listener = listener
-            binding?.tvMembersCount?.text = itemView.context.getString(
+            binding?.tvMembersCount?.text = AmityLocalisationSocial.getString(
                 R.string.amity_members_count,
                 "${data?.getMemberCount()?.toDouble()?.formatCount()}"
             )

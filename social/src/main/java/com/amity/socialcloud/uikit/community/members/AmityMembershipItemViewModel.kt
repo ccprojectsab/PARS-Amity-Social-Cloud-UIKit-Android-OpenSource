@@ -8,6 +8,7 @@ import com.amity.socialcloud.sdk.model.core.permission.AmityPermission
 import com.amity.socialcloud.sdk.model.core.user.AmityUser
 import com.amity.socialcloud.sdk.model.social.community.AmityCommunity
 import com.amity.socialcloud.sdk.model.social.member.AmityCommunityMember
+import com.amity.socialcloud.uikit.AmityLocalisationSocial
 import com.amity.socialcloud.uikit.common.base.AmityBaseViewModel
 import com.amity.socialcloud.uikit.common.model.AmityMenuItem
 import com.amity.socialcloud.uikit.common.utils.AmityConstants
@@ -32,7 +33,7 @@ class AmityMembershipItemViewModel : AmityBaseViewModel() {
                 itemList.add(
                     AmityMenuItem(
                         AmityConstants.ID_PROMOTE_MODERATOR,
-                        context.getString(R.string.amity_promote_moderator)
+                        AmityLocalisationSocial.getString(R.string.amity_promote_moderator)
                     )
                 )
             }
@@ -42,14 +43,14 @@ class AmityMembershipItemViewModel : AmityBaseViewModel() {
                     itemList.add(
                         AmityMenuItem(
                             AmityConstants.ID_UN_REPORT_USER,
-                            context.getString(R.string.amity_undo_report)
+                            AmityLocalisationSocial.getString(R.string.amity_undo_report)
                         )
                     )
                 } else {
                     itemList.add(
                         AmityMenuItem(
                             AmityConstants.ID_REPORT_USER,
-                            context.getString(R.string.amity_report)
+                            AmityLocalisationSocial.getString(R.string.amity_report)
                         )
                     )
                 }
@@ -59,7 +60,7 @@ class AmityMembershipItemViewModel : AmityBaseViewModel() {
                 itemList.add(
                     AmityMenuItem(
                         AmityConstants.ID_REMOVE_USER,
-                        context.getString(com.amity.socialcloud.uikit.common.R.string.amity_remove_from_community),
+                        AmityLocalisationSocial.getString(com.amity.socialcloud.uikit.common.R.string.amity_remove_from_community),
                         true
                     )
                 )
@@ -82,7 +83,7 @@ class AmityMembershipItemViewModel : AmityBaseViewModel() {
                 itemList.add(
                     AmityMenuItem(
                         AmityConstants.ID_REMOVE_MODERATOR,
-                        context.getString(R.string.amity_remove_moderator)
+                        AmityLocalisationSocial.getString(R.string.amity_remove_moderator)
                     )
                 )
             }
@@ -92,14 +93,14 @@ class AmityMembershipItemViewModel : AmityBaseViewModel() {
                     itemList.add(
                         AmityMenuItem(
                             AmityConstants.ID_UN_REPORT_USER,
-                            context.getString(R.string.amity_undo_report)
+                            AmityLocalisationSocial.getString(R.string.amity_undo_report)
                         )
                     )
                 } else {
                     itemList.add(
                         AmityMenuItem(
                             AmityConstants.ID_REPORT_USER,
-                            context.getString(R.string.amity_report)
+                            AmityLocalisationSocial.getString(R.string.amity_report)
                         )
                     )
                 }
@@ -109,7 +110,7 @@ class AmityMembershipItemViewModel : AmityBaseViewModel() {
                 itemList.add(
                     AmityMenuItem(
                         AmityConstants.ID_REMOVE_USER,
-                        context.getString(com.amity.socialcloud.uikit.common.R.string.amity_remove_from_community)
+                        AmityLocalisationSocial.getString(com.amity.socialcloud.uikit.common.R.string.amity_remove_from_community)
                     )
                 )
             }

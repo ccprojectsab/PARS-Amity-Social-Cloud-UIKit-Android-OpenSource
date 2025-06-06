@@ -20,6 +20,7 @@ import org.joda.time.Days
 import org.joda.time.Hours
 import org.joda.time.Minutes
 import kotlin.math.min
+import com.amity.socialcloud.uikit.AmityLocalisationSocial
 
 class AmityPostItemPollViewHolder(itemView: View) : AmityPostContentViewHolder(itemView) {
 
@@ -38,29 +39,29 @@ class AmityPostItemPollViewHolder(itemView: View) : AmityPostContentViewHolder(i
                             Days.daysBetween(DateTime.now(), it.getClosedAt()).days > 0 -> {
                                 val days = Days.daysBetween(DateTime.now(), it.getClosedAt()).days
                                 binding.statusTextView.text =
-                                    context.resources.getQuantityString(R.plurals.amity_poll_status_closed_in_days, days, days)
+                                    AmityLocalisationSocial.getString(R.plurals.amity_poll_status_closed_in_days, days, days)
                             }
                             Hours.hoursBetween(DateTime.now(), it.getClosedAt()).hours > 0 -> {
                                 val hours = Hours.hoursBetween(DateTime.now(), it.getClosedAt()).hours
                                 binding.statusTextView.text =
-                                    context.resources.getQuantityString(R.plurals.amity_poll_status_closed_in_hours, hours, hours)
+                                    AmityLocalisationSocial.getString(R.plurals.amity_poll_status_closed_in_hours, hours, hours)
                             }
                             else -> {
                                 val minutes = min(1, Minutes.minutesBetween(DateTime.now(), it.getClosedAt()).minutes)
                                 binding.statusTextView.text =
-                                    context.resources.getQuantityString(R.plurals.amity_poll_status_closed_in_minutes, minutes, minutes)
+                                    AmityLocalisationSocial.getString(R.plurals.amity_poll_status_closed_in_minutes, minutes, minutes)
                             }
                         }
                     }
                     AmityPoll.Status.CLOSED == it.getStatus() -> {
-                        binding.statusTextView.text = context.getString(R.string.amity_poll_status_closed)
+                        binding.statusTextView.text = AmityLocalisationSocial.getString(R.string.amity_poll_status_closed)
                     }
                 }
             }
             .doOnNext {
                 var totalVoteCount = 0
                 it.getAnswers().forEach { answer -> totalVoteCount += answer.voteCount }
-                binding.voteCountTextView.text = context.resources.getQuantityString(R.plurals.amity_poll_vote_count, totalVoteCount, totalVoteCount)
+                binding.voteCountTextView.text = AmityLocalisationSocial.getString(R.plurals.amity_poll_vote_count, totalVoteCount, totalVoteCount)
 
                 binding.pollRecyclerView.layoutManager = LinearLayoutManager(context)
                 binding.pollRecyclerView.setHasFixedSize(true)
@@ -146,8 +147,8 @@ class AmityPostItemPollViewHolder(itemView: View) : AmityPostContentViewHolder(i
             .doOnNext {
                 if (!showFullContent && it.getAnswers().size > 2) {
                     binding.expandTextView.text = when (it.isVoted()) {
-                        true -> context.getString(R.string.amity_poll_expand_voted)
-                        false -> context.resources.getQuantityString(R.plurals.amity_poll_expand, it.getAnswers().size - 2, it.getAnswers().size - 2)
+                        true -> AmityLocalisationSocial.getString(R.string.amity_poll_expand_voted)
+                        false -> AmityLocalisationSocial.getString(R.plurals.amity_poll_expand, it.getAnswers().size - 2, it.getAnswers().size - 2)
                     }
 
                     binding.expandTextView.isVisible = true

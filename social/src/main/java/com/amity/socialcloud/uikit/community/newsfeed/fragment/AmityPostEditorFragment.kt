@@ -10,12 +10,12 @@ import com.amity.socialcloud.sdk.helper.core.mention.AmityMentionMetadataGetter
 import com.amity.socialcloud.sdk.helper.core.mention.AmityMentionee
 import com.amity.socialcloud.sdk.model.core.user.AmityUser
 import com.amity.socialcloud.sdk.model.social.post.AmityPost
-import com.amity.socialcloud.uikit.community.R
 import com.amity.socialcloud.uikit.community.newsfeed.adapter.AmityCreatePostMediaAdapter
 import com.amity.socialcloud.uikit.community.newsfeed.model.AmityUserMention
 import com.amity.socialcloud.uikit.community.newsfeed.util.AmityNewsFeedEvents
 import com.amity.socialcloud.uikit.community.utils.EXTRA_PARAM_NEWS_FEED_ID
 import com.ekoapp.rxlifecycle.extension.untilLifecycleEnd
+import com.amity.socialcloud.uikit.AmityLocalisationSocial
 
 class AmityPostEditorFragment : AmityBaseCreatePostFragment() {
 
@@ -46,11 +46,11 @@ class AmityPostEditorFragment : AmityBaseCreatePostFragment() {
 
     override fun setToolBarText() {
         (activity as AppCompatActivity).supportActionBar?.title =
-            getString(com.amity.socialcloud.uikit.common.R.string.amity_edit_post)
+            AmityLocalisationSocial.getString(com.amity.socialcloud.uikit.common.R.string.amity_edit_post)
     }
 
     override fun getPostMenuText(): String {
-        return getString(com.amity.socialcloud.uikit.common.R.string.amity_save_caps)
+        return AmityLocalisationSocial.getString(com.amity.socialcloud.uikit.common.R.string.amity_save_caps)
     }
 
     override fun isRightButtonActive(): Boolean {

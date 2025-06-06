@@ -242,13 +242,13 @@ interface PostViewModel {
         val editPostMenuItem = BottomSheetMenuItem(null, null, com.amity.socialcloud.uikit.common.R.string.amity_edit_post, editPost)
         val deletePostMenuItem =
             BottomSheetMenuItem(null, null, com.amity.socialcloud.uikit.common.R.string.amity_delete_post, deletePost)
-        val reportPostMenuItem = BottomSheetMenuItem(null, null, R.string.amity_report, reportPost)
+        val reportPostMenuItem = BottomSheetMenuItem(null, null, com.amity.socialcloud.uikit.common.R.string.amity_report, reportPost)
         val unReportPostMenuItem =
-            BottomSheetMenuItem(null, null, R.string.amity_undo_report, unReportPost)
+            BottomSheetMenuItem(null, null, com.amity.socialcloud.uikit.common.R.string.amity_undo_report, unReportPost)
         val closePollMenuItem =
-            BottomSheetMenuItem(null, null, R.string.amity_close_poll, closePoll)
+            BottomSheetMenuItem(null, null, com.amity.socialcloud.uikit.common.R.string.amity_close_poll, closePoll)
         val deletePollMenuItem =
-            BottomSheetMenuItem(null, null, R.string.amity_delete_poll, deletePoll)
+            BottomSheetMenuItem(null, null, com.amity.socialcloud.uikit.common.R.string.amity_delete_poll, deletePoll)
 
         if (post.getCreatorId() == AmityCoreClient.getUserId()) {
             if (post.getChildren().getOrNull(0)?.getType() == AmityPost.DataType.POLL) {

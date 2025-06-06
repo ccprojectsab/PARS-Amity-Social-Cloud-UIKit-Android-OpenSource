@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.amity.socialcloud.sdk.model.social.community.AmityCommunity
+import com.amity.socialcloud.uikit.AmityLocalisationSocial
 import com.amity.socialcloud.uikit.common.base.AmityBaseFragment
 import com.amity.socialcloud.uikit.common.utils.AmityExceptionCatchLinearLayoutManager
 import com.amity.socialcloud.uikit.common.utils.AmityRecyclerViewItemDecoration
@@ -32,6 +33,7 @@ class AmityTrendingCommunityFragment : AmityBaseFragment(),
         viewModel =
             ViewModelProvider(requireActivity()).get(AmityExploreCommunityViewModel::class.java)
         binding = AmityFragmentTrendingCommunityBinding.inflate(inflater, container, false)
+        binding.trendingLabel.text = AmityLocalisationSocial.getString(R.string.amity_todays_trending)
         return binding.root
     }
 
