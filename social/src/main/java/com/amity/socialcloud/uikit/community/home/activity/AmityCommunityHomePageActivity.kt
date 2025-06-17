@@ -34,7 +34,7 @@ class AmityCommunityHomePageActivity : AppCompatActivity() {
     private fun loadFragment(useNewsFeedV4: Boolean) {
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
-        val fragment = AmityCommunityHomePageFragment.newInstance(useNewsFeedV4).build()
+        val fragment = AmityCommunityHomePageFragment.newInstance(/*useNewsFeedV4*/).build()
         fragmentTransaction.replace(R.id.fragmentContainer, fragment)
         fragmentTransaction.commit()
     }

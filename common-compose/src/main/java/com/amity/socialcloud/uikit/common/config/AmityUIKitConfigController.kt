@@ -89,8 +89,8 @@ object AmityUIKitConfigController {
                 val networkConfigString = cachedConfig.toString()
                 val networkConfig: AmityUIKitConfig = GSON.fromJson(networkConfigString, type)
                 config.preferredTheme = networkConfig.preferredTheme
-                config.globalTheme.lightTheme = networkConfig.globalTheme.lightTheme
-                config.globalTheme.darkTheme = networkConfig.globalTheme.darkTheme
+                //config.globalTheme.lightTheme = networkConfig.globalTheme.lightTheme
+                //config.globalTheme.darkTheme = networkConfig.globalTheme.darkTheme
             } else {
                 Log.d("UIKitConfig", "No network config, rely on configuratio file")
             }
