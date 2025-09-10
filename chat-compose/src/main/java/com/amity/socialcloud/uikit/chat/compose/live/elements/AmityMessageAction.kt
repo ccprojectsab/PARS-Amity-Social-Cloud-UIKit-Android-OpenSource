@@ -12,4 +12,5 @@ data class AmityMessageAction(
 	val onOpenReactions: (AmityMessage) -> Unit = { message ->  },
 	val onAddReaction: (AmityMessage, String) -> Unit = { message, reactionName -> },
 	val onRemoveReaction: (AmityMessage, String) -> Unit =  { message, reactionName -> },
+	val onShowReactionPicker: (() -> Unit)? = null,
 )

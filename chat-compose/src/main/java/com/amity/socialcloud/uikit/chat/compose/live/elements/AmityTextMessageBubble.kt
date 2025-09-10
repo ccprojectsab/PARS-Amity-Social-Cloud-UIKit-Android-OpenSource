@@ -169,6 +169,11 @@ fun BaseMessageBubble(
 ) {
     var reactionExpanded by remember { mutableStateOf(false) }
     var menuExpanded by remember { mutableStateOf(false) }
+    
+    val onShowReactionPicker = {
+        menuExpanded = false
+        reactionExpanded = true
+    }
     AmityBaseElement(
         pageScope = pageScope,
         componentScope = componentScope,
@@ -319,7 +324,9 @@ fun BaseMessageBubble(
                                 pageScope = pageScope,
                                 componentScope = componentScope,
                                 show = menuExpanded,
-                                onMessageAction = onMessageAction,
+                                onMessageAction = onMessageAction.copy(
+                                    onShowReactionPicker = onShowReactionPicker
+                                ),
                                 modifier = Modifier.width(243.dp),
                             ) {
                                 CoroutineScope(Dispatchers.IO).launch {

@@ -305,7 +305,10 @@ fun AmityLiveChatMessageList(
                             onUnFlag = onUnFlagAction,
                             onAddReaction = viewModel::addMessageReaction,
                             onRemoveReaction = viewModel::removeMessageReaction,
-                            onOpenReactions = onOpenReaction
+                            onOpenReactions = onOpenReaction,
+                            onShowReactionPicker = if (!message.isDeleted() && message.getState() == AmityMessage.State.SYNCED) {
+                                { /* Will be handled in the message bubble component */ }
+                            } else null
                         )
                         if (message.getCreator()?.getUserId() == AmityCoreClient.getUserId()) {
                             AmityLiveChatMessageSenderView(

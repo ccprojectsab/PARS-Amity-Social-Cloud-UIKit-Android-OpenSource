@@ -99,11 +99,11 @@ class AmityCommunityHomePageFragment : Fragment(), AmityToolBarClickListener {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if (context is TabSelectionListener) {
-            tabSelectionListener = context
-        } else {
-            throw RuntimeException("$context must implement TabSelectionListener")
-        }
+//        if (context is TabSelectionListener) {
+//            tabSelectionListener = context
+//        } else {
+//            throw RuntimeException("$context must implement TabSelectionListener")
+//        }
     }
 
     override fun onDetach() {

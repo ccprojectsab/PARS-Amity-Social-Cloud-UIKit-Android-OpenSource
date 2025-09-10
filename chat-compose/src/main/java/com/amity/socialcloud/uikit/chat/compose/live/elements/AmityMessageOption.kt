@@ -95,6 +95,16 @@ fun AmityMessageOption(
 							)
 							HorizontalDivider(color = AmityTheme.colors.secondaryShade1)
 						}
+						onMessageAction.onShowReactionPicker?.let { onShowReactionPicker ->
+							AmityMessageOptionItem(
+								option = "React",
+								icon = ImageVector.vectorResource(id = R.drawable.amity_ic_message_quick_reaction),
+								tint = AmityTheme.colors.baseInverse,
+								onDismiss = onDismiss,
+								action = onShowReactionPicker
+							)
+							HorizontalDivider(color = AmityTheme.colors.secondaryShade1)
+						}
 						AmityMessageOptionItem(
 							option = "Copy",
 							icon = ImageVector.vectorResource(id = R.drawable.amity_ic_copy_message),
