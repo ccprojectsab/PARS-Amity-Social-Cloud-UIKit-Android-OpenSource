@@ -311,6 +311,7 @@ private fun formatTextWithMentions(text: String, mentions: List<MentionData>, me
             if (mentionEnd > text.length || mentionStart < 0 || mentionStart >= text.length) {
                 continue
             }
+
             
             // Add text before mention
             if (mentionStart > lastIndex) {
@@ -365,6 +366,7 @@ private fun calculateTextDiff(oldText: String, newValue: TextFieldValue): TextDi
 private fun detectActiveMentionToken(value: TextFieldValue): String? {
     val text = value.text
     val cursorPosition = value.selection.start
+
     
     if (cursorPosition <= 0) return null
     
